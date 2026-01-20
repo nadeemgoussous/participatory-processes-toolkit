@@ -25,7 +25,9 @@
       "WebFetch(domain:component.gallery)",
       "WebFetch(domain:carbondesignsystem.com)",
       "WebSearch",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(git push:*)",
+      "Bash(pkill -f \"git push\")"
     ],
     "deny": [],
     "ask": []

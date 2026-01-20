@@ -1,6 +1,6 @@
 # Local LLM Setup with Ollama
 
-This guide explains how to set up **Ollama** with **Gemma 2 2B** for AI-enhanced stakeholder responses in the Scenario Dialogue Tool.
+This guide explains how to set up **Ollama** with **SmolLM2 1.7B** for AI-enhanced stakeholder responses in the Scenario Dialogue Tool.
 
 ## Why Local LLM?
 
@@ -46,12 +46,12 @@ brew install ollama
 curl -fsSL https://ollama.com/install.sh | sh
 ```
 
-### Step 2: Download Gemma 2 2B Model
+### Step 2: Download SmolLM2 1.7B Model
 
 Open a terminal/command prompt and run:
 
 ```bash
-ollama pull gemma2:2b
+ollama pull smollm2:1.7b
 ```
 
 This will download the **Gemma 2 2B** model (~1.6 GB). The download happens once and the model is cached locally.
@@ -67,7 +67,7 @@ This will download the **Gemma 2 2B** model (~1.6 GB). The download happens once
 Run the following command to test Ollama:
 
 ```bash
-ollama run gemma2:2b "Hello! Can you help me with energy planning?"
+ollama run smollm2:1.7b "Hello! Can you help me with energy planning?"
 ```
 
 If you see a response, Ollama is working correctly!
@@ -98,7 +98,7 @@ The Scenario Dialogue Tool uses these default settings:
 {
   ollamaEnabled: true,
   ollamaUrl: 'http://localhost:11434',
-  ollamaModel: 'gemma2:2b',
+  ollamaModel: 'smollm2:1.7b',
   ollamaTimeout: 3000, // 3 seconds max
 }
 ```
@@ -145,7 +145,7 @@ Then update the `ollamaModel` setting to match.
 2. **Rule-based response generated** (always fast, always works)
 3. **Check Ollama availability**:
    - Ping `http://localhost:11434/api/tags`
-   - Check if `gemma2:2b` is available
+   - Check if `smollm2:1.7b` is available
    - Timeout after 1 second
 4. **If Ollama available**:
    - Send rule-based response + scenario context to Ollama
@@ -182,8 +182,8 @@ The local LLM **enhances** the rule-based response by:
 For facilitators preparing workshops:
 
 - [ ] Install Ollama on workshop laptops/computers
-- [ ] Download `gemma2:2b` model on each machine
-- [ ] Test Ollama with: `ollama run gemma2:2b "Test"`
+- [ ] Download `smollm2:1.7b` model on each machine
+- [ ] Test Ollama with: `ollama run smollm2:1.7b "Test"`
 - [ ] Ensure Ollama service is running
 - [ ] Test the Scenario Dialogue Tool with "Load Example"
 - [ ] Verify AI enhancement indicator shows "Enhanced with Ollama"
@@ -195,7 +195,7 @@ If the workshop venue has **no internet**:
 1. **Pre-download everything before the workshop:**
    ```bash
    # On a machine with internet
-   ollama pull gemma2:2b
+   ollama pull smollm2:1.7b
 
    # Copy Ollama models directory to USB drive
    # Windows: C:\Users\<username>\.ollama\models
@@ -229,7 +229,7 @@ If the workshop venue has **no internet**:
 
 **Model not found:**
 - Run: `ollama list` to see installed models
-- Download missing model: `ollama pull gemma2:2b`
+- Download missing model: `ollama pull smollm2:1.7b`
 
 **Tool shows "rule-based" but Ollama is running:**
 - Check console (F12) for debug messages
@@ -271,7 +271,7 @@ If you want to use cloud APIs as a fallback (for online scenarios):
 export const DEFAULT_AI_CONFIG: AIConfig = {
   ollamaEnabled: true,
   ollamaUrl: 'http://localhost:11434',
-  ollamaModel: 'gemma2:2b',
+  ollamaModel: 'smollm2:1.7b',
   ollamaTimeout: 3000,
 
   // Enable cloud fallback
@@ -318,7 +318,7 @@ For issues with:
 ## Summary
 
 ✅ **Install Ollama** → Download and install
-✅ **Pull Model** → `ollama pull gemma2:2b`
+✅ **Pull Model** → `ollama pull smollm2:1.7b`
 ✅ **Start Service** → `ollama serve`
 ✅ **Use Tool** → AI enhancement happens automatically
 ✅ **Fallback Works** → Rule-based responses if Ollama unavailable

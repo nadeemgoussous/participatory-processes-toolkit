@@ -1,0 +1,252 @@
+{
+  "metadata": {
+    "country": "Rwanda",
+    "scenarioName": "Business as Usual (Baseline)",
+    "modelVersion": "SPLAT-MESSAGE",
+    "dateCreated": "2025-01-15",
+    "sourceFile": "rwanda_baseline_splat.csv"
+  },
+  "milestones": [
+    {
+      "year": 2025,
+      "capacity": {
+        "total": {
+          "renewables": 245,
+          "fossil": 265,
+          "storage": 5,
+          "other": 30
+        },
+        "unit": "MW"
+      },
+      "generation": {
+        "output": {
+          "renewables": 1041,
+          "fossil": 1650,
+          "other": 210
+        },
+        "unit": "GWh"
+      },
+      "reShare": 35.9,
+      "investment": {
+        "cumulative": 125,
+        "unit": "m$"
+      },
+      "emissions": {
+        "total": 1.85,
+        "unit": "Mt CO2"
+      },
+      "peakDemand": {
+        "value": 430,
+        "unit": "MW"
+      },
+      "capacityAdditions": {
+        "additions": {
+          "renewables": 11,
+          "fossil": 27,
+          "storage": 1,
+          "other": 6
+        },
+        "unit": "MW"
+      },
+      "annualOMCosts": {
+        "value": 20,
+        "unit": "m$"
+      },
+      "curtailment": {
+        "value": 0,
+        "unit": "GWh"
+      }
+    },
+    {
+      "year": 2030,
+      "capacity": {
+        "total": {
+          "renewables": 315,
+          "fossil": 440,
+          "storage": 20,
+          "other": 50
+        },
+        "unit": "MW"
+      },
+      "generation": {
+        "output": {
+          "renewables": 1318,
+          "fossil": 2920,
+          "other": 350
+        },
+        "unit": "GWh"
+      },
+      "reShare": 28.6,
+      "investment": {
+        "cumulative": 1150,
+        "unit": "m$"
+      },
+      "emissions": {
+        "total": 2.95,
+        "unit": "Mt CO2"
+      },
+      "peakDemand": {
+        "value": 685,
+        "unit": "MW"
+      },
+      "capacityAdditions": {
+        "additions": {
+          "renewables": 14,
+          "fossil": 35,
+          "storage": 3,
+          "other": 4
+        },
+        "unit": "MW"
+      },
+      "annualOMCosts": {
+        "value": 32,
+        "unit": "m$"
+      },
+      "curtailment": {
+        "value": 5,
+        "unit": "GWh"
+      }
+    },
+    {
+      "year": 2040,
+      "capacity": {
+        "total": {
+          "renewables": 530,
+          "fossil": 520,
+          "storage": 60,
+          "other": 100
+        },
+        "unit": "MW"
+      },
+      "generation": {
+        "output": {
+          "renewables": 2113,
+          "fossil": 3620,
+          "other": 700
+        },
+        "unit": "GWh"
+      },
+      "reShare": 32.8,
+      "investment": {
+        "cumulative": 4250,
+        "unit": "m$"
+      },
+      "emissions": {
+        "total": 3.75,
+        "unit": "Mt CO2"
+      },
+      "peakDemand": {
+        "value": 960,
+        "unit": "MW"
+      },
+      "capacityAdditions": {
+        "additions": {
+          "renewables": 21,
+          "fossil": 8,
+          "storage": 4,
+          "other": 5
+        },
+        "unit": "MW"
+      },
+      "annualOMCosts": {
+        "value": 48,
+        "unit": "m$"
+      },
+      "curtailment": {
+        "value": 18,
+        "unit": "GWh"
+      }
+    },
+    {
+      "year": 2050,
+      "capacity": {
+        "total": {
+          "renewables": 785,
+          "fossil": 480,
+          "storage": 120,
+          "other": 150
+        },
+        "unit": "MW"
+      },
+      "generation": {
+        "output": {
+          "renewables": 3089,
+          "fossil": 3490,
+          "other": 1050
+        },
+        "unit": "GWh"
+      },
+      "reShare": 40.2,
+      "investment": {
+        "cumulative": 7350,
+        "unit": "m$"
+      },
+      "emissions": {
+        "total": 3.65,
+        "unit": "Mt CO2"
+      },
+      "peakDemand": {
+        "value": 1285,
+        "unit": "MW"
+      },
+      "capacityAdditions": {
+        "additions": {
+          "renewables": 25,
+          "fossil": 0,
+          "storage": 6,
+          "other": 5
+        },
+        "unit": "MW"
+      },
+      "annualOMCosts": {
+        "value": 58,
+        "unit": "m$"
+      },
+      "curtailment": {
+        "value": 42,
+        "unit": "GWh"
+      }
+    }
+  ],
+  "detailedTech": {
+    "2030": {
+      "hydro": 245,
+      "solarPV": 45,
+      "wind": 10,
+      "geothermal": 0,
+      "biomass": 15,
+      "coal": 0,
+      "gas": 150,
+      "diesel": 110,
+      "hfo": 180,
+      "battery": 20,
+      "interconnector": 50
+    },
+    "2040": {
+      "hydro": 280,
+      "solarPV": 120,
+      "wind": 35,
+      "geothermal": 50,
+      "biomass": 25,
+      "coal": 0,
+      "gas": 280,
+      "diesel": 90,
+      "hfo": 150,
+      "battery": 60,
+      "interconnector": 100
+    },
+    "2050": {
+      "hydro": 320,
+      "solarPV": 250,
+      "wind": 80,
+      "geothermal": 100,
+      "biomass": 35,
+      "coal": 0,
+      "gas": 350,
+      "diesel": 50,
+      "hfo": 80,
+      "battery": 120,
+      "interconnector": 150
+    }
+  }
+}

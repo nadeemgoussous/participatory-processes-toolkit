@@ -55,13 +55,13 @@ export const DEFAULT_AI_CONFIG: AIConfig = {
   // ENABLED for development/testing - model will download on first use (~1.77 GB)
   webLLMEnabled: true, // Enable WebLLM for browser-based AI
   webLLMModel: 'SmolLM2-1.7B-Instruct-q4f16_1-MLC', // SmolLM2: Better instruction following than Gemma (~1.77 GB)
-  webLLMTimeout: 20000, // Increased to 20s for browser-based inference (was 5s)
+  webLLMTimeout: 60000, // Increased to 60s for slower computers (was 20s)
 
   // Ollama for facilitators (better performance)
   ollamaEnabled: true,
   ollamaUrl: 'http://localhost:11434',
-  ollamaModel: 'gemma2:2b',
-  ollamaTimeout: 3000,
+  ollamaModel: 'smollm2:1.7b', // Same model as WebLLM for consistency
+  ollamaTimeout: 45000, // Increased to 45s for slower hardware (was 3s)
 
   // Cloud API disabled by default
   cloudEnabled: false,

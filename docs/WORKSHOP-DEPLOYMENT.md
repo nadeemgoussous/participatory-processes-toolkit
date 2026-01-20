@@ -26,8 +26,8 @@ npm run dev
 # 1. Install Ollama
 # Download from: https://ollama.ai
 
-# 2. Pull Gemma 2 model
-ollama pull gemma2:2b
+# 2. Pull SmolLM2 model
+ollama pull smollm2:1.7b
 
 # 3. Start the tool
 npm run dev

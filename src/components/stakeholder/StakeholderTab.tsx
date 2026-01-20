@@ -7,6 +7,7 @@ import PredictionInput from '../prediction/PredictionInput';
 import CompareView from '../prediction/CompareView';
 import { useScenario } from '../../context/ScenarioContext';
 import { generateEnhancedResponse, getContextDescription } from '../../utils/stakeholder-rules';
+import { maybeEnhanceWithAI, DEFAULT_AI_CONFIG } from '../../utils/stakeholder-ai';
 import { useOnlineStatus } from '../../hooks/useOnlineStatus';
 import { Tooltip } from '../common/Tooltip';
 import { useWebLLM } from '../../hooks/useWebLLM';
@@ -69,6 +70,7 @@ const STORAGE_KEYS = {
   settingsExpanded: 'stakeholder-settings-expanded',
   developmentContext: 'stakeholder-development-context',
   stakeholderVariant: 'stakeholder-variant',
+  aiBackend: 'stakeholder-ai-backend',
 };
 
 export default function StakeholderTab({ onStakeholderSelected, onNavigateToExplore }: StakeholderTabProps) {
@@ -100,6 +102,13 @@ export default function StakeholderTab({ onStakeholderSelected, onNavigateToExpl
     return (saved as StakeholderVariant) || 'pragmatic';
   });
 
+  // AI Backend preference
+  type AIBackend = 'auto' | 'webllm' | 'ollama' | 'rule-based';
+  const [aiBackend, setAIBackend] = useState<AIBackend>(() => {
+    const saved = localStorage.getItem(STORAGE_KEYS.aiBackend);
+    return (saved as AIBackend) || 'auto';
+  });
+
   // Persist settings to localStorage
   useEffect(() => {
     localStorage.setItem(STORAGE_KEYS.settingsExpanded, String(settingsExpanded));
@@ -112,6 +121,10 @@ export default function StakeholderTab({ onStakeholderSelected, onNavigateToExpl
   useEffect(() => {
     localStorage.setItem(STORAGE_KEYS.stakeholderVariant, stakeholderVariant);
   }, [stakeholderVariant]);
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEYS.aiBackend, aiBackend);
+  }, [aiBackend]);
 
   const handleStakeholderClick = (stakeholder: StakeholderProfile) => {
     setSelectedStakeholder(stakeholder);
@@ -134,6 +147,7 @@ export default function StakeholderTab({ onStakeholderSelected, onNavigateToExpl
       if (scenario && derivedMetrics && selectedStakeholder) {
         console.log('🔄 Generating response for:', selectedStakeholder.name);
         console.log('Context:', developmentContext, 'Variant:', stakeholderVariant);
+        console.log('AI Backend:', aiBackend);
         console.log('WebLLM status:', webllm.status);
 
         // Generate enhanced response with context and variant
@@ -148,18 +162,47 @@ export default function StakeholderTab({ onStakeholderSelected, onNavigateToExpl
           }
         );
 
-        // Try to enhance with AI on top (silent failover if unavailable)
-        // Uses WebLLM if available, falls back to Ollama, then rule-based
-        const aiEnhancedResponse = await webllm.generateResponse(
-          enhancedResponse,
-          selectedStakeholder,
-          scenario,
-          derivedMetrics
-        );
+        // Configure AI backend based on user preference
+        let finalResponse: StakeholderResponse;
 
-        console.log('✅ Response generated:', aiEnhancedResponse.generationType);
-        console.log('Interaction triggers:', aiEnhancedResponse.metadata?.interactionTriggersCount || 0);
-        setStakeholderResponse(aiEnhancedResponse);
+        if (aiBackend === 'rule-based') {
+          // Skip AI enhancement entirely
+          console.log('ℹ️ Using rule-based only (user preference)');
+          finalResponse = enhancedResponse;
+        } else {
+          // Try to enhance with AI based on user's backend preference
+          // Create custom config based on user preference
+          const customConfig = { ...DEFAULT_AI_CONFIG };
+
+          if (aiBackend === 'ollama') {
+            // Ollama only - disable WebLLM and cloud
+            customConfig.webLLMEnabled = false;
+            customConfig.ollamaEnabled = true;
+            customConfig.cloudEnabled = false;
+            console.log('🔧 Configured for Ollama only');
+          } else if (aiBackend === 'webllm') {
+            // WebLLM only - disable Ollama and cloud
+            customConfig.webLLMEnabled = true;
+            customConfig.ollamaEnabled = false;
+            customConfig.cloudEnabled = false;
+            console.log('🔧 Configured for WebLLM only');
+          } else {
+            // Auto mode - keep defaults (WebLLM → Ollama → Cloud → Rule-based)
+            console.log('🔧 Configured for auto failover');
+          }
+
+          finalResponse = await maybeEnhanceWithAI(
+            enhancedResponse,
+            selectedStakeholder,
+            scenario,
+            derivedMetrics,
+            customConfig
+          );
+        }
+
+        console.log('✅ Response generated:', finalResponse.generationType);
+        console.log('Interaction triggers:', finalResponse.metadata?.interactionTriggersCount || 0);
+        setStakeholderResponse(finalResponse);
       } else {
         console.error('❌ Missing data for response generation:');
         console.error('- Scenario:', !!scenario);
@@ -457,7 +500,7 @@ export default function StakeholderTab({ onStakeholderSelected, onNavigateToExpl
             <span className="text-xs font-normal text-gray-400">(Optional)</span>
             {!settingsExpanded && (
               <span className="text-xs font-normal text-gray-400 ml-1">
-                - {developmentContext === 'least-developed' ? 'LDC' : developmentContext === 'developed' ? 'Developed' : 'Emerging'} / {stakeholderVariant}
+                - {developmentContext === 'least-developed' ? 'LDC' : developmentContext === 'developed' ? 'Developed' : 'Emerging'} / {stakeholderVariant} / {aiBackend === 'auto' ? 'Auto AI' : aiBackend === 'ollama' ? 'Ollama' : aiBackend === 'webllm' ? 'WebLLM' : 'Rule-based'}
               </span>
             )}
           </h3>
@@ -472,7 +515,7 @@ export default function StakeholderTab({ onStakeholderSelected, onNavigateToExpl
         </button>
 
         {settingsExpanded && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4 pt-4 border-t border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4 pt-4 border-t border-gray-200">
           {/* Development Context Selector */}
           <div>
             <label htmlFor="context" className="block text-sm font-medium text-gray-700 mb-2">
@@ -515,8 +558,32 @@ export default function StakeholderTab({ onStakeholderSelected, onNavigateToExpl
             </p>
           </div>
 
-          {/* Info box spans both columns */}
-          <div className="col-span-1 md:col-span-2 mt-2 p-3 bg-gray-50 rounded-lg border border-gray-200">
+          {/* AI Backend Selector */}
+          <div>
+            <label htmlFor="ai-backend" className="block text-sm font-medium text-gray-700 mb-2">
+              AI Enhancement
+            </label>
+            <select
+              id="ai-backend"
+              value={aiBackend}
+              onChange={(e) => setAIBackend(e.target.value as AIBackend)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            >
+              <option value="auto">Auto (Try WebLLM → Ollama → Rule-based)</option>
+              <option value="ollama">Ollama Only (Local AI server)</option>
+              <option value="webllm">WebLLM Only (Browser AI)</option>
+              <option value="rule-based">Rule-based Only (Fastest, offline)</option>
+            </select>
+            <p className="mt-2 text-xs text-gray-600">
+              {aiBackend === 'auto' && 'Automatically tries WebLLM first, falls back to Ollama, then rule-based'}
+              {aiBackend === 'ollama' && 'Uses Ollama local server (requires Ollama installed and running)'}
+              {aiBackend === 'webllm' && 'Uses browser-based AI (requires WebGPU support)'}
+              {aiBackend === 'rule-based' && 'Fast, deterministic responses - always works offline'}
+            </p>
+          </div>
+
+          {/* Info box spans all columns */}
+          <div className="col-span-1 md:col-span-3 mt-2 p-3 bg-gray-50 rounded-lg border border-gray-200">
             <p className="text-xs text-gray-600 flex items-start gap-2">
               <svg className="w-4 h-4 text-gray-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />

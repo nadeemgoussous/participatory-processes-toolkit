@@ -752,6 +752,44 @@
         "Intermittency trigger: RE >60% AND battery <200 MW"
       ],
       "passes": true
+    },
+    {
+      "id": "F045",
+      "category": "offline",
+      "priority": 45,
+      "description": "AI Backend Selector with Ollama timeout fixes for slower hardware",
+      "status": "IN PROGRESS - Ollama timing out, needs debugging",
+      "steps": [
+        "Add AI Backend selector dropdown in Advanced Settings (Auto/Ollama Only/WebLLM Only/Rule-based)",
+        "Add localStorage persistence for backend preference",
+        "Update handleRevealResponse to respect backend selection",
+        "Configure custom AIConfig based on user selection (disable unwanted backends)",
+        "Update SmolLM2 1.7B for both WebLLM and Ollama (consistency)",
+        "Test Ollama inference timing (measured: 38.7 seconds on slower hardware)",
+        "Increase Ollama timeout from 3s to 45s",
+        "Fix Ollama silent failover to rule-based (still occurring - needs debug)",
+        "Update OLLAMA-SETUP.md to use smollm2:1.7b instead of gemma2:2b",
+        "Update WORKSHOP-DEPLOYMENT.md with correct model",
+        "Add console logging to track AI backend selection",
+        "Test full workflow: Load scenario → Select Ollama Only → Generate response",
+        "Verify AI-enhanced response appears (not rule-based fallback)"
+      ],
+      "technicalNotes": [
+        "UI: Added 3-column grid in Advanced Settings (Context / Variant / AI Backend)",
+        "Backend options: auto, ollama, webllm, rule-based",
+        "Config customization: Disables unwanted backends based on selection",
+        "Ollama model changed: gemma2:2b → smollm2:1.7b (consistency with WebLLM)",
+        "Timeout increased: 3000ms → 45000ms (to accommodate slower hardware)",
+        "Issue: Ollama still timing out or failing silently despite 45s timeout",
+        "Next debug steps: Check Ollama API response format, verify timeout handling, add detailed logging"
+      ],
+      "challenges": [
+        "Ollama inference very slow on integrated graphics (38.7s vs expected 3s)",
+        "Need to debug why 45s timeout still causes fallback to rule-based",
+        "May need to check Ollama API response handling or error logging",
+        "WebLLM unsupported on Intel UHD Graphics (no WebGPU), Ollama only viable option"
+      ],
+      "passes": false
     }
   ]
 }

@@ -1,5 +1,97 @@
 ## Claude Code Progress Log
 
+### Session: 2026-01-20 (F045 - AI Backend Selector with Ollama Optimization)
+
+**Branch**: master
+
+**Status**: 🚧 IN PROGRESS - AI Backend selector implemented, Ollama timeout debugging needed
+
+**Progress Summary**:
+
+User wants to use Ollama for AI-enhanced responses on slower hardware (Intel UHD Graphics, no WebGPU support). Implemented UI selector for choosing AI backends and discovered Ollama timing out despite timeout increase. Need to debug why responses still fall back to rule-based.
+
+**✅ Completed**:
+
+1. **AI Backend Selector UI** - Added dropdown in Advanced Settings
+   - Options: Auto (WebLLM → Ollama → Rule-based), Ollama Only, WebLLM Only, Rule-based Only
+   - Added to StakeholderTab.tsx in Advanced Settings section
+   - 3-column grid layout: Development Context / Stakeholder Variant / AI Backend
+   - localStorage persistence for user preference
+   - Shows selected backend in collapsed settings header
+
+2. **Backend Logic Integration** - Custom AIConfig based on selection
+   - Modified handleRevealResponse to respect backend preference
+   - Ollama Only: Disables WebLLM and cloud, only tries Ollama
+   - WebLLM Only: Disables Ollama and cloud, only tries WebLLM
+   - Rule-based Only: Skips all AI enhancement
+   - Auto: Uses default failover chain (WebLLM → Ollama → Cloud → Rule-based)
+   - Imports maybeEnhanceWithAI and DEFAULT_AI_CONFIG at top level (not dynamic import)
+
+3. **Model Consistency - SmolLM2** - Updated from Gemma to SmolLM2
+   - Changed Ollama default model: gemma2:2b → smollm2:1.7b
+   - Matches WebLLM model (SmolLM2-1.7B-Instruct-q4f16_1-MLC)
+   - Benefits: Smaller (1.7B vs 2B), better instruction following, consistent quality
+   - Updated docs/OLLAMA-SETUP.md (9 occurrences replaced)
+   - Updated docs/WORKSHOP-DEPLOYMENT.md (1 occurrence)
+   - User already had smollm2:1.7b pulled in Ollama
+
+4. **WebLLM Timeout Increase** - Adjusted for slower computers
+   - Increased from 20s to 60s to accommodate slower hardware
+   - WebLLM fails anyway due to no WebGPU support (Intel UHD Graphics)
+   - Error: "No available adapters" - browser can't find compatible GPU
+
+5. **Ollama Performance Testing** - Measured actual inference time
+   - Created test: `curl` to Ollama API with SmolLM2:1.7b
+   - Result: **38.7 seconds** for 100 token response
+   - Far slower than expected (normally ~3s on modern hardware)
+   - User's hardware: Intel UHD Graphics (integrated), limited resources
+
+6. **Ollama Timeout Increase** - Adjusted for measured performance
+   - Increased from 3000ms to 45000ms (45 seconds)
+   - Should accommodate the 38.7s inference time
+   - File: src/utils/stakeholder-ai.ts
+   - Comment added: "Increased to 45s for slower hardware (was 3s)"
+
+**❌ Issues Identified**:
+
+1. **Ollama Still Timing Out** - Despite 45s timeout, responses fall back to rule-based
+   - Expected: 38.7s inference + timeout 45s = should work
+   - Actual: Still getting rule-based responses (not AI-enhanced)
+   - Possible causes:
+     - Timeout not being applied correctly in enhanceWithOllama function
+     - Ollama API returning error before timeout
+     - AbortController not giving enough time
+     - Silent error swallowing in maybeEnhanceWithAI
+   - Need to add detailed console logging to track exact failure point
+
+2. **WebGPU Not Supported** - WebLLM cannot work on this hardware
+   - Intel UHD Graphics doesn't support WebGPU
+   - Error: "Unable to find a compatible GPU"
+   - Ollama is the only viable AI option for this machine
+
+**Files Modified**:
+- `src/utils/stakeholder-ai.ts` (+2 lines - WebLLM timeout 20s→60s, Ollama timeout 3s→45s, model gemma2:2b→smollm2:1.7b)
+- `src/components/stakeholder/StakeholderTab.tsx` (+50 lines - AI backend selector, localStorage persistence, custom config)
+- `docs/OLLAMA-SETUP.md` (9 replacements - gemma2:2b → smollm2:1.7b)
+- `docs/WORKSHOP-DEPLOYMENT.md` (1 replacement - gemma2:2b → smollm2:1.7b)
+- `feature_list.json` (+35 lines - F045 added with status: passes=false)
+
+**Next Steps**:
+1. Add detailed console logging in enhanceWithOllama to track:
+   - When timeout is set
+   - When Ollama API is called
+   - How long it actually waits
+   - What error causes fallback
+2. Check Ollama API response format - may be streaming when we expect non-streaming
+3. Verify AbortController timeout is correctly applied
+4. Test in browser console with Network tab open to see actual timing
+5. Consider increasing timeout further (60s?) if still timing out
+6. Mark F045 as passing once Ollama enhancement works
+
+**Dev Server**: Running on port 5174 (http://localhost:5174/stakeholder-dialogue/)
+
+---
+
 ### Session: 2026-01-06 (UI/UX Review - Gemini Accessibility & Professional Design Improvements)
 
 **Branch**: ui-ux-review
