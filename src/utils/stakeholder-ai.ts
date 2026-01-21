@@ -59,9 +59,10 @@ export const DEFAULT_AI_CONFIG: AIConfig = {
 
   // Ollama for facilitators (better performance)
   ollamaEnabled: true,
-  ollamaUrl: 'http://localhost:11434',
+  // Use Vite proxy to bypass CORS (proxies /api/ollama → localhost:11434)
+  ollamaUrl: '/api/ollama',
   ollamaModel: 'smollm2:1.7b', // Same model as WebLLM for consistency
-  ollamaTimeout: 45000, // Increased to 45s for slower hardware (was 3s)
+  ollamaTimeout: 120000, // 2 minutes for streaming (generous for slow hardware)
 
   // Cloud API disabled by default
   cloudEnabled: false,
@@ -478,21 +479,39 @@ function calculateREShare(scenario: ScenarioInput, year: number): number {
 }
 
 /**
- * Enhance response using Ollama local LLM
+ * Enhance response using Ollama local LLM with STREAMING
+ * Streaming prevents browser timeouts and gives immediate feedback
  */
 async function enhanceWithOllama(
   ruleBasedResponse: StakeholderResponse,
   stakeholder: StakeholderProfile,
   scenario: ScenarioInput,
   derivedMetrics: DerivedMetrics,
-  config: AIConfig
+  config: AIConfig,
+  onChunk?: (text: string) => void
 ): Promise<StakeholderResponse | null> {
+  const startTime = Date.now();
+  console.log('🦙 [Ollama] Starting STREAMING enhancement for:', stakeholder.name);
+  console.log('🦙 [Ollama] Config:', {
+    url: config.ollamaUrl,
+    model: config.ollamaModel,
+    timeout: config.ollamaTimeout,
+  });
+
   try {
     const systemPrompt = buildSystemPrompt(stakeholder, scenario, derivedMetrics);
     const baseResponseText = JSON.stringify(ruleBasedResponse, null, 2);
 
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), config.ollamaTimeout);
+    console.log(`🦙 [Ollama] Setting timeout: ${config.ollamaTimeout}ms (${config.ollamaTimeout / 1000}s)`);
+
+    const timeoutId = setTimeout(() => {
+      console.log(`🦙 [Ollama] ⏰ TIMEOUT TRIGGERED after ${config.ollamaTimeout}ms`);
+      controller.abort();
+    }, config.ollamaTimeout);
+
+    console.log('🦙 [Ollama] Sending STREAMING request to:', `${config.ollamaUrl}/api/generate`);
+    const fetchStartTime = Date.now();
 
     const response = await fetch(`${config.ollamaUrl}/api/generate`, {
       method: 'POST',
@@ -500,7 +519,7 @@ async function enhanceWithOllama(
       body: JSON.stringify({
         model: config.ollamaModel,
         prompt: `${systemPrompt}\n\n${baseResponseText}\n\nENHANCED VERSION (preserve structure, make more natural):`,
-        stream: false,
+        stream: true, // STREAMING MODE - prevents browser timeouts
         options: {
           temperature: 0.7,
           num_predict: 400, // ~200 words
@@ -509,16 +528,78 @@ async function enhanceWithOllama(
       signal: controller.signal,
     });
 
+    const fetchDuration = Date.now() - fetchStartTime;
+    console.log(`🦙 [Ollama] Stream started in ${fetchDuration}ms`);
+
+    if (!response.ok) {
+      clearTimeout(timeoutId);
+      console.log(`🦙 [Ollama] ❌ Response not OK: ${response.status} ${response.statusText}`);
+      return null;
+    }
+
+    if (!response.body) {
+      clearTimeout(timeoutId);
+      console.log('🦙 [Ollama] ❌ Response body is null');
+      return null;
+    }
+
+    // Process the stream
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    let fullText = '';
+    let chunkCount = 0;
+
+    console.log('🦙 [Ollama] Reading stream...');
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      const chunk = decoder.decode(value, { stream: true });
+      const lines = chunk.split('\n');
+
+      for (const line of lines) {
+        if (!line.trim()) continue;
+        try {
+          const json = JSON.parse(line);
+          if (json.response) {
+            fullText += json.response;
+            chunkCount++;
+
+            // Call onChunk callback with accumulated text so far
+            if (onChunk) {
+              onChunk(fullText);
+            }
+
+            // Log progress every 10 chunks
+            if (chunkCount % 10 === 0) {
+              console.log(`🦙 [Ollama] Stream progress: ${fullText.length} chars, ${chunkCount} chunks`);
+            }
+          }
+          if (json.done) {
+            const totalDuration = json.total_duration ? (json.total_duration / 1e9).toFixed(1) : 'N/A';
+            console.log(`🦙 [Ollama] ✅ Generation complete. Ollama duration: ${totalDuration}s`);
+          }
+        } catch (e) {
+          // Partial JSON chunk, ignore
+        }
+      }
+    }
+
     clearTimeout(timeoutId);
+    const totalDuration = Date.now() - startTime;
+    console.log(`🦙 [Ollama] Stream finished. Total: ${fullText.length} chars in ${(totalDuration / 1000).toFixed(1)}s`);
+    console.log('🦙 [Ollama] Response preview:', fullText.substring(0, 150) + '...');
 
-    if (!response.ok) return null;
-
-    const data = await response.json();
-    const enhancedText = data.response;
+    if (!fullText.trim()) {
+      console.log('🦙 [Ollama] ❌ Empty response from stream');
+      return null;
+    }
 
     // Try to parse as JSON (if LLM returned structured data)
     try {
-      const parsed = JSON.parse(enhancedText);
+      const parsed = JSON.parse(fullText);
+      console.log('🦙 [Ollama] ✅ Parsed as JSON, using structured response');
       return {
         ...ruleBasedResponse,
         ...parsed,
@@ -526,15 +607,28 @@ async function enhanceWithOllama(
       };
     } catch {
       // LLM returned plain text - use it to enhance initialReaction only
+      console.log('🦙 [Ollama] ✅ Using plain text for initialReaction');
       return {
         ...ruleBasedResponse,
-        initialReaction: enhancedText.trim().substring(0, 300), // Limit length
+        initialReaction: fullText.trim().substring(0, 300), // Limit length
         generationType: 'ai-enhanced' as const,
       };
     }
   } catch (error) {
-    // Timeout or network error - fail silently
-    console.debug('Ollama enhancement failed:', error);
+    const duration = Date.now() - startTime;
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    const errorName = error instanceof Error ? error.name : 'Unknown';
+
+    console.log('🦙 [Ollama] ❌ Enhancement FAILED');
+    console.log('🦙 [Ollama] Error type:', errorName);
+    console.log('🦙 [Ollama] Error message:', errorMessage);
+    console.log('🦙 [Ollama] Failed after:', `${duration}ms (${(duration / 1000).toFixed(1)}s)`);
+
+    if (errorName === 'AbortError') {
+      console.log('🦙 [Ollama] ⏰ This was a TIMEOUT - request took too long');
+      console.log('🦙 [Ollama] Timeout was set to:', `${config.ollamaTimeout}ms`);
+    }
+
     return null;
   }
 }
@@ -573,13 +667,16 @@ async function enhanceWithCloudAPI(
  * 4. Rule-based response - Guaranteed fallback (always works)
  *
  * NEVER throws errors. NEVER shows loading states.
+ *
+ * @param onChunk Optional callback for streaming text updates (only for Ollama)
  */
 export async function maybeEnhanceWithAI(
   ruleBasedResponse: StakeholderResponse,
   stakeholder: StakeholderProfile,
   scenario: ScenarioInput,
   derivedMetrics: DerivedMetrics,
-  config: AIConfig = DEFAULT_AI_CONFIG
+  config: AIConfig = DEFAULT_AI_CONFIG,
+  onChunk?: (text: string) => void
 ): Promise<StakeholderResponse> {
   // 1. Try WebLLM first (browser-based, zero installation)
   // Note: WebLLM works offline after first model load
@@ -603,18 +700,31 @@ export async function maybeEnhanceWithAI(
 
   // 2. Try Ollama (local server LLM)
   if (config.ollamaEnabled) {
+    console.log('🔍 [AI] Attempting Ollama enhancement...');
+    console.log('🔍 [AI] Ollama config:', {
+      enabled: config.ollamaEnabled,
+      url: config.ollamaUrl,
+      model: config.ollamaModel,
+      timeout: `${config.ollamaTimeout}ms (${config.ollamaTimeout / 1000}s)`,
+    });
+
     const ollamaResult = await enhanceWithOllama(
       ruleBasedResponse,
       stakeholder,
       scenario,
       derivedMetrics,
-      config
+      config,
+      onChunk
     );
 
     if (ollamaResult) {
-      console.debug('✅ Response enhanced with Ollama');
+      console.log('✅ [AI] Response enhanced with Ollama successfully!');
       return ollamaResult;
+    } else {
+      console.log('⚠️ [AI] Ollama enhancement returned null, trying next fallback...');
     }
+  } else {
+    console.log('ℹ️ [AI] Ollama disabled in config, skipping...');
   }
 
   // 3. Try cloud API fallback
