@@ -757,8 +757,8 @@
       "id": "F045",
       "category": "offline",
       "priority": 45,
-      "description": "AI Backend Selector with Ollama timeout fixes for slower hardware",
-      "status": "IN PROGRESS - Ollama timing out, needs debugging",
+      "description": "AI Backend Selector with Ollama CORS fix and streaming mode",
+      "status": "COMPLETE - Fixed with Vite proxy + streaming mode",
       "steps": [
         "Add AI Backend selector dropdown in Advanced Settings (Auto/Ollama Only/WebLLM Only/Rule-based)",
         "Add localStorage persistence for backend preference",
@@ -766,11 +766,13 @@
         "Configure custom AIConfig based on user selection (disable unwanted backends)",
         "Update SmolLM2 1.7B for both WebLLM and Ollama (consistency)",
         "Test Ollama inference timing (measured: 38.7 seconds on slower hardware)",
-        "Increase Ollama timeout from 3s to 45s",
-        "Fix Ollama silent failover to rule-based (still occurring - needs debug)",
+        "Diagnose timeout issue - root cause was CORS blocking browser fetch",
+        "Add Vite proxy to bypass CORS (/api/ollama → localhost:11434)",
+        "Switch from stream:false to stream:true for better browser compatibility",
+        "Implement streaming response reader with chunk accumulation",
         "Update OLLAMA-SETUP.md to use smollm2:1.7b instead of gemma2:2b",
         "Update WORKSHOP-DEPLOYMENT.md with correct model",
-        "Add console logging to track AI backend selection",
+        "Add comprehensive console logging for debugging",
         "Test full workflow: Load scenario → Select Ollama Only → Generate response",
         "Verify AI-enhanced response appears (not rule-based fallback)"
       ],
@@ -778,18 +780,41 @@
         "UI: Added 3-column grid in Advanced Settings (Context / Variant / AI Backend)",
         "Backend options: auto, ollama, webllm, rule-based",
         "Config customization: Disables unwanted backends based on selection",
-        "Ollama model changed: gemma2:2b → smollm2:1.7b (consistency with WebLLM)",
-        "Timeout increased: 3000ms → 45000ms (to accommodate slower hardware)",
-        "Issue: Ollama still timing out or failing silently despite 45s timeout",
-        "Next debug steps: Check Ollama API response format, verify timeout handling, add detailed logging"
+        "Ollama model: smollm2:1.7b (consistency with WebLLM)",
+        "ROOT CAUSE: CORS was blocking browser fetch to localhost:11434",
+        "FIX 1: Vite proxy /api/ollama → localhost:11434 (bypasses CORS)",
+        "FIX 2: Streaming mode keeps connection alive during slow inference",
+        "Timeout: 120s (2 minutes) for very slow hardware",
+        "Proxy configured in vite.config.ts with 120s timeout"
       ],
-      "challenges": [
-        "Ollama inference very slow on integrated graphics (38.7s vs expected 3s)",
-        "Need to debug why 45s timeout still causes fallback to rule-based",
-        "May need to check Ollama API response handling or error logging",
-        "WebLLM unsupported on Intel UHD Graphics (no WebGPU), Ollama only viable option"
+      "passes": true
+    },
+    {
+      "id": "F046",
+      "category": "ux",
+      "priority": 46,
+      "description": "Streaming text display - show AI response as it generates",
+      "status": "COMPLETE - Tested with Ollama backend",
+      "steps": [
+        "Add onChunk callback parameter to enhanceWithOllama function",
+        "Pass onChunk through maybeEnhanceWithAI",
+        "Add streaming text state in StakeholderTab",
+        "Create StreamingResponse component for CompareView",
+        "Show partial initialReaction text as chunks arrive",
+        "Add typing cursor animation during streaming",
+        "Transition smoothly from streaming to full CompareView",
+        "Handle streaming interruption gracefully",
+        "Test with slow inference (40s+) to verify UX improvement"
       ],
-      "passes": false
+      "technicalNotes": [
+        "Display streaming text in CompareView Initial Reaction section",
+        "Show other sections (Appreciation, Concerns, etc.) after stream completes",
+        "First token appears in ~1s, makes wait feel shorter",
+        "Typing cursor animation: inline-block w-2 h-5 bg-irena-blue animate-pulse",
+        "'Generating...' spinner shows in section header during streaming",
+        "Only works with Ollama backend (WebLLM doesn't support streaming yet)"
+      ],
+      "passes": true
     }
   ]
 }
