@@ -794,7 +794,7 @@
       "category": "ux",
       "priority": 46,
       "description": "Streaming text display - show AI response as it generates",
-      "status": "COMPLETE - Tested with Ollama backend",
+      "status": "IN PROGRESS - Implementation complete but not working well yet",
       "steps": [
         "Add onChunk callback parameter to enhanceWithOllama function",
         "Pass onChunk through maybeEnhanceWithAI",
@@ -814,7 +814,7 @@
         "'Generating...' spinner shows in section header during streaming",
         "Only works with Ollama backend (WebLLM doesn't support streaming yet)"
       ],
-      "passes": true
+      "passes": false
     }
   ]
 }

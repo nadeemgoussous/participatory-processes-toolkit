@@ -5,6 +5,18 @@ import { VitePWA } from 'vite-plugin-pwa'
 // https://vitejs.dev/config/
 export default defineConfig({
   base: '/stakeholder-dialogue/', // GitHub Pages base path
+  // Proxy to bypass CORS for local Ollama server
+  server: {
+    proxy: {
+      '/api/ollama': {
+        target: 'http://localhost:11434',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/ollama/, ''),
+        // Increase timeout for slow inference (default is 30s)
+        timeout: 120000, // 2 minutes
+      },
+    },
+  },
   plugins: [
     react(),
     VitePWA({

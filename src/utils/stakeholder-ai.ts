@@ -399,7 +399,9 @@ Write your response now.`;
 }
 
 /**
- * Build system prompt for LLM with strict guardrails (used by Ollama)
+ * Build system prompt for LLM with strict guardrails
+ * @deprecated NO LONGER USED - Ollama now uses buildEnhancementSystemPrompt() for consistency with WebLLM
+ * Kept for reference only
  */
 function buildSystemPrompt(
   stakeholder: StakeholderProfile,
@@ -481,6 +483,7 @@ function calculateREShare(scenario: ScenarioInput, year: number): number {
 /**
  * Enhance response using Ollama local LLM with STREAMING
  * Streaming prevents browser timeouts and gives immediate feedback
+ * NOW USES SAME SIMPLIFIED PROMPTS AS WEBLLM for consistency
  */
 async function enhanceWithOllama(
   ruleBasedResponse: StakeholderResponse,
@@ -499,8 +502,9 @@ async function enhanceWithOllama(
   });
 
   try {
-    const systemPrompt = buildSystemPrompt(stakeholder, scenario, derivedMetrics);
-    const baseResponseText = JSON.stringify(ruleBasedResponse, null, 2);
+    // Use same simplified prompts as WebLLM (with few-shot examples)
+    const systemPrompt = buildEnhancementSystemPrompt(stakeholder, scenario, derivedMetrics);
+    const userPrompt = buildEnhancementUserPrompt(ruleBasedResponse, stakeholder);
 
     const controller = new AbortController();
     console.log(`🦙 [Ollama] Setting timeout: ${config.ollamaTimeout}ms (${config.ollamaTimeout / 1000}s)`);
@@ -518,11 +522,11 @@ async function enhanceWithOllama(
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: config.ollamaModel,
-        prompt: `${systemPrompt}\n\n${baseResponseText}\n\nENHANCED VERSION (preserve structure, make more natural):`,
+        prompt: `${systemPrompt}\n\n${userPrompt}`,
         stream: true, // STREAMING MODE - prevents browser timeouts
         options: {
-          temperature: 0.7,
-          num_predict: 400, // ~200 words
+          temperature: 0.5, // Lowered from 0.7 to match WebLLM (more consistent)
+          num_predict: 600, // Increased to match WebLLM max_tokens
         }
       }),
       signal: controller.signal,
@@ -596,24 +600,20 @@ async function enhanceWithOllama(
       return null;
     }
 
-    // Try to parse as JSON (if LLM returned structured data)
-    try {
-      const parsed = JSON.parse(fullText);
-      console.log('🦙 [Ollama] ✅ Parsed as JSON, using structured response');
-      return {
-        ...ruleBasedResponse,
-        ...parsed,
-        generationType: 'ai-enhanced' as const,
-      };
-    } catch {
-      // LLM returned plain text - use it to enhance initialReaction only
-      console.log('🦙 [Ollama] ✅ Using plain text for initialReaction');
-      return {
-        ...ruleBasedResponse,
-        initialReaction: fullText.trim().substring(0, 300), // Limit length
-        generationType: 'ai-enhanced' as const,
-      };
+    // Check if response is echoing the prompt (quality issue) - SAME AS WEBLLM
+    if (isEchoResponse(fullText)) {
+      console.log('🦙 [Ollama] ❌ Echo detected - falling back to rule-based response');
+      return null; // Will trigger fallback to rule-based
     }
+
+    // Use enhanced text to replace initial reaction (SAME AS WEBLLM)
+    // Keep all other response fields from rule-based response
+    console.log('🦙 [Ollama] ✅ Using enhanced text for initialReaction');
+    return {
+      ...ruleBasedResponse,
+      initialReaction: fullText.trim(),
+      generationType: 'ai-enhanced' as const,
+    };
   } catch (error) {
     const duration = Date.now() - startTime;
     const errorMessage = error instanceof Error ? error.message : String(error);
