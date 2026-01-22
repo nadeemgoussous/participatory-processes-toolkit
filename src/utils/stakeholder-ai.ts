@@ -352,6 +352,7 @@ function isEchoResponse(response: string): boolean {
 
 /**
  * Build system prompt for WebLLM enhancement with few-shot examples
+ * WebLLM uses chat API with system/user messages, so few-shot examples work well
  */
 function buildEnhancementSystemPrompt(
   stakeholder: StakeholderProfile,
@@ -376,6 +377,31 @@ Now respond to this NEW scenario for ${country}:
 IMPORTANT: Do NOT repeat the examples above. Write a NEW, ORIGINAL response.
 Write 2-3 sentences as ${stakeholder.name}. Match the voice and style but create NEW content.
 Output ONLY your response - no labels, no "Voice:", no "Examples:".`;
+}
+
+/**
+ * Build simpler system prompt for Ollama (generate endpoint doesn't use chat format)
+ * Uses direct instructions instead of few-shot examples to avoid echo
+ */
+function buildOllamaSystemPrompt(
+  stakeholder: StakeholderProfile,
+  scenario: ScenarioInput,
+  _derivedMetrics: DerivedMetrics
+): string {
+  const reShare2030 = calculateREShare(scenario, 2030).toFixed(1);
+  const country = scenario.metadata?.country || 'the country';
+
+  // Direct, clear instructions work better for Ollama's generate endpoint
+  return `You are ${stakeholder.name} reviewing an energy scenario.
+
+Scenario: ${country} plans ${reShare2030}% renewable energy by 2030.
+Your key concerns: ${stakeholder.priorities.slice(0, 2).join(', ')}
+
+Task: Write 2-3 sentences expressing your perspective.
+Use first-person voice (we, our).
+Be specific and professional.
+
+Your response:`;
 }
 
 /**
@@ -502,8 +528,9 @@ async function enhanceWithOllama(
   });
 
   try {
-    // Use same simplified prompts as WebLLM (with few-shot examples)
-    const systemPrompt = buildEnhancementSystemPrompt(stakeholder, scenario, derivedMetrics);
+    // Use simpler prompt format for Ollama's generate endpoint
+    // (Few-shot examples work better with chat APIs like WebLLM, not generate endpoints)
+    const systemPrompt = buildOllamaSystemPrompt(stakeholder, scenario, derivedMetrics);
     const userPrompt = buildEnhancementUserPrompt(ruleBasedResponse, stakeholder);
 
     const controller = new AbortController();

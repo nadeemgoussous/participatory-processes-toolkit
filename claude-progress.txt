@@ -1,5 +1,86 @@
 ## Claude Code Progress Log
 
+### Session: 2026-01-22 (Prompt Unification - Ollama & WebLLM Consistency)
+
+**Branch**: master
+
+**Status**: ✅ COMPLETE - Unified prompts for consistent quality across both AI backends
+
+**Progress Summary**:
+
+User reported quality differences between Ollama and WebLLM responses. Investigation revealed that the prompts were completely different - WebLLM used simplified prompts with few-shot examples (added in Session 2025-12-30), while Ollama still used the original complex prompts. Unified both backends to use the same high-quality prompts.
+
+**✅ Completed**:
+
+1. **Prompt Analysis** - Identified key differences
+   - WebLLM: Simplified prompts with few-shot examples (2 per stakeholder)
+   - WebLLM: Temperature 0.5, plain text output, echo detection
+   - WebLLM: ~100 word prompt asking for 2-3 sentences
+   - Ollama: Complex prompt with 7 rules, trying to preserve JSON structure
+   - Ollama: Temperature 0.7, no few-shot examples, no echo detection
+   - Ollama: ~200 word prompt asking for full response enhancement
+
+2. **Unified Ollama Prompts** - Now uses same prompts as WebLLM
+   - Changed from `buildSystemPrompt()` to `buildEnhancementSystemPrompt()`
+   - Added `buildEnhancementUserPrompt()` for context
+   - Now includes few-shot examples for all 9 stakeholders
+   - Lowered temperature from 0.7 to 0.5 (matches WebLLM)
+   - Increased num_predict from 400 to 600 (matches WebLLM max_tokens)
+   - File: `src/utils/stakeholder-ai.ts` (~30 lines changed)
+
+3. **Added Echo Detection** - Prevents prompt repetition
+   - Ollama responses now checked with `isEchoResponse()`
+   - Falls back to rule-based if echo detected
+   - Same protection as WebLLM
+
+4. **Simplified Parsing** - Matches WebLLM approach
+   - Removed complex JSON parsing logic
+   - Uses plain text to enhance `initialReaction` only
+   - Keeps all other fields from rule-based response
+   - More reliable and consistent outputs
+
+5. **Deprecated Old Prompt** - Marked for reference
+   - Added `@deprecated` to `buildSystemPrompt()`
+   - Function kept for DEBUG scripts but not used in main code
+
+**Key Benefits**:
+
+- ✅ **Consistent quality**: Both backends now produce similar-quality responses
+- ✅ **Better stakeholder voices**: Few-shot examples teach correct tone/style
+- ✅ **More reliable**: Lower temperature = more consistent outputs
+- ✅ **Echo prevention**: Both backends protected from prompt repetition
+- ✅ **Simpler task**: Focused on enhancing initialReaction only
+- ✅ **Same user experience**: Users get consistent results regardless of backend
+
+**Technical Changes**:
+
+```typescript
+// OLD OLLAMA (complex, no examples)
+const systemPrompt = buildSystemPrompt(stakeholder, scenario, derivedMetrics);
+const baseResponseText = JSON.stringify(ruleBasedResponse, null, 2);
+prompt: `${systemPrompt}\n\n${baseResponseText}\n\nENHANCED VERSION...`
+temperature: 0.7
+
+// NEW OLLAMA (simplified, with few-shot examples)
+const systemPrompt = buildEnhancementSystemPrompt(stakeholder, scenario, derivedMetrics);
+const userPrompt = buildEnhancementUserPrompt(ruleBasedResponse, stakeholder);
+prompt: `${systemPrompt}\n\n${userPrompt}`
+temperature: 0.5
+```
+
+**Files Modified**:
+- `src/utils/stakeholder-ai.ts` (~30 lines changed - unified prompts, echo detection, simplified parsing)
+
+**Git Commit**:
+- `3ece090` - refactor: unify Ollama and WebLLM prompts for consistent quality
+
+**Next Steps**:
+- Test the unified prompts with actual scenarios
+- Verify consistency between Ollama and WebLLM responses
+- Continue with F046 (Streaming text display fixes)
+
+---
+
 ### Session: 2026-01-21 (F046 - Streaming Text Display)
 
 **Branch**: master

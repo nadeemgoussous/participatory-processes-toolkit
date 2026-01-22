@@ -27,7 +27,8 @@
       "WebSearch",
       "Bash(find:*)",
       "Bash(git push:*)",
-      "Bash(pkill -f \"git push\")"
+      "Bash(pkill -f \"git push\")",
+      "Bash(powershell -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\NGoussous\\\\OneDrive - International Renewable Energy Agency - IRENA\\\\02_Development\\\\stakeholder_dialogue\\\\test-ollama-v2.ps1\")"
     ],
     "deny": [],
     "ask": []
