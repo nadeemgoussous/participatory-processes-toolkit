@@ -11,11 +11,10 @@ import {
   quickTips,
   allDisseminationPrinciples,
   getContextualTips,
-  getAllCaseStudies,
   type DisseminationPrinciple,
   type QuickTip,
-  type CaseStudy,
 } from '../../data/dissemination-tips';
+import CaseStudyBrowser from './CaseStudyBrowser';
 
 interface DisseminationTipsProps {
   selectedStakeholderId?: StakeholderId;
@@ -171,7 +170,7 @@ export default function DisseminationTips({
 
       {/* Case Studies Tab */}
       {activeTab === 'case-studies' && (
-        <CaseStudiesGrid caseStudies={getAllCaseStudies()} />
+        <CaseStudyBrowser initialStakeholder={selectedStakeholderId} />
       )}
 
       {/* Toolkit Reference Footer */}

@@ -1,6 +1,7 @@
 import type { StakeholderProfile } from '../../types/stakeholder';
 import type { StakeholderResponse } from '../../types/response';
 import { StakeholderIcon } from '../stakeholder/StakeholderIcon';
+import RelatedCaseStudies from '../output/RelatedCaseStudies';
 
 interface CompareViewProps {
   stakeholder: StakeholderProfile;
@@ -249,6 +250,9 @@ export default function CompareView({
           </div>
         </>
       )}
+
+      {/* Related Case Studies - Show contextually after response */}
+      {!isStreaming && <RelatedCaseStudies stakeholder={stakeholder} maxDisplay={3} />}
 
       {/* Learning Note */}
       <div className="mt-6 text-center text-sm text-gray-500 italic">

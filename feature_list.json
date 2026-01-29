@@ -815,6 +815,47 @@
         "Only works with Ollama backend (WebLLM doesn't support streaming yet)"
       ],
       "passes": false
+    },
+    {
+      "id": "F047",
+      "category": "communicate",
+      "priority": 47,
+      "description": "Case Study Browser - Learn from 13 real-world IRENA toolkit examples",
+      "steps": [
+        "Create src/types/case-study.ts with CaseStudy interface and filter types",
+        "Create src/data/case-studies.ts with all 13 studies from toolkit Chapter 5",
+        "Map each case study: country, stakeholders engaged, methods used, budget, lessons",
+        "Create components/output/RelatedCaseStudies.tsx for contextual suggestions",
+        "Show 2-3 relevant case studies in CompareView after response reveal",
+        "Filter by selected stakeholder (e.g., Public → Belgium, Chile, Panama)",
+        "Create components/output/CaseStudyBrowser.tsx for full exploration",
+        "Add filtering by: stakeholder, method, region, budget level",
+        "Implement expandable cards with full details (objectives, outcomes, lessons)",
+        "Add CaseStudyBrowser as 4th sub-tab in Best Practices section",
+        "Add 'See Examples' links throughout Communicate tab templates",
+        "Create Playwright test for filtering and contextual display",
+        "Verify all 13 case studies display correctly with accurate data"
+      ],
+      "technicalNotes": [
+        "Case studies from toolkit/chapter-5-case-studies.md",
+        "13 total: Belgium, Brazil, Canada, Chile, Colombia, Cyprus, Finland, Ghana, Panama, UAE, Kenya, PAC Consortium, World Energy Council",
+        "Contextual display: maps stakeholder ID to relevant case studies",
+        "Filter mappings: STAKEHOLDER_CASE_STUDY_MAP, METHOD_CASE_STUDY_MAP",
+        "Engagement methods: calculator, policy-brief, workshop, survey, etc.",
+        "Budget levels: low (<$100k), medium ($100k-$1M), high (>$1M)",
+        "Regions: Africa, Americas, Asia, Europe, Global",
+        "Display format: Card grid → Expandable detail view",
+        "Integration points: CompareView (contextual), CommunicateTab (full browser)"
+      ],
+      "pedagogicalValue": [
+        "Shows users how real countries engaged stakeholders",
+        "Provides concrete examples after abstract stakeholder responses",
+        "Helps users understand resource requirements (budget, staff, timeline)",
+        "Teaches transferable methods from successful implementations",
+        "Contextual learning: see examples relevant to current stakeholder",
+        "Supports dissemination strategy planning with real-world precedents"
+      ],
+      "passes": true
     }
   ]
 }

@@ -1,14 +1,61 @@
 ## Claude Code Progress Log
 
-### Session: 2026-01-22 (Prompt Unification - Ollama & WebLLM Consistency)
+### Session: 2026-01-29 (F047 - Case Study Browser)
 
 **Branch**: master
 
-**Status**: ✅ COMPLETE - Unified prompts for consistent quality across both AI backends
+**Status**: 🚧 IN PROGRESS - Implementing case study browser with contextual display
 
 **Progress Summary**:
 
-User reported quality differences between Ollama and WebLLM responses. Investigation revealed that the prompts were completely different - WebLLM used simplified prompts with few-shot examples (added in Session 2025-12-30), while Ollama still used the original complex prompts. Unified both backends to use the same high-quality prompts.
+Adding F047 - Case Study Browser feature to help users learn from 13 real-world IRENA toolkit examples. Case studies will appear contextually after stakeholder responses (showing 2-3 relevant examples) and be fully browsable in the Communicate tab with filtering by stakeholder, method, region, and budget.
+
+**Plan**:
+
+1. Create case study TypeScript interfaces and data structures
+2. Build data file with all 13 case studies from toolkit Chapter 5
+3. Create RelatedCaseStudies component for contextual display in CompareView
+4. Create CaseStudyBrowser component with filtering for Communicate tab
+5. Add comprehensive Playwright tests
+6. Verify accurate mapping to stakeholders and methods
+
+**Case Studies to Include**:
+- Belgium (My2050 calculator for youth)
+- Brazil (multi-institutional partnership)
+- Canada (Energy Modelling Hub)
+- Chile (consultation registry, public hearings)
+- Colombia (territorial focal points)
+- Cyprus (policy briefs)
+- Finland (sector roadmaps)
+- Ghana (structured committee approach)
+- Panama (15,000 hours consultations)
+- UAE (bottom-up and top-down approach)
+- Kenya (KCERT 2050 calculator)
+- PAC Consortium (civil society participation)
+- World Energy Council (global scenarios)
+
+**✅ Completed**:
+
+1. **Feature Definition** - Added F047 to feature_list.json
+   - Defined all steps, technical notes, pedagogical value
+   - Created todo list with 8 tasks
+
+**Next Steps**:
+- Create types/case-study.ts
+- Create data/case-studies.ts with all 13 studies
+- Build components
+
+---
+
+### Session: 2026-01-22 (Prompt Optimization - Different Formats for Ollama & WebLLM)
+
+**Branch**: master
+
+**Status**: ✅ COMPLETE - Optimized prompts for both backends, preventing echo and ensuring quality
+
+**Progress Summary**:
+
+User reported quality differences between Ollama and WebLLM responses. Initial attempt to unify prompts (commit 3ece090) revealed that few-shot examples work great for WebLLM's chat API but cause echo issues with Ollama's generate endpoint. Solution: Use different prompt formats optimized for each API type.
 
 **✅ Completed**:
 
@@ -71,12 +118,65 @@ temperature: 0.5
 **Files Modified**:
 - `src/utils/stakeholder-ai.ts` (~30 lines changed - unified prompts, echo detection, simplified parsing)
 
-**Git Commit**:
-- `3ece090` - refactor: unify Ollama and WebLLM prompts for consistent quality
+**❌ Issue Discovered with Initial Unification (commit 3ece090)**:
+
+Testing revealed that using the exact same prompts for both backends caused Ollama to echo the input:
+- **WebLLM (chat API)**: Few-shot examples worked perfectly ✅
+- **Ollama (generate endpoint)**: Few-shot examples caused echo - model repeated input instead of generating ❌
+
+Example echo response from Ollama:
+```
+Input: "Positive aspects: High renewable penetration... Concerns: Grid stability..."
+Output: "Positive aspects: High renewable penetration... Concerns: Grid stability..."  ← ECHO!
+```
+
+**✅ Solution Implemented (commit f283f06)**:
+
+Created separate prompt functions optimized for each API type:
+
+1. **WebLLM**: Keep `buildEnhancementSystemPrompt()` with few-shot examples
+   - Chat API (system/user messages) works well with examples
+   - Temperature 0.5, max_tokens 600
+   - Echo detection enabled
+
+2. **Ollama**: New `buildOllamaSystemPrompt()` with direct instructions
+   - Generate endpoint needs simpler, more direct format
+   - No few-shot examples (they cause echo)
+   - Clear task instructions: "Write 2-3 sentences expressing your perspective"
+   - Explicit voice guidance: "Use first-person voice (we, our)"
+   - Temperature 0.5, num_predict 600
+   - Echo detection enabled
+
+**Testing Verification**:
+
+Tested Ollama prompts with direct curl calls:
+
+```bash
+# OLD (with few-shot examples): ECHO
+Response: "Positive aspects: High renewable..." ❌
+
+# NEW (simple direct prompt): SUCCESS
+Response: "As policy makers and regulators in ScenarioLand, we are committed
+to ensuring that the transition towards 82.0% renewable energy by 2030 is
+achieved while maintaining energy security..." ✅
+```
+
+**Key Findings**:
+
+- ✅ Ollama responses are now first-person, professional, stakeholder-appropriate
+- ✅ No echo artifacts
+- ✅ WebLLM quality unchanged (still excellent with few-shot examples)
+- ✅ Both backends use same temperature (0.5) and token limits
+- ✅ Both have echo detection as failsafe
+- ✅ Inference time: ~50s on slower hardware (acceptable)
+
+**Git Commits**:
+- `3ece090` - refactor: unify Ollama and WebLLM prompts (first attempt)
+- `f283f06` - fix: use simpler prompts for Ollama to prevent echo (final solution)
 
 **Next Steps**:
-- Test the unified prompts with actual scenarios
-- Verify consistency between Ollama and WebLLM responses
+- Both backends now produce consistent, high-quality outputs
+- Ready for workshop deployment
 - Continue with F046 (Streaming text display fixes)
 
 ---
@@ -1257,6 +1357,62 @@ Implemented a comprehensive tooltip system for technical terms throughout the ap
 
 [Previous session entries for F033, F032, F031, F030, F029, etc. remain unchanged...]
 
-**Last Updated**: 2026-01-21
+---
+
+## Session: 2026-01-29 (Continuation)
+
+### Feature F047: Case Study Browser - COMPLETED ✅
+
+**Status**: All 5 Playwright tests passing (100%)
+
+**Implementation Summary**:
+Integrated all 13 IRENA toolkit case studies into the application with contextual display and full browsing capabilities.
+
+**Components Created**:
+- `src/types/case-study.ts` - TypeScript interfaces for case study data structure
+- `src/data/case-studies.ts` - All 13 case studies from toolkit Chapter 5 with helper functions
+- `src/components/output/RelatedCaseStudies.tsx` - Contextual display (shows 2-3 relevant examples)
+- `src/components/output/CaseStudyBrowser.tsx` - Full browser with 4-way filtering
+- `tests/e2e/47-case-study-browser.spec.ts` - E2E tests for all functionality
+
+**Components Modified**:
+- `src/components/prediction/CompareView.tsx` - Added RelatedCaseStudies after response reveal
+- `src/components/output/DisseminationTips.tsx` - Integrated CaseStudyBrowser in "Case Studies" tab
+
+**Features Implemented**:
+- ✅ 13 complete case studies from toolkit (Belgium, Brazil, Canada, Chile, Colombia, Cyprus, Finland, Ghana, Panama, UAE, Kenya, PAC Consortium, World Energy Council)
+- ✅ Contextual display: Shows 2-3 relevant case studies after stakeholder response
+- ✅ Full browser with filtering by: Stakeholder Group, Engagement Method, Region, Budget Level
+- ✅ Expandable cards showing: governance, objectives, outcomes, resources, lessons, transferable elements
+- ✅ Stakeholder-aware filtering (automatically filters by selected stakeholder)
+- ✅ All data mapped from toolkit Chapter 5 with accurate details
+
+**Test Results**:
+```
+✅ 5 passed (5/5 - 100%)
+- Case study browser displays in Communicate tab
+- Case study cards show basic information (flag, title, highlight, methods)
+- Filtering by stakeholder works correctly (11 case studies for policy-makers)
+- Filtering by engagement method works (2 case studies for interactive-calculator)
+- Card expansion shows full details (governance, objectives, outcomes, lessons)
+```
+
+**Pedagogical Value**:
+- Shows users how real countries engaged stakeholders
+- Provides concrete examples after abstract AI-generated responses
+- Helps users understand resource requirements (budget, staff, timeline)
+- Teaches transferable methods from successful implementations
+- Contextual learning: see examples relevant to current stakeholder
+
+**Bug Fixes During Development**:
+- Removed unused TypeScript imports (React, CaseStudy, getAllCaseStudies)
+- Fixed Playwright test URL expectations (app uses tab navigation, not route-based)
+- Changed text locator to role-based selector to avoid strict mode violations
+
+**Git Commit**: Ready for commit
+
+---
+
+**Last Updated**: 2026-01-29
 **Current Git HEAD**: 10744ec (F046 - Streaming text display)
-**Next Task**: F038-F042 (Packaging and documentation - deferred until production-ready)
+**Next Task**: Git commit for F047, then continue with remaining features
