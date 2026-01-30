@@ -53,8 +53,8 @@ test.describe('F046 - Streaming Text Display', () => {
 
     console.log('✅ Selected stakeholder');
 
-    // Click "I'm ready to make my prediction"
-    await page.click('text=I\'m ready to make my prediction');
+    // Click "Predict Their Response"
+    await page.click('text=Predict Their Response');
     await page.waitForTimeout(300);
 
     // Enter prediction
@@ -133,8 +133,8 @@ test.describe('F046 - Streaming Text Display', () => {
     await stakeholderButton.click();
     await page.waitForTimeout(500);
 
-    // Click "I'm ready to make my prediction"
-    await page.click('text=I\'m ready to make my prediction');
+    // Click "Predict Their Response"
+    await page.click('text=Predict Their Response');
     await page.waitForTimeout(300);
 
     // Enter prediction
