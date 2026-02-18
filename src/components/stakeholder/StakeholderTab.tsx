@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { stakeholderProfiles } from '../../data/stakeholder-profiles';
 import type { StakeholderProfile, DevelopmentContext, StakeholderVariant } from '../../types/stakeholder';
 import type { StakeholderResponse } from '../../types/response';
@@ -666,6 +666,9 @@ export default function StakeholderTab({ onStakeholderSelected, onNavigateToExpl
   // WebLLM AI enhancement hook
   const webllm = useWebLLM();
 
+  // Track template IDs for anti-repetition across stakeholder interactions
+  const templateHistoryRef = useRef<number[]>([]);
+
   const [selectedStakeholder, setSelectedStakeholder] = useState<StakeholderProfile | null>(null);
   const [showPrediction, setShowPrediction] = useState(false);
   const [userPrediction, setUserPrediction] = useState<string>('');
@@ -748,7 +751,8 @@ export default function StakeholderTab({ onStakeholderSelected, onNavigateToExpl
           {
             context: developmentContext,
             variant: stakeholderVariant,
-            includeInteractionTriggers: true
+            includeInteractionTriggers: true,
+            sessionHistory: templateHistoryRef.current
           }
         );
 
@@ -800,6 +804,12 @@ export default function StakeholderTab({ onStakeholderSelected, onNavigateToExpl
 
         console.log('✅ Response generated:', finalResponse.generationType);
         console.log('Interaction triggers:', finalResponse.metadata?.interactionTriggersCount || 0);
+
+        // Track template ID for anti-repetition
+        if (finalResponse.lastTemplateId !== undefined) {
+          templateHistoryRef.current.push(finalResponse.lastTemplateId);
+        }
+
         setIsStreaming(false); // Streaming complete
         setStakeholderResponse(finalResponse);
       } else {
@@ -955,7 +965,7 @@ export default function StakeholderTab({ onStakeholderSelected, onNavigateToExpl
       )}
 
       {/* Stakeholder Icon Grid */}
-      <div className="card mb-8">
+      <div className="mb-8">
         <h3 className="text-xl font-semibold mb-6 text-gray-800">
           Select Stakeholder Group
         </h3>
@@ -1002,8 +1012,7 @@ export default function StakeholderTab({ onStakeholderSelected, onNavigateToExpl
       {/* Selected Stakeholder Details */}
       {selectedStakeholder && (
         <div
-          className="card"
-          style={{ borderLeftColor: selectedStakeholder.color, borderLeftWidth: '4px' }}
+          style={{ borderLeftColor: selectedStakeholder.color, borderLeftWidth: '4px', paddingLeft: '1.5rem' }}
         >
           <div className="flex items-start gap-4 mb-6">
             {/* Icon */}
@@ -1057,7 +1066,7 @@ export default function StakeholderTab({ onStakeholderSelected, onNavigateToExpl
             <ul className="space-y-2">
               {selectedStakeholder.typicalQuestions.map((question, idx) => (
                 <li key={idx} className="flex items-start gap-2 text-gray-700">
-                  <span className="text-gray-400">❓</span>
+                  <span className="text-gray-400">–</span>
                   <span className="italic">{question}</span>
                 </li>
               ))}
@@ -1102,7 +1111,7 @@ export default function StakeholderTab({ onStakeholderSelected, onNavigateToExpl
       )}
 
       {/* Advanced Settings - Moved to bottom to not distract from main workflow */}
-      <div className="card mt-8 border-gray-200">
+      <div className="mt-8 border-t border-gray-200 pt-4">
         <button
           onClick={() => setSettingsExpanded(!settingsExpanded)}
           className="w-full flex items-center justify-between text-left"

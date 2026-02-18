@@ -13,19 +13,12 @@ import type {
 } from '../types/stakeholder';
 import type { StakeholderResponse, Concern } from '../types/response';
 import {
+  selectTemplate as selectLibraryTemplate,
+  interpolateTemplate,
+} from '../data/template-selector';
+import {
   evaluateInteractionTriggers,
-  applyContextModifiers,
-  applyVariantModifiers,
   contextProfiles,
-  policyMakersVariants,
-  gridOperatorsVariants,
-  industryVariants,
-  publicVariants,
-  csosNgosVariants,
-  scientificVariants,
-  financeVariants,
-  regionalBodiesVariants,
-  developmentPartnersVariants,
 } from '../data/stakeholder-enhancements';
 
 /**
@@ -35,7 +28,8 @@ import {
 export function generateRuleBasedResponse(
   scenario: ScenarioInput,
   derivedMetrics: DerivedMetrics,
-  stakeholder: StakeholderProfile
+  stakeholder: StakeholderProfile,
+  sessionHistory: number[] = []
 ): StakeholderResponse {
 
   const concerns: Concern[] = [];
@@ -74,15 +68,19 @@ export function generateRuleBasedResponse(
     }
   }
 
-  // Find matching response template
+  // Find matching response template (old-style, used as fallback)
   const template = findMatchingTemplate(scenario, stakeholder.responseTemplates);
 
-  // Generate initial reaction based on balance
-  const initialReaction = generateInitialReaction(
-    concerns.length,
-    appreciation.length,
+  // Generate initial reaction using training-data template library
+  const { text: initialReaction, templateId: lastTemplateId } = generateInitialReaction(
+    scenario,
+    derivedMetrics,
     stakeholder,
-    template
+    'pragmatic',  // default variant for base response
+    concerns,
+    appreciation,
+    template,
+    sessionHistory
   );
 
   // Select relevant questions based on scenario characteristics
@@ -104,33 +102,100 @@ export function generateRuleBasedResponse(
     questions,
     engagementAdvice: advice,
     generatedAt: new Date().toISOString(),
-    generationType: 'rule-based'
+    generationType: 'rule-based',
+    lastTemplateId
   };
 }
 
 /**
- * Generate initial reaction based on concern/appreciation balance
+ * Generate initial reaction using the training-data-derived template library.
+ * Falls back to improved generic sentences when no template matches.
  */
 function generateInitialReaction(
-  concernCount: number,
-  appreciationCount: number,
+  scenario: ScenarioInput,
+  _derivedMetrics: DerivedMetrics,
   stakeholder: StakeholderProfile,
-  template: ResponseTemplate | null
-): string {
-  // Use template if available and matches scenario
-  if (template) {
-    return template.initialReaction;
+  variant: StakeholderVariant,
+  concerns: Concern[],
+  appreciation: string[],
+  oldTemplate: ResponseTemplate | null,
+  sessionHistory: number[] = []
+): { text: string; templateId?: number } {
+  // Build RE share from the final milestone
+  const finalMilestone = scenario.milestones[scenario.milestones.length - 1];
+  if (!finalMilestone) {
+    // No milestone data – fall through to generic
+    return { text: buildFallbackReaction(concerns.length, appreciation.length, stakeholder) };
   }
 
-  // Calculate ratio of positive to total feedback
+  const reShare = finalMilestone.reShare;
+
+  // Try the training-data library first
+  const libTemplate = selectLibraryTemplate(stakeholder.id, variant, reShare, sessionHistory);
+
+  if (libTemplate) {
+    // Build metrics map for interpolation
+    const metrics: Record<string, string> = {
+      reShare: Math.round(reShare).toLocaleString(),
+      emissions: finalMilestone.emissions.total.toLocaleString(),
+      investment: finalMilestone.investment.cumulative.toLocaleString(),
+      capacity: (
+        finalMilestone.capacity.total.renewables +
+        finalMilestone.capacity.total.fossil +
+        (finalMilestone.capacity.total.storage || 0) +
+        (finalMilestone.capacity.total.other || 0)
+      ).toLocaleString(),
+      peakDemand: finalMilestone.peakDemand.value.toLocaleString(),
+      generation: (
+        finalMilestone.generation.output.renewables +
+        finalMilestone.generation.output.fossil +
+        (finalMilestone.generation.output.other || 0)
+      ).toLocaleString(),
+    };
+
+    // Capacity additions (if available)
+    if (finalMilestone.capacityAdditions) {
+      const adds = finalMilestone.capacityAdditions.additions;
+      metrics.capacityAdditions = (
+        adds.renewables + adds.fossil + (adds.storage || 0) + (adds.other || 0)
+      ).toLocaleString();
+    }
+
+    // Pick top positive and concern for weaving
+    const topPositive = appreciation.length > 0 ? appreciation[0] : undefined;
+    const topConcern = concerns.length > 0 ? concerns[0].text : undefined;
+
+    return {
+      text: interpolateTemplate(libTemplate, metrics, topPositive, topConcern),
+      templateId: libTemplate.id
+    };
+  }
+
+  // Fallback to old-style ResponseTemplate from stakeholder profile (if any)
+  if (oldTemplate) {
+    return { text: oldTemplate.initialReaction };
+  }
+
+  // Improved generic fallback (still better than the old 3 sentences)
+  return { text: buildFallbackReaction(concerns.length, appreciation.length, stakeholder) };
+}
+
+/**
+ * Improved generic fallback reactions — still data-aware phrasing
+ */
+function buildFallbackReaction(
+  concernCount: number,
+  appreciationCount: number,
+  stakeholder: StakeholderProfile
+): string {
   const ratio = appreciationCount / (concernCount + appreciationCount + 1);
 
   if (ratio > 0.7) {
-    return `As a ${stakeholder.name} representative, I see several positive aspects in this scenario that align with our priorities.`;
+    return `We see several aspects of this scenario that align well with our priorities as ${stakeholder.name.toLowerCase()}.`;
   } else if (ratio > 0.4) {
-    return `This scenario has both strengths and areas that warrant further discussion from our perspective.`;
+    return `This pathway presents opportunities we support, alongside areas that require further discussion from our perspective.`;
   } else {
-    return `We have some important questions and concerns about this scenario that we would like to discuss.`;
+    return `We have important questions about this scenario's implications that we would like to raise.`;
   }
 }
 
@@ -312,6 +377,7 @@ export interface EnhancedResponseOptions {
   context?: DevelopmentContext;
   variant?: StakeholderVariant;
   includeInteractionTriggers?: boolean;
+  sessionHistory?: number[];
 }
 
 /**
@@ -327,14 +393,15 @@ export function generateEnhancedResponse(
   const {
     context = 'emerging',
     variant = 'pragmatic',
-    includeInteractionTriggers = true
+    includeInteractionTriggers = true,
+    sessionHistory = []
   } = options;
 
   console.log('[Enhanced] Starting enhanced response generation');
   console.log(`[Enhanced] Context: ${context}, Variant: ${variant}`);
 
   // Start with base rule-based response
-  const baseResponse = generateRuleBasedResponse(scenario, derivedMetrics, stakeholder);
+  const baseResponse = generateRuleBasedResponse(scenario, derivedMetrics, stakeholder, sessionHistory);
   console.log('[Enhanced] Base response generated');
 
   // If no enhanced features requested, return base response
@@ -368,13 +435,15 @@ export function generateEnhancedResponse(
 
     console.log(`[Enhanced] Total concerns: ${enhancedConcerns.length} (base: ${baseResponse.concerns.length}, added: ${enhancedConcerns.length - baseResponse.concerns.length})`);
 
-    // Enhance initial reaction with variant tone
-    const enhancedReaction = enhanceReactionWithVariant(
-      baseResponse.initialReaction,
-      stakeholder.id,
-      variant,
-      triggeredInteractions
-    );
+    // Regenerate initial reaction with the requested variant
+    // (base response uses 'pragmatic'; if variant differs, re-select from library)
+    const oldTemplate = findMatchingTemplate(scenario, stakeholder.responseTemplates);
+    const enhancedReaction = variant !== 'pragmatic'
+      ? generateInitialReaction(
+          scenario, derivedMetrics, stakeholder, variant,
+          enhancedConcerns, baseResponse.appreciation, oldTemplate, sessionHistory
+        ).text
+      : baseResponse.initialReaction;
 
     console.log(`[Enhanced] Base reaction: "${baseResponse.initialReaction.slice(0, 60)}..."`);
     console.log(`[Enhanced] Enhanced reaction: "${enhancedReaction.slice(0, 60)}..."`);
@@ -585,39 +654,6 @@ function enhanceAppreciationWithInteractions(
   }
 
   return enhanced;
-}
-
-/**
- * Enhance initial reaction based on variant tone
- */
-function enhanceReactionWithVariant(
-  baseReaction: string,
-  stakeholderId: string,
-  variant: StakeholderVariant,
-  interactions: InteractionTrigger[]
-): string {
-  // Map stakeholder IDs to their variant profiles
-  const variantMap: Record<string, Record<StakeholderVariant, any>> = {
-    'policy-makers': policyMakersVariants,
-    'grid-operators': gridOperatorsVariants,
-    'industry': industryVariants,
-    'public': publicVariants,
-    'csos-ngos': csosNgosVariants,
-    'scientific': scientificVariants,
-    'finance': financeVariants,
-    'regional-bodies': regionalBodiesVariants,
-    'development-partners': developmentPartnersVariants,
-  };
-
-  const variantProfile = variantMap[stakeholderId]?.[variant];
-
-  if (!variantProfile) {
-    console.warn(`[Enhanced] No variant profile found for ${stakeholderId}/${variant}`);
-    return baseReaction;
-  }
-
-  // Prepend variant framing preference to base reaction
-  return `${variantProfile.framingPreference} ${baseReaction}`;
 }
 
 /**

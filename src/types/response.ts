@@ -18,6 +18,9 @@ export interface StakeholderResponse {
   generatedAt: string;                  // ISO 8601 timestamp
   generationType: 'rule-based' | 'ai-enhanced' | 'enhanced-rule-based';
 
+  // Template ID from the response library (for anti-repetition tracking)
+  lastTemplateId?: number;
+
   // Optional metadata for enhanced responses
   metadata?: {
     context?: string;                   // Development context (LDC, emerging, developed)

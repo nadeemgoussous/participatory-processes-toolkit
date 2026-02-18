@@ -1470,6 +1470,79 @@ Integrated all 13 IRENA toolkit case studies into the application with contextua
 
 ---
 
-**Last Updated**: 2026-01-29
-**Current Git HEAD**: 10744ec (F046 - Streaming text display)
-**Next Task**: Git commit for F047, then continue with remaining features
+---
+
+### Session: 2026-02-18 (Template Selection, Interpolation & Variety Upgrade)
+
+**Branch**: master
+
+**Status**: ✅ COMPLETE - All 5 steps implemented and verified
+
+**Progress Summary**:
+
+Upgraded the 225-template response library with advanced selection algorithms, grammar-safe interpolation, and surface variety. Split architecture into data-only generated file + hand-written logic module.
+
+**Architecture Change**:
+- `src/data/response-library.ts` — AUTO-GENERATED (data only): interfaces, `RESPONSE_TEMPLATES`, `getTemplates()`
+- `src/data/template-selector.ts` — HAND-WRITTEN (new): `selectTemplate()`, `interpolateTemplate()`, shuffle bags, variation expander
+
+**✅ Step 1: Upgraded `build-response-library.cjs`**:
+- Deduplication pass: 225 → 182 templates (43 duplicates removed)
+- Grammar-safe conditional wrapping: `{?key:text}` blocks (53 templates modified)
+- Inline variation injection: `{~opt1|opt2|opt3}` markers (87 templates enhanced)
+- Emits data only (no functions)
+
+**✅ Step 2: Created `template-selector.ts`** (~150 lines):
+- Gaussian weighted scoring: `score = 0.6 × gaussianProximity + 0.4 × (1 - recencyDecay)`
+- Per-stakeholder sigma: finance/policy-makers=10, csos-ngos=20, public=25
+- Shuffle bags (Fisher-Yates, anti-repeat across refills)
+- Conditional block interpolation `{?key:text}` → drops block if value absent
+- Inline variation expansion `{~opt1|opt2|opt3}` → random pick
+- Enhanced cleanup: mid-text dangling connectors, lone connectors, double periods
+
+**✅ Step 3: Updated `stakeholder-rules.ts`**:
+- Import `selectTemplate`/`interpolateTemplate` from `template-selector` instead of `response-library`
+- Added `sessionHistory?: number[]` to `EnhancedResponseOptions`
+- `generateInitialReaction` returns `{ text, templateId }` for tracking
+
+**✅ Step 4: Added `lastTemplateId` tracking**:
+- `StakeholderResponse` type gets `lastTemplateId?: number`
+- `StakeholderTab.tsx` uses `useRef<number[]>` to track history, passes to options
+
+**✅ Step 5: Upgraded `test-response-quality.cjs`**:
+- Loads data-only `response-library.ts` and `template-selector.ts` separately
+- Added `checkLibraryStructure()`: duplicate detection, Jaccard similarity, sentence-start diversity
+- Added anti-repetition test: 10 picks per stakeholder, no consecutive repeats
+- Updated TS stripping for Map<> generics, object return types
+
+**Verification Results**:
+- Library: 182 templates, 53 wrapped, 87 variations
+- Vite build: ✅ SUCCESS
+- Quality test: **0 issues** across 189 combinations
+- Numbers: 94.2%, First-person: 79.9%
+- Anti-repeat: 3/3 pass
+- Structure: 1 informational warning (85% similar pair — acceptable)
+
+**Debugging Notes**:
+- `Map<string, number[]>` needed special TS-stripping regex for test script eval
+- Pattern 2c regex for merging split `{?concern:}` blocks required `[\s\S]*?` lazy match (not `[^}]*`)
+- Mid-text "but." pattern (e.g., "is positive, but. We support") needed dedicated cleanup regex in template-selector.ts
+
+**Files Created**:
+- `src/data/template-selector.ts` (new, ~150 lines)
+
+**Files Modified**:
+- `scripts/build-response-library.cjs` (dedup, wrapping, variations, data-only emit)
+- `src/data/response-library.ts` (regenerated — data only, 182 templates)
+- `src/utils/stakeholder-rules.ts` (import change, sessionHistory threading)
+- `src/types/response.ts` (+lastTemplateId)
+- `src/components/stakeholder/StakeholderTab.tsx` (useRef tracking, sessionHistory)
+- `scripts/test-response-quality.cjs` (structure checks, anti-repeat, split loading)
+
+**Next Steps**: Git commit, then continue with remaining features
+
+---
+
+**Last Updated**: 2026-02-18
+**Current Git HEAD**: 90ffff6 (F048 - Export visualisations as JPG)
+**Next Task**: Git commit for template upgrade, then continue with remaining features
