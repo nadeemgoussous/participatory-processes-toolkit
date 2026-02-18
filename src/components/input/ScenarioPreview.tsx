@@ -6,8 +6,6 @@ import {
 } from 'recharts';
 import { smartFormatMoney } from '../../utils/unit-conversions';
 import { Tooltip } from '../common/Tooltip';
-import html2canvas from 'html2canvas';
-import * as XLSX from 'xlsx';
 
 interface ScenarioPreviewProps {
   scenario: ScenarioInput;
@@ -79,45 +77,82 @@ export default function ScenarioPreview({ scenario, onProceed, onLoadDifferent }
   const peakDemand = lastMilestone.peakDemand;
 
   const chartLabel = CHART_OPTIONS.find(o => o.id === chartView)?.label ?? 'Chart';
+  const [exporting, setExporting] = useState(false);
 
-  const getExportData = useCallback((): Record<string, unknown>[] => {
-    switch (chartView) {
-      case 'capacity-bar':
-      case 'capacity-area':
-        return capacityData;
-      case 'generation-pie':
-        return genPieData.map(d => ({ Name: d.name, Value: d.value }));
-      case 'emissions-line':
-        return emissionsData;
-      case 're-trajectory':
-        return reData;
-    }
-  }, [chartView, capacityData, genPieData, emissionsData, reData]);
-
-  const handleExportImage = useCallback(async () => {
-    if (!chartRef.current) return;
+  const handleExportImage = useCallback(() => {
+    if (!chartRef.current || exporting) return;
+    // Find the largest SVG (the chart), not small icons
+    const allSvgs = chartRef.current.querySelectorAll('svg');
+    let svgEl: SVGSVGElement | null = null;
+    let maxArea = 0;
+    allSvgs.forEach(s => {
+      const r = s.getBoundingClientRect();
+      if (r.width * r.height > maxArea) { maxArea = r.width * r.height; svgEl = s; }
+    });
+    if (!svgEl) return;
+    setExporting(true);
     try {
-      const canvas = await html2canvas(chartRef.current, { backgroundColor: '#ffffff' });
-      const link = document.createElement('a');
-      link.download = `${scenario.metadata.scenarioName}-${chartLabel.replace(/\s+/g, '-').toLowerCase()}.jpg`;
-      link.href = canvas.toDataURL('image/jpeg', 0.95);
-      link.click();
-    } catch (err) {
-      console.error('Image export failed:', err);
-    }
-  }, [chartLabel, scenario.metadata.scenarioName]);
+      const clone = svgEl.cloneNode(true) as SVGSVGElement;
+      const w = svgEl.width.baseVal.value || svgEl.getBoundingClientRect().width;
+      const h = svgEl.height.baseVal.value || svgEl.getBoundingClientRect().height;
 
-  const handleExportExcel = useCallback(() => {
-    try {
-      const data = getExportData();
-      const ws = XLSX.utils.json_to_sheet(data);
-      const wb = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, chartLabel);
-      XLSX.writeFile(wb, `${scenario.metadata.scenarioName}-${chartLabel.replace(/\s+/g, '-').toLowerCase()}.xlsx`);
-    } catch (err) {
-      console.error('Excel export failed:', err);
+      clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+      clone.setAttribute('width', String(w));
+      clone.setAttribute('height', String(h));
+      if (!clone.getAttribute('viewBox')) {
+        clone.setAttribute('viewBox', `0 0 ${w} ${h}`);
+      }
+
+      // Remove foreignObject (tooltips) — browsers block these in Image rendering
+      clone.querySelectorAll('foreignObject').forEach(el => el.remove());
+
+      // Inline font styles on text elements (Recharts sets these via CSS classes)
+      const srcTexts = svgEl.querySelectorAll('text, tspan');
+      const dstTexts = clone.querySelectorAll('text, tspan');
+      srcTexts.forEach((src, i) => {
+        const dst = dstTexts[i];
+        if (!dst) return;
+        const cs = window.getComputedStyle(src);
+        dst.setAttribute('font-family', cs.fontFamily);
+        dst.setAttribute('font-size', cs.fontSize);
+        dst.setAttribute('font-weight', cs.fontWeight);
+        if (!dst.getAttribute('fill')) dst.setAttribute('fill', cs.color || '#374151');
+      });
+
+      const svgStr = new XMLSerializer().serializeToString(clone);
+
+      const scale = 2;
+      const canvas = document.createElement('canvas');
+      canvas.width = w * scale;
+      canvas.height = h * scale;
+      const ctx = canvas.getContext('2d')!;
+      ctx.fillStyle = '#f9fafb';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.scale(scale, scale);
+
+      const img = new Image();
+      img.onload = () => {
+        ctx.drawImage(img, 0, 0, w, h);
+        canvas.toBlob(
+          (blob) => {
+            if (!blob) { setExporting(false); return; }
+            const a = document.createElement('a');
+            a.download = `${scenario.metadata.scenarioName}-${chartLabel.replace(/\s+/g, '-').toLowerCase()}.jpg`;
+            a.href = URL.createObjectURL(blob);
+            a.click();
+            setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+            setExporting(false);
+          },
+          'image/jpeg',
+          0.95
+        );
+      };
+      img.onerror = () => setExporting(false);
+      img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgStr);
+    } catch {
+      setExporting(false);
     }
-  }, [chartLabel, getExportData, scenario.metadata.scenarioName]);
+  }, [chartLabel, scenario.metadata.scenarioName, exporting]);
 
   const renderChart = () => {
     switch (chartView) {
@@ -375,24 +410,19 @@ export default function ScenarioPreview({ scenario, onProceed, onLoadDifferent }
                 </button>
               ))}
             </div>
-            <div className="flex gap-1">
-              <button
-                onClick={handleExportImage}
-                className="px-2.5 py-1.5 text-xs font-medium text-gray-500 hover:text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md transition-all"
-                title="Export chart as image"
-                data-testid="export-image-btn"
-              >
-                JPG
-              </button>
-              <button
-                onClick={handleExportExcel}
-                className="px-2.5 py-1.5 text-xs font-medium text-gray-500 hover:text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md transition-all"
-                title="Export chart data as Excel"
-                data-testid="export-excel-btn"
-              >
-                Excel
-              </button>
-            </div>
+            <button
+              onClick={handleExportImage}
+              disabled={exporting}
+              className={`px-3 py-1.5 text-xs font-medium rounded-md transition-all ${
+                exporting
+                  ? 'bg-blue-100 text-blue-500 cursor-wait'
+                  : 'text-gray-500 hover:text-white hover:bg-[var(--color-irena-blue)] active:scale-95 bg-gray-100'
+              }`}
+              title="Export chart as image"
+              data-testid="export-image-btn"
+            >
+              {exporting ? 'Saving...' : 'Export JPG'}
+            </button>
           </div>
         </div>
 
