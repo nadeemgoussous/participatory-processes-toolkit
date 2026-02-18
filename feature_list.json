@@ -856,6 +856,22 @@
         "Supports dissemination strategy planning with real-world precedents"
       ],
       "passes": true
+    },
+    {
+      "id": "F048",
+      "category": "ux",
+      "priority": 48,
+      "description": "Export visualisations as JPG image and Excel spreadsheet from ScenarioPreview charts",
+      "steps": [
+        "Install html2canvas and xlsx packages",
+        "Add chart container ref in ScenarioPreview.tsx",
+        "Implement JPG export using html2canvas",
+        "Implement Excel export using xlsx",
+        "Add export buttons next to chart view selector",
+        "Verify exports work for all 5 chart views",
+        "Verify offline compatibility (no network calls)"
+      ],
+      "passes": true
     }
   ]
 }

@@ -41,9 +41,11 @@
   "dependencies": {
     "@mlc-ai/web-llm": "^0.2.80",
     "dexie": "^4.2.1",
+    "html2canvas": "^1.4.1",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
     "react-router-dom": "^7.10.0",
-    "recharts": "^3.5.1"
+    "recharts": "^3.5.1",
+    "xlsx": "^0.18.5"
   }
 }
