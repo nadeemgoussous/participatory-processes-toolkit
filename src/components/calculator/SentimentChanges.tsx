@@ -87,7 +87,7 @@ export default function SentimentChanges({ baseValues, adjustedValues }: Sentime
   const selectedChange = sentimentChanges.find(sc => sc.stakeholderId === selectedStakeholder);
 
   return (
-    <div className="card">
+    <div className="border-t border-gray-200 pt-6">
       <h3 className="text-xl font-semibold mb-4 text-gray-800">
         Stakeholder Sentiment Changes
       </h3>
@@ -187,8 +187,7 @@ export default function SentimentChanges({ baseValues, adjustedValues }: Sentime
           {/* Positive Factors */}
           {selectedChange.positiveFactors.length > 0 && (
             <div className="mb-4">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-green-600 text-xl">✓</span>
+              <div className="mb-2">
                 <h5 className="font-semibold text-gray-900">What they appreciate:</h5>
               </div>
               <ul className="space-y-1 ml-7">
@@ -204,8 +203,7 @@ export default function SentimentChanges({ baseValues, adjustedValues }: Sentime
           {/* Negative Factors */}
           {selectedChange.negativeFactors.length > 0 && (
             <div className="mb-4">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-amber-600 text-xl">⚠</span>
+              <div className="mb-2">
                 <h5 className="font-semibold text-gray-900">What concerns them:</h5>
               </div>
               <ul className="space-y-1 ml-7">
@@ -227,9 +225,9 @@ export default function SentimentChanges({ baseValues, adjustedValues }: Sentime
             </div>
           )}
 
-          <div className="mt-4 pt-4 border-t border-gray-300">
-            <p className="text-xs text-gray-600">
-              💡 <strong>Tip:</strong> Use these insights to anticipate questions and prepare tailored communication.
+          <div className="section-divider">
+            <p className="text-xs text-gray-500">
+              Use these insights to anticipate questions and prepare tailored communication.
             </p>
           </div>
         </div>
@@ -238,12 +236,9 @@ export default function SentimentChanges({ baseValues, adjustedValues }: Sentime
 
       {/* Help text when nothing selected */}
       {!selectedChange && (
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-          <p className="text-sm text-blue-900">
-            <strong>How to use:</strong> Click any stakeholder above to see what specific factors
-            make them more or less supportive of these adjustments.
-          </p>
-        </div>
+        <p className="text-sm text-gray-500 italic">
+          Click any stakeholder above to see what specific factors make them more or less supportive of these adjustments.
+        </p>
       )}
 
       {/* Disclaimer */}

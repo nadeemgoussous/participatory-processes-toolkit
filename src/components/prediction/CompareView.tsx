@@ -40,37 +40,29 @@ export default function CompareView({
       </div>
 
       {/* User's Prediction Box */}
-      <div className="card mb-6" style={{ borderLeftColor: '#6366f1', borderLeftWidth: '4px' }}>
-        <div className="flex items-start gap-3 mb-3">
-          <span className="text-2xl">💭</span>
-          <h3 className="text-xl font-semibold text-gray-900">
-            Your Prediction
-          </h3>
-        </div>
-        <div className="bg-indigo-50 rounded-lg p-4">
-          <p className="text-gray-800 whitespace-pre-wrap leading-relaxed">
-            {userPrediction}
-          </p>
-        </div>
+      <div className="mb-6" style={{ borderLeftColor: 'var(--color-irena-blue)', borderLeftWidth: '4px', paddingLeft: '1.5rem' }}>
+        <h3 className="text-xl font-semibold text-gray-900 mb-3">
+          Your Prediction
+        </h3>
+        <p className="text-gray-800 whitespace-pre-wrap leading-relaxed">
+          {userPrediction}
+        </p>
       </div>
 
       {/* Simulated Response Box */}
       <div
-        className="card mb-6"
-        style={{ borderLeftColor: stakeholder.color, borderLeftWidth: '4px' }}
+        className="mb-6"
+        style={{ borderLeftColor: stakeholder.color, borderLeftWidth: '4px', paddingLeft: '1.5rem' }}
       >
-        <div className="flex items-start gap-3 mb-4">
-          <span className="text-2xl">💬</span>
-          <div className="flex-1">
-            <h3 className="text-xl font-semibold text-gray-900">
-              Simulated Response
-            </h3>
-            <p className="text-xs text-gray-500 mt-1">
-              {stakeholderResponse.generationType === 'ai-enhanced'
-                ? '✨ AI-Enhanced Response'
-                : '🔧 Rule-Based Response'}
-            </p>
-          </div>
+        <div className="mb-4">
+          <h3 className="text-xl font-semibold text-gray-900">
+            Simulated Response
+          </h3>
+          <p className="text-xs text-gray-500 mt-1">
+            {stakeholderResponse.generationType === 'ai-enhanced'
+              ? 'AI-enhanced response'
+              : 'Rule-based response'}
+          </p>
         </div>
 
         {/* Initial Reaction */}
@@ -111,14 +103,13 @@ export default function CompareView({
             {/* Appreciation */}
             {stakeholderResponse.appreciation.length > 0 && (
               <div className="mb-6">
-                <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                  <span className="text-green-600">✓</span>
+                <h4 className="font-semibold text-gray-900 mb-3">
                   What They Appreciate
                 </h4>
                 <ul className="space-y-2">
                   {stakeholderResponse.appreciation.map((point, idx) => (
                     <li key={idx} className="flex items-start gap-2">
-                      <span className="text-green-500 mt-1">✓</span>
+                      <span className="text-gray-500 mt-1">–</span>
                       <span className="text-gray-700">{point}</span>
                     </li>
                   ))}
@@ -129,8 +120,7 @@ export default function CompareView({
             {/* Concerns */}
             {stakeholderResponse.concerns.length > 0 && (
               <div className="mb-6">
-                <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                  <span className="text-amber-600">⚠</span>
+                <h4 className="font-semibold text-gray-900 mb-3">
                   Their Concerns
                 </h4>
                 <ul className="space-y-3">
@@ -158,14 +148,13 @@ export default function CompareView({
             {/* Questions */}
             {stakeholderResponse.questions.length > 0 && (
               <div className="mb-6">
-                <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                  <span className="text-blue-600">❓</span>
+                <h4 className="font-semibold text-gray-900 mb-3">
                   Questions They Would Ask
                 </h4>
                 <ul className="space-y-2">
                   {stakeholderResponse.questions.map((question, idx) => (
                     <li key={idx} className="flex items-start gap-2">
-                      <span className="text-blue-500 mt-1">❓</span>
+                      <span className="text-gray-500 mt-1">–</span>
                       <span className="text-gray-700 italic">{question}</span>
                     </li>
                   ))}
@@ -175,9 +164,8 @@ export default function CompareView({
 
             {/* Engagement Advice */}
             {stakeholderResponse.engagementAdvice.length > 0 && (
-              <div className="bg-gray-50 rounded-lg p-4">
-                <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                  <span className="text-purple-600">💡</span>
+              <div>
+                <h4 className="font-semibold text-gray-900 mb-3">
                   Engagement Tips
                 </h4>
                 <ul className="space-y-2">
@@ -198,9 +186,8 @@ export default function CompareView({
       {!isStreaming && (
         <>
           {/* Reflection Prompt */}
-          <div className="card mb-6 bg-blue-50 border-blue-200">
-            <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
-              <span>🤔</span>
+          <div className="mb-6 border-t border-gray-200 pt-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-3">
               Reflection: How did your prediction compare?
             </h3>
             <div className="text-gray-700 space-y-2">

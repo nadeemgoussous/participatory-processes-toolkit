@@ -69,94 +69,66 @@ export default function InputTab({ onProceedToDialogue }: InputTabProps) {
           Choose your preferred method to input scenario data.
         </p>
         <p className="text-sm text-gray-600">
-          ⏱️ Target: Complete data input in under 5 minutes
+          Target: Complete data input in under 5 minutes
         </p>
       </div>
 
       {/* Four Input Options */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        {/* Option 1: Load Example */}
+      <div className="grid md:grid-cols-2 gap-4 mb-8">
+        {/* Option 1: Load Example — recommended path */}
         <button
           onClick={handleLoadExample}
           disabled={loading}
-          className="card text-left hover:bg-gray-50 transition-all duration-200 border-2 border-transparent hover:border-blue-500"
+          className="text-left p-5 rounded-lg border-2 bg-white transition-all duration-200 hover:border-gray-400 hover:shadow-sm"
+          style={{ borderColor: scenario && !selectedMethod && !loading ? 'var(--color-irena-blue)' : undefined }}
           data-testid="load-example-button"
         >
-          <div className="text-4xl mb-3" style={{ color: 'var(--color-irena-blue)' }}>
-            📊
-          </div>
-          <h3 className="text-xl font-semibold mb-2">Load Example</h3>
-          <p className="text-gray-600 text-sm mb-4">
-            Load an example scenario to explore the tool's features
+          <h3 className="text-lg font-semibold mb-1">Load Example</h3>
+          <p className="text-gray-600 text-sm">
+            Load an example scenario to explore the tool's features. Works offline and loads instantly.
           </p>
-          <div className="text-xs text-gray-500">
-            ✓ Works offline<br />
-            ✓ Instant loading<br />
-            ✓ Perfect for learning
-          </div>
         </button>
 
         {/* Option 2: Paste from Template */}
         <button
           onClick={handlePasteJSON}
           disabled={loading}
-          className="card text-left hover:bg-gray-50 transition-all duration-200 border-2 border-transparent hover:border-blue-500"
+          className="text-left p-5 rounded-lg border-2 bg-white transition-all duration-200 hover:border-gray-400 hover:shadow-sm"
+          style={{ borderColor: selectedMethod === 'paste' ? 'var(--color-irena-blue)' : undefined }}
           data-testid="paste-json-button"
         >
-          <div className="text-4xl mb-3" style={{ color: 'var(--color-irena-orange)' }}>
-            📋
-          </div>
-          <h3 className="text-xl font-semibold mb-2">Paste from Template</h3>
-          <p className="text-gray-600 text-sm mb-4">
-            Paste JSON output from the Excel template
+          <h3 className="text-lg font-semibold mb-1">Paste from Template</h3>
+          <p className="text-gray-600 text-sm">
+            Paste JSON output from the Excel template for full model data import.
           </p>
-          <div className="text-xs text-gray-500">
-            ✓ Full model data<br />
-            ✓ Copy-paste workflow<br />
-            ✓ Template validates data
-          </div>
         </button>
 
         {/* Option 3: Quick Entry */}
         <button
           onClick={handleQuickEntry}
           disabled={loading}
-          className="card text-left hover:bg-gray-50 transition-all duration-200 border-2 border-transparent hover:border-blue-500"
+          className="text-left p-5 rounded-lg border-2 bg-white transition-all duration-200 hover:border-gray-400 hover:shadow-sm"
+          style={{ borderColor: selectedMethod === 'quick' ? 'var(--color-irena-blue)' : undefined }}
           data-testid="quick-entry-button"
         >
-          <div className="text-4xl mb-3 text-green-600">
-            ⚡
-          </div>
-          <h3 className="text-xl font-semibold mb-2">Quick Entry</h3>
-          <p className="text-gray-600 text-sm mb-4">
-            Enter 7-10 essential metrics manually
+          <h3 className="text-lg font-semibold mb-1">Quick Entry</h3>
+          <p className="text-gray-600 text-sm">
+            Enter 7–10 essential metrics manually with built-in validation.
           </p>
-          <div className="text-xs text-gray-500">
-            ✓ Fast manual entry<br />
-            ✓ Simplified fields<br />
-            ✓ Validation included
-          </div>
         </button>
 
         {/* Option 4: Upload CSV */}
         <button
           onClick={handleCSVUpload}
           disabled={loading}
-          className="card text-left hover:bg-gray-50 transition-all duration-200 border-2 border-transparent hover:border-purple-500"
+          className="text-left p-5 rounded-lg border-2 bg-white transition-all duration-200 hover:border-gray-400 hover:shadow-sm"
+          style={{ borderColor: selectedMethod === 'csv' ? 'var(--color-irena-blue)' : undefined }}
           data-testid="csv-upload-button"
         >
-          <div className="text-4xl mb-3 text-purple-600">
-            📄
-          </div>
-          <h3 className="text-xl font-semibold mb-2">Upload CSV</h3>
-          <p className="text-gray-600 text-sm mb-4">
-            Import from SPLAT, MESSAGE, or other models
+          <h3 className="text-lg font-semibold mb-1">Upload CSV</h3>
+          <p className="text-gray-600 text-sm">
+            Import from SPLAT, MESSAGE, or other models with auto-detect and technology mapping.
           </p>
-          <div className="text-xs text-gray-500">
-            ✓ Auto-detect format<br />
-            ✓ Flexible milestones<br />
-            ✓ Technology mapping
-          </div>
         </button>
       </div>
 
@@ -195,8 +167,8 @@ export default function InputTab({ onProceedToDialogue }: InputTabProps) {
 
       {/* Selected Method Content (Paste/Quick Entry) */}
       {selectedMethod === 'paste' && (
-        <div className="card text-center" data-testid="paste-placeholder">
-          <h3 className="text-xl font-semibold mb-3" style={{ color: 'var(--color-irena-orange)' }}>
+        <div className="text-center py-8" data-testid="paste-placeholder">
+          <h3 className="text-xl font-semibold mb-3" style={{ color: 'var(--color-irena-blue)' }}>
             Paste JSON from Template
           </h3>
           <p className="text-gray-600 mb-4">
@@ -204,7 +176,7 @@ export default function InputTab({ onProceedToDialogue }: InputTabProps) {
           </p>
           <button
             onClick={() => setSelectedMethod(null)}
-            className="text-sm text-blue-600 hover:text-blue-700"
+            className="text-sm text-gray-500 hover:text-gray-700"
           >
             ← Back to options
           </button>

@@ -45,15 +45,6 @@ function App() {
                 <CommunicateTab />
               )}
 
-              {/* Important Disclaimer - shown on all tabs */}
-              <div className="disclaimer max-w-4xl mx-auto mt-8">
-                <p className="font-semibold text-yellow-800 mb-2">⚠️ ILLUSTRATIVE TOOL ONLY</p>
-                <p className="text-sm text-yellow-700">
-                  This tool shows <strong>directional impacts</strong> for discussion purposes.
-                  It does <strong>NOT</strong> replace energy system optimization models (MESSAGE, OSeMOSYS, LEAP, SPLAT).
-                  Always verify technical and economic feasibility in the full model.
-                </p>
-              </div>
             </ErrorBoundary>
           </main>
 

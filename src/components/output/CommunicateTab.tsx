@@ -12,6 +12,7 @@ import { useScenario } from '../../context/ScenarioContext';
 import { stakeholderProfiles } from '../../data/stakeholder-profiles';
 import { getDisseminationStrategy } from '../../data/dissemination-strategies';
 import type { StakeholderId } from '../../types/stakeholder';
+import { StakeholderIcon } from '../stakeholder/StakeholderIcon';
 import DisseminationStrategyDisplay from './DisseminationStrategyDisplay';
 import DisseminationTemplates from './DisseminationTemplates';
 import CommunityImpactCalculator from './CommunityImpactCalculator';
@@ -80,9 +81,9 @@ export default function CommunicateTab() {
         </div>
 
         {/* No Scenario Loaded Message */}
-        <div className="bg-yellow-50 border-2 border-yellow-400 rounded-lg p-8 text-center">
+        <div className="text-center py-8">
           <div className="mb-4 flex justify-center">
-            <svg className="w-16 h-16 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
           </div>
@@ -93,7 +94,7 @@ export default function CommunicateTab() {
             Communication strategies and templates are customized based on your scenario data.
             Please load a scenario first to access this tab.
           </p>
-          <div className="bg-white border border-gray-300 rounded-lg p-6 text-left max-w-md mx-auto">
+          <div className="border border-gray-300 rounded-lg p-6 text-left max-w-md mx-auto">
             <p className="text-sm font-semibold text-gray-800 mb-3">To load a scenario:</p>
             <ol className="text-sm text-gray-700 space-y-2 list-decimal list-inside">
               <li>Go to the <strong>Input</strong> tab</li>
@@ -102,17 +103,15 @@ export default function CommunicateTab() {
               <li>Return here to generate communication materials</li>
             </ol>
           </div>
-          <div className="mt-6">
-            <p className="text-sm text-gray-600">
-              💡 <em>This ensures your dissemination strategies and templates include actual metrics
-              from your energy scenario (renewable share, investment needs, emissions, jobs, etc.)</em>
-            </p>
-          </div>
+          <p className="text-sm text-gray-500 italic mt-6">
+            This ensures your dissemination strategies and templates include actual metrics
+            from your energy scenario (renewable share, investment needs, emissions, jobs, etc.)
+          </p>
         </div>
 
         {/* Toolkit Reference */}
-        <div className="mt-8 p-6 bg-gray-50 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-semibold mb-3 text-gray-800">
+        <div className="mt-8 border-t border-gray-200 pt-6">
+          <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">
             About This Tool
           </h3>
           <p className="text-sm text-gray-700 mb-3">
@@ -138,12 +137,10 @@ export default function CommunicateTab() {
           Learn which dissemination formats work best for each stakeholder group, based on IRENA's
           Participatory Processes Toolkit.
         </p>
-        <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
-          <p className="text-sm text-blue-900">
-            <strong>Educational Focus:</strong> This tool teaches you which formats resonate with different
-            audiences. Use the guidance below to create your own materials customized to your local context.
-          </p>
-        </div>
+        <p className="text-sm text-gray-500 italic">
+          This tool teaches you which formats resonate with different
+          audiences. Use the guidance below to create your own materials customized to your local context.
+        </p>
       </div>
 
       {/* View Switcher */}
@@ -157,7 +154,7 @@ export default function CommunicateTab() {
                 : 'text-gray-600 hover:text-gray-900'
             }`}
           >
-            📊 Dissemination Strategies
+            Dissemination Strategies
           </button>
           <button
             onClick={() => setCurrentView('templates')}
@@ -167,7 +164,7 @@ export default function CommunicateTab() {
                 : 'text-gray-600 hover:text-gray-900'
             }`}
           >
-            📝 Format Templates
+            Format Templates
           </button>
           <button
             onClick={() => setCurrentView('export-guidance')}
@@ -177,7 +174,7 @@ export default function CommunicateTab() {
                 : 'text-gray-600 hover:text-gray-900'
             }`}
           >
-            📤 Export Guidance
+            Export Guidance
           </button>
           <button
             onClick={() => setCurrentView('tips')}
@@ -187,7 +184,7 @@ export default function CommunicateTab() {
                 : 'text-gray-600 hover:text-gray-900'
             }`}
           >
-            💡 Best Practices
+            Best Practices
           </button>
         </div>
       </div>
@@ -238,14 +235,8 @@ export default function CommunicateTab() {
                   aria-pressed={selectedStakeholder === profile.id}
                 >
                   <div className="flex flex-col items-center text-center">
-                    {/* Icon placeholder - would use actual SVG */}
-                    <div
-                      className="w-12 h-12 rounded-full flex items-center justify-center mb-2"
-                      style={{ backgroundColor: `${profile.color}30` }}
-                    >
-                      <span className="text-2xl" role="img" aria-label={profile.name}>
-                        {getStakeholderEmoji(profile.id as StakeholderId)}
-                      </span>
+                    <div className="mb-2">
+                      <StakeholderIcon stakeholder={profile} size="medium" />
                     </div>
                     <span className="text-sm font-medium text-gray-800">{profile.name}</span>
                   </div>
@@ -256,50 +247,44 @@ export default function CommunicateTab() {
 
           {/* Demo Tool Button (Public & Communities only) */}
           {selectedStakeholder === 'public' && (
-            <div className="mb-6 bg-green-50 border-2 border-green-400 rounded-lg p-6">
-              <div className="flex items-start gap-4">
-                <div className="text-4xl">🏡</div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold mb-2 text-gray-800">
-                    Try the Interactive Demo: Community Impact Calculator
-                  </h3>
-                  <p className="text-sm text-gray-700 mb-4">
-                    See a working example of how to translate your scenario into personal impacts
-                    (bills, jobs, air quality) that communities care about. Based on successful examples
-                    from Belgium and Kenya.
-                  </p>
-                  <button
-                    onClick={() => setCurrentView('community-calculator')}
-                    className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded font-semibold transition-colors"
-                  >
-                    Launch Community Calculator Demo →
-                  </button>
-                </div>
+            <div className="mb-6 border-t border-gray-200 pt-4">
+              <h3 className="text-lg font-semibold mb-2 text-gray-800">
+                Interactive Demo: Community Impact Calculator
+              </h3>
+              <p className="text-sm text-gray-700 mb-3">
+                See a working example of how to translate your scenario into personal impacts
+                (bills, jobs, air quality) that communities care about. Based on successful examples
+                from Belgium and Kenya.
+              </p>
+              <div className="flex justify-end">
+                <button
+                  onClick={() => setCurrentView('community-calculator')}
+                  className="btn-outline"
+                >
+                  Launch Community Calculator Demo →
+                </button>
               </div>
             </div>
           )}
 
           {/* Demo Tool Button (CSOs/NGOs or Scientific only) */}
           {(selectedStakeholder === 'csos-ngos' || selectedStakeholder === 'scientific') && (
-            <div className="mb-6 bg-purple-50 border-2 border-purple-400 rounded-lg p-6">
-              <div className="flex items-start gap-4">
-                <div className="text-4xl">📊</div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold mb-2 text-gray-800">
-                    Try the Interactive Demo: Scenario Comparison Tool
-                  </h3>
-                  <p className="text-sm text-gray-700 mb-4">
-                    Compare your scenario against Business as Usual and High Ambition benchmarks
-                    to communicate ambition level and identify gaps. Includes stakeholder-specific
-                    narrative interpretation.
-                  </p>
-                  <button
-                    onClick={() => setCurrentView('scenario-comparison')}
-                    className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded font-semibold transition-colors"
-                  >
-                    Launch Scenario Comparison Demo →
-                  </button>
-                </div>
+            <div className="mb-6 border-t border-gray-200 pt-4">
+              <h3 className="text-lg font-semibold mb-2 text-gray-800">
+                Interactive Demo: Scenario Comparison Tool
+              </h3>
+              <p className="text-sm text-gray-700 mb-3">
+                Compare your scenario against Business as Usual and High Ambition benchmarks
+                to communicate ambition level and identify gaps. Includes stakeholder-specific
+                narrative interpretation.
+              </p>
+              <div className="flex justify-end">
+                <button
+                  onClick={() => setCurrentView('scenario-comparison')}
+                  className="btn-outline"
+                >
+                  Launch Scenario Comparison Demo →
+                </button>
               </div>
             </div>
           )}
@@ -329,8 +314,8 @@ export default function CommunicateTab() {
       )}
 
       {/* Toolkit Reference */}
-      <div className="mt-8 p-6 bg-gray-50 rounded-lg border border-gray-200">
-        <h3 className="text-lg font-semibold mb-3 text-gray-800">
+      <div className="mt-8 border-t border-gray-200 pt-6">
+        <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">
           About This Tool
         </h3>
         <p className="text-sm text-gray-700 mb-3">
@@ -352,21 +337,3 @@ export default function CommunicateTab() {
   );
 }
 
-/**
- * Helper function to get emoji icons for stakeholders
- * (In production, would use actual SVG icons from public/icons/)
- */
-function getStakeholderEmoji(id: StakeholderId): string {
-  const emojiMap: Record<StakeholderId, string> = {
-    'policy-makers': '🏛️',
-    'grid-operators': '⚡',
-    'industry': '🏭',
-    'public': '👥',
-    'csos-ngos': '🌱',
-    'scientific': '🔬',
-    'finance': '💰',
-    'regional-bodies': '🌍',
-    'development-partners': '🤝',
-  };
-  return emojiMap[id] || '📄';
-}

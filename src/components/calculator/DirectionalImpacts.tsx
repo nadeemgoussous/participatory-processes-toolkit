@@ -35,7 +35,7 @@ export default function DirectionalImpacts({ baseValues, adjustedValues }: Direc
   const impacts = calculateDirectionalImpacts(baseValues, adjustedValues);
 
   return (
-    <div className="card">
+    <div className="border-t border-gray-200 pt-6">
       <h3 className="text-xl font-semibold mb-4 text-gray-800">Directional Impacts</h3>
       <p className="text-sm text-gray-600 mb-6">
         These indicators show <strong>directional trends only</strong> relative to your base scenario.
@@ -43,34 +43,16 @@ export default function DirectionalImpacts({ baseValues, adjustedValues }: Direc
       </p>
 
       {/* Impact Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        {/* Jobs Impact */}
-        <ImpactCard
-          title="Jobs"
-          impact={impacts.jobs}
-          color="blue"
-        />
-
-        {/* Land Use Impact */}
-        <ImpactCard
-          title="Land Use"
-          impact={impacts.landUse}
-          color="green"
-        />
-
-        {/* Emissions Impact */}
-        <ImpactCard
-          title="Emissions"
-          impact={impacts.emissions}
-          color="purple"
-        />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <ImpactCard title="Jobs" impact={impacts.jobs} />
+        <ImpactCard title="Land Use" impact={impacts.landUse} />
+        <ImpactCard title="Emissions" impact={impacts.emissions} />
       </div>
 
       {/* Explanatory Note */}
-      <div className="bg-blue-50 border border-blue-200 rounded p-3 text-sm text-blue-800">
-        <p className="font-medium mb-1">💡 How to Use These Indicators</p>
-        <p>
-          These directional indicators help you anticipate how stakeholders might respond to adjustments.
+      <div className="border-t border-gray-200 pt-4 mt-4">
+        <p className="text-sm text-gray-700">
+          <strong>How to use these indicators:</strong> These directional indicators help you anticipate how stakeholders might respond to adjustments.
           Use them to prepare for dialogue, not as precise predictions.
         </p>
       </div>
@@ -84,33 +66,9 @@ export default function DirectionalImpacts({ baseValues, adjustedValues }: Direc
 interface ImpactCardProps {
   title: string;
   impact: Impact;
-  color: 'blue' | 'green' | 'purple';
 }
 
-function ImpactCard({ title, impact, color }: ImpactCardProps) {
-  const colorClasses = {
-    blue: {
-      bg: 'bg-blue-50',
-      border: 'border-blue-200',
-      text: 'text-blue-800',
-      icon: 'text-blue-600'
-    },
-    green: {
-      bg: 'bg-green-50',
-      border: 'border-green-200',
-      text: 'text-green-800',
-      icon: 'text-green-600'
-    },
-    purple: {
-      bg: 'bg-purple-50',
-      border: 'border-purple-200',
-      text: 'text-purple-800',
-      icon: 'text-purple-600'
-    }
-  };
-
-  const colors = colorClasses[color];
-
+function ImpactCard({ title, impact }: ImpactCardProps) {
   const directionIcon = {
     increase: '↑',
     decrease: '↓',
@@ -130,26 +88,24 @@ function ImpactCard({ title, impact, color }: ImpactCardProps) {
   };
 
   return (
-    <div className={`${colors.bg} border ${colors.border} rounded-lg p-4`}>
-      <h4 className={`font-semibold ${colors.text} mb-3`}>{title}</h4>
+    <div className="border-l-4 pl-4" style={{ borderLeftColor: 'var(--color-irena-blue)' }}>
+      <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">{title}</h4>
 
-      {/* Direction and Magnitude */}
-      <div className="flex items-center gap-2 mb-2">
-        <span className={`text-3xl ${colors.icon}`}>
+      {/* Direction arrow + label + magnitude in one row */}
+      <div className="flex items-baseline gap-2 mb-1">
+        <span className="text-2xl font-bold text-gray-800">
           {directionIcon[impact.direction]}
         </span>
-        <div>
-          <div className={`font-medium ${colors.text}`}>
-            {directionLabel[impact.direction]}
-          </div>
-          <div className={`text-xs ${colors.text} opacity-75`}>
-            {magnitudeLabel[impact.magnitude]}
-          </div>
-        </div>
+        <span className="font-medium text-gray-800">
+          {directionLabel[impact.direction]}
+        </span>
+        <span className="text-xs text-gray-500">
+          {magnitudeLabel[impact.magnitude]}
+        </span>
       </div>
 
       {/* Explanation */}
-      <p className={`text-sm ${colors.text} leading-relaxed`}>
+      <p className="text-sm text-gray-600 leading-relaxed">
         {impact.explanation}
       </p>
     </div>

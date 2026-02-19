@@ -77,26 +77,20 @@ export default function ExploreTab() {
 
   if (!scenario) {
     return (
-      <div className="card max-w-4xl mx-auto text-center">
-        <h2 className="text-2xl font-bold mb-4 text-irena-blue">
+      <div className="max-w-4xl mx-auto text-center py-12">
+        <h2 className="text-2xl font-bold mb-4" style={{ color: 'var(--color-irena-blue)' }}>
           Explore Impacts
         </h2>
-        <p className="text-gray-600 mb-6">
-          Explore how adjusting key scenario parameters might directionally affect stakeholder sentiment.
+        <p className="text-gray-600">
+          Please load a scenario from the Input tab before exploring impacts.
         </p>
-        <div className="bg-yellow-50 border border-yellow-200 rounded p-4 text-yellow-800">
-          <p className="font-semibold">⚠️ No Scenario Loaded</p>
-          <p className="text-sm mt-2">
-            Please load a scenario from the Input tab before exploring impacts.
-          </p>
-        </div>
       </div>
     );
   }
 
   if (!baseValues) {
     return (
-      <div className="card max-w-4xl mx-auto text-center">
+      <div className="max-w-4xl mx-auto text-center py-12">
         <p className="text-gray-600">Loading scenario data...</p>
       </div>
     );
@@ -135,28 +129,20 @@ export default function ExploreTab() {
   return (
     <div className="max-w-4xl mx-auto space-y-6">
       {/* Header */}
-      <div className="card">
-        <h2 className="text-2xl font-bold mb-4 text-irena-blue">
+      <div>
+        <h2 className="text-2xl font-bold mb-2" style={{ color: 'var(--color-irena-blue)' }}>
           Explore Impacts
         </h2>
-        <p className="text-gray-600 mb-4">
-          Use the sliders below to explore how adjusting key scenario parameters might directionally affect stakeholder sentiment.
-          This tool shows <strong>directional trends only</strong>, not precise calculations.
+        <p className="disclaimer mb-3">
+          Directional indicators only. These do not recalculate technical feasibility or economic viability. Always verify in your full energy system optimization model.
         </p>
-
-        {/* Prominent Disclaimer */}
-        <div className="bg-amber-50 border-2 border-amber-300 rounded-lg p-4 mb-4">
-          <p className="font-bold text-amber-900 text-lg mb-2">⚠️ DIRECTIONAL INDICATORS ONLY</p>
-          <p className="text-sm text-amber-800 leading-relaxed">
-            These adjustments show <strong>directional impacts</strong> for discussion purposes only.
-            They do <strong>NOT</strong> recalculate technical feasibility, grid reliability, or economic viability.
-            Always verify changes in your full energy system optimization model (MESSAGE, OSeMOSYS, LEAP, SPLAT).
-          </p>
-        </div>
+        <p className="text-gray-600">
+          Use the sliders below to explore how adjusting key scenario parameters might directionally affect stakeholder sentiment.
+        </p>
       </div>
 
       {/* Adjustable Parameters */}
-      <div className="card">
+      <div className="border-t border-gray-200 pt-6">
         <h3 className="text-xl font-semibold mb-6 text-gray-800">Adjustable Parameters</h3>
 
         <div className="space-y-8">
@@ -265,7 +251,7 @@ export default function ExploreTab() {
 
         {/* Reset Button */}
         {hasAdjustments && (
-          <div className="mt-6 pt-6 border-t border-gray-200">
+          <div className="section-divider">
             <button
               onClick={handleReset}
               className="btn-secondary"
@@ -290,9 +276,9 @@ export default function ExploreTab() {
           />
         </>
       ) : (
-        <div className="card bg-gray-50">
+        <div className="border-t border-gray-200 pt-6">
           <h3 className="text-xl font-semibold mb-4 text-gray-800">Directional Impacts</h3>
-          <p className="text-gray-600 mb-4">
+          <p className="text-gray-600">
             Adjust parameters above to see directional impacts on jobs, land use, emissions, and stakeholder sentiment.
           </p>
         </div>

@@ -42,10 +42,9 @@ export default function PredictionInput({
         )}
       </div>
 
-      {/* Main Card */}
+      {/* Main form — stakeholder-color left rule */}
       <div
-        className="card"
-        style={{ borderLeftColor: stakeholder.color, borderLeftWidth: '4px' }}
+        style={{ borderLeftColor: stakeholder.color, borderLeftWidth: '4px', paddingLeft: '1.5rem' }}
       >
         {/* Stakeholder Header */}
         <div className="flex items-center gap-4 mb-6 pb-6 border-b border-gray-200">
@@ -160,9 +159,9 @@ export default function PredictionInput({
         </form>
 
         {/* Learning Note */}
-        <div className="mt-6 pt-6 border-t border-gray-200 bg-blue-50 rounded-lg p-4">
-          <p className="text-sm text-gray-700 italic">
-            💡 <strong>Learning Tip:</strong> There's no "right" answer. The goal is to practice
+        <div className="section-divider">
+          <p className="text-sm text-gray-500 italic">
+            There's no "right" answer. The goal is to practice
             thinking from different stakeholder perspectives before engaging them in real life.
           </p>
         </div>

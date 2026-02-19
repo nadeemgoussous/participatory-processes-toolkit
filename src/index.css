@@ -59,16 +59,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-secondary {
-  background-color: var(--color-irena-orange);
-  color: white;
+  background-color: transparent;
+  color: #374151;
   padding: 0.75rem 1.5rem;
   border-radius: 0.375rem;
   font-weight: 500;
-  transition: background-color 200ms;
+  border: 1px solid #d1d5db;
+  transition: all 200ms;
 }
 
 .btn-secondary:hover {
-  background-color: var(--color-irena-orange-dark);
+  background-color: #f3f4f6;
+  border-color: #9ca3af;
 }
 
 .btn-outline {
@@ -94,12 +96,51 @@ h1, h2, h3, h4, h5, h6 {
   padding: 1.5rem;
 }
 
-/* Disclaimer box */
+/* Disclaimer — subtle inline note */
 .disclaimer {
-  background-color: #fefce8;
-  border-left: 4px solid #facc15;
-  padding: 1rem;
-  margin-bottom: 1.5rem;
+  color: #6b7280;
+  font-style: italic;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  padding: 0;
+  margin-bottom: 0;
+  background-color: transparent;
+  border: none;
+}
+
+/* Section divider — replaces scattered border-t combos */
+.section-divider {
+  border-top: 1px solid #e5e7eb;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+}
+
+/* Metric row — IRENA blue left rule with label/value/sub stack */
+.metric-row {
+  border-left: 3px solid var(--color-irena-blue);
+  padding: 0.75rem 0 0.75rem 1rem;
+}
+.metric-row .metric-label {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6b7280;
+  margin-bottom: 0.25rem;
+}
+.metric-row .metric-value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.2;
+}
+.metric-row .metric-sub {
+  display: block;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin-top: 0.25rem;
 }
 
 /* Offline indicator pulse animation */
