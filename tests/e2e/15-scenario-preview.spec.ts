@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Scenario Preview Panel (F015)', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:5174');
+    await page.goto('http://localhost:5173/stakeholder-dialogue/');
     // Load the example scenario first
     await page.getByTestId('load-example-button').click();
     // Wait for the preview to appear

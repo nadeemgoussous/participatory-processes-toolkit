@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Input Mode Switching (F015 Fix)', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:5174');
+    await page.goto('http://localhost:5173/stakeholder-dialogue/');
   });
 
   test('can switch from example to quick entry', async ({ page }) => {

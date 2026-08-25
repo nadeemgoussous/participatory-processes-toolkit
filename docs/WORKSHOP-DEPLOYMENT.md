@@ -10,7 +10,7 @@ Quick guide for deploying the Scenario Dialogue Tool in workshops with packaged 
 # 1. Start the tool
 npm run dev
 
-# 2. Open browser at http://localhost:5174
+# 2. Open browser at http://localhost:5173/stakeholder-dialogue/
 # 3. Load example scenario
 # 4. Try stakeholder dialogue
 # ✅ Works instantly with rule-based responses
