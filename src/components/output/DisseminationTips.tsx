@@ -377,58 +377,6 @@ function PrincipleCard({
 }
 
 /**
- * Case Studies Grid Component
- */
-function CaseStudiesGrid({ caseStudies }: { caseStudies: CaseStudy[] }) {
-  // Group by country
-  const groupedByCountry = caseStudies.reduce((acc, study) => {
-    if (!acc[study.country]) {
-      acc[study.country] = [];
-    }
-    acc[study.country].push(study);
-    return acc;
-  }, {} as Record<string, CaseStudy[]>);
-
-  return (
-    <div className="case-studies-grid">
-      <p className="text-gray-700 mb-6">
-        Real-world examples of how countries have successfully disseminated energy scenario results
-        to different stakeholders.
-      </p>
-
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {Object.entries(groupedByCountry).map(([country, studies]) => (
-          <div
-            key={country}
-            className="case-study-card bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md transition-shadow"
-          >
-            <div className="flex items-center gap-2 mb-3">
-              <span className="text-2xl">{getCountryFlag(country)}</span>
-              <h3 className="font-bold text-gray-900">{country}</h3>
-            </div>
-            <div className="space-y-3">
-              {studies.map((study, index) => (
-                <div key={index} className="border-t border-gray-100 pt-3 first:border-0 first:pt-0">
-                  <div className="text-sm font-semibold text-irena-blue mb-1">
-                    {study.approach}
-                  </div>
-                  <p className="text-xs text-gray-600 mb-2">{study.description}</p>
-                  {study.audience && (
-                    <div className="text-xs text-gray-500">
-                      <span className="font-medium">Audience:</span> {study.audience}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/**
  * Helper: Get icon for tip type
  */
 function getTipIcon(iconType: string): string {
@@ -443,21 +391,4 @@ function getTipIcon(iconType: string): string {
     book: '📖',
   };
   return iconMap[iconType] || '💡';
-}
-
-/**
- * Helper: Get flag emoji for country
- */
-function getCountryFlag(country: string): string {
-  const flagMap: Record<string, string> = {
-    'Belgium': '🇧🇪',
-    'Kenya': '🇰🇪',
-    'United Arab Emirates': '🇦🇪',
-    'Cyprus': '🇨🇾',
-    'Brazil': '🇧🇷',
-    'Chile': '🇨🇱',
-    'International (IEA)': '🌍',
-    'International': '🌐',
-  };
-  return flagMap[country] || '🏳️';
 }

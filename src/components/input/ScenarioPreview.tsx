@@ -82,13 +82,13 @@ export default function ScenarioPreview({ scenario, onProceed, onLoadDifferent }
   const handleExportImage = useCallback(() => {
     if (!chartRef.current || exporting) return;
     // Find the largest SVG (the chart), not small icons
-    const allSvgs = chartRef.current.querySelectorAll('svg');
+    const allSvgs = Array.from(chartRef.current.querySelectorAll('svg'));
     let svgEl: SVGSVGElement | null = null;
     let maxArea = 0;
-    allSvgs.forEach(s => {
+    for (const s of allSvgs) {
       const r = s.getBoundingClientRect();
       if (r.width * r.height > maxArea) { maxArea = r.width * r.height; svgEl = s; }
-    });
+    }
     if (!svgEl) return;
     setExporting(true);
     try {
@@ -208,13 +208,13 @@ export default function ScenarioPreview({ scenario, onProceed, onLoadDifferent }
                 outerRadius={120}
                 paddingAngle={3}
                 dataKey="value"
-                label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                label={({ name, percent }) => `${name} ${((percent ?? 0) * 100).toFixed(0)}%`}
               >
                 {genPieData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.color} />
                 ))}
               </Pie>
-              <ChartTooltip formatter={(value: number) => `${value.toLocaleString()} ${lastMilestone.generation.unit}`} />
+              <ChartTooltip formatter={(value) => `${Number(value).toLocaleString()} ${lastMilestone.generation.unit}`} />
             </PieChart>
           </ResponsiveContainer>
         );
@@ -259,7 +259,7 @@ export default function ScenarioPreview({ scenario, onProceed, onLoadDifferent }
                 domain={[0, 100]}
                 label={{ value: 'RE Share (%)', angle: -90, position: 'insideLeft', style: { fontSize: 12, fill: '#6b7280' } }}
               />
-              <ChartTooltip formatter={(value: number) => `${value.toFixed(1)}%`} />
+              <ChartTooltip formatter={(value) => `${Number(value).toFixed(1)}%`} />
               <Area
                 type="monotone"
                 dataKey="reShare"

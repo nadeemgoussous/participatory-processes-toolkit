@@ -230,7 +230,7 @@ function evaluateIndustry(
   deltas: any,
   positive: string[],
   negative: string[],
-  adjusted: AdjustmentState
+  _adjusted: AdjustmentState
 ): number {
   let score = 0;
 
@@ -273,7 +273,7 @@ function evaluatePublic(
   deltas: any,
   positive: string[],
   negative: string[],
-  adjusted: AdjustmentState
+  _adjusted: AdjustmentState
 ): number {
   let score = 0;
 
@@ -323,7 +323,7 @@ function evaluateCSOsNGOs(
   deltas: any,
   positive: string[],
   negative: string[],
-  adjusted: AdjustmentState
+  _adjusted: AdjustmentState
 ): number {
   let score = 0;
 
@@ -425,7 +425,7 @@ function evaluateFinance(
   deltas: any,
   positive: string[],
   negative: string[],
-  adjusted: AdjustmentState
+  _adjusted: AdjustmentState
 ): number {
   let score = 0;
 
@@ -515,7 +515,7 @@ function evaluateDevelopmentPartners(
   deltas: any,
   positive: string[],
   negative: string[],
-  adjusted: AdjustmentState
+  _adjusted: AdjustmentState
 ): number {
   let score = 0;
 

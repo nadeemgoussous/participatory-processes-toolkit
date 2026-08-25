@@ -11,6 +11,7 @@ import { maybeEnhanceWithAI, DEFAULT_AI_CONFIG, checkOllamaAvailability } from '
 import { useOnlineStatus } from '../../hooks/useOnlineStatus';
 import { Tooltip } from '../common/Tooltip';
 import { useWebLLM } from '../../hooks/useWebLLM';
+import type { WebLLMStatus } from '../../hooks/useWebLLM';
 import { ModelLoadingProgress } from '../common/ModelLoadingProgress';
 
 // Collapsible Section Component
@@ -156,7 +157,7 @@ interface SystemCapabilities {
 
 interface SystemCapabilityCheckerProps {
   onRecommendation?: (backend: 'webllm' | 'ollama' | 'rule-based') => void;
-  webllmStatus?: 'not-loaded' | 'loading' | 'ready' | 'error';
+  webllmStatus?: WebLLMStatus;
   webllmError?: { type: string; message: string } | null;
 }
 

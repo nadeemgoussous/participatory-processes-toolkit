@@ -425,85 +425,11 @@ Write your response now.`;
 }
 
 /**
- * Build system prompt for LLM with strict guardrails
- * @deprecated NO LONGER USED - Ollama now uses buildEnhancementSystemPrompt() for consistency with WebLLM
- * Kept for reference only
- */
-function buildSystemPrompt(
-  stakeholder: StakeholderProfile,
-  scenario: ScenarioInput,
-  derivedMetrics: DerivedMetrics
-): string {
-  // Safe access to nested properties with fallbacks
-  const reShare2030 = calculateREShare(scenario, 2030).toFixed(1);
-  const reShare2040 = calculateREShare(scenario, 2040).toFixed(1);
-  const jobs2030 = derivedMetrics.jobs?.byYear?.[2030]?.total?.toLocaleString() || 'N/A';
-  const emissionsReduction = derivedMetrics.emissions?.percentReduction?.toFixed(1) || 'N/A';
-
-  return `You are simulating the perspective of a ${stakeholder.name} stakeholder reviewing an energy scenario.
-
-STAKEHOLDER PROFILE:
-- Name: ${stakeholder.name}
-- Primary Concerns: ${stakeholder.priorities.join(', ')}
-- Questions They Typically Ask: ${stakeholder.typicalQuestions.join('; ')}
-
-SCENARIO CONTEXT:
-- Country: ${scenario.metadata?.country || 'N/A'}
-- Scenario: ${scenario.metadata?.scenarioName || 'N/A'}
-- Renewable Share 2030: ${reShare2030}%
-- Renewable Share 2040: ${reShare2040}%
-- Estimated Jobs (2030): ${jobs2030}
-- Emissions Reduction: ${emissionsReduction}%
-
-TASK:
-Enhance the following stakeholder response by making it more natural and conversational while preserving all key points.
-
-CRITICAL RULES:
-1. You MUST keep the same structure (Initial Reaction, Appreciation, Concerns, Questions, Engagement)
-2. You MUST preserve all specific concerns and appreciations
-3. You MUST NOT add new technical claims or calculations
-4. You MUST NOT contradict the rule-based response
-5. Make language more natural and stakeholder-appropriate
-6. Keep tone professional but accessible
-7. Maximum 200 words total
-
-BASE RESPONSE TO ENHANCE:`;
-}
-
-/**
- * Calculate RE share for a given year
- * Handles both aggregated and detailed capacity data structures
+ * Calculate RE share for a given year from milestone data
  */
 function calculateREShare(scenario: ScenarioInput, year: number): number {
-  // Check if scenario has milestone data with pre-calculated reShare
-  if (scenario.milestones) {
-    const milestone = scenario.milestones.find(m => m.year === year);
-    if (milestone?.reShare !== undefined) {
-      return milestone.reShare;
-    }
-  }
-
-  // Fallback: Try to calculate from capacity.byYear (detailed structure)
-  if (!scenario.capacity?.byYear) {
-    // No detailed capacity data available - return 0 without warning
-    // (This is expected for scenarios using aggregated data)
-    return 0;
-  }
-
-  const capacityData = scenario.capacity.byYear[year];
-  if (!capacityData) return 0;
-
-  const renewable = (capacityData.solarPV || 0) +
-                   (capacityData.windOnshore || 0) +
-                   (capacityData.windOffshore || 0) +
-                   (capacityData.hydro || 0);
-
-  const total = renewable +
-                (capacityData.coal || 0) +
-                (capacityData.gas || 0) +
-                (capacityData.diesel || 0);
-
-  return total > 0 ? (renewable / total) * 100 : 0;
+  const milestone = scenario.milestones?.find(m => m.year === year);
+  return milestone?.reShare ?? 0;
 }
 
 /**
@@ -664,10 +590,10 @@ async function enhanceWithOllama(
  * Enhance response using cloud API (Anthropic or OpenAI)
  */
 async function enhanceWithCloudAPI(
-  ruleBasedResponse: StakeholderResponse,
-  stakeholder: StakeholderProfile,
-  scenario: ScenarioInput,
-  derivedMetrics: DerivedMetrics,
+  _ruleBasedResponse: StakeholderResponse,
+  _stakeholder: StakeholderProfile,
+  _scenario: ScenarioInput,
+  _derivedMetrics: DerivedMetrics,
   config: AIConfig
 ): Promise<StakeholderResponse | null> {
   if (!config.cloudEnabled || !config.cloudApiKey) return null;

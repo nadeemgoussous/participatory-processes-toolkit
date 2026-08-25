@@ -173,9 +173,9 @@ export default function ExportGuidance({ scenario, onBack }: ExportGuidanceProps
       const unit = milestone2050.investment?.unit || 'million USD';
       lines.push(`• Cumulative to 2050: ${milestone2050.investment.cumulative.toLocaleString()} ${unit}`);
     }
-    if (milestone2030?.investment?.annual) {
+    if (milestone2030?.investment?.cumulative) {
       const unit = milestone2030.investment?.unit || 'million USD';
-      lines.push(`• Annual (2030): ${milestone2030.investment.annual.toLocaleString()} ${unit}`);
+      lines.push(`• Cumulative to 2030: ${milestone2030.investment.cumulative.toLocaleString()} ${unit}`);
     }
 
     lines.push('', '--- EMISSIONS ---');
@@ -189,13 +189,13 @@ export default function ExportGuidance({ scenario, onBack }: ExportGuidanceProps
 
     lines.push('', '--- GENERATION MIX ---');
     const genMilestone = milestone2050 || latestMilestone;
-    if (genMilestone?.generation?.total) {
+    if (genMilestone?.generation?.output) {
       const unit = genMilestone.generation?.unit || 'GWh';
-      if (genMilestone.generation.total.renewables) {
-        lines.push(`• Renewables: ${genMilestone.generation.total.renewables.toLocaleString()} ${unit}`);
+      if (genMilestone.generation.output.renewables) {
+        lines.push(`• Renewables: ${genMilestone.generation.output.renewables.toLocaleString()} ${unit}`);
       }
-      if (genMilestone.generation.total.fossil) {
-        lines.push(`• Fossil: ${genMilestone.generation.total.fossil.toLocaleString()} ${unit}`);
+      if (genMilestone.generation.output.fossil) {
+        lines.push(`• Fossil: ${genMilestone.generation.output.fossil.toLocaleString()} ${unit}`);
       }
     }
 

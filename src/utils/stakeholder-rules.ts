@@ -313,7 +313,7 @@ function findMatchingTemplate(
  */
 function selectRelevantQuestions(
   allQuestions: string[],
-  scenario: ScenarioInput,
+  _scenario: ScenarioInput,
   concerns: Concern[]
 ): string[] {
   const selected: string[] = [];

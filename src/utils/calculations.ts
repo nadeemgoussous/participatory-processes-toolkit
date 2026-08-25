@@ -5,7 +5,7 @@
 import type { ScenarioInput } from '../types/scenario';
 import type { DerivedMetrics } from '../types/derived-metrics';
 import { getJobFactor, getLandFactor } from '../data/technology-factors';
-import { normalizeCapacity, normalizeGeneration } from './unit-conversions';
+import { normalizeCapacity } from './unit-conversions';
 
 /**
  * Estimate technology breakdown from aggregated renewables capacity
@@ -76,7 +76,7 @@ export function calculateJobs(scenario: ScenarioInput): DerivedMetrics['jobs'] {
       // Use actual technology breakdown
       const techList = [
         'hydro', 'solarPV', 'wind', 'geothermal', 'biomass',
-        'coal', 'naturalGas', 'diesel', 'hfo',
+        'coal', 'gas', 'diesel', 'hfo',
         'battery', 'nuclear', 'interconnector'
       ] as const;
 

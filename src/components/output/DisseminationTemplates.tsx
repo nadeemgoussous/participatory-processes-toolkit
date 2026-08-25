@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { disseminationTemplates, DisseminationTemplate, TemplateSection } from '../../data/dissemination-templates';
+import { disseminationTemplates, DisseminationTemplate } from '../../data/dissemination-templates';
 
 interface DisseminationTemplatesProps {
   selectedStakeholderId?: string;
@@ -9,7 +9,6 @@ interface DisseminationTemplatesProps {
 }
 
 const DisseminationTemplates: React.FC<DisseminationTemplatesProps> = ({
-  selectedStakeholderId,
   scenarioData,
   scenarioName,
   country
