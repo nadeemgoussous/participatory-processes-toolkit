@@ -1,0 +1,14 @@
+# Normalise line endings: LF in the repo, native in the working tree
+* text=auto eol=lf
+
+# Windows batch files must keep CRLF to run correctly
+*.bat text eol=crlf
+
+# Binary assets — never touch line endings
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.svg text
+*.pdf binary
+*.xlsx binary
+*.ico binary
