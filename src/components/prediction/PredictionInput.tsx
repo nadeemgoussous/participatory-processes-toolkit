@@ -98,7 +98,7 @@ export default function PredictionInput({
               htmlFor="prediction-input"
               className="block text-sm font-medium text-gray-700 mb-2"
             >
-              Your Prediction
+              Your prediction
             </label>
             <textarea
               id="prediction-input"

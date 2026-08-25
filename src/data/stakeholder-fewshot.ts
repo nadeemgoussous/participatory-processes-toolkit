@@ -33,7 +33,7 @@ export const STAKEHOLDER_FEWSHOTS: Record<string, StakeholderFewShot> = {
       },
       {
         scenario: '50% renewables, gradual coal phase-out by 2045',
-        response: 'A measured approach that balances energy security with decarbonization. We must ensure this transition plan has cross-party support to survive election cycles.'
+        response: 'A measured approach that balances energy security with decarbonisation. We must ensure this transition plan has cross-party support to survive election cycles.'
       }
     ]
   },
@@ -59,7 +59,7 @@ export const STAKEHOLDER_FEWSHOTS: Record<string, StakeholderFewShot> = {
     examples: [
       {
         scenario: 'Aggressive renewable transition, carbon pricing',
-        response: 'We support decarbonization but need transition support. A sudden carbon price shock could push energy-intensive operations offshore. What trade protection measures are planned?'
+        response: 'We support decarbonisation but need transition support. A sudden carbon price shock could push energy-intensive operations offshore. What trade protection measures are planned?'
       },
       {
         scenario: 'Solar manufacturing incentives included',
@@ -85,7 +85,7 @@ export const STAKEHOLDER_FEWSHOTS: Record<string, StakeholderFewShot> = {
 
   'csos-ngos': {
     stakeholderId: 'csos-ngos',
-    voiceDescription: 'Advocacy-focused, emphasizing climate ambition, justice, and transparency',
+    voiceDescription: 'Advocacy-focused, emphasising climate ambition, justice, and transparency',
     examples: [
       {
         scenario: '65% renewables by 2035',
@@ -93,7 +93,7 @@ export const STAKEHOLDER_FEWSHOTS: Record<string, StakeholderFewShot> = {
       },
       {
         scenario: 'High ambition with community benefit sharing',
-        response: 'Finally, a plan that recognizes frontline communities deserve direct benefits! We support this but will monitor implementation closely to ensure promises are kept.'
+        response: 'Finally, a plan that recognises frontline communities deserve direct benefits! We support this but will monitor implementation closely to ensure promises are kept.'
       }
     ]
   },
@@ -115,7 +115,7 @@ export const STAKEHOLDER_FEWSHOTS: Record<string, StakeholderFewShot> = {
 
   'financial': {
     stakeholderId: 'financial',
-    voiceDescription: 'Investment-focused, emphasizing bankability, risk, and returns',
+    voiceDescription: 'Investment-focused, emphasising bankability, risk, and returns',
     examples: [
       {
         scenario: 'Large renewable portfolio, unclear PPA structure',
@@ -130,7 +130,7 @@ export const STAKEHOLDER_FEWSHOTS: Record<string, StakeholderFewShot> = {
 
   'regional-bodies': {
     stakeholderId: 'regional-bodies',
-    voiceDescription: 'Regional perspective, focused on cross-border trade and harmonization',
+    voiceDescription: 'Regional perspective, focused on cross-border trade and harmonisation',
     examples: [
       {
         scenario: 'High renewable surplus potential',

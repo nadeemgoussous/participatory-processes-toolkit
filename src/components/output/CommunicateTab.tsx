@@ -76,7 +76,7 @@ export default function CommunicateTab() {
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-4" style={{ color: 'var(--color-irena-blue)' }}>
-            Communication Strategies
+            Communication strategies
           </h1>
         </div>
 
@@ -88,10 +88,10 @@ export default function CommunicateTab() {
             </svg>
           </div>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">
-            Load a Scenario to Get Started
+            Load a scenario to get started
           </h2>
           <p className="text-lg text-gray-700 mb-6">
-            Communication strategies and templates are customized based on your scenario data.
+            Communication strategies and templates are customised based on your scenario data.
             Please load a scenario first to access this tab.
           </p>
           <div className="border border-gray-300 rounded-lg p-6 text-left max-w-md mx-auto">
@@ -112,7 +112,7 @@ export default function CommunicateTab() {
         {/* Toolkit Reference */}
         <div className="mt-8 border-t border-gray-200 pt-6">
           <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">
-            About This Tool
+            About this tool
           </h3>
           <p className="text-sm text-gray-700 mb-3">
             This Communication tab is based on <strong>IRENA's Participatory Processes for Strategic
@@ -131,7 +131,7 @@ export default function CommunicateTab() {
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-4" style={{ color: 'var(--color-irena-blue)' }}>
-          Communication Strategies
+          Communication strategies
         </h1>
         <p className="text-lg text-gray-700 mb-4">
           Learn which dissemination formats work best for each stakeholder group, based on IRENA's
@@ -139,7 +139,7 @@ export default function CommunicateTab() {
         </p>
         <p className="text-sm text-gray-500 italic">
           This tool teaches you which formats resonate with different
-          audiences. Use the guidance below to create your own materials customized to your local context.
+          audiences. Use the guidance below to create your own materials customised to your local context.
         </p>
       </div>
 
@@ -154,7 +154,7 @@ export default function CommunicateTab() {
                 : 'text-gray-600 hover:text-gray-900'
             }`}
           >
-            Dissemination Strategies
+            Dissemination strategies
           </button>
           <button
             onClick={() => setCurrentView('templates')}
@@ -164,7 +164,7 @@ export default function CommunicateTab() {
                 : 'text-gray-600 hover:text-gray-900'
             }`}
           >
-            Format Templates
+            Format templates
           </button>
           <button
             onClick={() => setCurrentView('export-guidance')}
@@ -174,7 +174,7 @@ export default function CommunicateTab() {
                 : 'text-gray-600 hover:text-gray-900'
             }`}
           >
-            Export Guidance
+            Export guidance
           </button>
           <button
             onClick={() => setCurrentView('tips')}
@@ -184,7 +184,7 @@ export default function CommunicateTab() {
                 : 'text-gray-600 hover:text-gray-900'
             }`}
           >
-            Best Practices
+            Best practices
           </button>
         </div>
       </div>
@@ -216,7 +216,7 @@ export default function CommunicateTab() {
           {/* Stakeholder Selector */}
           <div className="mb-8">
             <h2 className="text-xl font-semibold mb-4 text-gray-800">
-              Select Stakeholder Audience
+              Select stakeholder audience
             </h2>
             <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
               {stakeholderProfiles.map((profile) => (
@@ -249,7 +249,7 @@ export default function CommunicateTab() {
           {selectedStakeholder === 'public' && (
             <div className="mb-6 border-t border-gray-200 pt-4">
               <h3 className="text-lg font-semibold mb-2 text-gray-800">
-                Interactive Demo: Community Impact Calculator
+                Interactive demo: community impact calculator
               </h3>
               <p className="text-sm text-gray-700 mb-3">
                 See a working example of how to translate your scenario into personal impacts
@@ -261,7 +261,7 @@ export default function CommunicateTab() {
                   onClick={() => setCurrentView('community-calculator')}
                   className="btn-outline"
                 >
-                  Launch Community Calculator Demo →
+                  Launch community calculator demo →
                 </button>
               </div>
             </div>
@@ -271,7 +271,7 @@ export default function CommunicateTab() {
           {(selectedStakeholder === 'csos-ngos' || selectedStakeholder === 'scientific') && (
             <div className="mb-6 border-t border-gray-200 pt-4">
               <h3 className="text-lg font-semibold mb-2 text-gray-800">
-                Interactive Demo: Scenario Comparison Tool
+                Interactive demo: scenario comparison tool
               </h3>
               <p className="text-sm text-gray-700 mb-3">
                 Compare your scenario against Business as Usual and High Ambition benchmarks
@@ -283,7 +283,7 @@ export default function CommunicateTab() {
                   onClick={() => setCurrentView('scenario-comparison')}
                   className="btn-outline"
                 >
-                  Launch Scenario Comparison Demo →
+                  Launch scenario comparison demo →
                 </button>
               </div>
             </div>
@@ -323,7 +323,7 @@ export default function CommunicateTab() {
           Energy Planning toolkit, Section 4.3: Knowledge Dissemination</strong>.
         </p>
         <p className="text-sm text-gray-700 mb-3">
-          The toolkit emphasizes that effective dissemination requires:
+          The toolkit emphasises that effective dissemination requires:
         </p>
         <ul className="text-sm text-gray-700 list-disc list-inside space-y-1 ml-4">
           <li>Matching format to audience technical level and time availability</li>

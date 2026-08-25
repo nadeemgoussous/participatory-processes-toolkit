@@ -36,7 +36,7 @@ export default function DirectionalImpacts({ baseValues, adjustedValues }: Direc
 
   return (
     <div className="border-t border-gray-200 pt-6">
-      <h3 className="text-xl font-semibold mb-4 text-gray-800">Directional Impacts</h3>
+      <h3 className="text-xl font-semibold mb-4 text-gray-800">Directional impacts</h3>
       <p className="text-sm text-gray-600 mb-6">
         These indicators show <strong>directional trends only</strong> relative to your base scenario.
         They are meant to spark discussion, not replace detailed analysis.
@@ -45,7 +45,7 @@ export default function DirectionalImpacts({ baseValues, adjustedValues }: Direc
       {/* Impact Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
         <ImpactCard title="Jobs" impact={impacts.jobs} />
-        <ImpactCard title="Land Use" impact={impacts.landUse} />
+        <ImpactCard title="Land use" impact={impacts.landUse} />
         <ImpactCard title="Emissions" impact={impacts.emissions} />
       </div>
 
@@ -132,7 +132,7 @@ function calculateDirectionalImpacts(
   const coalPhaseoutDelta = adjusted.coalPhaseout - base.coalPhaseout;
 
   // Jobs Impact
-  // More renewables = more construction jobs (solar/wind are labor-intensive)
+  // More renewables = more construction jobs (solar/wind are labour-intensive)
   // Earlier coal phaseout = fewer fossil fuel jobs but more renewable jobs
   const jobsImpact = (() => {
     const totalREIncrease = reShareDelta2030 + reShareDelta2040;
@@ -248,7 +248,7 @@ function calculateDirectionalImpacts(
       return {
         direction: 'increase' as Direction,
         magnitude: 'moderate' as Magnitude,
-        explanation: 'Slower decarbonization pace results in higher cumulative emissions.'
+        explanation: 'Slower decarbonisation pace results in higher cumulative emissions.'
       };
     }
 

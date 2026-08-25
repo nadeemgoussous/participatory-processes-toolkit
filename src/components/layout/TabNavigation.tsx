@@ -22,8 +22,8 @@ interface TabNavigationProps {
 export default function TabNavigation({ activeTab, onTabChange }: TabNavigationProps) {
   const tabs = [
     { id: 'input' as const, label: 'Input', description: 'Import scenario data' },
-    { id: 'dialogue' as const, label: 'Stakeholder Dialogue', description: 'Predict & learn' },
-    { id: 'explore' as const, label: 'Explore Impacts', description: 'Directional sensitivity' },
+    { id: 'dialogue' as const, label: 'Stakeholder dialogue', description: 'Predict & learn' },
+    { id: 'explore' as const, label: 'Explore impacts', description: 'Directional sensitivity' },
     { id: 'communicate' as const, label: 'Communicate', description: 'Audience-specific outputs' },
   ]
 

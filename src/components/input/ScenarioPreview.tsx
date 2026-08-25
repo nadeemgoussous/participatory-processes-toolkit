@@ -16,11 +16,11 @@ interface ScenarioPreviewProps {
 type ChartView = 'capacity-bar' | 'capacity-area' | 'generation-pie' | 'emissions-line' | 're-trajectory';
 
 const CHART_OPTIONS: { id: ChartView; label: string }[] = [
-  { id: 'capacity-bar', label: 'Capacity Mix' },
-  { id: 'capacity-area', label: 'Capacity Trend' },
-  { id: 'generation-pie', label: 'Generation Split' },
-  { id: 'emissions-line', label: 'Emissions Path' },
-  { id: 're-trajectory', label: 'RE Trajectory' },
+  { id: 'capacity-bar', label: 'Capacity mix' },
+  { id: 'capacity-area', label: 'Capacity trend' },
+  { id: 'generation-pie', label: 'Generation split' },
+  { id: 'emissions-line', label: 'Emissions path' },
+  { id: 're-trajectory', label: 'RE trajectory' },
 ];
 
 const TECH_COLORS = {
@@ -315,7 +315,7 @@ export default function ScenarioPreview({ scenario, onProceed, onLoadDifferent }
         {/* Total Investment */}
         <div className="bg-white rounded-xl border border-gray-200 p-5">
           <Tooltip content="investment">
-            <span className="text-xs font-semibold uppercase tracking-wider text-gray-500">Total Investment</span>
+            <span className="text-xs font-semibold uppercase tracking-wider text-gray-500">Total investment</span>
           </Tooltip>
           <div className="mt-2">
             <span className="text-3xl font-bold text-gray-900" data-testid="preview-investment">
@@ -330,7 +330,7 @@ export default function ScenarioPreview({ scenario, onProceed, onLoadDifferent }
         {/* Emissions Reduction */}
         <div className="bg-white rounded-xl border border-gray-200 p-5">
           <Tooltip content="emissions_reduction">
-            <span className="text-xs font-semibold uppercase tracking-wider text-gray-500">Emissions Change</span>
+            <span className="text-xs font-semibold uppercase tracking-wider text-gray-500">Emissions change</span>
           </Tooltip>
           <div className="mt-2 flex items-baseline gap-1">
             <span className={`text-3xl font-bold ${emissionsReduction > 0 ? 'text-green-600' : 'text-gray-900'}`} data-testid="preview-emissions">
@@ -452,7 +452,7 @@ export default function ScenarioPreview({ scenario, onProceed, onLoadDifferent }
             className="btn-secondary flex-shrink-0"
             data-testid="load-different-button"
           >
-            ← Load Different Scenario
+            ← Load different scenario
           </button>
         )}
 
@@ -466,7 +466,7 @@ export default function ScenarioPreview({ scenario, onProceed, onLoadDifferent }
               className="btn-primary whitespace-nowrap"
               data-testid="proceed-button"
             >
-              Proceed to Dialogue →
+              Proceed to dialogue →
             </button>
           </div>
         )}

@@ -47,10 +47,10 @@ export const disseminationTemplates: DisseminationTemplate[] = [
       'Start with executive summary - decision makers may only read this section',
       'Use bullet points and clear headings for scannability',
       'Lead with policy implications, not technical details',
-      'Include 1-2 simple visualizations maximum',
+      'Include 1-2 simple visualisations maximum',
       'End with clear recommendations and next steps',
       'Keep language accessible - avoid jargon or define technical terms',
-      'Customize examples to local policy context and priorities'
+      'Customise examples to local policy context and priorities'
     ],
     sections: [
       {
@@ -77,7 +77,7 @@ export const disseminationTemplates: DisseminationTemplate[] = [
       },
       {
         heading: 'Key Findings',
-        description: 'Main results organized by policy relevance, not technology',
+        description: 'Main results organised by policy relevance, not technology',
         keyPoints: [
           'Energy security implications (domestic supply vs imports)',
           'Economic impacts (investment needs, jobs, industrial competitiveness)',
@@ -100,7 +100,7 @@ export const disseminationTemplates: DisseminationTemplate[] = [
         description: 'What needs to happen - policies, regulations, investments',
         keyPoints: [
           'Policy and regulatory reforms needed',
-          'Investment mobilization strategy (public, private, concessional)',
+          'Investment mobilisation strategy (public, private, concessional)',
           'Infrastructure development (grid, storage, interconnectors)',
           'Institutional capacity and coordination',
           'Timeline for key decisions'
@@ -121,7 +121,7 @@ export const disseminationTemplates: DisseminationTemplate[] = [
       },
       {
         heading: 'Recommendations',
-        description: 'Actionable next steps prioritized by urgency',
+        description: 'Actionable next steps prioritised by urgency',
         keyPoints: [
           'Immediate actions (0-12 months)',
           'Near-term priorities (1-3 years)',
@@ -144,13 +144,13 @@ CONTEXT AND OBJECTIVES
 
 ---
 
-CUSTOMIZATION CHECKLIST:
+CUSTOMISATION CHECKLIST:
 ☐ Replace all [bracketed fields] with scenario data
 ☐ Add local policy references (NDC commitments, national plans, etc.)
 ☐ Adjust recommendations to match institutional mandates
 ☐ Include 1-2 charts (capacity mix evolution, emissions trajectory)
 ☐ Add ministry/agency logos and branding
-☐ Cite data sources and modeling assumptions
+☐ Cite data sources and modelling assumptions
 ☐ Review with policy stakeholders before distribution`,
     toolkitReference: 'Section 4.3 - Public presentations and reports'
   },
@@ -172,7 +172,7 @@ CUSTOMIZATION CHECKLIST:
       'Limit text to short phrases and key numbers',
       'Use icons and visual metaphors (wind turbine = wind power)',
       'Choose 3-5 key messages maximum - resist cramming everything',
-      'Test with non-technical audience before finalizing',
+      'Test with non-technical audience before finalising',
       'Make it shareable on social media (consider dimensions)',
       'Provide both digital and print-ready versions'
     ],
@@ -275,7 +275,7 @@ DESIGN NOTES:
 • Provide in local languages
 • Consider animated version for social media
 • Design tools: Canva (easy), Adobe Illustrator (professional), Piktochart (templates)`,
-    toolkitReference: 'Section 4.3 - Data visualization tools'
+    toolkitReference: 'Section 4.3 - Data visualisation tools'
   },
 
   {
@@ -411,7 +411,7 @@ Electricity demand in [Country] is growing at [X]% annually, driven by [industri
 RISK MITIGATION SUMMARY:
 • Offtaker Risk: Government guarantee on PPA payments, escrow account for 3 months
 • Currency Risk: USD-denominated PPAs with FX adjustment mechanism
-• Regulatory Risk: Stabilization clause protecting against policy changes for 20 years
+• Regulatory Risk: Stabilisation clause protecting against policy changes for 20 years
 • Construction Risk: Turnkey EPC contract with performance guarantees
 
 FINANCIAL PROJECTIONS:
@@ -546,7 +546,7 @@ This scenario shows what is possible. Now we need political will to make it happ
 
 ✓ Government: Commit to [specific policy] by [date]
 ✓ Parliament: Pass renewable energy law with [specific provisions]
-✓ Development Partners: Prioritize concessional finance for [specific projects]
+✓ Development Partners: Prioritise concessional finance for [specific projects]
 ✓ Civil Society: Join the [Country] Clean Energy Coalition
 ✓ Citizens: Demand climate action from your representatives
 
@@ -555,7 +555,7 @@ Together, we can build a cleaner, fairer energy future for [Country].
 ---
 
 FRAMING TIPS FOR CLIMATE AUDIENCES:
-• Emphasize ambition and urgency, not just technical feasibility
+• Emphasise ambition and urgency, not just technical feasibility
 • Use moral/justice framing, not just economic arguments
 • Acknowledge imperfections while supporting progress
 • Connect to lived experiences, not abstract targets

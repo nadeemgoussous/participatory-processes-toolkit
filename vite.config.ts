@@ -21,23 +21,40 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['icons/*.svg', 'graphics/*.svg', 'templates/*.xlsx', 'sample-data/*.json'],
+      includeAssets: ['icons/*.svg', 'graphics/*.svg', 'templates/*.xlsx', 'sample-data/*.json', 'icon-*.png', 'apple-touch-icon.png'],
       manifest: {
         name: 'IRENA Scenario Dialogue Tool',
         short_name: 'Scenario Dialogue',
-        description: 'Interactive tool for understanding stakeholder perspectives on energy scenarios',
-        theme_color: '#0078a7',
-        background_color: '#ffffff',
+        description: 'Interactive tool for understanding stakeholder perspectives on energy scenarios. Helps energy planners simulate how different stakeholder groups respond to modelling scenarios.',
+        theme_color: '#005a82',
+        background_color: '#005a82',
         display: 'standalone',
+        start_url: '/stakeholder-dialogue/',
+        scope: '/stakeholder-dialogue/',
+        orientation: 'any',
+        categories: ['education', 'utilities'],
         icons: [
           {
-            src: '/icon-192.png',
+            src: '/stakeholder-dialogue/icon-192.png',
             sizes: '192x192',
-            type: 'image/png'
+            type: 'image/png',
+            purpose: 'any'
           },
           {
-            src: '/icon-512.png',
+            src: '/stakeholder-dialogue/icon-512.png',
             sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any'
+          },
+          {
+            src: '/stakeholder-dialogue/icon-512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable'
+          },
+          {
+            src: '/stakeholder-dialogue/apple-touch-icon.png',
+            sizes: '180x180',
             type: 'image/png'
           }
         ]

@@ -585,7 +585,6 @@
       "category": "packaging",
       "priority": 38,
       "description": "Local server batch files",
-      "status": "DEFERRED - Wait until project is production-ready for deployment",
       "steps": [
         "Create start-local.bat for Windows",
         "Create start-local.sh for Mac/Linux",
@@ -593,14 +592,13 @@
         "Test scripts work on clean system",
         "Document in README"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "F039",
       "category": "packaging",
       "priority": 39,
       "description": "PWA manifest and icons",
-      "status": "DEFERRED - Wait until project is production-ready for deployment",
       "steps": [
         "Create manifest.json with IRENA branding",
         "Add app icons in multiple sizes",
@@ -608,7 +606,7 @@
         "Test PWA install on Chrome",
         "Verify offline functionality after install"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "F040",

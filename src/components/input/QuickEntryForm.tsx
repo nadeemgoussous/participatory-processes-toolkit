@@ -213,7 +213,7 @@ export default function QuickEntryForm({ onCancel, onSubmit }: QuickEntryFormPro
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Header */}
       <div className="card">
-        <h3 className="text-xl font-semibold mb-4 text-irena-blue">Quick Entry Form</h3>
+        <h3 className="text-xl font-semibold mb-4 text-irena-blue">Quick entry form</h3>
         <p className="text-sm text-gray-600 mb-4">
           Enter simplified scenario data. You can add multiple milestone years.
         </p>
@@ -241,7 +241,7 @@ export default function QuickEntryForm({ onCancel, onSubmit }: QuickEntryFormPro
 
           <div>
             <label htmlFor="scenarioName" className="block text-sm font-medium text-gray-700 mb-1">
-              Scenario Name *
+              Scenario name *
             </label>
             <input
               id="scenarioName"
@@ -262,7 +262,7 @@ export default function QuickEntryForm({ onCancel, onSubmit }: QuickEntryFormPro
         <div key={idx} className="card bg-gray-50">
           <div className="flex justify-between items-center mb-4">
             <h4 className="text-lg font-semibold text-gray-800">
-              Milestone Year: {milestone.year}
+              Milestone year: {milestone.year}
             </h4>
             {formData.milestones.length > 2 && (
               <button
@@ -295,7 +295,7 @@ export default function QuickEntryForm({ onCancel, onSubmit }: QuickEntryFormPro
             {/* Renewables Capacity */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Renewables Capacity *
+                Renewables capacity *
               </label>
               <div className="flex gap-2">
                 <input
@@ -320,7 +320,7 @@ export default function QuickEntryForm({ onCancel, onSubmit }: QuickEntryFormPro
             {/* Fossil Capacity */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Fossil Capacity *
+                Fossil capacity *
               </label>
               <input
                 type="number"
@@ -335,7 +335,7 @@ export default function QuickEntryForm({ onCancel, onSubmit }: QuickEntryFormPro
             {/* Storage Capacity */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Storage Capacity (optional)
+                Storage capacity (optional)
               </label>
               <input
                 type="number"
@@ -350,7 +350,7 @@ export default function QuickEntryForm({ onCancel, onSubmit }: QuickEntryFormPro
             {/* Renewables Generation */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Renewables Generation *
+                Renewables generation *
               </label>
               <div className="flex gap-2">
                 <input
@@ -375,7 +375,7 @@ export default function QuickEntryForm({ onCancel, onSubmit }: QuickEntryFormPro
             {/* Fossil Generation */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Fossil Generation *
+                Fossil generation *
               </label>
               <input
                 type="number"
@@ -390,7 +390,7 @@ export default function QuickEntryForm({ onCancel, onSubmit }: QuickEntryFormPro
             {/* Investment */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Cumulative Investment *
+                Cumulative investment *
               </label>
               <div className="flex gap-2">
                 <input
@@ -439,7 +439,7 @@ export default function QuickEntryForm({ onCancel, onSubmit }: QuickEntryFormPro
             {/* Peak Demand */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Peak Demand *
+                Peak demand *
               </label>
               <input
                 type="number"
@@ -462,7 +462,7 @@ export default function QuickEntryForm({ onCancel, onSubmit }: QuickEntryFormPro
           className="btn-secondary"
           disabled={formData.milestones.length >= 10}
         >
-          + Add Milestone Year
+          + Add milestone year
         </button>
         {formData.milestones.length >= 10 && (
           <p className="text-xs text-gray-500 mt-2">Maximum 10 milestones allowed</p>
@@ -475,7 +475,7 @@ export default function QuickEntryForm({ onCancel, onSubmit }: QuickEntryFormPro
           Cancel
         </button>
         <button type="submit" className="btn-primary">
-          Load Scenario
+          Load scenario
         </button>
       </div>
     </form>

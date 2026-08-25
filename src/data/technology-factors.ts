@@ -9,10 +9,10 @@
 export const JOB_FACTORS = {
   // Jobs per MW installed (construction phase, job-years)
   construction: {
-    solarPV: 10,      // High labor intensity for installation
+    solarPV: 10,      // High labour intensity for installation
     wind: 8,          // Manufacturing + installation
     hydro: 12,        // Civil works intensive
-    battery: 3,       // Lower labor intensity
+    battery: 3,       // Lower labour intensity
     geothermal: 6,    // Drilling + installation
     biomass: 8,       // Plant construction
     coal: 4,          // Conventional plant
@@ -67,7 +67,7 @@ export const LAND_FACTORS = {
  * - Factors represent COMBUSTION EMISSIONS ONLY
  * - Does not include lifecycle/embodied emissions
  * - For illustrative scenario comparison, not carbon accounting
- * - Actual emissions should come from the optimization model
+ * - Actual emissions should come from the optimisation model
  */
 export const EMISSION_FACTORS = {
   coal: 900,          // High carbon intensity (tCO2/GWh)

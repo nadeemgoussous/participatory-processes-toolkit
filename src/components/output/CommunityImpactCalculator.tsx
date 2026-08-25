@@ -199,13 +199,13 @@ export default function CommunityImpactCalculator({ scenario, onBack }: Communit
             These figures show directional impacts for discussion purposes.
             Actual impacts depend on many local factors including policy design,
             tariff structures, and implementation details. Always verify with
-            detailed economic modeling.
+            detailed economic modelling.
         </div>
     </div>
 
     <script>
         // TODO: Implement calculation logic based on your scenario data
-        // This template provides the structure - you customize with your data
+        // This template provides the structure - you customise with your data
         function calculateImpact() {
             const household = document.getElementById('household').value;
             const region = document.getElementById('region').value;
@@ -248,10 +248,10 @@ export default function CommunityImpactCalculator({ scenario, onBack }: Communit
           onClick={onBack}
           className="text-irena-blue hover:underline mb-4 flex items-center gap-2"
         >
-          ← Back to Strategies
+          ← Back to strategies
         </button>
         <h2 className="text-2xl font-bold mb-3" style={{ color: 'var(--color-irena-blue)' }}>
-          🏡 Community Impact Calculator
+          🏡 Community impact calculator
         </h2>
         <p className="text-gray-700 mb-4">
           Interactive demo showing how to make energy scenarios personal and relatable for communities
@@ -260,9 +260,9 @@ export default function CommunityImpactCalculator({ scenario, onBack }: Communit
         {/* Demo Notice */}
         <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
           <p className="text-sm text-blue-900">
-            <strong>📚 This is a Teaching Example</strong> - This calculator demonstrates how to translate
+            <strong>📚 This is a teaching example</strong> - This calculator demonstrates how to translate
             technical scenario data into personal impacts that communities care about. Use the "Export Template"
-            button to get starter code you can customize for your local context.
+            button to get starter code you can customise for your local context.
           </p>
         </div>
       </div>
@@ -270,7 +270,7 @@ export default function CommunityImpactCalculator({ scenario, onBack }: Communit
       {/* Calculator Interface */}
       <div className="bg-white border-2 border-gray-300 rounded-lg p-6 mb-6">
         <h3 className="text-xl font-semibold mb-4 text-gray-800">
-          How Will This Scenario Affect You?
+          How will this scenario affect you?
         </h3>
 
         {/* Scenario Context */}
@@ -289,7 +289,7 @@ export default function CommunityImpactCalculator({ scenario, onBack }: Communit
         <div className="grid md:grid-cols-2 gap-6 mb-6">
           <div>
             <label htmlFor="household-size" className="block text-sm font-semibold text-gray-700 mb-2">
-              Household Size
+              Household size
             </label>
             <input
               id="household-size"
@@ -305,7 +305,7 @@ export default function CommunityImpactCalculator({ scenario, onBack }: Communit
 
           <div>
             <label htmlFor="region" className="block text-sm font-semibold text-gray-700 mb-2">
-              Your Region
+              Your region
             </label>
             <select
               id="region"
@@ -324,7 +324,7 @@ export default function CommunityImpactCalculator({ scenario, onBack }: Communit
 
           <div>
             <label htmlFor="current-bill" className="block text-sm font-semibold text-gray-700 mb-2">
-              Current Monthly Electricity Bill ($)
+              Current monthly electricity bill ($)
             </label>
             <input
               id="current-bill"
@@ -351,7 +351,7 @@ export default function CommunityImpactCalculator({ scenario, onBack }: Communit
               <div className="flex items-start gap-3">
                 <div className="text-3xl">💡</div>
                 <div className="flex-1">
-                  <h5 className="font-semibold text-gray-800 mb-1">Monthly Electricity Bill</h5>
+                  <h5 className="font-semibold text-gray-800 mb-1">Monthly electricity bill</h5>
                   <p className="text-2xl font-bold" style={{
                     color: estimatedBillChange < 0 ? '#10b981' : '#ef4444'
                   }}>
@@ -373,7 +373,7 @@ export default function CommunityImpactCalculator({ scenario, onBack }: Communit
               <div className="flex items-start gap-3">
                 <div className="text-3xl">💼</div>
                 <div className="flex-1">
-                  <h5 className="font-semibold text-gray-800 mb-1">Jobs Created in {selectedRegion.name}</h5>
+                  <h5 className="font-semibold text-gray-800 mb-1">Jobs created in {selectedRegion.name}</h5>
                   <p className="text-2xl font-bold text-green-600">
                     ~{regionalJobs.toLocaleString()} jobs
                   </p>
@@ -392,7 +392,7 @@ export default function CommunityImpactCalculator({ scenario, onBack }: Communit
               <div className="flex items-start gap-3">
                 <div className="text-3xl">🌫️</div>
                 <div className="flex-1">
-                  <h5 className="font-semibold text-gray-800 mb-1">Air Quality Improvement</h5>
+                  <h5 className="font-semibold text-gray-800 mb-1">Air quality improvement</h5>
                   <p className="text-2xl font-bold text-green-600">
                     {airQualityImprovement}
                   </p>
@@ -414,7 +414,7 @@ export default function CommunityImpactCalculator({ scenario, onBack }: Communit
         <p className="text-sm text-yellow-900">
           <strong>⚠️ ILLUSTRATIVE ESTIMATES ONLY</strong><br />
           These figures show directional impacts for discussion purposes. They do NOT replace detailed
-          economic modeling. Actual bill impacts depend on tariff design, subsidy policies, and many
+          economic modelling. Actual bill impacts depend on tariff design, subsidy policies, and many
           other local factors. Job estimates use IRENA average factors. Air quality benefits depend
           on local pollution levels and health baselines.
         </p>
@@ -423,14 +423,14 @@ export default function CommunityImpactCalculator({ scenario, onBack }: Communit
       {/* Export Template */}
       <div className="bg-white border-2 border-gray-300 rounded-lg p-6">
         <h3 className="text-lg font-semibold mb-3 text-gray-800">
-          Build Your Own Calculator
+          Build your own calculator
         </h3>
         <p className="text-sm text-gray-700 mb-4">
-          This demo shows the concept. To create your own customized calculator:
+          This demo shows the concept. To create your own customised calculator:
         </p>
         <ol className="text-sm text-gray-700 list-decimal list-inside space-y-2 mb-4">
           <li>Export the HTML template below (includes structure and styling)</li>
-          <li>Customize regions, calculation logic, and branding for your country</li>
+          <li>Customise regions, calculation logic, and branding for your country</li>
           <li>Add more impacts relevant to your context (e.g., water savings, fuel imports avoided)</li>
           <li>Host on your ministry website or share as standalone file</li>
           <li>Use in town halls, stakeholder workshops, and public consultations</li>
@@ -439,7 +439,7 @@ export default function CommunityImpactCalculator({ scenario, onBack }: Communit
           onClick={exportTemplate}
           className="bg-irena-orange hover:bg-orange-600 text-white px-6 py-3 rounded font-semibold transition-colors"
         >
-          📥 Export Calculator Template
+          📥 Export calculator template
         </button>
         <p className="text-xs text-gray-500 mt-3">
           Exports as standalone HTML file with embedded CSS and JavaScript
@@ -449,7 +449,7 @@ export default function CommunityImpactCalculator({ scenario, onBack }: Communit
       {/* Educational Context */}
       <div className="mt-6 bg-gray-50 border border-gray-200 rounded-lg p-6">
         <h3 className="text-lg font-semibold mb-3 text-gray-800">
-          Why Community Calculators Work
+          Why community calculators work
         </h3>
         <p className="text-sm text-gray-700 mb-3">
           IRENA's toolkit highlights successful examples from Belgium ("My2050") and Kenya that show

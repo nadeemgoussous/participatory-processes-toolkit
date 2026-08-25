@@ -675,7 +675,7 @@ async function enhanceWithCloudAPI(
   try {
     // This is a placeholder for cloud API integration
     // Can be implemented later if needed
-    // For now, we prioritize local LLM
+    // For now, we prioritise local LLM
     console.debug('Cloud API enhancement not yet implemented');
     return null;
   } catch (error) {

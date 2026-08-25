@@ -47,7 +47,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
       },
       {
         id: 3,
-        text: `While we support renewables, the unclear grievance processes must not be ignored. {~We note|We observe|We recognize} that vulnerable groups have been identified, but {reShare}% needs stronger safeguards.`,
+        text: `While we support renewables, the unclear grievance processes must not be ignored. {~We note|We observe|We recognise} that vulnerable groups have been identified, but {reShare}% needs stronger safeguards.`,
         reBand: 'high',
         reShare: 60,
         hasPositive: false,
@@ -223,7 +223,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
       },
       {
         id: 24,
-        text: `The {reShare}% target raises sustainability concerns. {~While we|Although we|Though we} note the clearly demonstrated SDG alignment, the unclear private sector mobilization strategy limits our support capacity.`,
+        text: `The {reShare}% target raises sustainability concerns. {~While we|Although we|Though we} note the clearly demonstrated SDG alignment, the unclear private sector mobilisation strategy limits our support capacity.`,
         reBand: 'high',
         reShare: 60,
         hasPositive: false,
@@ -231,7 +231,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
       },
       {
         id: 25,
-        text: `Universal access gaps remain a concern despite strong emissions reductions. How does the 35% scenario advance SDG7 objectives alongside decarbonization goals?`,
+        text: `Universal access gaps remain a concern despite strong emissions reductions. How does the 35% scenario advance SDG7 objectives alongside decarbonisation goals?`,
         reBand: 'high',
         reShare: 70,
         hasPositive: false,
@@ -255,7 +255,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
       },
       {
         id: 28,
-        text: `Private sector mobilization strategy needs clarification. Despite strong emissions reduction alignment, debt sustainability considerations require attention for our support.`,
+        text: `Private sector mobilisation strategy needs clarification. Despite strong emissions reduction alignment, debt sustainability considerations require attention for our support.`,
         reBand: 'very-high',
         reShare: 90,
         hasPositive: false,
@@ -263,7 +263,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
       },
       {
         id: 29,
-        text: `{~We note|We observe|We recognize} universal access progress is planned, but capacity building needs appear underestimated. The {capacityAdditions} MW timeline may strain implementation capacity and requires a more phased approach.`,
+        text: `{~We note|We observe|We recognise} universal access progress is planned, but capacity building needs appear underestimated. The {capacityAdditions} MW timeline may strain implementation capacity and requires a more phased approach.`,
         reBand: 'very-high',
         reShare: 98,
         hasPositive: false,
@@ -307,7 +307,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
     'progressive': [
       {
         id: 34,
-        text: `We welcome the {emissions} Mt CO2 pathway as a starting point. This demonstrates progress, though more is needed for Paris alignment. {~We note|We observe|We recognize} that debt sustainability considerations are addressed and stand ready to support.`,
+        text: `We welcome the {emissions} Mt CO2 pathway as a starting point. This demonstrates progress, though more is needed for Paris alignment. {~We note|We observe|We recognise} that debt sustainability considerations are addressed and stand ready to support.`,
         reBand: 'medium',
         reShare: 40,
         hasPositive: false,
@@ -315,7 +315,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
       },
       {
         id: 35,
-        text: `We welcome the {emissions} Mt CO2 pathway as a starting point. This demonstrates progress, though more is needed for Paris alignment. {~We note|We observe|We recognize} that private sector mobilization reduces the public burden and stand ready to support.`,
+        text: `We welcome the {emissions} Mt CO2 pathway as a starting point. This demonstrates progress, though more is needed for Paris alignment. {~We note|We observe|We recognise} that private sector mobilisation reduces the public burden and stand ready to support.`,
         reBand: 'medium',
         reShare: 40,
         hasPositive: false,
@@ -323,7 +323,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
       },
       {
         id: 36,
-        text: `The clearly demonstrated SDG alignment positions the country well for climate finance. We're ready to support the {reShare}% target despite the unclear private sector mobilization strategy.`,
+        text: `The clearly demonstrated SDG alignment positions the country well for climate finance. We're ready to support the {reShare}% target despite the unclear private sector mobilisation strategy.`,
         reBand: 'medium',
         reShare: 45,
         hasPositive: false,
@@ -331,7 +331,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
       },
       {
         id: 37,
-        text: `We welcome the {emissions} Mt CO2 pathway as a starting point. This demonstrates the leadership needed for Paris alignment. {~We note|We observe|We recognize} capacity building components are included and stand ready to support.`,
+        text: `We welcome the {emissions} Mt CO2 pathway as a starting point. This demonstrates the leadership needed for Paris alignment. {~We note|We observe|We recognise} capacity building components are included and stand ready to support.`,
         reBand: 'high',
         reShare: 60,
         hasPositive: false,
@@ -407,7 +407,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
       },
       {
         id: 46,
-        text: `The $\${investment}M requirement for {reShare}% renewables presents significant mobilization challenges. {~We need|We require|We must have} stronger risk mitigation before committing capital.`,
+        text: `The $\${investment}M requirement for {reShare}% renewables presents significant mobilisation challenges. {~We need|We require|We must have} stronger risk mitigation before committing capital.`,
         reBand: 'high',
         reShare: 60,
         hasPositive: false,
@@ -465,7 +465,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
       },
       {
         id: 53,
-        text: `{~We see|We identify|We recognize} potential in {reShare}%. While we note {positive}, {?concern:{concern} affects our financing decisions}.`,
+        text: `{~We see|We identify|We recognise} potential in {reShare}%. While we note {positive}, {?concern:{concern} affects our financing decisions}.`,
         reBand: 'very-high',
         reShare: 85,
         hasPositive: true,
@@ -473,7 +473,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
       },
       {
         id: 54,
-        text: `The $\${investment}M requirement creates a significant financing challenge. What mobilization strategy is proposed? Bankability depends on offtake certainty and risk mitigation.`,
+        text: `The $\${investment}M requirement creates a significant financing challenge. What mobilisation strategy is proposed? Bankability depends on offtake certainty and risk mitigation.`,
         reBand: 'very-high',
         reShare: 90,
         hasPositive: false,
@@ -491,7 +491,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
     'progressive': [
       {
         id: 56,
-        text: `Private sector mobilization strategy is a positive signal. Despite limited project preparation capacity, we see the {reShare}% pipeline as an attractive early-stage opportunity.`,
+        text: `Private sector mobilisation strategy is a positive signal. Despite limited project preparation capacity, we see the {reShare}% pipeline as an attractive early-stage opportunity.`,
         reBand: 'medium',
         reShare: 45,
         hasPositive: false,
@@ -539,7 +539,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
       },
       {
         id: 62,
-        text: `The {reShare}% target aligns with our ESG mandates. {~We welcome|We appreciate|We are encouraged by} that climate finance eligibility has been demonstrated and are prepared to help address the financing mobilization gap.`,
+        text: `The {reShare}% target aligns with our ESG mandates. {~We welcome|We appreciate|We are encouraged by} that climate finance eligibility has been demonstrated and are prepared to help address the financing mobilisation gap.`,
         reBand: 'high',
         reShare: 75,
         hasPositive: false,
@@ -583,7 +583,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
       },
       {
         id: 67,
-        text: `{?positive:We appreciate {positive}, }but the $\${investment}M should prioritize transmission reinforcement before adding more generation capacity.`,
+        text: `{?positive:We appreciate {positive}, }but the $\${investment}M should prioritise transmission reinforcement before adding more generation capacity.`,
         reBand: 'high',
         reShare: 60,
         hasPositive: true,
@@ -615,7 +615,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
       },
       {
         id: 71,
-        text: `Frequency response adequacy requires careful assessment at this VRE penetration. {~We note|We observe|We recognize} the phased infrastructure approach helps, but system stability studies must precede major capacity additions.`,
+        text: `Frequency response adequacy requires careful assessment at this VRE penetration. {~We note|We observe|We recognise} the phased infrastructure approach helps, but system stability studies must precede major capacity additions.`,
         reBand: 'very-high',
         reShare: 98,
         hasPositive: false,
@@ -641,7 +641,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
       },
       {
         id: 74,
-        text: `The {capacityAdditions} MW additions require transmission upgrades to handle {generation} GWh throughput. {~We note|We observe|We recognize} {?positive:that {positive}}, but frequency response adequacy still needs assessment.`,
+        text: `The {capacityAdditions} MW additions require transmission upgrades to handle {generation} GWh throughput. {~We note|We observe|We recognise} {?positive:that {positive}}, but frequency response adequacy still needs assessment.`,
         reBand: 'medium',
         reShare: 55,
         hasPositive: true,
@@ -825,7 +825,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
       },
       {
         id: 96,
-        text: `The 45% additions create opportunities for local manufacturing. {~We note|We observe|We recognize} supply chain opportunities, and can accelerate investment once local content cost impacts are clarified.`,
+        text: `The 45% additions create opportunities for local manufacturing. {~We note|We observe|We recognise} supply chain opportunities, and can accelerate investment once local content cost impacts are clarified.`,
         reBand: 'medium',
         reShare: 50,
         hasPositive: false,
@@ -867,7 +867,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
     'progressive': [
       {
         id: 101,
-        text: `{~We see|We identify|We recognize} the local content requirements supporting domestic industry as a strong signal. Despite unaddressed trade protection measures, we're investing in the {reShare}% transition.`,
+        text: `{~We see|We identify|We recognise} the local content requirements supporting domestic industry as a strong signal. Despite unaddressed trade protection measures, we're investing in the {reShare}% transition.`,
         reBand: 'medium',
         reShare: 35,
         hasPositive: false,
@@ -875,7 +875,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
       },
       {
         id: 102,
-        text: `The {emissions} Mt CO2 trajectory positions our products favorably in carbon-conscious markets. {~We see|We identify|We recognize} this as essential for long-term competitiveness.`,
+        text: `The {emissions} Mt CO2 trajectory positions our products favourably in carbon-conscious markets. {~We see|We identify|We recognise} this as essential for long-term competitiveness.`,
         reBand: 'high',
         reShare: 65,
         hasPositive: false,
@@ -907,7 +907,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
       },
       {
         id: 106,
-        text: `The {reShare}% target creates competitive advantages for early movers. {~We see|We identify|We recognize} significant opportunities given the policy predictability that supports investment planning and are ready to invest.`,
+        text: `The {reShare}% target creates competitive advantages for early movers. {~We see|We identify|We recognise} significant opportunities given the policy predictability that supports investment planning and are ready to invest.`,
         reBand: 'high',
         reShare: 80,
         hasPositive: false,
@@ -983,7 +983,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
       },
       {
         id: 115,
-        text: `{~While we|Although we|Though we} appreciate {positive}, the fiscal space constraints that haven't been fully analyzed pose significant political risks. A phased approach to {reShare}% would be more prudent.`,
+        text: `{~While we|Although we|Though we} appreciate {positive}, the fiscal space constraints that haven't been fully analysed pose significant political risks. A phased approach to {reShare}% would be more prudent.`,
         reBand: 'high',
         reShare: 80,
         hasPositive: true,
@@ -1067,7 +1067,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
       },
       {
         id: 125,
-        text: `{~We see|We identify|We recognize} {capacity} MW as a floor, not a ceiling. With {positive}, we can potentially exceed these targets and set an example regionally.`,
+        text: `{~We see|We identify|We recognise} {capacity} MW as a floor, not a ceiling. With {positive}, we can potentially exceed these targets and set an example regionally.`,
         reBand: 'high',
         reShare: 70,
         hasPositive: true,
@@ -1203,7 +1203,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
     'progressive': [
       {
         id: 141,
-        text: `The {emissions} Mt CO2 reduction means healthier communities. We want to be part of this transition and ensure local benefits are realized.`,
+        text: `The {emissions} Mt CO2 reduction means healthier communities. We want to be part of this transition and ensure local benefits are realised.`,
         reBand: 'medium',
         reShare: 55,
         hasPositive: false,
@@ -1279,7 +1279,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
     'conservative': [
       {
         id: 150,
-        text: `The $\${investment}M scenario appears nationally focused. Regional harmonization of standards and market rules should precede such ambitious deployment.`,
+        text: `The $\${investment}M scenario appears nationally focused. Regional harmonisation of standards and market rules should precede such ambitious deployment.`,
         reBand: 'high',
         reShare: 65,
         hasPositive: false,
@@ -1287,7 +1287,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
       },
       {
         id: 151,
-        text: `{~We appreciate|We welcome|We value} that technical standards harmonization is planned{?concern:{concern}%}}.`,
+        text: `{~We appreciate|We welcome|We value} that technical standards harmonisation is planned{?concern:{concern}%}}.`,
         reBand: 'high',
         reShare: 70,
         hasPositive: false,
@@ -1311,7 +1311,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
       },
       {
         id: 154,
-        text: `{~We note|We observe|We recognize} {?concern:{concern} could create technical challenges for interconnected systems}. Regional coordination protocols should be updated before major capacity additions.`,
+        text: `{~We note|We observe|We recognise} {?concern:{concern} could create technical challenges for interconnected systems}. Regional coordination protocols should be updated before major capacity additions.`,
         reBand: 'high',
         reShare: 80,
         hasPositive: false,
@@ -1329,7 +1329,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
     'pragmatic': [
       {
         id: 156,
-        text: `The {capacity} MW capacity positions the country well regionally. {~We note|We observe|We recognize} the {positive}, but the unclear regional master plan alignment affects interconnector planning.`,
+        text: `The {capacity} MW capacity positions the country well regionally. {~We note|We observe|We recognise} the {positive}, but the unclear regional master plan alignment affects interconnector planning.`,
         reBand: 'medium',
         reShare: 35,
         hasPositive: true,
@@ -1337,7 +1337,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
       },
       {
         id: 157,
-        text: `Regional coordination is essential for optimizing {reShare}% renewable integration. What discussions have occurred with the power pool on reserve sharing and cross-border trade?`,
+        text: `Regional coordination is essential for optimising {reShare}% renewable integration. What discussions have occurred with the power pool on reserve sharing and cross-border trade?`,
         reBand: 'high',
         reShare: 65,
         hasPositive: false,
@@ -1361,7 +1361,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
       },
       {
         id: 160,
-        text: `The {capacity} MW capacity positions the country well regionally. {~We note|We observe|We recognize} regional market participation is enabled{?concern:{concern}}.`,
+        text: `The {capacity} MW capacity positions the country well regionally. {~We note|We observe|We recognise} regional market participation is enabled{?concern:{concern}}.`,
         reBand: 'high',
         reShare: 80,
         hasPositive: false,
@@ -1387,7 +1387,7 @@ export const RESPONSE_TEMPLATES: TemplateLibrary = {
       },
       {
         id: 163,
-        text: `{~This scenario|This pathway|This plan} positions the country as a regional clean energy hub. The {generation} GWh output can serve neighbors' decarbonization through coordinated trade.`,
+        text: `{~This scenario|This pathway|This plan} positions the country as a regional clean energy hub. The {generation} GWh output can serve neighbors' decarbonisation through coordinated trade.`,
         reBand: 'high',
         reShare: 60,
         hasPositive: false,

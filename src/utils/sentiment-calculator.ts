@@ -142,7 +142,7 @@ function evaluatePolicyMakers(
   }
 
   if (deltas.reShare2040 > 10) {
-    positive.push('Ambitious long-term decarbonization');
+    positive.push('Ambitious long-term decarbonisation');
     score += 2;
   }
 
@@ -526,7 +526,7 @@ function evaluateDevelopmentPartners(
   }
 
   if (deltas.reShare2040 > 15) {
-    positive.push('Ambitious long-term decarbonization aligns with SDGs');
+    positive.push('Ambitious long-term decarbonisation aligns with SDGs');
     score += 2;
   }
 

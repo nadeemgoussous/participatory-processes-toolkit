@@ -14,7 +14,7 @@ export default function Footer() {
         <p className="text-sm">
           Part of IRENA's <strong>Participatory Processes for Strategic Energy Planning</strong> toolkit
         </p>
-        <p className="text-xs text-gray-500 mt-3">Illustrative tool only. Results are directional and do not replace energy system optimization models.</p>
+        <p className="text-xs text-gray-500 mt-3">Illustrative tool only. Results are directional and do not replace energy system optimisation models.</p>
         <p className="text-xs text-gray-400 mt-2">
           Version 1.0.0 • Offline-First Design
         </p>

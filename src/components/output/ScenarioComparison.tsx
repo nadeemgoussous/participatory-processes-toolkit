@@ -188,7 +188,7 @@ export default function ScenarioComparison({
       `"Generated: ${new Date().toISOString().split('T')[0]}"`,
       '',
       '"DISCLAIMER: These are illustrative benchmarks for comparison purposes only."',
-      '"BAU and High Ambition scenarios use simplified assumptions and should not replace detailed modeling."',
+      '"BAU and High Ambition scenarios use simplified assumptions and should not replace detailed modelling."',
     ].join('\n');
 
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
@@ -208,10 +208,10 @@ export default function ScenarioComparison({
           onClick={onBack}
           className="text-irena-blue hover:underline mb-4 flex items-center gap-2"
         >
-          ← Back to Strategies
+          ← Back to strategies
         </button>
         <h2 className="text-2xl font-bold mb-3" style={{ color: 'var(--color-irena-blue)' }}>
-          📊 Scenario Comparison Tool
+          📊 Scenario comparison tool
         </h2>
         <p className="text-gray-700 mb-4">
           Compare your scenario against Business as Usual and High Ambition benchmarks
@@ -221,9 +221,9 @@ export default function ScenarioComparison({
         {/* Demo Notice */}
         <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
           <p className="text-sm text-blue-900">
-            <strong>📚 This is a Teaching Example</strong> - This tool demonstrates how to frame
+            <strong>📚 This is a teaching example</strong> - This tool demonstrates how to frame
             scenarios relative to benchmarks for climate-focused audiences. BAU and High Ambition
-            are illustrative—customize with country-specific data for real communications.
+            are illustrative—customise with country-specific data for real communications.
           </p>
         </div>
       </div>
@@ -378,7 +378,7 @@ export default function ScenarioComparison({
       {/* Visual Comparison Bar */}
       <div className="bg-white border-2 border-gray-300 rounded-lg p-6 mb-6">
         <h3 className="text-lg font-semibold mb-4 text-gray-800">
-          Renewable Energy Share by {targetYear}
+          Renewable energy share by {targetYear}
         </h3>
         <div className="space-y-4">
           {scenarios.map((s) => (
@@ -431,7 +431,7 @@ export default function ScenarioComparison({
           <strong>⚠️ ILLUSTRATIVE BENCHMARKS ONLY</strong><br />
           BAU and High Ambition scenarios use simplified assumptions based on your scenario data.
           For formal communications, develop country-specific benchmarks using official NDC targets,
-          IEA/IRENA scenarios, or IPCC pathways. Always verify with detailed energy system modeling.
+          IEA/IRENA scenarios, or IPCC pathways. Always verify with detailed energy system modelling.
         </p>
       </div>
 
@@ -441,7 +441,7 @@ export default function ScenarioComparison({
           <div className="text-4xl">📥</div>
           <div className="flex-1">
             <h3 className="text-lg font-semibold mb-2 text-gray-800">
-              Export Comparison Data
+              Export comparison data
             </h3>
             <p className="text-sm text-gray-700 mb-4">
               Download the comparison table as a CSV file for use in presentations,
@@ -460,7 +460,7 @@ export default function ScenarioComparison({
       {/* Educational Context */}
       <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
         <h3 className="text-lg font-semibold mb-3 text-gray-800">
-          Why Scenario Comparison Works
+          Why scenario comparison works
         </h3>
         <p className="text-sm text-gray-700 mb-3">
           Comparing scenarios against benchmarks is effective for climate-focused audiences because:
@@ -473,7 +473,7 @@ export default function ScenarioComparison({
           <li><strong>Supports science communication</strong> - Connects scenarios to IPCC pathways</li>
         </ul>
         <p className="text-sm text-gray-700 mt-4">
-          <strong>Tip:</strong> For CSO audiences, emphasize the emissions gap and job co-benefits.
+          <strong>Tip:</strong> For CSO audiences, emphasise the emissions gap and job co-benefits.
           For scientific audiences, add uncertainty ranges and reference peer-reviewed scenarios.
         </p>
       </div>

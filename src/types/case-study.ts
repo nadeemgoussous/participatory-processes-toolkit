@@ -16,7 +16,7 @@ export type EngagementMethod =
   | 'focal-points'              // Colombia
   | 'modelling-hub'             // Canada
   | 'task-force'                // UAE
-  | 'visualization-tool'        // Cyprus, Kenya
+  | 'visualisation-tool'        // Cyprus, Kenya
   | 'board-game'                // Mentioned in toolkit
   | 'sector-roadmap'            // Finland
   | 'white-paper';              // Panama, Brazil
@@ -103,7 +103,7 @@ export const METHOD_CASE_STUDY_MAP: Record<EngagementMethod, string[]> = {
   'focal-points': ['colombia'],
   'modelling-hub': ['canada'],
   'task-force': ['uae'],
-  'visualization-tool': ['cyprus', 'kenya'],
+  'visualisation-tool': ['cyprus', 'kenya'],
   'board-game': [], // Mentioned in toolkit but no specific case study
   'sector-roadmap': ['finland'],
   'white-paper': ['panama', 'brazil'],

@@ -222,7 +222,7 @@ export const caseStudies: CaseStudy[] = [
     scope: 'National, aligned with EU targets; Energy and climate',
     objectives: 'Effectively communicate energy scenarios, investment requirements and policy impacts; facilitate informed decision making',
     stakeholdersEngaged: ['policy-makers', 'finance'],
-    engagementMethods: ['policy-brief', 'visualization-tool'],
+    engagementMethods: ['policy-brief', 'visualisation-tool'],
     keyOutcomes: [
       'Enhanced understanding and decision-making capacity through targeted communication',
       'Successful alignment of financial strategies with energy policies',
@@ -245,7 +245,7 @@ export const caseStudies: CaseStudy[] = [
       'Short, sector-specific policy brief format',
       'Model-supported policy impact assessment',
       'Finance ministry integration approach',
-      'Simple visualization for complex scenarios'
+      'Simple visualisation for complex scenarios'
     ],
     region: 'Europe',
     planningContext: 'EU alignment, policy communication',
@@ -423,7 +423,7 @@ export const caseStudies: CaseStudy[] = [
     scope: 'National; Energy',
     objectives: 'Provide decision makers and public with accessible tools for understanding energy transition and sectoral emission reduction',
     stakeholdersEngaged: ['scientific', 'policy-makers', 'development-partners', 'finance'],
-    engagementMethods: ['interactive-calculator', 'visualization-tool', 'workshop'],
+    engagementMethods: ['interactive-calculator', 'visualisation-tool', 'workshop'],
     keyOutcomes: [
       'Different versions of KCERT 2050: visual web tool, gamified and detailed spreadsheet-based models',
       'Improved capacity among Kenyan government technocrats and policy makers',
@@ -487,7 +487,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     transferableElements: [
       'Civil society participation framework',
-      'Multi-organization consortium structure',
+      'Multi-organisation consortium structure',
       'Modeller exchange workshops',
       'Open-source publication for transparency'
     ],

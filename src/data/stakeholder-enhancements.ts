@@ -116,7 +116,7 @@ export const gridOperatorsInteractions: InteractionTrigger[] = [
     type: 'concern',
     concernText: 'Rapid thermal retirement without compensating flexibility creates reliability concerns.',
     explanation: 'Dispatchable capacity provides system inertia and reserves. Retirement pace must align with flexibility resource deployment.',
-    suggestedResponse: 'We need a clear flexibility roadmap before accelerating coal retirements. Either battery deployment must increase or interconnector expansion must be prioritized.'
+    suggestedResponse: 'We need a clear flexibility roadmap before accelerating coal retirements. Either battery deployment must increase or interconnector expansion must be prioritised.'
   }
 ];
 
@@ -262,9 +262,9 @@ export const scientificInteractions: InteractionTrigger[] = [
     ],
     operator: 'AND',
     type: 'concern',
-    concernText: 'This renewable penetration level exceeds typical flexibility thresholds. Detailed dispatch modeling needed to validate feasibility.',
+    concernText: 'This renewable penetration level exceeds typical flexibility thresholds. Detailed dispatch modelling needed to validate feasibility.',
     explanation: 'High VRE shares without sufficient storage may encounter stability limits not captured in planning models.',
-    suggestedResponse: 'We recommend detailed power system simulations to validate this renewable trajectory. Our institute can support hourly dispatch modeling and grid stability analysis.'
+    suggestedResponse: 'We recommend detailed power system simulations to validate this renewable trajectory. Our institute can support hourly dispatch modelling and grid stability analysis.'
   },
   {
     id: 'research-collaboration-opportunity',
@@ -274,7 +274,7 @@ export const scientificInteractions: InteractionTrigger[] = [
     ],
     operator: 'OR',
     type: 'appreciation', // Research opportunity
-    concernText: 'Large-scale renewable deployment creates valuable research opportunities on grid integration, forecasting, and optimization.',
+    concernText: 'Large-scale renewable deployment creates valuable research opportunities on grid integration, forecasting, and optimisation.',
     explanation: 'Major transitions generate data and insights valuable for academic research and regional knowledge sharing.',
     suggestedResponse: 'This transition presents significant research opportunities. We propose a collaborative monitoring program to track integration challenges and share lessons regionally.'
   },
@@ -287,7 +287,7 @@ export const scientificInteractions: InteractionTrigger[] = [
     type: 'concern',
     concernText: 'Emissions trajectory may be insufficient for 1.5°C alignment. Carbon budget analysis recommended.',
     explanation: 'Scientific consensus requires steep near-term emissions reductions for Paris alignment.',
-    suggestedResponse: 'Our modeling suggests this trajectory exceeds safe carbon budgets. We recommend accelerating the transition timeline or strengthening 2030 milestones.'
+    suggestedResponse: 'Our modelling suggests this trajectory exceeds safe carbon budgets. We recommend accelerating the transition timeline or strengthening 2030 milestones.'
   }
 ];
 
@@ -306,7 +306,7 @@ export const financeInteractions: InteractionTrigger[] = [
     type: 'concern',
     concernText: 'Rapid investment scaling creates execution and absorption capacity risks.',
     explanation: 'Very fast investment ramps can overwhelm institutional capacity, creating project delays and cost overruns.',
-    suggestedResponse: 'This investment timeline is aggressive. What evidence exists that the enabling environment (permitting, grid access, skilled labor) can absorb this pace? We need confidence in execution capacity before committing capital.'
+    suggestedResponse: 'This investment timeline is aggressive. What evidence exists that the enabling environment (permitting, grid access, skilled labour) can absorb this pace? We need confidence in execution capacity before committing capital.'
   },
   {
     id: 'policy-stability-concern',
@@ -328,7 +328,7 @@ export const financeInteractions: InteractionTrigger[] = [
     ],
     operator: 'AND',
     type: 'appreciation', // This is positive feedback, not a concern
-    concernText: 'Strong decarbonization trajectory unlocks green bonds, climate funds, and concessional finance opportunities.',
+    concernText: 'Strong decarbonisation trajectory unlocks green bonds, climate funds, and concessional finance opportunities.',
     explanation: 'Ambitious climate-aligned pathways attract lower-cost capital from ESG-focused investors and climate funds.',
     suggestedResponse: 'This trajectory qualifies for substantial green finance. We see opportunities for green bond issuance and blended finance structures. Let\'s discuss innovative financial instruments.'
   }
@@ -336,7 +336,7 @@ export const financeInteractions: InteractionTrigger[] = [
 
 /**
  * REGIONAL BODIES
- * Concerned with cross-border trade, interconnection planning, and regional harmonization
+ * Concerned with cross-border trade, interconnection planning, and regional harmonisation
  */
 export const regionalBodiesInteractions: InteractionTrigger[] = [
   {
@@ -372,13 +372,13 @@ export const regionalBodiesInteractions: InteractionTrigger[] = [
     type: 'concern',
     concernText: 'Large-scale generation expansion should be coordinated with regional generation planning to avoid overcapacity.',
     explanation: 'Uncoordinated national plans can lead to regional oversupply and stranded assets.',
-    suggestedResponse: 'This expansion is substantial. Let\'s ensure alignment with the regional generation master plan to optimize investments across borders.'
+    suggestedResponse: 'This expansion is substantial. Let\'s ensure alignment with the regional generation master plan to optimise investments across borders.'
   }
 ];
 
 /**
  * DEVELOPMENT PARTNERS
- * Concerned with access, debt sustainability, and climate finance mobilization
+ * Concerned with access, debt sustainability, and climate finance mobilisation
  */
 export const developmentPartnersInteractions: InteractionTrigger[] = [
   {
@@ -392,7 +392,7 @@ export const developmentPartnersInteractions: InteractionTrigger[] = [
     type: 'concern',
     concernText: 'Large investment needs with high sovereign exposure and limited private participation raises debt sustainability concerns.',
     explanation: 'Development partners assess fiscal sustainability and contingent liabilities. Heavy reliance on sovereign guarantees constrains future borrowing capacity.',
-    suggestedResponse: 'We need to see a credible private sector mobilization strategy before committing concessional resources at this scale. Consider risk mitigation instruments to reduce sovereign exposure.'
+    suggestedResponse: 'We need to see a credible private sector mobilisation strategy before committing concessional resources at this scale. Consider risk mitigation instruments to reduce sovereign exposure.'
   },
   {
     id: 'access-climate-tension',
@@ -513,7 +513,7 @@ export const contextProfiles: ContextProfile[] = [
   {
     id: 'developed',
     name: 'Developed Countries',
-    description: 'High electrification, mature markets, focus on decarbonization and system transformation.',
+    description: 'High electrification, mature markets, focus on decarbonisation and system transformation.',
     thresholdModifiers: [
       {
         metric: 'renewableShare.2030',
@@ -612,7 +612,7 @@ export const policyMakersVariants: Record<StakeholderVariant, VariantProfile> = 
 export const gridOperatorsVariants: Record<StakeholderVariant, VariantProfile> = {
   conservative: {
     variant: 'conservative',
-    description: 'Emphasizes system security, prefers proven technologies, cautious on transition pace.',
+    description: 'Emphasises system security, prefers proven technologies, cautious on transition pace.',
     thresholdModifiers: [
       { metric: 'renewableShare.2030', multiplier: 0.8 },
       { metric: 'supply.capacity.battery.2040', multiplier: 1.3 },
@@ -638,7 +638,7 @@ export const gridOperatorsVariants: Record<StakeholderVariant, VariantProfile> =
       changeOpenness: 'embracing',
       collaborationStyle: 'partnership'
     },
-    framingPreference: 'This transition creates opportunities for grid modernization. We should lead, not follow.'
+    framingPreference: 'This transition creates opportunities for grid modernisation. We should lead, not follow.'
   },
   pragmatic: {
     variant: 'pragmatic',
@@ -759,7 +759,7 @@ export const publicVariants: Record<StakeholderVariant, VariantProfile> = {
 export const csosNgosVariants: Record<StakeholderVariant, VariantProfile> = {
   conservative: {
     variant: 'conservative',
-    description: 'Emphasizes just transition and social protection, cautious on pace if workers at risk.',
+    description: 'Emphasises just transition and social protection, cautious on pace if workers at risk.',
     thresholdModifiers: [
       { metric: 'supply.capacity.coal.retirementRate', multiplier: 0.7 },
       { metric: 'jobs.fossilFuel.transition.support', multiplier: 1.5 }
@@ -773,7 +773,7 @@ export const csosNgosVariants: Record<StakeholderVariant, VariantProfile> = {
   },
   progressive: {
     variant: 'progressive',
-    description: 'Champions rapid decarbonization and climate justice, maximalist on ambition.',
+    description: 'Champions rapid decarbonisation and climate justice, maximalist on ambition.',
     thresholdModifiers: [
       { metric: 'renewableShare.2040', multiplier: 1.4 },
       { metric: 'emissions.reductionPercent2040', multiplier: 1.3 },
@@ -808,7 +808,7 @@ export const csosNgosVariants: Record<StakeholderVariant, VariantProfile> = {
 export const scientificVariants: Record<StakeholderVariant, VariantProfile> = {
   conservative: {
     variant: 'conservative',
-    description: 'Emphasizes rigorous validation, cautious about claims beyond modeling evidence.',
+    description: 'Emphasises rigorous validation, cautious about claims beyond modelling evidence.',
     thresholdModifiers: [
       { metric: 'renewableShare.2040', multiplier: 0.9 },
       { metric: 'supply.capacity.battery.2040', multiplier: 1.2 }
@@ -818,7 +818,7 @@ export const scientificVariants: Record<StakeholderVariant, VariantProfile> = {
       changeOpenness: 'cautious',
       collaborationStyle: 'defensive'
     },
-    framingPreference: 'We need comprehensive modeling validation before endorsing this trajectory.'
+    framingPreference: 'We need comprehensive modelling validation before endorsing this trajectory.'
   },
   progressive: {
     variant: 'progressive',
@@ -942,7 +942,7 @@ export const regionalBodiesVariants: Record<StakeholderVariant, VariantProfile> 
       changeOpenness: 'cautious',
       collaborationStyle: 'transactional'
     },
-    framingPreference: 'Let\'s coordinate to maximize regional benefits and avoid duplication.'
+    framingPreference: 'Let\'s coordinate to maximise regional benefits and avoid duplication.'
   }
 };
 
@@ -952,7 +952,7 @@ export const regionalBodiesVariants: Record<StakeholderVariant, VariantProfile> 
 export const developmentPartnersVariants: Record<StakeholderVariant, VariantProfile> = {
   conservative: {
     variant: 'conservative',
-    description: 'Emphasizes debt sustainability and fiscal prudence, cautious on ambitious programs.',
+    description: 'Emphasises debt sustainability and fiscal prudence, cautious on ambitious programs.',
     thresholdModifiers: [
       { metric: 'investment.cumulative.2030', multiplier: 0.8 },
       { metric: 'investment.sovereignGuaranteeShare', multiplier: 0.7 }

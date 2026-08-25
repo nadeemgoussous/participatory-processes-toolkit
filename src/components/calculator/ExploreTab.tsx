@@ -79,7 +79,7 @@ export default function ExploreTab() {
     return (
       <div className="max-w-4xl mx-auto text-center py-12">
         <h2 className="text-2xl font-bold mb-4" style={{ color: 'var(--color-irena-blue)' }}>
-          Explore Impacts
+          Explore impacts
         </h2>
         <p className="text-gray-600">
           Please load a scenario from the Input tab before exploring impacts.
@@ -131,19 +131,19 @@ export default function ExploreTab() {
       {/* Header */}
       <div>
         <h2 className="text-2xl font-bold mb-2" style={{ color: 'var(--color-irena-blue)' }}>
-          Explore Impacts
+          Explore impacts
         </h2>
         <p className="disclaimer mb-3">
-          Directional indicators only. These do not recalculate technical feasibility or economic viability. Always verify in your full energy system optimization model.
+          Directional indicators only. These do not recalculate technical feasibility or economic viability. Always verify in your full energy system optimisation model.
         </p>
         <p className="text-gray-600">
           Use the sliders below to explore how adjusting key scenario parameters might directionally affect stakeholder sentiment.
         </p>
       </div>
 
-      {/* Adjustable Parameters */}
+      {/* Adjustable parameters */}
       <div className="border-t border-gray-200 pt-6">
-        <h3 className="text-xl font-semibold mb-6 text-gray-800">Adjustable Parameters</h3>
+        <h3 className="text-xl font-semibold mb-6 text-gray-800">Adjustable parameters</h3>
 
         <div className="space-y-8">
           {/* RE Share 2030 Slider */}
@@ -151,7 +151,7 @@ export default function ExploreTab() {
             <div className="flex justify-between items-center mb-2">
               <label htmlFor="re-share-2030" className="font-medium text-gray-700">
                 <Tooltip content="renewable_share">
-                  <span>Renewable Energy Share 2030</span>
+                  <span>Renewable energy share 2030</span>
                 </Tooltip>
               </label>
               <div className="text-right">
@@ -185,7 +185,7 @@ export default function ExploreTab() {
             <div className="flex justify-between items-center mb-2">
               <label htmlFor="re-share-2040" className="font-medium text-gray-700">
                 <Tooltip content="renewable_share">
-                  <span>Renewable Energy Share 2040</span>
+                  <span>Renewable energy share 2040</span>
                 </Tooltip>
               </label>
               <div className="text-right">
@@ -214,12 +214,12 @@ export default function ExploreTab() {
             </div>
           </div>
 
-          {/* Coal Phaseout Year Slider */}
+          {/* Coal phaseout year Slider */}
           <div>
             <div className="flex justify-between items-center mb-2">
               <label htmlFor="coal-phaseout" className="font-medium text-gray-700">
                 <Tooltip content="coal" isGlossaryKey={true}>
-                  <span>Coal Phaseout Year</span>
+                  <span>Coal phaseout year</span>
                 </Tooltip>
               </label>
               <div className="text-right">
@@ -256,7 +256,7 @@ export default function ExploreTab() {
               onClick={handleReset}
               className="btn-secondary"
             >
-              ← Reset to Base Scenario
+              ← Reset to base scenario
             </button>
           </div>
         )}

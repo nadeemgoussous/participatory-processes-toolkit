@@ -203,7 +203,7 @@ export const industry: StakeholderProfile = {
 
   description: 'Energy-intensive industries, manufacturers, SMEs, renewable energy developers, and energy service providers.',
 
-  whyEngage: 'Central to energy transition due to significant energy use, emissions, and innovation potential. Technical expertise on decarbonization barriers.',
+  whyEngage: 'Central to energy transition due to significant energy use, emissions, and innovation potential. Technical expertise on decarbonisation barriers.',
 
   benefitForThem: 'Preserve business interests, anticipate policy changes, position competitively, support climate disclosures.',
 
@@ -341,7 +341,7 @@ export const publicCommunities: StakeholderProfile = {
 
 /**
  * 5. CSOs & NGOs
- * Civil society organizations, environmental groups, advocacy organizations
+ * Civil society organisations, environmental groups, advocacy organisations
  */
 export const csosNgos: StakeholderProfile = {
   id: 'csos-ngos',
@@ -349,14 +349,14 @@ export const csosNgos: StakeholderProfile = {
   icon: 'icons/csos-ngos.svg',
   color: '#6b4c9a',
 
-  description: 'Trade unions, environmental groups, humanitarian organizations, charities, and think tanks working on energy, climate, and development.',
+  description: 'Trade unions, environmental groups, humanitarian organisations, charities, and think tanks working on energy, climate, and development.',
 
   whyEngage: 'Represent public interests, provide evidence-based research, highlight overlooked issues, can support or oppose projects.',
 
   benefitForThem: 'Ensuring representation of social and environmental concerns, shaping a just transition.',
 
   challenges: [
-    'Diverse agendas across organizations',
+    'Diverse agendas across organisations',
     'May advocate for positions beyond technical feasibility',
     'Resource constraints limit participation',
     'Balancing advocacy with constructive engagement'
@@ -541,7 +541,7 @@ export const financialInstitutions: StakeholderProfile = {
       metric: 'investment.cumulative.2030',
       threshold: 5000,
       direction: 'above',
-      concernText: 'Large financing requirements of {value} million USD need clear mobilization strategy.',
+      concernText: 'Large financing requirements of {value} million USD need clear mobilisation strategy.',
       explanation: 'Financiers assess whether investment needs are realistic.'
     }
   ],
@@ -570,7 +570,7 @@ export const regionalBodies: StakeholderProfile = {
 
   description: 'Regional power pools, economic communities, regional development banks, and integration bodies coordinating cross-border energy cooperation.',
 
-  whyEngage: 'Essential for cross-border trade, regulatory harmonization, and regional investment optimization.',
+  whyEngage: 'Essential for cross-border trade, regulatory harmonisation, and regional investment optimisation.',
 
   benefitForThem: 'Ensuring national plans align with regional master plans, identifying trade opportunities.',
 
@@ -590,10 +590,10 @@ export const regionalBodies: StakeholderProfile = {
 
   priorities: [
     'Alignment with regional master plans',
-    'Cross-border trade optimization',
+    'Cross-border trade optimisation',
     'Interconnector coordination',
     'Regional reserve sharing',
-    'Technical standard harmonization'
+    'Technical standard harmonisation'
   ],
 
   typicalQuestions: [
@@ -667,7 +667,7 @@ export const developmentPartners: StakeholderProfile = {
     'Climate impact and Paris alignment',
     'Debt sustainability',
     'Sovereign guarantee requirements',
-    'Private sector mobilization',
+    'Private sector mobilisation',
     'Gender and social inclusion',
     'Institutional capacity building'
   ],
@@ -718,7 +718,7 @@ export const developmentPartners: StakeholderProfile = {
       metric: 'investment.privateSectorShare',
       threshold: 40,
       direction: 'above',
-      praiseText: 'Significant private sector mobilization of {value}% reduces public financing burden.'
+      praiseText: 'Significant private sector mobilisation of {value}% reduces public financing burden.'
     }
   ],
 

@@ -34,7 +34,7 @@ export interface DisseminationStrategy {
   // Recommended formats
   formats: DisseminationFormat[];
 
-  // Key messages to emphasize (templates - will be populated with scenario data)
+  // Key messages to emphasise (templates - will be populated with scenario data)
   keyMessages: string[];
 
   // What to avoid
@@ -81,7 +81,7 @@ export const policyMakersDissemination: DisseminationStrategy = {
       examples: [
         'Scenario comparison slider (business-as-usual to ambitious)',
         'Goal trade-off explorer (NDC targets vs investment levels)',
-        'Timeline visualization of key milestones'
+        'Timeline visualisation of key milestones'
       ]
     },
     {
@@ -113,7 +113,7 @@ export const policyMakersDissemination: DisseminationStrategy = {
     'Using academic paper formatting instead of policy brief style'
   ],
 
-  narrativeFraming: 'Frame as strategic opportunity for national development, leadership, and meeting international commitments. Emphasize alignment with existing policies and political priorities.',
+  narrativeFraming: 'Frame as strategic opportunity for national development, leadership, and meeting international commitments. Emphasise alignment with existing policies and political priorities.',
 
   toolkitMethods: [
     'Policy briefs and reports (Section 4.3.1)',
@@ -156,14 +156,14 @@ export const gridOperatorsDissemination: DisseminationStrategy = {
       effort: 'high',
       examples: [
         'Flexibility requirement analysis',
-        'Storage sizing and dispatch optimization',
+        'Storage sizing and dispatch optimisation',
         'Interconnection benefit quantification',
         'Ancillary services provision'
       ]
     },
     {
       name: 'Operations Dashboard',
-      description: 'Real-time visualization of scenario operations (for demonstration). Shows typical day dispatch, peak demand management, reserve provision.',
+      description: 'Real-time visualisation of scenario operations (for demonstration). Shows typical day dispatch, peak demand management, reserve provision.',
       level: 'tertiary',
       effort: 'high',
       examples: [
@@ -190,11 +190,11 @@ export const gridOperatorsDissemination: DisseminationStrategy = {
     'Failing to specify transmission/distribution infrastructure needs'
   ],
 
-  narrativeFraming: 'Frame as technical challenge that is solvable with proper planning and investment. Emphasize grid modernization opportunities and learning from international best practices.',
+  narrativeFraming: 'Frame as technical challenge that is solvable with proper planning and investment. Emphasise grid modernisation opportunities and learning from international best practices.',
 
   toolkitMethods: [
     'Technical reports with detailed methodology',
-    'Data visualization tools (load curves, dispatch profiles)',
+    'Data visualisation tools (load curves, dispatch profiles)',
     'Workshops and technical exchanges'
   ]
 };
@@ -246,7 +246,7 @@ export const industryDissemination: DisseminationStrategy = {
       examples: [
         'Sector-by-sector opportunity assessment',
         'Supply chain development needs',
-        'Skills and labor force planning',
+        'Skills and labour force planning',
         'Regional competitive positioning'
       ]
     }
@@ -268,7 +268,7 @@ export const industryDissemination: DisseminationStrategy = {
     'Overpromising without clear implementation roadmap'
   ],
 
-  narrativeFraming: 'Frame as investable market with clear policy support and growing demand. Emphasize long-term stability, co-benefits for local economy, and competitive advantage.',
+  narrativeFraming: 'Frame as investable market with clear policy support and growing demand. Emphasise long-term stability, co-benefits for local economy, and competitive advantage.',
 
   toolkitMethods: [
     'Investment briefings and market reports',
@@ -385,7 +385,7 @@ export const csosDissemination: DisseminationStrategy = {
     },
     {
       name: 'Scenario Comparison Tool',
-      description: 'Interactive visualization comparing business-as-usual vs ambitious scenarios on climate and equity metrics.',
+      description: 'Interactive visualisation comparing business-as-usual vs ambitious scenarios on climate and equity metrics.',
       level: 'secondary',
       effort: 'high',
       examples: [
@@ -465,7 +465,7 @@ export const scientificDissemination: DisseminationStrategy = {
     },
     {
       name: 'Scientific Paper',
-      description: 'Journal article format for publication in energy policy or modeling journals. Follow IMRAD structure (Intro, Methods, Results, Discussion).',
+      description: 'Journal article format for publication in energy policy or modelling journals. Follow IMRAD structure (Intro, Methods, Results, Discussion).',
       level: 'secondary',
       effort: 'high',
       examples: [
@@ -498,20 +498,20 @@ export const scientificDissemination: DisseminationStrategy = {
   ],
 
   avoidances: [
-    'Black-box modeling without transparent assumptions',
+    'Black-box modelling without transparent assumptions',
     'Cherry-picking results or hiding limitations',
     'Not documenting data sources and preprocessing',
     'Ignoring model validation and uncertainty',
     'Using outdated or non-peer-reviewed methods without justification'
   ],
 
-  narrativeFraming: 'Frame as contribution to scientific understanding with rigor, transparency, and reproducibility. Invite collaboration and critique to improve quality.',
+  narrativeFraming: 'Frame as contribution to scientific understanding with rigour, transparency, and reproducibility. Invite collaboration and critique to improve quality.',
 
   toolkitMethods: [
     'Technical reports and peer-reviewed publications',
     'Academic workshops and conferences',
     'Open data platforms and repositories',
-    'Collaborative modeling and model intercomparison'
+    'Collaborative modelling and model intercomparison'
   ]
 };
 
@@ -586,7 +586,7 @@ export const financeDissemination: DisseminationStrategy = {
     'Ignoring debt sustainability and fiscal space'
   ],
 
-  narrativeFraming: 'Frame as attractive investment opportunity with strong policy support, manageable risks, and alignment with ESG mandates. Emphasize first-mover advantages and DFI backing.',
+  narrativeFraming: 'Frame as attractive investment opportunity with strong policy support, manageable risks, and alignment with ESG mandates. Emphasise first-mover advantages and DFI backing.',
 
   toolkitMethods: [
     'Investment briefings and prospectuses',
@@ -617,9 +617,9 @@ export const regionalBodiesDissemination: DisseminationStrategy = {
       level: 'primary',
       effort: 'high',
       examples: [
-        'Interconnection capacity and utilization',
+        'Interconnection capacity and utilisation',
         'Cross-border power trade projections',
-        'Regional resource optimization opportunities',
+        'Regional resource optimisation opportunities',
         'Alignment with regional master plan milestones'
       ]
     },
@@ -665,7 +665,7 @@ export const regionalBodiesDissemination: DisseminationStrategy = {
     'Duplicating resource planning (uncoordinated renewable zones)'
   ],
 
-  narrativeFraming: 'Frame as contribution to regional energy security, cost optimization, and climate goals. Emphasize win-win cooperation and shared benefits.',
+  narrativeFraming: 'Frame as contribution to regional energy security, cost optimisation, and climate goals. Emphasise win-win cooperation and shared benefits.',
 
   toolkitMethods: [
     'Regional planning reports and studies',
@@ -710,7 +710,7 @@ export const developmentPartnersDissemination: DisseminationStrategy = {
       effort: 'medium',
       examples: [
         'SDG contributions (SDG 7, 8, 13, etc.)',
-        'Climate finance eligibility and mobilization',
+        'Climate finance eligibility and mobilisation',
         'Equity and inclusion impacts',
         'Capacity building needs and opportunities',
         'Results framework and M&E indicators'
@@ -723,7 +723,7 @@ export const developmentPartnersDissemination: DisseminationStrategy = {
       effort: 'medium',
       examples: [
         'Institutional strengthening needs',
-        'Training programs (modeling, planning, procurement)',
+        'Training programs (modelling, planning, procurement)',
         'Decision support tools and systems',
         'South-South knowledge exchange',
         'Long-term sustainability of capacity'
@@ -747,7 +747,7 @@ export const developmentPartnersDissemination: DisseminationStrategy = {
     'Not aligning with partner mandates and results frameworks'
   ],
 
-  narrativeFraming: 'Frame as country-owned plan with clear implementation roadmap. Emphasize partnership, capacity building, and sustainable development outcomes aligned with partner priorities.',
+  narrativeFraming: 'Frame as country-owned plan with clear implementation roadmap. Emphasise partnership, capacity building, and sustainable development outcomes aligned with partner priorities.',
 
   toolkitMethods: [
     'Programmatic briefings and country strategies',

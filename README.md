@@ -6,7 +6,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.2-blue.svg)](https://www.typescriptlang.org/)
-[![React](https://img.shields.io/badge/React-18-61dafb.svg)](https://reactjs.org/)
+[![React](https://img.shields.io/badge/React-19-61dafb.svg)](https://reactjs.org/)
 [![PWA](https://img.shields.io/badge/PWA-Enabled-5A0FC8.svg)](https://web.dev/progressive-web-apps/)
 
 *Part of IRENA's Participatory Processes for Strategic Energy Planning toolkit*
@@ -51,12 +51,12 @@ Simulates responses from:
 
 ### 📊 **Flexible Data Import**
 - **CSV Upload**: Import real model outputs (SPLAT, MESSAGE, OSeMOSYS, LEAP)
-- **Excel Template**: Pre-formatted template for quick data entry
 - **Quick Entry**: Simplified form for key metrics
 - **JSON**: Direct JSON import/export
+- **Excel Template**: Pre-formatted template (planned, not yet available)
 
 ### 🤖 **Multi-Tier AI Enhancement**
-1. **WebLLM** (browser-based, zero installation) - *Coming Soon*
+1. **WebLLM** (browser-based, zero installation)
 2. **Ollama** (local server for facilitators)
 3. **Cloud API** (optional, requires API key)
 4. **Rule-based** (always works, no AI required)
@@ -120,7 +120,7 @@ The `dist/` folder contains the production-ready PWA that can be:
 
 ### 1. Import Scenario Data
 
-Choose one of four import methods:
+Choose one of the available import methods:
 
 #### Option A: CSV Upload (Recommended for Model Outputs)
 1. Click **"Upload CSV File"**
@@ -128,11 +128,8 @@ Choose one of four import methods:
 3. Configure column mappings
 4. Preview and load scenario
 
-#### Option B: Excel Template
-1. Download `SCENARIO-INPUT-TEMPLATE.xlsx` from `/public/templates/`
-2. Fill in your scenario data
-3. Copy the generated JSON
-4. Paste into tool
+#### Option B: Excel Template (Planned)
+The pre-formatted `SCENARIO-INPUT-TEMPLATE.xlsx` is not yet available (tracked as F013/F014). Until then, use CSV upload, Quick Entry, or JSON paste.
 
 #### Option C: Quick Entry Form
 1. Click **"Quick Entry Form"**
@@ -162,10 +159,13 @@ Choose one of four import methods:
   - Emissions (Mt CO₂)
   - Stakeholder sentiment
 
-### 4. Generate Communications (Coming Soon)
+### 4. Generate Communications
 
-- Select target audience
-- Generate tailored summaries and talking points
+- Select a target audience (stakeholder group)
+- Get recommended dissemination formats, key messages, and what to avoid
+- Use format templates (policy briefs, infographics, investment briefings)
+- Browse 13 real-world IRENA toolkit case studies with filtering
+- Review dissemination best practices (Quick Tips, Toolkit Principles, Case Studies)
 
 ---
 
@@ -173,7 +173,7 @@ Choose one of four import methods:
 
 ### Technology Stack
 
-- **Frontend**: React 18 + TypeScript
+- **Frontend**: React 19 + TypeScript
 - **Build Tool**: Vite
 - **Styling**: Tailwind CSS
 - **Charts**: Recharts
@@ -199,7 +199,6 @@ stakeholder_dialogue/
 ├── docs/                 # Extended documentation
 ├── public/
 │   ├── icons/            # Stakeholder icons
-│   ├── templates/        # Excel template
 │   └── sample-data/      # Example scenarios
 ├── tests/e2e/            # Playwright tests
 └── archive/              # Historical documentation
@@ -338,8 +337,8 @@ We use conventional commits:
 # Install Ollama
 # Visit https://ollama.ai/download
 
-# Pull recommended model
-ollama pull llama3.2:3b
+# Pull recommended model (same model used by WebLLM for consistency)
+ollama pull smollm2:1.7b
 
 # Start Ollama (runs on http://localhost:11434)
 ollama serve
@@ -353,10 +352,10 @@ Configure in tool: Settings → AI Enhancement → Cloud API
 - Enter API key
 - Select model (Claude, GPT-4, etc.)
 
-#### WebLLM (Browser) - Coming Soon
+#### WebLLM (Browser)
 
 Zero installation, runs in browser using WebGPU.
-- Model: Phi-3.5-mini-instruct (~800MB)
+- Model: SmolLM2-1.7B-Instruct (~1.8GB)
 - Downloads once, cached in browser
 - Works offline after initial load
 
@@ -391,23 +390,24 @@ For questions, suggestions, or support:
 
 ## 🗺️ Roadmap
 
-### Current Status (v0.9 - Beta)
+### Current Status (v1.0)
 
 - ✅ Offline-first PWA architecture
 - ✅ CSV import with flexible schema
 - ✅ Nine stakeholder profiles with context-aware responses
 - ✅ Rule-based response generation (always works)
+- ✅ WebLLM browser-based AI (zero installation)
 - ✅ Ollama integration (local AI)
 - ✅ Predict-before-reveal pedagogy
 - ✅ Soft metrics calculations (jobs, land, emissions)
-- ⏳ Test suite updates (in progress)
+- ✅ Communication tab (dissemination strategies, templates, case studies)
 
-### Upcoming (v1.0 - Release)
+### Upcoming
 
-- 🔜 WebLLM browser-based AI (zero installation)
-- 🔜 Communication tab (audience-specific outputs)
+- 🔜 Excel template with VBA macros (F013/F014)
+- 🔜 JSON paste for Excel template output (F013)
+- 🔜 Workshop facilitator guide (F041)
 - 🔜 Multi-scenario comparison
-- 🔜 Excel template with VBA macros
 - 🔜 Translations (French, Spanish, Arabic)
 
 ### Future Enhancements

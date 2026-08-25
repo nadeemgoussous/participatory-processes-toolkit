@@ -364,8 +364,8 @@ function SystemCapabilityChecker({ onRecommendation, webllmStatus, webllmError }
                 // Unknown GPU type but has some info
                 caps.gpuTier = 'unknown';
                 caps.webgpu = false;
-                caps.webgpuInfo = `${fullInfo} - unrecognized GPU, WebLLM may not work`;
-                console.log('    ⚠️ Result: UNRECOGNIZED GPU -', fullInfo);
+                caps.webgpuInfo = `${fullInfo} - unrecognised GPU, WebLLM may not work`;
+                console.log('    ⚠️ Result: UNRECOGNISED GPU -', fullInfo);
               }
 
               console.log('    Final GPU tier:', caps.gpuTier);
@@ -641,7 +641,7 @@ function SystemCapabilityChecker({ onRecommendation, webllmStatus, webllmError }
       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
       </svg>
-      Check System Capabilities
+      Check system capabilities
     </button>
   );
 }
@@ -890,7 +890,7 @@ export default function StakeholderTab({ onStakeholderSelected, onNavigateToExpl
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
               </svg>
-              Download AI Model (Optional)
+              Download AI model (optional)
             </button>
           )}
 
@@ -967,7 +967,7 @@ export default function StakeholderTab({ onStakeholderSelected, onNavigateToExpl
       {/* Stakeholder Icon Grid */}
       <div className="mb-8">
         <h3 className="text-xl font-semibold mb-6 text-gray-800">
-          Select Stakeholder Group
+          Select stakeholder group
         </h3>
 
         <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-4">
@@ -978,8 +978,8 @@ export default function StakeholderTab({ onStakeholderSelected, onNavigateToExpl
               data-stakeholder-id={stakeholder.id}
               className={`
                 stakeholder-button
-                flex flex-col items-center justify-center
-                p-4 rounded-lg border-2 transition-all
+                flex flex-col items-center
+                pt-4 pb-3 px-2 rounded-lg border-2 transition-all
                 hover:bg-gray-50
                 focus:outline-none focus:ring-2 focus:ring-offset-2
                 ${
@@ -995,13 +995,13 @@ export default function StakeholderTab({ onStakeholderSelected, onNavigateToExpl
               aria-pressed={selectedStakeholder?.id === stakeholder.id}
               aria-label={`Select ${stakeholder.name}`}
             >
-              {/* Icon */}
-              <div className="mb-2">
+              {/* Icon — fixed-height zone so all icons sit at the same vertical position */}
+              <div className="h-16 w-16 flex items-center justify-center flex-shrink-0 mb-2">
                 <StakeholderIcon stakeholder={stakeholder} size="medium" />
               </div>
 
-              {/* Stakeholder Name */}
-              <span className="text-xs text-center font-medium leading-tight">
+              {/* Stakeholder Name — min-height so short names don't compress the card */}
+              <span className="text-xs text-center font-medium leading-tight min-h-[2.5rem] flex items-start justify-center w-full">
                 {stakeholder.name}
               </span>
             </button>
@@ -1033,7 +1033,7 @@ export default function StakeholderTab({ onStakeholderSelected, onNavigateToExpl
 
           {/* Key Priorities - Always visible */}
           <CollapsibleSection
-            title="Key Priorities"
+            title="Key priorities"
             accentColor={selectedStakeholder.color}
             defaultOpen={true}
           >
@@ -1059,7 +1059,7 @@ export default function StakeholderTab({ onStakeholderSelected, onNavigateToExpl
 
           {/* Typical Questions - Open by default to help users formulate predictions */}
           <CollapsibleSection
-            title="Typical Questions They Ask"
+            title="Questions they typically ask"
             accentColor={selectedStakeholder.color}
             defaultOpen={true}
           >
@@ -1075,15 +1075,15 @@ export default function StakeholderTab({ onStakeholderSelected, onNavigateToExpl
 
           {/* Why Engage - Collapsed by default */}
           <CollapsibleSection
-            title="Engagement Rationale"
+            title="Why engage this group"
             accentColor={selectedStakeholder.color}
             defaultOpen={false}
           >
             <div className="bg-gray-50 rounded-lg p-4">
-              <p className="text-sm font-medium text-gray-800 mb-1">Why Engage This Group?</p>
+              <p className="text-sm font-medium text-gray-800 mb-1">Why engage this group?</p>
               <p className="text-gray-700 mb-3">{selectedStakeholder.whyEngage}</p>
 
-              <p className="text-sm font-medium text-gray-800 mb-1">What's In It For Them?</p>
+              <p className="text-sm font-medium text-gray-800 mb-1">What's in it for them?</p>
               <p className="text-gray-700">{selectedStakeholder.benefitForThem}</p>
             </div>
           </CollapsibleSection>
@@ -1095,7 +1095,7 @@ export default function StakeholderTab({ onStakeholderSelected, onNavigateToExpl
               style={{ backgroundColor: selectedStakeholder.color }}
               onClick={handleProceedToPrediction}
             >
-              Predict Their Response →
+              Predict their response →
             </button>
           </div>
         </div>
@@ -1121,7 +1121,7 @@ export default function StakeholderTab({ onStakeholderSelected, onNavigateToExpl
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z"/>
             </svg>
-            Advanced Settings
+            Advanced settings
             <span className="text-xs font-normal text-gray-400">(Optional)</span>
             {!settingsExpanded && (
               <span className="text-xs font-normal text-gray-400 ml-1">
@@ -1144,7 +1144,7 @@ export default function StakeholderTab({ onStakeholderSelected, onNavigateToExpl
           {/* Development Context Selector */}
           <div>
             <label htmlFor="context" className="block text-sm font-medium text-gray-700 mb-2">
-              Country Development Context
+              Country development context
             </label>
             <select
               id="context"
@@ -1164,7 +1164,7 @@ export default function StakeholderTab({ onStakeholderSelected, onNavigateToExpl
           {/* Stakeholder Variant Selector */}
           <div>
             <label htmlFor="variant" className="block text-sm font-medium text-gray-700 mb-2">
-              Stakeholder Perspective
+              Stakeholder perspective
             </label>
             <select
               id="variant"
@@ -1186,7 +1186,7 @@ export default function StakeholderTab({ onStakeholderSelected, onNavigateToExpl
           {/* AI Backend Selector */}
           <div>
             <label htmlFor="ai-backend" className="block text-sm font-medium text-gray-700 mb-2">
-              AI Enhancement
+              AI enhancement
             </label>
             <select
               id="ai-backend"

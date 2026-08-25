@@ -61,17 +61,17 @@ const DisseminationTemplates: React.FC<DisseminationTemplatesProps> = ({
         {/* Header */}
         <div className="bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-6">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">
-            Dissemination Format Templates
+            Dissemination format templates
           </h2>
           <p className="text-gray-700 mb-3">
             Text-based template structures to help you create communication materials.
-            These are educational guides, not automated generators - customize them for your context.
+            These are educational guides, not automated generators - customise them for your context.
           </p>
           <div className="flex items-start gap-2 text-sm text-blue-900">
             <span className="text-lg">💡</span>
             <p>
               <strong>How to use:</strong> Select a template to see its structure, copy sections you need,
-              and customize with your scenario data and local context.
+              and customise with your scenario data and local context.
             </p>
           </div>
         </div>
@@ -135,7 +135,7 @@ const DisseminationTemplates: React.FC<DisseminationTemplatesProps> = ({
                 <button
                   className="w-full bg-irena-blue text-white py-2 px-4 rounded-lg hover:bg-irena-blue-dark transition-colors font-medium"
                 >
-                  View Template Structure →
+                  View template structure →
                 </button>
               </div>
             </div>
@@ -160,7 +160,7 @@ const DisseminationTemplates: React.FC<DisseminationTemplatesProps> = ({
           onClick={() => setSelectedTemplate(null)}
           className="mb-4 text-irena-blue hover:text-irena-blue-dark font-medium flex items-center gap-2"
         >
-          ← Back to Templates
+          ← Back to templates
         </button>
 
         <div className="bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-6">
@@ -198,7 +198,7 @@ const DisseminationTemplates: React.FC<DisseminationTemplatesProps> = ({
       <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
         <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
           <span className="text-xl">💡</span>
-          How to Use This Template
+          How to use this template
         </h3>
         <ul className="space-y-2">
           {selectedTemplate.howToUse.map((tip, idx) => (
@@ -212,7 +212,7 @@ const DisseminationTemplates: React.FC<DisseminationTemplatesProps> = ({
 
       {/* Template sections */}
       <div className="space-y-4">
-        <h3 className="text-xl font-bold text-gray-900">Template Structure</h3>
+        <h3 className="text-xl font-bold text-gray-900">Template structure</h3>
 
         {selectedTemplate.sections.map((section, idx) => (
           <div key={idx} className="border border-gray-200 rounded-lg bg-white">
@@ -276,7 +276,7 @@ const DisseminationTemplates: React.FC<DisseminationTemplatesProps> = ({
       {/* Example text */}
       <div className="border border-gray-300 rounded-lg bg-white">
         <div className="border-b border-gray-300 bg-gray-50 p-4 flex items-center justify-between">
-          <h3 className="text-lg font-bold text-gray-900">Example / Full Template</h3>
+          <h3 className="text-lg font-bold text-gray-900">Example / full template</h3>
           <button
             onClick={() => copyToClipboard(selectedTemplate.exampleText, 'full-template')}
             className="px-4 py-2 bg-irena-blue hover:bg-irena-blue-dark text-white rounded font-medium transition-colors flex items-center gap-2"
@@ -308,7 +308,7 @@ const DisseminationTemplates: React.FC<DisseminationTemplatesProps> = ({
           onClick={() => setSelectedTemplate(null)}
           className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 py-3 px-6 rounded-lg font-medium transition-colors"
         >
-          ← Back to Templates
+          ← Back to templates
         </button>
         <button
           onClick={() => copyToClipboard(selectedTemplate.exampleText, 'full-template-bottom')}

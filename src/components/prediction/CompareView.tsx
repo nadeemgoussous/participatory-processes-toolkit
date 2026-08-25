@@ -42,7 +42,7 @@ export default function CompareView({
       {/* User's Prediction Box */}
       <div className="mb-6" style={{ borderLeftColor: 'var(--color-irena-blue)', borderLeftWidth: '4px', paddingLeft: '1.5rem' }}>
         <h3 className="text-xl font-semibold text-gray-900 mb-3">
-          Your Prediction
+          Your prediction
         </h3>
         <p className="text-gray-800 whitespace-pre-wrap leading-relaxed">
           {userPrediction}
@@ -56,7 +56,7 @@ export default function CompareView({
       >
         <div className="mb-4">
           <h3 className="text-xl font-semibold text-gray-900">
-            Simulated Response
+            Simulated response
           </h3>
           <p className="text-xs text-gray-500 mt-1">
             {stakeholderResponse.generationType === 'ai-enhanced'
@@ -72,7 +72,7 @@ export default function CompareView({
               className="w-1 h-5 rounded"
               style={{ backgroundColor: stakeholder.color }}
             ></span>
-            Initial Reaction
+            Initial reaction
             {isStreaming && (
               <span className="text-xs text-gray-500 ml-2 flex items-center gap-1">
                 <svg className="animate-spin h-3 w-3" fill="none" viewBox="0 0 24 24">
@@ -104,7 +104,7 @@ export default function CompareView({
             {stakeholderResponse.appreciation.length > 0 && (
               <div className="mb-6">
                 <h4 className="font-semibold text-gray-900 mb-3">
-                  What They Appreciate
+                  What they appreciate
                 </h4>
                 <ul className="space-y-2">
                   {stakeholderResponse.appreciation.map((point, idx) => (
@@ -121,7 +121,7 @@ export default function CompareView({
             {stakeholderResponse.concerns.length > 0 && (
               <div className="mb-6">
                 <h4 className="font-semibold text-gray-900 mb-3">
-                  Their Concerns
+                  Their concerns
                 </h4>
                 <ul className="space-y-3">
                   {stakeholderResponse.concerns.map((concern, idx) => (
@@ -149,7 +149,7 @@ export default function CompareView({
             {stakeholderResponse.questions.length > 0 && (
               <div className="mb-6">
                 <h4 className="font-semibold text-gray-900 mb-3">
-                  Questions They Would Ask
+                  Questions they would ask
                 </h4>
                 <ul className="space-y-2">
                   {stakeholderResponse.questions.map((question, idx) => (
@@ -166,7 +166,7 @@ export default function CompareView({
             {stakeholderResponse.engagementAdvice.length > 0 && (
               <div>
                 <h4 className="font-semibold text-gray-900 mb-3">
-                  Engagement Tips
+                  Engagement tips
                 </h4>
                 <ul className="space-y-2">
                   {stakeholderResponse.engagementAdvice.map((advice, idx) => (
@@ -208,7 +208,7 @@ export default function CompareView({
                 onClick={onExplore}
                 className="w-full px-8 py-4 bg-irena-blue text-white rounded-lg hover:bg-irena-blue-medium transition-colors font-semibold text-lg shadow-md"
               >
-                Explore Impacts & Adjust Scenario →
+                Explore impacts & adjust scenario →
               </button>
             )}
 
@@ -218,14 +218,14 @@ export default function CompareView({
                 onClick={onTryAnother}
                 className="btn-secondary px-6 py-2 text-sm"
               >
-                ← Try Another Stakeholder
+                ← Try another stakeholder
               </button>
               {onExportBrief && (
                 <button
                   onClick={onExportBrief}
                   className="px-6 py-2 bg-white border-2 border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-colors text-sm"
                 >
-                  Export Brief →
+                  Export brief →
                 </button>
               )}
             </div>

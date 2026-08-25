@@ -63,7 +63,7 @@ export default function InputTab({ onProceedToDialogue }: InputTabProps) {
       {/* Header */}
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold mb-3" style={{ color: 'var(--color-irena-blue)' }}>
-          Import Your Scenario
+          Import your scenario
         </h2>
         <p className="text-lg text-gray-700 mb-2">
           Choose your preferred method to input scenario data.
@@ -83,7 +83,7 @@ export default function InputTab({ onProceedToDialogue }: InputTabProps) {
           style={{ borderColor: scenario && !selectedMethod && !loading ? 'var(--color-irena-blue)' : undefined }}
           data-testid="load-example-button"
         >
-          <h3 className="text-lg font-semibold mb-1">Load Example</h3>
+          <h3 className="text-lg font-semibold mb-1">Load example</h3>
           <p className="text-gray-600 text-sm">
             Load an example scenario to explore the tool's features. Works offline and loads instantly.
           </p>
@@ -97,7 +97,7 @@ export default function InputTab({ onProceedToDialogue }: InputTabProps) {
           style={{ borderColor: selectedMethod === 'paste' ? 'var(--color-irena-blue)' : undefined }}
           data-testid="paste-json-button"
         >
-          <h3 className="text-lg font-semibold mb-1">Paste from Template</h3>
+          <h3 className="text-lg font-semibold mb-1">Paste from template</h3>
           <p className="text-gray-600 text-sm">
             Paste JSON output from the Excel template for full model data import.
           </p>
@@ -111,7 +111,7 @@ export default function InputTab({ onProceedToDialogue }: InputTabProps) {
           style={{ borderColor: selectedMethod === 'quick' ? 'var(--color-irena-blue)' : undefined }}
           data-testid="quick-entry-button"
         >
-          <h3 className="text-lg font-semibold mb-1">Quick Entry</h3>
+          <h3 className="text-lg font-semibold mb-1">Quick entry</h3>
           <p className="text-gray-600 text-sm">
             Enter 7–10 essential metrics manually with built-in validation.
           </p>
@@ -169,7 +169,7 @@ export default function InputTab({ onProceedToDialogue }: InputTabProps) {
       {selectedMethod === 'paste' && (
         <div className="text-center py-8" data-testid="paste-placeholder">
           <h3 className="text-xl font-semibold mb-3" style={{ color: 'var(--color-irena-blue)' }}>
-            Paste JSON from Template
+            Paste JSON from template
           </h3>
           <p className="text-gray-600 mb-4">
             Coming soon: JSON paste functionality

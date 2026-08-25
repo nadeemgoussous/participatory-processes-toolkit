@@ -89,7 +89,7 @@ export default function SentimentChanges({ baseValues, adjustedValues }: Sentime
   return (
     <div className="border-t border-gray-200 pt-6">
       <h3 className="text-xl font-semibold mb-4 text-gray-800">
-        Stakeholder Sentiment Changes
+        Stakeholder sentiment changes
       </h3>
       <p className="text-gray-600 mb-6">
         How might each stakeholder group respond to these adjustments?

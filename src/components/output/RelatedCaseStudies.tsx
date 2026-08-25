@@ -27,7 +27,7 @@ export default function RelatedCaseStudies({ stakeholder, maxDisplay = 3 }: Rela
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
         </svg>
         <h3 className="text-lg font-semibold text-gray-800">
-          Real-World Examples: How Countries Engaged {stakeholder.name}
+          Real-world examples: how countries engaged {stakeholder.name}
         </h3>
       </div>
 
@@ -104,7 +104,7 @@ export default function RelatedCaseStudies({ stakeholder, maxDisplay = 3 }: Rela
 
                 {/* Key Outcomes */}
                 <div className="mb-4">
-                  <h5 className="text-sm font-semibold text-gray-700 mb-2">Key Outcomes</h5>
+                  <h5 className="text-sm font-semibold text-gray-700 mb-2">Key outcomes</h5>
                   <ul className="list-disc list-inside space-y-1 text-sm text-gray-600">
                     {caseStudy.keyOutcomes.map((outcome, idx) => (
                       <li key={idx}>{outcome}</li>
@@ -115,7 +115,7 @@ export default function RelatedCaseStudies({ stakeholder, maxDisplay = 3 }: Rela
                 {/* Resources */}
                 {(caseStudy.resources.budget || caseStudy.resources.staff || caseStudy.resources.timeline) && (
                   <div className="mb-4">
-                    <h5 className="text-sm font-semibold text-gray-700 mb-2">Resources Required</h5>
+                    <h5 className="text-sm font-semibold text-gray-700 mb-2">Resources required</h5>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-gray-600">
                       {caseStudy.resources.budget && (
                         <div className="flex items-start gap-2">
@@ -147,7 +147,7 @@ export default function RelatedCaseStudies({ stakeholder, maxDisplay = 3 }: Rela
 
                 {/* Lessons Learnt */}
                 <div className="mb-4">
-                  <h5 className="text-sm font-semibold text-gray-700 mb-2">Key Lessons</h5>
+                  <h5 className="text-sm font-semibold text-gray-700 mb-2">Key lessons</h5>
                   <ol className="list-decimal list-inside space-y-1.5 text-sm text-gray-600">
                     {caseStudy.lessonsLearnt.map((lesson, idx) => (
                       <li key={idx} className="pl-2">{lesson}</li>
@@ -157,7 +157,7 @@ export default function RelatedCaseStudies({ stakeholder, maxDisplay = 3 }: Rela
 
                 {/* Transferable Elements */}
                 <div>
-                  <h5 className="text-sm font-semibold text-gray-700 mb-2">Transferable to Your Context</h5>
+                  <h5 className="text-sm font-semibold text-gray-700 mb-2">Transferable to your context</h5>
                   <div className="flex flex-wrap gap-2">
                     {caseStudy.transferableElements.map((element, idx) => (
                       <span
@@ -190,7 +190,7 @@ export default function RelatedCaseStudies({ stakeholder, maxDisplay = 3 }: Rela
             onClick={() => {/* Navigate to Communicate tab */}}
             className="text-irena-blue hover:underline font-medium"
           >
-            Browse the full Case Study Library →
+            Browse the full case study library →
           </button>
         </p>
       </div>

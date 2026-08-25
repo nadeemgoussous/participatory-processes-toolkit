@@ -48,11 +48,11 @@ export default function DisseminationTips({
             onClick={onBack}
             className="mb-4 text-sm text-gray-600 hover:text-gray-900 flex items-center gap-2"
           >
-            <span>←</span> Back to Strategies
+            <span>←</span> Back to strategies
           </button>
         )}
         <h2 className="text-2xl font-bold text-gray-900 mb-2">
-          Dissemination Best Practices
+          Dissemination best practices
         </h2>
         <p className="text-gray-700">
           Key guidance from IRENA Participatory Processes Toolkit Section 4.3 on effective
@@ -77,7 +77,7 @@ export default function DisseminationTips({
           </ul>
           <div className="grid md:grid-cols-2 gap-4 mt-4">
             <div className="bg-green-50 rounded-lg p-3">
-              <h4 className="text-sm font-semibold text-green-800 mb-2">Recommended Approaches</h4>
+              <h4 className="text-sm font-semibold text-green-800 mb-2">Recommended approaches</h4>
               <div className="flex flex-wrap gap-2">
                 {contextualTips.recommendedApproaches.map((approach, index) => (
                   <span
@@ -90,7 +90,7 @@ export default function DisseminationTips({
               </div>
             </div>
             <div className="bg-red-50 rounded-lg p-3">
-              <h4 className="text-sm font-semibold text-red-800 mb-2">Approaches to Avoid</h4>
+              <h4 className="text-sm font-semibold text-red-800 mb-2">Approaches to avoid</h4>
               <div className="flex flex-wrap gap-2">
                 {contextualTips.avoidApproaches.map((approach, index) => (
                   <span
@@ -116,7 +116,7 @@ export default function DisseminationTips({
               : 'text-gray-600 hover:text-gray-900'
           }`}
         >
-          Quick Tips
+          Quick tips
         </button>
         <button
           onClick={() => setActiveTab('principles')}
@@ -126,7 +126,7 @@ export default function DisseminationTips({
               : 'text-gray-600 hover:text-gray-900'
           }`}
         >
-          Toolkit Principles
+          Toolkit principles
         </button>
         <button
           onClick={() => setActiveTab('case-studies')}
@@ -136,7 +136,7 @@ export default function DisseminationTips({
               : 'text-gray-600 hover:text-gray-900'
           }`}
         >
-          Case Studies
+          Case studies
         </button>
       </div>
 
@@ -175,7 +175,7 @@ export default function DisseminationTips({
 
       {/* Toolkit Reference Footer */}
       <div className="mt-8 p-5 bg-gray-100 rounded-lg border border-gray-200">
-        <h4 className="font-semibold text-gray-800 mb-2">Source Reference</h4>
+        <h4 className="font-semibold text-gray-800 mb-2">Source reference</h4>
         <p className="text-sm text-gray-700 mb-2">
           This content is based on <strong>IRENA Participatory Processes for Strategic Energy
           Planning Toolkit, Section 4.3: Dissemination</strong>.
@@ -286,7 +286,7 @@ function PrincipleCard({
 
           {/* Implementation Stages */}
           <div>
-            <h4 className="font-semibold text-gray-800 mb-3">Implementation Stages</h4>
+            <h4 className="font-semibold text-gray-800 mb-3">Implementation stages</h4>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {principle.implementationStages.map((stage) => (
                 <div key={stage.stage} className="bg-gray-50 rounded-lg p-3 text-center">
@@ -335,7 +335,7 @@ function PrincipleCard({
 
           {/* Tools */}
           <div>
-            <h4 className="font-semibold text-gray-800 mb-3">Available Tools</h4>
+            <h4 className="font-semibold text-gray-800 mb-3">Available tools</h4>
             <div className="space-y-3">
               {principle.tools.map((tool, index) => (
                 <div key={index} className="bg-white border border-gray-200 rounded-lg p-4">
@@ -360,7 +360,7 @@ function PrincipleCard({
 
           {/* Resource Requirements */}
           <div>
-            <h4 className="font-semibold text-gray-800 mb-3">Resource Requirements</h4>
+            <h4 className="font-semibold text-gray-800 mb-3">Resource requirements</h4>
             <ul className="grid md:grid-cols-2 gap-2">
               {principle.resourceRequirements.map((req, index) => (
                 <li key={index} className="flex items-start gap-2 text-sm text-gray-700">

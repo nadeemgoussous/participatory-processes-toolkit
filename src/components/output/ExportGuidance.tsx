@@ -5,7 +5,7 @@
  * - Step-by-step instructions
  * - Copy Key Data functionality (scenario metrics as text)
  * - Downloadable template files (PowerPoint, Word, Infographic)
- * - Guidance on local customization
+ * - Guidance on local customisation
  * - Links to IRENA toolkit resources
  *
  * Educational focus: Provide starter materials, not automated generation
@@ -66,38 +66,38 @@ const TEMPLATE_DOWNLOADS: TemplateDownload[] = [
 const CREATION_STEPS = [
   {
     step: 1,
-    title: 'Identify Your Audience',
+    title: 'Identify your audience',
     description: 'Use the Dissemination Strategies tab to understand what formats work best for your target stakeholder group.',
     tip: 'Policy makers prefer 2-page briefs; communities respond to personal impact stories.',
   },
   {
     step: 2,
-    title: 'Copy Key Data',
+    title: 'Copy key data',
     description: 'Use the "Copy Key Data" button below to get all your scenario metrics in a ready-to-paste format.',
     tip: 'Paste into any document editor, then format to match your template.',
   },
   {
     step: 3,
-    title: 'Choose a Template',
+    title: 'Choose a template',
     description: 'Download a template structure that matches your chosen format (presentation, brief, infographic).',
-    tip: 'Templates are guides—adapt them to your organization\'s style.',
+    tip: 'Templates are guides—adapt them to your organisation\'s style.',
   },
   {
     step: 4,
-    title: 'Customize for Context',
-    description: 'Add local policy references, regional examples, and your organization\'s branding.',
+    title: 'Customise for context',
+    description: 'Add local policy references, regional examples, and your organisation\'s branding.',
     tip: 'Include recent government announcements or regional targets that reinforce your scenario.',
   },
   {
     step: 5,
-    title: 'Review and Refine',
+    title: 'Review and refine',
     description: 'Check that key messages align with stakeholder priorities and that all data is properly sourced.',
-    tip: 'Have a colleague from your target audience review before finalizing.',
+    tip: 'Have a colleague from your target audience review before finalising.',
   },
 ];
 
 const CUSTOMIZATION_CHECKLIST = [
-  { id: 'branding', label: 'Add your organization\'s logo and colors', category: 'Branding' },
+  { id: 'branding', label: 'Add your organisation\'s logo and colors', category: 'Branding' },
   { id: 'local-targets', label: 'Reference national/regional energy targets', category: 'Policy Context' },
   { id: 'recent-policy', label: 'Mention recent policy announcements', category: 'Policy Context' },
   { id: 'local-examples', label: 'Include local project examples or case studies', category: 'Relevance' },
@@ -263,14 +263,14 @@ export default function ExportGuidance({ scenario, onBack }: ExportGuidanceProps
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
-          Back to Communication Strategies
+          Back to communication strategies
         </button>
       )}
 
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-2xl font-bold mb-2" style={{ color: 'var(--color-irena-blue)' }}>
-          Export Guidance
+          Export guidance
         </h1>
         <p className="text-gray-700">
           Step-by-step instructions for creating your own communication materials using your scenario data.
@@ -296,7 +296,7 @@ export default function ExportGuidance({ scenario, onBack }: ExportGuidanceProps
       {/* Step-by-Step Guide */}
       <section className="mb-10">
         <h2 className="text-xl font-semibold mb-4 text-gray-800">
-          How to Create Your Materials
+          How to create your materials
         </h2>
         <div className="space-y-4">
           {CREATION_STEPS.map((step) => (
@@ -327,7 +327,7 @@ export default function ExportGuidance({ scenario, onBack }: ExportGuidanceProps
       {/* Copy Key Data Section */}
       <section className="mb-10">
         <h2 className="text-xl font-semibold mb-4 text-gray-800">
-          Copy Key Data
+          Copy key data
         </h2>
         <div className="bg-gray-50 border border-gray-300 rounded-lg p-6">
           <p className="text-gray-700 mb-4">
@@ -354,7 +354,7 @@ export default function ExportGuidance({ scenario, onBack }: ExportGuidanceProps
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
                 </svg>
-                Copy Key Data to Clipboard
+                Copy key data to clipboard
               </>
             )}
           </button>
@@ -367,10 +367,10 @@ export default function ExportGuidance({ scenario, onBack }: ExportGuidanceProps
       {/* Download Templates Section */}
       <section className="mb-10">
         <h2 className="text-xl font-semibold mb-4 text-gray-800">
-          Download Template Files
+          Download template files
         </h2>
         <p className="text-gray-700 mb-4">
-          These templates provide structure and guidance—customize them with your scenario data and local context.
+          These templates provide structure and guidance—customise them with your scenario data and local context.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {TEMPLATE_DOWNLOADS.map((template) => (
@@ -391,7 +391,7 @@ export default function ExportGuidance({ scenario, onBack }: ExportGuidanceProps
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                     </svg>
-                    Download Template
+                    Download template
                   </button>
                 </div>
               </div>
@@ -400,13 +400,13 @@ export default function ExportGuidance({ scenario, onBack }: ExportGuidanceProps
         </div>
       </section>
 
-      {/* Customization Checklist */}
+      {/* Customisation Checklist */}
       <section className="mb-10">
         <h2 className="text-xl font-semibold mb-4 text-gray-800">
-          Customization Checklist
+          Customisation checklist
         </h2>
         <p className="text-gray-700 mb-4">
-          Before finalizing your materials, ensure you've addressed these key customization areas:
+          Before finalising your materials, ensure you've addressed these key customisation areas:
         </p>
         <div className="bg-white border border-gray-200 rounded-lg p-6">
           <div className="space-y-3">
@@ -441,7 +441,7 @@ export default function ExportGuidance({ scenario, onBack }: ExportGuidanceProps
       {/* Toolkit Resources */}
       <section className="mb-8">
         <h2 className="text-xl font-semibold mb-4 text-gray-800">
-          IRENA Toolkit Resources
+          IRENA toolkit resources
         </h2>
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
           <p className="text-gray-800 mb-4">
@@ -494,7 +494,7 @@ function generateTemplateContent(templateId: string, scenario: ScenarioInput): s
 - **Title:** ${scenarioName}
 - **Subtitle:** Energy Scenario Analysis for ${country}
 - **Date:** [Insert Date]
-- **Presented by:** [Your Name/Organization]
+- **Presented by:** [Your Name/Organisation]
 
 *Speaker Notes:* Welcome attendees, introduce yourself and your role.
 
@@ -591,7 +591,7 @@ function generateTemplateContent(templateId: string, scenario: ScenarioInput): s
 ---
 
 *Template generated from Scenario Dialogue Tool*
-*Customize this outline for your specific audience and context*
+*Customise this outline for your specific audience and context*
 `;
 
     case 'policy-brief':
@@ -605,7 +605,7 @@ function generateTemplateContent(templateId: string, scenario: ScenarioInput): s
 
 **Date:** [Month Year]
 
-**Prepared by:** [Organization Name]
+**Prepared by:** [Organisation Name]
 
 **Length:** 2-4 pages recommended
 
@@ -700,7 +700,7 @@ Example:
 ### CONTACT
 [Name]
 [Title]
-[Organization]
+[Organisation]
 [Email]
 [Phone]
 
@@ -714,7 +714,7 @@ Example:
 ---
 
 *Template generated from Scenario Dialogue Tool*
-*Adapt this structure to your organization's format and style guide*
+*Adapt this structure to your organisation's format and style guide*
 `;
 
     case 'infographic-structure':
@@ -736,7 +736,7 @@ Sections: 5-7 distinct areas
 **Elements:**
 - [ ] Compelling headline (max 10 words)
 - [ ] Subheadline with country/timeframe
-- [ ] Organization logo
+- [ ] Organisation logo
 - [ ] Visual element (icon or small graphic)
 
 **Example Headlines:**
@@ -853,7 +853,7 @@ ${milestones.map(m => `- ${m.year}: RE share ${m.reShare?.toFixed(0) || '?'}%`).
 
 **Include:**
 - [ ] QR code to more information
-- [ ] Organization website
+- [ ] Organisation website
 - [ ] Social media handles
 
 ---
@@ -913,7 +913,7 @@ ${milestones.map(m => `- ${m.year}: RE share ${m.reShare?.toFixed(0) || '?'}%`).
 - [ ] Are all numbers sourced and accurate?
 - [ ] Is text readable from arm's length?
 - [ ] Do colors work for colorblind viewers?
-- [ ] Is organization branding included?
+- [ ] Is organisation branding included?
 - [ ] Is there clear hierarchy (what to read first, second, third)?
 - [ ] Has someone unfamiliar with the topic reviewed it?
 
@@ -1009,7 +1009,7 @@ Supporting fact:
 
 ### FOOTER
 
-- Organization logo
+- Organisation logo
 - Contact information
 - Website
 - "Part of ${country}'s ${milestone2050?.reShare?.toFixed(0) || ''}% renewable energy by 2050 plan"
@@ -1036,7 +1036,7 @@ Supporting fact:
 
 ## LANGUAGE TO USE
 
-**Instead of:** "Decarbonization pathway"
+**Instead of:** "Decarbonisation pathway"
 **Say:** "Cleaner energy sources"
 
 **Instead of:** "Grid integration challenges"
@@ -1075,7 +1075,7 @@ If translating to local languages:
 ---
 
 *Template generated from Scenario Dialogue Tool*
-*Customize with local details, images, and language*
+*Customise with local details, images, and language*
 `;
 
     default:

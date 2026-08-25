@@ -63,30 +63,30 @@ export default function CaseStudyBrowser({ initialStakeholder }: CaseStudyBrowse
       {/* Header */}
       <div className="mb-6">
         <h2 className="text-2xl font-bold text-gray-800 mb-2">
-          📚 Case Study Library
+          📚 Case study library
         </h2>
         <p className="text-gray-600">
           Explore 13 real-world examples from the IRENA Participatory Processes Toolkit.
-          Learn how countries and organizations successfully engaged stakeholders in energy planning.
+          Learn how countries and organisations successfully engaged stakeholders in energy planning.
         </p>
       </div>
 
       {/* Filters */}
       <div className="card mb-6">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">Filter Case Studies</h3>
+        <h3 className="text-lg font-semibold text-gray-800 mb-4">Filter case studies</h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Stakeholder Filter */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Stakeholder Group
+              Stakeholder group
             </label>
             <select
               value={selectedStakeholder}
               onChange={(e) => setSelectedStakeholder(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-irena-blue focus:border-transparent text-sm"
             >
-              <option value="all">All Stakeholders</option>
+              <option value="all">All stakeholders</option>
               {stakeholderProfiles.map(sp => (
                 <option key={sp.id} value={sp.id}>{sp.name}</option>
               ))}
@@ -96,14 +96,14 @@ export default function CaseStudyBrowser({ initialStakeholder }: CaseStudyBrowse
           {/* Method Filter */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Engagement Method
+              Engagement method
             </label>
             <select
               value={selectedMethod}
               onChange={(e) => setSelectedMethod(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-irena-blue focus:border-transparent text-sm"
             >
-              <option value="all">All Methods</option>
+              <option value="all">All methods</option>
               {allMethods.map(method => (
                 <option key={method} value={method}>
                   {method.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
@@ -122,7 +122,7 @@ export default function CaseStudyBrowser({ initialStakeholder }: CaseStudyBrowse
               onChange={(e) => setSelectedRegion(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-irena-blue focus:border-transparent text-sm"
             >
-              <option value="all">All Regions</option>
+              <option value="all">All regions</option>
               {allRegions.map(region => (
                 <option key={region} value={region}>{region}</option>
               ))}
@@ -132,14 +132,14 @@ export default function CaseStudyBrowser({ initialStakeholder }: CaseStudyBrowse
           {/* Budget Filter */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Budget Level
+              Budget level
             </label>
             <select
               value={selectedBudget}
               onChange={(e) => setSelectedBudget(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-irena-blue focus:border-transparent text-sm"
             >
-              <option value="all">All Budgets</option>
+              <option value="all">All budgets</option>
               {budgetLevels.map(level => (
                 <option key={level} value={level}>
                   {level.charAt(0).toUpperCase() + level.slice(1)}
@@ -175,7 +175,7 @@ export default function CaseStudyBrowser({ initialStakeholder }: CaseStudyBrowse
             onClick={resetFilters}
             className="btn-primary"
           >
-            Clear Filters
+            Clear filters
           </button>
         </div>
       ) : (
@@ -289,7 +289,7 @@ export default function CaseStudyBrowser({ initialStakeholder }: CaseStudyBrowse
 
                   {/* Stakeholders Engaged */}
                   <div className="mb-4">
-                    <h5 className="text-sm font-semibold text-gray-700 mb-2">Stakeholders Engaged</h5>
+                    <h5 className="text-sm font-semibold text-gray-700 mb-2">Stakeholders engaged</h5>
                     <div className="flex flex-wrap gap-2">
                       {caseStudy.stakeholdersEngaged.map(sId => {
                         const stakeholder = stakeholderProfiles.find(sp => sp.id === sId);
@@ -308,7 +308,7 @@ export default function CaseStudyBrowser({ initialStakeholder }: CaseStudyBrowse
 
                   {/* Engagement Methods */}
                   <div className="mb-4">
-                    <h5 className="text-sm font-semibold text-gray-700 mb-2">Engagement Methods Used</h5>
+                    <h5 className="text-sm font-semibold text-gray-700 mb-2">Engagement methods used</h5>
                     <div className="flex flex-wrap gap-2">
                       {caseStudy.engagementMethods.map(method => (
                         <span
@@ -323,7 +323,7 @@ export default function CaseStudyBrowser({ initialStakeholder }: CaseStudyBrowse
 
                   {/* Key Outcomes */}
                   <div className="mb-4">
-                    <h5 className="text-sm font-semibold text-gray-700 mb-2">Key Outcomes</h5>
+                    <h5 className="text-sm font-semibold text-gray-700 mb-2">Key outcomes</h5>
                     <ul className="list-disc list-inside space-y-1 text-sm text-gray-600">
                       {caseStudy.keyOutcomes.map((outcome, idx) => (
                         <li key={idx}>{outcome}</li>
@@ -333,7 +333,7 @@ export default function CaseStudyBrowser({ initialStakeholder }: CaseStudyBrowse
 
                   {/* Resources */}
                   <div className="mb-4">
-                    <h5 className="text-sm font-semibold text-gray-700 mb-2">Resources Required</h5>
+                    <h5 className="text-sm font-semibold text-gray-700 mb-2">Resources required</h5>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-gray-600">
                       {caseStudy.resources.budget && (
                         <div className="flex items-start gap-2">
@@ -370,7 +370,7 @@ export default function CaseStudyBrowser({ initialStakeholder }: CaseStudyBrowse
 
                   {/* Lessons Learnt */}
                   <div className="mb-4">
-                    <h5 className="text-sm font-semibold text-gray-700 mb-2">Key Lessons</h5>
+                    <h5 className="text-sm font-semibold text-gray-700 mb-2">Key lessons</h5>
                     <ol className="list-decimal list-inside space-y-2 text-sm text-gray-600">
                       {caseStudy.lessonsLearnt.map((lesson, idx) => (
                         <li key={idx} className="pl-2">{lesson}</li>
@@ -380,7 +380,7 @@ export default function CaseStudyBrowser({ initialStakeholder }: CaseStudyBrowse
 
                   {/* Transferable Elements */}
                   <div className="mb-4">
-                    <h5 className="text-sm font-semibold text-gray-700 mb-2">Transferable to Your Context</h5>
+                    <h5 className="text-sm font-semibold text-gray-700 mb-2">Transferable to your context</h5>
                     <div className="flex flex-wrap gap-2">
                       {caseStudy.transferableElements.map((element, idx) => (
                         <span

@@ -345,7 +345,7 @@ function findRelatedQuestion(metric: string, questions: string[]): string | null
   const keywords: Record<string, string[]> = {
     'investment': ['financing', 'investment', 'cost', 'funding'],
     'emissions': ['emissions', 'climate', 'carbon', 'CO2'],
-    'jobs': ['jobs', 'employment', 'workforce', 'labor'],
+    'jobs': ['jobs', 'employment', 'workforce', 'labour'],
     'renewableShare': ['renewable', 'RE', 'VRE', 'solar', 'wind'],
     'battery': ['storage', 'battery', 'flexibility', 'backup'],
     'landUse': ['land', 'space', 'area', 'footprint'],
@@ -675,7 +675,7 @@ function enhanceAppreciationWithContext(
   } else if (context === 'developed') {
     const emissions2030 = indicators['emissions.reductionPercent2030'];
     if (emissions2030 && emissions2030 > 40) {
-      enhanced.push('Climate leadership with aggressive decarbonization timeline');
+      enhanced.push('Climate leadership with aggressive decarbonisation timeline');
     }
   }
 

@@ -114,11 +114,11 @@ Solution:
 
 ### Technology Stack
 
-- **Frontend**: React 18+ with Vite
+- **Frontend**: React 19 with Vite
 - **Styling**: Tailwind CSS (matching IRENA brand colors)
 - **State Management**: React Context or Zustand
 - **Charts**: Recharts
-- **AI Integration**: Anthropic Claude API (optional enhancement, not required)
+- **AI Integration**: WebLLM (browser) / Ollama (local) / cloud API — all optional enhancements, not required
 - **Offline Storage**: IndexedDB via Dexie.js
 - **PWA**: vite-plugin-pwa with Workbox
 - **Testing**: Playwright for end-to-end testing
@@ -153,26 +153,20 @@ scenario-dialogue-tool/
 ├── playwright.config.ts         # Testing configuration
 ├── package.json
 ├── vite.config.ts
-├── tailwind.config.js
 ├── public/
 │   ├── icons/                   # Stakeholder icons from toolkit
-│   │   ├── policy-makers.svg
-│   │   ├── grid-operators.svg
-│   │   ├── industry.svg
-│   │   ├── public.svg
-│   │   ├── csos-ngos.svg
-│   │   ├── scientific.svg
-│   │   ├── finance.svg
+│   │   ├── policy-makers.png
+│   │   ├── grid-operators.png
+│   │   ├── industry.png
+│   │   ├── public.png
+│   │   ├── csos-ngos.png
+│   │   ├── scientific.png
+│   │   ├── finance.png
 │   │   ├── regional-bodies.svg
 │   │   └── development-partners.svg
-│   ├── graphics/                # Toolkit graphics for branding
-│   │   ├── planning-cycle.svg
-│   │   ├── tool-categories.svg
-│   │   └── irena-logo.svg
-│   ├── templates/
-│   │   └── SCENARIO-INPUT-TEMPLATE.xlsx  # Excel template for data import
 │   └── sample-data/
-│       └── example-scenario.json
+│       ├── scenarioland-baseline.json
+│       └── rwanda-baseline.json
 ├── src/
 │   ├── components/
 │   │   ├── layout/
@@ -238,9 +232,9 @@ The **[docs/toolkit/](docs/toolkit/)** folder contains the complete IRENA "Parti
 
 Participants should go from "I have my model results" to "I'm exploring stakeholder responses" in under 5 minutes.
 
-### Option 1: Excel Template (Recommended)
+### Option 1: Excel Template (PLANNED - F013/F014, not yet available)
 
-**SCENARIO-INPUT-TEMPLATE.xlsx** - A macro-enabled Excel workbook that:
+**SCENARIO-INPUT-TEMPLATE.xlsx** - A macro-enabled Excel workbook (not yet created) that will:
 
 1. Has clear input cells for each metric (color-coded)
 2. Accepts copy-paste from model result files
@@ -615,20 +609,12 @@ Before deploying to workshops:
 
 ---
 
-## Critical Pre-Deployment Enhancement
+## WebLLM Integration (F043) - IMPLEMENTED
 
-### WebLLM Integration (F043) - HIGH PRIORITY
+**Status**: ✅ COMPLETE - WebLLM browser-based AI is implemented and tested
+**Documentation**: [docs/WEBLLM-STATUS.md](docs/WEBLLM-STATUS.md) (architecture, prompts, echo detection, testing)
 
-**Status**: PLANNED - Package installed, awaiting implementation
-**Priority**: Must complete before workshop deployment
-**Implementation Guide**: docs/WEBLLM-IMPLEMENTATION.md
-
-**Why Critical**:
-- Current Ollama implementation requires separate installation (facilitators only)
-- Workshop participants need zero-setup AI enhancement
-- WebLLM enables truly offline AI in browser (no installation required)
-
-**Benefits**:
+**What it provides**:
 - ✅ Zero installation for participants
 - ✅ Runs 100% in browser (WebGPU)
 - ✅ Truly offline after first model load
@@ -636,12 +622,15 @@ Before deploying to workshops:
 - ✅ PWA compatible
 - ✅ Can be pre-loaded on USB drives
 
-**Model**: Phi-3.5-mini-instruct (~800MB, one-time download)
-**Browser Support**: Chrome 113+, Edge 113+ (WebGPU required)
-**Performance**: 2-4 seconds inference on modern hardware
-**Fallback**: Silent failover to Ollama or rule-based if unsupported
+**Model**: SmolLM2-1.7B-Instruct (q4f16_1, ~1.8GB one-time download, cached in browser)
+**Browser Support**: Chrome 113+, Edge 113+ (WebGPU required); Apple Silicon works
+**Failover chain**: WebLLM → Ollama (smollm2:1.7b, for facilitators) → Cloud API → Rule-based (always works)
 
-**Implementation Priority**: After completing current features (F022-F042), before final packaging
+**Implementation notes**:
+- Few-shot prompting (2 examples per stakeholder) for WebLLM's chat API
+- Simpler direct prompts for Ollama's generate endpoint (few-shot causes echo there)
+- Echo detection with automatic fallback to rule-based responses
+- Streaming text display for Ollama backend (F046)
 
 ---
 

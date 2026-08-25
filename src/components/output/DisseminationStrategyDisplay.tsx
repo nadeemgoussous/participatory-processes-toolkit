@@ -32,21 +32,21 @@ export default function DisseminationStrategyDisplay({
         }}
       >
         <h3 className="text-lg font-semibold mb-3" style={{ color: profile.color }}>
-          Why This Matters for {profile.name}
+          Why this matters for {profile.name}
         </h3>
         <p className="text-gray-700">{strategy.whyThisMatters}</p>
 
         <div className="grid grid-cols-3 gap-4 mt-4">
           <div className="text-center">
-            <div className="text-sm text-gray-600">Technical Level</div>
+            <div className="text-sm text-gray-600">Technical level</div>
             <div className="font-semibold text-gray-800 capitalize">{strategy.technicalLevel}</div>
           </div>
           <div className="text-center">
-            <div className="text-sm text-gray-600">Time Available</div>
+            <div className="text-sm text-gray-600">Time available</div>
             <div className="font-semibold text-gray-800 capitalize">{strategy.timeAvailable}</div>
           </div>
           <div className="text-center">
-            <div className="text-sm text-gray-600">Decision Influence</div>
+            <div className="text-sm text-gray-600">Decision influence</div>
             <div className="font-semibold text-gray-800 capitalize">{strategy.decisionInfluence}</div>
           </div>
         </div>
@@ -55,7 +55,7 @@ export default function DisseminationStrategyDisplay({
       {/* Recommended Formats */}
       <div>
         <h3 className="text-xl font-semibold mb-4 text-gray-800">
-          Recommended Dissemination Formats
+          Recommended dissemination formats
         </h3>
         <div className="space-y-4">
           {strategy.formats.map((format, index) => (
@@ -113,13 +113,13 @@ export default function DisseminationStrategyDisplay({
         </div>
       </div>
 
-      {/* Key Messages to Emphasize */}
+      {/* Key messages to emphasise */}
       <div className="bg-white rounded-lg border-2 border-gray-200 p-6">
         <h3 className="text-xl font-semibold mb-4 text-gray-800">
-          Key Messages to Emphasize
+          Key messages to emphasise
         </h3>
         <p className="text-sm text-gray-600 mb-4">
-          These messages are customized based on your scenario data. Copy and adapt them for your materials.
+          These messages are customised based on your scenario data. Copy and adapt them for your materials.
         </p>
         <ul className="space-y-3">
           {populatedMessages.map((message, index) => (
@@ -141,14 +141,14 @@ export default function DisseminationStrategyDisplay({
             navigator.clipboard.writeText(text);
           }}
         >
-          📋 Copy All Messages
+          📋 Copy all messages
         </button>
       </div>
 
       {/* Narrative Framing */}
       <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200 p-6">
         <h3 className="text-xl font-semibold mb-3 text-gray-800">
-          Narrative Framing Guidance
+          Narrative framing guidance
         </h3>
         <p className="text-gray-700 leading-relaxed">{strategy.narrativeFraming}</p>
       </div>
@@ -156,7 +156,7 @@ export default function DisseminationStrategyDisplay({
       {/* What to Avoid */}
       <div className="bg-red-50 rounded-lg border-l-4 border-red-400 p-6">
         <h3 className="text-xl font-semibold mb-4 text-red-900">
-          ⚠️ What to Avoid
+          ⚠️ What to avoid
         </h3>
         <ul className="space-y-2">
           {strategy.avoidances.map((avoidance, index) => (
@@ -171,7 +171,7 @@ export default function DisseminationStrategyDisplay({
       {/* Toolkit Methods Reference */}
       <div className="bg-gray-50 rounded-lg border border-gray-200 p-6">
         <h3 className="text-lg font-semibold mb-3 text-gray-800">
-          IRENA Toolkit Methods Referenced
+          IRENA toolkit methods referenced
         </h3>
         <ul className="space-y-2">
           {strategy.toolkitMethods.map((method, index) => (
@@ -186,7 +186,7 @@ export default function DisseminationStrategyDisplay({
       {/* Demo Tools Navigation (for F028-F030) */}
       <div className="border-t-2 border-gray-200 pt-6">
         <h3 className="text-xl font-semibold mb-4 text-gray-800">
-          Interactive Tools & Templates
+          Interactive tools & templates
         </h3>
         <p className="text-gray-600 mb-4">
           Explore working examples and templates to help you create effective dissemination materials:
@@ -198,7 +198,7 @@ export default function DisseminationStrategyDisplay({
             title="Coming in F029"
           >
             <div className="text-2xl mb-2">🧮</div>
-            <div className="font-semibold text-gray-800 mb-1">Community Calculator</div>
+            <div className="font-semibold text-gray-800 mb-1">Community calculator</div>
             <div className="text-sm text-gray-500">Interactive demo tool</div>
             <div className="text-xs text-gray-400 mt-2">Coming soon (F029)</div>
           </button>
@@ -209,7 +209,7 @@ export default function DisseminationStrategyDisplay({
             title="Coming in F030"
           >
             <div className="text-2xl mb-2">📊</div>
-            <div className="font-semibold text-gray-800 mb-1">Scenario Comparison</div>
+            <div className="font-semibold text-gray-800 mb-1">Scenario comparison</div>
             <div className="text-sm text-gray-500">Ambition benchmarking</div>
             <div className="text-xs text-gray-400 mt-2">Coming soon (F030)</div>
           </button>
@@ -220,7 +220,7 @@ export default function DisseminationStrategyDisplay({
             title="Coming in F028"
           >
             <div className="text-2xl mb-2">📝</div>
-            <div className="font-semibold text-gray-800 mb-1">Format Templates</div>
+            <div className="font-semibold text-gray-800 mb-1">Format templates</div>
             <div className="text-sm text-gray-500">Briefing outlines</div>
             <div className="text-xs text-gray-400 mt-2">Coming soon (F028)</div>
           </button>
