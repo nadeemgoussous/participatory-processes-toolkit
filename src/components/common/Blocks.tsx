@@ -20,7 +20,10 @@ export function Bullets({ items }: { items: string[] }) {
     <ul className="space-y-1.5">
       {items.map((item, i) => (
         <li key={i} className="flex gap-2 text-gray-700 leading-relaxed">
-          <span aria-hidden="true" className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gray-400" />
+          <span
+            aria-hidden="true"
+            className="h-1.5 w-1.5 shrink-0 translate-y-[0.6em] rounded-full bg-gray-400"
+          />
           <span>{item}</span>
         </li>
       ))}

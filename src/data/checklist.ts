@@ -94,7 +94,7 @@ const stakeholderItems: ChecklistItem[] = stakeholderProfiles.flatMap((profile) 
     id: `${profile.id}-practice-${i + 1}`,
     group: 'stakeholders' as const,
     text,
-    source: `3 ${profile.name}, Good Practices`,
+    source: `${profile.toolkitSection} Good Practices`,
     phases: ALL_PHASES,
     stakeholderId: profile.id as StakeholderId,
   }))

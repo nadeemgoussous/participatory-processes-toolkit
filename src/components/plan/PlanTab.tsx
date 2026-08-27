@@ -2,8 +2,8 @@ import { useMemo, useRef, useState } from 'react';
 import { selectItems } from '../../data/checklist';
 import { CHECKLIST_GROUPS } from '../../types/checklist';
 import type { ChecklistItem } from '../../types/checklist';
-import { engagementTools, objectives } from '../../data/engagement-tools';
-import { stakeholderProfiles } from '../../data/stakeholder-profiles';
+import { engagementTools, objectives, getTool } from '../../data/engagement-tools';
+import { stakeholderProfiles, getProfile } from '../../data/stakeholder-profiles';
 import { PHASES } from '../../types/toolkit';
 import type { Phase, ToolId } from '../../types/toolkit';
 import type { StakeholderId } from '../../types/stakeholder';
@@ -253,6 +253,16 @@ function Chooser({
   );
 }
 
+/**
+ * Which tool or stakeholder section an item came from. A group mixes items from
+ * several tools, and a section number alone does not say which is which.
+ */
+function itemOrigin(item: ChecklistItem): string {
+  if (item.toolId) return getTool(item.toolId)?.name ?? '';
+  if (item.stakeholderId) return getProfile(item.stakeholderId)?.name ?? '';
+  return '';
+}
+
 function Item({
   item,
   state,
@@ -279,7 +289,11 @@ function Item({
           <label htmlFor={item.id} className="block text-gray-800">
             {item.text}
           </label>
-          <p className="mt-1 text-xs text-gray-500">{item.source}</p>
+          <p className="mt-1 text-xs text-gray-500">
+            {itemOrigin(item)}
+            {itemOrigin(item) && ' · '}
+            {item.source}
+          </p>
           <textarea
             value={note}
             onChange={(e) => onChange({ note: e.target.value })}

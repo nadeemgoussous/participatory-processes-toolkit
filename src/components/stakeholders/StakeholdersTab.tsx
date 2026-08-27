@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { stakeholderProfiles, getProfile } from '../../data/stakeholder-profiles';
 import { getCaseStudiesForStakeholder } from '../../data/case-studies';
-import { engagementTools } from '../../data/engagement-tools';
 import type { StakeholderProfile, StakeholderId } from '../../types/stakeholder';
 import { Blocks, Bullets, Section, SourceNote } from '../common/Blocks';
 import { usePlan } from '../../context/PlanContext';
@@ -85,9 +84,6 @@ function ProfileDetail({
   const { plan, setSetup } = usePlan();
   const inPlan = plan.setup.stakeholders.includes(profile.id);
   const studies = getCaseStudiesForStakeholder(profile.id);
-  const tools = engagementTools.filter((t) =>
-    t.caseStudyIds.some((id) => studies.some((s) => s.id === id))
-  );
 
   const toggle = () =>
     setSetup({
@@ -145,21 +141,6 @@ function ProfileDetail({
       <Section heading="Good practices">
         <Bullets items={profile.goodPractices} />
       </Section>
-
-      {tools.length > 0 && (
-        <Section heading="Tools used with this group in the case studies">
-          <div className="flex flex-wrap gap-2">
-            {tools.map((t) => (
-              <span
-                key={t.id}
-                className="rounded-md border border-gray-300 bg-gray-50 px-3 py-1.5 text-sm text-gray-800"
-              >
-                {t.name}
-              </span>
-            ))}
-          </div>
-        </Section>
-      )}
 
       {studies.length > 0 && (
         <Section heading="Case studies engaging this group">
