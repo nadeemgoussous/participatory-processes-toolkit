@@ -23,3 +23,10 @@ current-state file that is actually read at the start of a session.
 **Reason**: Removed `old-test-docs/` and `session-guides/` - snapshots of test
 runs and one-off session guides from December 2025, all superseded by the live
 test suite and `claude-progress.txt`. Recoverable from git history if needed.
+
+## feature_list-scenario-tool.json
+
+The 48-entry feature tracker for the scenario dialogue tool, as it stood at the
+2026-08-27 pivot. It describes the scenario import, the prediction loop, the response
+engine and the AI tiers, none of which exist any more. Kept for history; it is not a
+tracker for the current app.

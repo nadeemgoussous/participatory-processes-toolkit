@@ -27,16 +27,16 @@ jobs:
       - name: Typecheck
         run: npm run typecheck
 
-      # Browser-free check of the rule-based response library:
-      # template selection, interpolation, grammar cleanup, anti-repetition.
-      - name: Response quality
-        run: npm run test:quality
+      # Fails if any displayed text is not present in docs/toolkit/.
+      # This is the check that keeps invariant 1 true. See CLAUDE.md section 1.
+      - name: Verify toolkit quotes
+        run: npm run verify:quotes
 
       - name: Build
         run: npm run build
 
-      # The Playwright suite is not run here yet: several specs are stale and the
-      # WebLLM specs download ~1.8 GB. See docs/KNOWN-GAPS.md section 5 — once those
-      # are fixed, add:
-      #   - run: npx playwright install --with-deps chromium
-      #   - run: npm run test:chromium
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: End-to-end tests
+        run: npm run test:chromium

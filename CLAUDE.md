@@ -1,213 +1,163 @@
-# Scenario Dialogue Tool — Working Instructions
+# Participatory Processes Toolkit — Working Instructions
 
-Interactive web app for IRENA capacity-building workshops. Energy planners import their
-model results, then rehearse how nine stakeholder groups would react to them, and how to
-communicate the scenario to each audience.
+A digital edition of IRENA (2025), *Participatory processes for strategic energy planning:
+A toolkit for national energy planners*. Energy planners use it to plan a participatory
+process: who to engage, which engagement tools to use, and what other countries did.
 
-This file is the operating manual for anyone (human or agent) changing the code.
-It describes **what is actually in the repo today**. When code and this file disagree,
-fix one of them in the same change — do not leave them in conflict.
+This file describes **what is actually in the repo today**. When code and this file
+disagree, fix one of them in the same change.
 
 ---
 
 ## 1. Non-negotiable product invariants
 
-These three constraints drive nearly every design decision. Do not relax them without
-recording the decision in `docs/DECISIONS.md`.
+**1. Every word of content comes from the publication.** Text shown to the user is quoted
+from `docs/toolkit/`. Nothing is paraphrased, condensed, summarised or invented. If the
+publication does not state something, the app does not say it, and the field does not exist.
 
-**1. Offline-first.** Workshop venues have unreliable internet. Rule-based responses,
-data import, calculations and all four tabs must work with the network off. AI is a
-bonus tier that fails silently — never a spinner, an error toast, or a blocked UI.
+`npm run verify:quotes` enforces this: it extracts every string literal of five words or
+more from the data files and fails if it does not appear in `docs/toolkit/`. It runs in CI.
+Strings that are structural rather than quoted — section headings rendered in sentence case
+— are listed explicitly in `ALLOWED` in `scripts/verify-toolkit-quotes.mjs`, each one
+individually justified. Adding to that list is a decision, not a formality.
 
-**2. No shadow model.** The tool must never contradict an energy system optimisation
-model (MESSAGE, OSeMOSYS, LEAP, SPLAT). It calculates *soft metrics only*:
+Values that are *classification* rather than *text* are allowed and marked as such in the
+types: `region`, `stakeholderIds`, `toolIds`, `caseStudyIds`, colours and icon paths. They
+support filtering and cross-linking, and are never displayed as publication prose.
 
-- Calculated: jobs (construction job-years, operations positions), land use (ha), CO2 from
-  combustion, directional stakeholder sentiment
-- Never calculated: LCOE, tariffs, reserve margin, VRE integration limits, reliability,
-  dispatch, transmission constraints — these require the real model
+**2. Offline-first.** Workshop venues have unreliable internet. Nothing is fetched at
+runtime — no fonts, no analytics, no API. The build must open from `file://`, from a USB
+drive and from GitHub Pages, which is why `base` is `'./'`.
 
-Every view that shows a calculated number carries the disclaimer:
-
-> ILLUSTRATIVE ESTIMATES ONLY — These figures show directional impacts for discussion
-> purposes. They do NOT replace energy system optimization model analysis. Always verify
-> feasibility in the full model.
-
-**3. Predict-before-reveal.** The user must write a prediction (min. 20 characters)
-before the simulated stakeholder response is revealed. The learning happens in the
-comparison, so never add a path that skips straight to the answer.
+**3. No calculation.** The tool holds no model, no metrics and no arithmetic over user data.
+It presents guidance and records what the planner decides. Anything that computes a number
+about an energy system belongs in the planner's own model, not here.
 
 ---
 
 ## 2. Commands
 
-Verified on Node 22 (Node 20+ required; CI pins 22).
+Node 22 (Node 20+ required; CI pins 22).
 
 ```bash
-npm install                 # first run
-npm run dev                 # http://localhost:5173/stakeholder-dialogue/  <- note the base path
-npm run typecheck           # tsc --noEmit  (fast; run before every commit)
-npm run build               # tsc && vite build -> dist/ (~75 s, emits sw.js + workbox-*.js)
-npm run preview             # serve dist/ locally
+npm install
+npm run dev                 # http://localhost:5173/
+npm run typecheck           # tsc --noEmit — run before every commit
+npm run verify:quotes       # checks all data text against docs/toolkit/ — seconds
+npm run build               # tsc && vite build -> dist/  (~15 s)
+npm run preview             # serve dist/
 
-npm test                    # Playwright, all 4 browser projects (slow, verbose)
-npm run test:chromium       # Chromium only — use this while iterating
-npm test -- tests/e2e/17-stakeholder-tab.spec.ts --project=chromium   # single file
-
-npm run test:quality        # scripts/test-response-quality.cjs — template QA, no browser, seconds
-npm run responses:build     # regenerate src/data/response-library.ts from training data
+npm run test:chromium       # 8 Playwright tests, ~22 s — use this while iterating
+npm test                    # all browser projects
 ```
 
-**Testing policy:** Chromium-only while iterating; full multi-browser run before a commit
-that touches CSS, layout, PWA or offline behaviour. `npm run test:quality` is cheap and
-catches most rule-based response regressions — prefer it over Playwright for template work.
+`npm run verify:quotes` is the cheapest and most important check in the repo. Run it after
+touching anything in `src/data/` or `src/types/`.
 
 ---
 
 ## 3. Architecture
 
-React 19 + TypeScript (strict) + Vite 7, Tailwind **v4** (CSS-first, no `tailwind.config.js`),
-Recharts, Dexie/IndexedDB, vite-plugin-pwa/Workbox, Playwright.
+React 19 + TypeScript (strict) + Vite 7, Tailwind v4 (CSS-first, no `tailwind.config.js`),
+vite-plugin-pwa, Playwright. **React and react-dom are the only runtime dependencies.**
+Keep it that way.
 
 ```
 src/
-├─ App.tsx                      four tabs: input | dialogue | explore | communicate
-├─ context/ScenarioContext.tsx  single source of scenario state; auto-saves to IndexedDB (500 ms debounce)
-├─ types/                       <- SOURCE OF TRUTH for data shapes
-│   ├─ scenario.ts              ScenarioInput { metadata, milestones[], detailedTech? }
-│   ├─ derived-metrics.ts       output of calculations.ts
-│   └─ response.ts stakeholder.ts adjustments.ts case-study.ts
-├─ data/                        content, not logic
-│   ├─ stakeholder-profiles.ts       the 9 profiles + concern triggers
-│   ├─ stakeholder-enhancements.ts   multi-metric triggers, dev-context, variants
-│   ├─ response-library.ts           GENERATED — 182 templates. Never hand-edit; run responses:build
-│   ├─ template-selector.ts          hand-written selection + interpolation (Gaussian scoring, shuffle bags)
-│   ├─ stakeholder-fewshot.ts        few-shot examples for the LLM tiers
-│   └─ dissemination-*.ts, case-studies.ts, glossary.ts, technology-factors.ts
-├─ utils/
-│   ├─ calculations.ts          soft metrics only (jobs, land, emissions, capacity, investment)
-│   ├─ stakeholder-rules.ts     PRIMARY response generator — always available, offline
-│   ├─ stakeholder-ai.ts        optional AI tiers + silent failover
-│   ├─ sentiment-calculator.ts  directional sentiment for the Explore tab
-│   ├─ csv-parser.ts            SPLAT / long-format CSV -> ScenarioInput
-│   ├─ unit-conversions.ts      MW/GW, GWh/TWh, m$/B$, Mt/kt
-│   └─ db.ts                    Dexie schema (scenarios, predictions, settings)
-├─ hooks/       useWebLLM.ts, useOnlineStatus.ts
-└─ components/  layout | input | stakeholder | prediction | calculator | output | common
+├─ App.tsx                     four sections: plan | stakeholders | tools | cases
+├─ context/PlanContext.tsx     the plan; persists to localStorage on change
+├─ types/                      <- SOURCE OF TRUTH for data shapes
+│   ├─ toolkit.ts              Phase, ToolCategory, EngagementTool, Objective, ContentBlock
+│   ├─ stakeholder.ts          StakeholderProfile (chapter 3 section shape)
+│   ├─ case-study.ts           CaseStudy (chapter 5 section shape)
+│   └─ checklist.ts            ChecklistItem, PlanState
+├─ data/                       quoted publication text, no logic
+│   ├─ engagement-tools.ts     chapter 4: seven tools + the Step 4 objective mapping
+│   ├─ stakeholder-profiles.ts chapter 3: seven groups
+│   ├─ case-studies.ts         chapter 5: thirteen studies + the summary table
+│   └─ checklist.ts            items DERIVED from the three files above
+├─ utils/plan-storage.ts       localStorage, JSON export and import
+└─ components/  plan | stakeholders | tools | cases | layout | common
 ```
 
-`scripts/` holds Node maintenance tools (response-library build, quality tests, icon
-generation, Ollama prompt testing). They are not part of the app bundle.
+### The data model
 
-### Data model, in one paragraph
+Each data file mirrors the structure of its chapter, because the publication describes every
+tool and every group against the same fixed dimensions. `EngagementTool` has
+`stageApplications`, `requirements`, `prerequisites`, `strengths`, `challenges`,
+`limitations`, `examples`, `evidence` and an optional box — the same headings the chapter
+uses. `ContentBlock[]` holds sections that mix paragraphs and lists, in order.
 
-`ScenarioInput` is **milestone-based**: `metadata` plus `milestones: MilestoneData[]`,
-where each milestone has a `year` and unit-tagged values (`capacity`, `generation`,
-`reShare`, `investment`, `emissions`, `peakDemand`, plus optional `capacityAdditions`,
-`annualOMCosts`, `curtailment`, `imports`). Technologies are aggregated into
-`TechnologyMix { renewables, fossil, storage?, other? }`; granular per-technology data is
-optional in `detailedTech`. An older flat schema (`milestoneYears` + `supply.capacity.<tech>`)
-was replaced — if you meet it in a doc or test, that code is stale.
-**Read `src/types/scenario.ts` before writing anything that touches scenario data.**
+**`src/data/checklist.ts` contains no text of its own.** Items are built from the tool
+prerequisites and requirements, the stakeholder good practices, and the six steps of the
+Tool Selection Decision Framework. Adding checklist content means adding it to the source
+file it belongs in; the checklist follows. Do not retype text into it.
 
-### Response pipeline
+### The three navigation routes
 
-```
-generateEnhancedResponse()              <- stakeholder-rules.ts, always runs, offline, <200 ms
-  ├ template-selector.selectTemplate()     Gaussian proximity + recency decay, per-stakeholder sigma
-  └ interpolateTemplate()                  {?key:text} conditional blocks, {~a|b|c} variation
-        v optionally passed through
-maybeEnhanceWithAI()                    <- stakeholder-ai.ts
-  1. WebLLM   SmolLM2-1.7B-Instruct-q4f16_1-MLC, WebGPU, ~1.8 GB cached in browser
-  2. Ollama   smollm2:1.7b via the Vite dev proxy /api/ollama  <- DEV SERVER ONLY (see KNOWN-GAPS)
-  3. Cloud    STUB — enhanceWithCloudAPI() returns null; nothing is implemented
-  4. Rule-based response returned unchanged
-```
+The publication supports three ways in, and the app offers all three:
 
-Every tier catches its own errors and returns `null` to fall through. The user only ever
-sees a response.
+- **by phase** — framing, development, validation, communication (the checklist)
+- **by objective** — chapter 4, Step 4: "if your objective is X, consider Y"
+- **by stakeholder** — chapter 3
 
 ---
 
 ## 4. Conventions
 
-- **TypeScript strict**, `noUnusedLocals` / `noUnusedParameters` on. `npm run typecheck` must be clean.
-- **Tailwind v4**: brand tokens live in `@theme` in `src/index.css` (`--color-irena-blue`,
-  `--color-stakeholder-*`). There is no `tailwind.config.js` — do not create one.
-- **No new runtime dependencies** without a clear reason; the bundle already ships WebLLM.
-  Prefer zero-dependency solutions (see the SVG-to-canvas JPG export in `ScenarioPreview.tsx`).
-- **Generated files** (`src/data/response-library.ts`) are regenerated, never edited.
-- **Base path is `/stakeholder-dialogue/`** (GitHub Pages). Any absolute asset URL must
-  include it, or use Vite's `import.meta.env.BASE_URL`.
-- **Never ship an API key in the client bundle.** A cloud AI tier, if built, goes through a
-  proxy the user controls — `VITE_*` variables are public.
-- **Commits**: conventional prefixes (`feat:`, `fix:`, `chore:`, `docs:`, `test:`).
-  Leave the tree committable; typecheck before committing.
-- **Comments** explain *why*, matching the density already in the file.
+- **TypeScript strict**, `noUnusedLocals` / `noUnusedParameters` on.
+- **No new runtime dependencies.** The bundle is 301 kB and should stay in that range.
+- **Tailwind v4**: tokens live in `@theme` in `src/index.css`. No `tailwind.config.js`.
+- **No webfonts.** A CDN import breaks invariant 2. If Inter is wanted, self-host it.
+- **Base path is `'./'`.** Never hard-code an absolute asset path.
+- **One `<h1>` per page** — the section heading. The masthead is a `<p>`.
+- Every panel built from the publication ends with `<SourceNote />`.
+- **Commits**: conventional prefixes. Typecheck and verify:quotes before committing.
+- **Comments** explain why. Do not write commentary about the content being faithful —
+  the verifier is the claim, not a comment.
 
 ---
 
 ## 5. How to work in this repo
 
-Read `claude-progress.txt` (current state, one page) and `git log --oneline -20` first.
+Read `claude-progress.txt`, then `git log --oneline -20`, then this file.
 
-**Small change / one feature:** pick the next failing item in `feature_list.json`, implement
-it, test it (Chromium first), set only its `passes` field to `true`, commit, append a short
-entry to `claude-progress.txt`. Never rewrite feature descriptions.
+**Adding content from the publication:** find the chapter in `docs/toolkit/`, copy the text
+exactly, put it in the data file whose chapter it belongs to, run `npm run verify:quotes`.
+If the check fails, the text was altered — fix the data, not the checker.
 
-**Large change / refactor:** do not drive it through `feature_list.json`. Record the intent
-in `docs/DECISIONS.md` (what changes, why, what breaks), work on a branch, keep
-`npm run typecheck` green at each step, and update the docs listed in §6 in the same change.
+**Adding a feature:** if it needs text the publication does not contain, it is out of scope.
+Say so rather than writing the text.
 
-**Always:**
-- Verify a claim in the code before repeating it in a doc.
-- Changing `src/utils/stakeholder-ai.ts`, `src/data/stakeholder-fewshot.ts`,
-  `src/hooks/useWebLLM.ts` or `scripts/test-prompts-ollama.ts` -> update `docs/WEBLLM-STATUS.md`.
-- Changing `src/types/*` -> update `docs/DATA-SCHEMAS.md`.
-- Changing design tokens or layout -> update `docs/UI-DESIGN.md`.
-- Test offline behaviour explicitly when touching PWA, caching, storage or the AI tiers.
+**Large change / refactor:** record it in `docs/DECISIONS.md` first, work on a branch, keep
+typecheck and verify:quotes green at each step.
 
 ---
 
 ## 6. Documentation map
 
-`docs/README.md` is the index and marks every file **Current** or **Historical**.
-The ones that matter for implementation work:
+`docs/README.md` is the index. `docs/toolkit/` is the content source of truth and the thing
+the verifier checks against — treat it as read-only.
 
 | Doc | Use it for |
 |---|---|
-| [docs/KNOWN-GAPS.md](docs/KNOWN-GAPS.md) | Verified defects and debt — read before planning big changes |
-| [docs/DATA-SCHEMAS.md](docs/DATA-SCHEMAS.md) | Scenario / derived-metrics shapes, job, land and emission factors |
-| [docs/STAKEHOLDER-PROFILES.md](docs/STAKEHOLDER-PROFILES.md) | The 9 profiles, triggers, response templates |
-| [docs/TECHNICAL-IMPLEMENTATION.md](docs/TECHNICAL-IMPLEMENTATION.md) | Response generation and calculation algorithms |
+| [docs/DECISIONS.md](docs/DECISIONS.md) | Why the tool is shaped this way, including the 2026-08-27 pivot |
+| [docs/KNOWN-GAPS.md](docs/KNOWN-GAPS.md) | Verified defects and debt |
 | [docs/UI-DESIGN.md](docs/UI-DESIGN.md) | Design tokens, layout, component patterns |
-| [docs/WEBLLM-STATUS.md](docs/WEBLLM-STATUS.md) | WebLLM / Ollama config, prompts, echo detection |
 | [docs/WORKSHOP-DEPLOYMENT.md](docs/WORKSHOP-DEPLOYMENT.md) | USB, local-server and Pages deployment |
-| [docs/toolkit/](docs/toolkit/) | IRENA *Participatory Processes* toolkit — the content source of truth |
+| [docs/toolkit/](docs/toolkit/) | The publication |
 
-Toolkit quick reference: stakeholder profiles -> chapter 3; engagement tools -> chapter 4.1;
-dissemination (the Communicate tab) -> chapter 4.3; case studies -> chapter 5.
+`docs/archive/` holds documentation for the scenario simulator this tool used to be.
 
 ---
 
-## 7. Domain reference
+## 7. Scope
 
-**The nine stakeholder groups** (ids in `src/data/stakeholder-profiles.ts`):
-`policy-makers`, `grid-operators`, `industry`, `public`, `csos-ngos`, `scientific`,
-`finance`, `regional-bodies`, `development-partners`. The first seven come from the IRENA
-toolkit; regional bodies and development partners were added for energy-planning practice.
+**In scope:** chapter 3 stakeholder groups, chapter 4 engagement tools and decision
+framework, chapter 5 case studies, the participation plan checklist, and the reference
+material in chapters 1, 2, 6 and 7 as it is digitised.
 
-Each profile carries priorities, typical questions, concern triggers keyed to metric
-thresholds, and response templates. Responses are further shaped by **development context**
-(LDC / emerging / developed) and **variant** (conservative / pragmatic / progressive).
-
-**The four tabs:**
-1. **Input** — CSV upload, quick-entry form, or load example (target: under 5 minutes).
-2. **Stakeholder Dialogue** — predict, reveal, compare.
-3. **Explore Impacts** — directional sensitivity on soft metrics only.
-4. **Communicate** — dissemination strategy, templates, case studies, best practice.
-   Educational by design: it teaches formats, it does not generate publication-ready
-   documents or full dashboards.
-
-**Adaptability:** stakeholder lists, regional bodies, concern thresholds and sample
-scenarios are all data, not logic — regional adaptation should not require code changes.
+**Out of scope:** anything requiring text the publication does not contain. Two earlier
+features were removed for this reason — per-audience dissemination strategies and message
+templates. `regional-bodies` and `development-partners` are likewise not chapter 3 groups;
+the ids remain because the case study data references them, but they have no profile.

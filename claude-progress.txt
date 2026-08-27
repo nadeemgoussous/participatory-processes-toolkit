@@ -2,35 +2,31 @@ CLAUDE PROGRESS — CURRENT STATE
 ================================
 
 Keep this file to one page. Append a short entry per session at the bottom and trim the
-oldest entries when it grows past ~120 lines; the full history through August 2026 is in
+oldest entries when it grows past ~120 lines; earlier history is in
 archive/claude-progress-history.txt (and in git).
 
 Read this, then `git log --oneline -20`, then CLAUDE.md.
 
 
-WHERE THE PROJECT STANDS  (verified 2026-08-26, commit c18b571)
----------------------------------------------------------------
-Feature tracker: 43 of 48 features pass. Still open: F013/F014 (Excel template),
-F034 (session export), F041 (facilitator guide), F042 (template instructions).
+WHERE THE PROJECT STANDS  (verified 2026-08-27, branch toolkit-pivot)
+---------------------------------------------------------------------
+The tool is a digital edition of the IRENA Participatory Processes toolkit. The scenario
+simulator it used to be was removed on 2026-08-27; see docs/DECISIONS.md.
+
+Four sections: Plan (checklist) | Stakeholders | Engagement tools | Case studies.
 
 Verified working:
-  npm run typecheck   clean
-  npm run build       succeeds, ~75 s, emits sw.js + workbox-*.js + manifest
-  npm run test:quality 189 stakeholder x scenario combinations, 0 quality issues
-                       (1 informational template-similarity warning)
+  npm run typecheck      clean
+  npm run verify:quotes  612 strings checked against docs/toolkit/
+  npm run build          15 s, dist 301 kB (92 kB gzipped), precache 371 kB
+  npm run test:chromium  8 tests, 22 s, all passing
 
-Known broken / unverified — details and evidence in docs/KNOWN-GAPS.md:
-  - Playwright suite is substantially stale: one Chromium run of the 36 non-AI spec files
-    gave 185 passed / 3 skipped / at least 59 failed (exact count not captured — see
-    docs/KNOWN-GAPS.md 5 for how to measure it). Verified in isolation: 02, 06 and 07 fail
-    entirely (17 tests); 06/07 use the removed flat schema. A full run takes ~36 minutes.
-  - Offline cold-start is NOT covered by a passing test: the suite runs against the dev
-    server, where no service worker is generated. Check by hand via `npm run preview`.
-  - Ollama AI tier works only under `npm run dev` (its /api/ollama proxy is dev-only).
-  - Cloud AI tier is a stub that returns null.
-  - First-load bundle is 6.6 MB because WebLLM is imported statically.
-  - Fonts load from the Google CDN, which undercuts the offline-first promise.
-  - No ESLint/Prettier; CI now typechecks, quality-tests and builds but runs no E2E.
+Content in the app: chapter 3 (7 stakeholder groups), chapter 4 (7 engagement tools and
+the tool selection decision framework), chapter 5 (13 case studies).
+Not yet digitised: chapters 1, 2, 6, 7 — see docs/KNOWN-GAPS.md 1.
+
+The feature tracker was archived with the scenario tool; it described features that no
+longer exist. Work is driven from docs/KNOWN-GAPS.md.
 
 
 SESSION LOG
@@ -66,3 +62,36 @@ planned round of larger changes.
   - This log trimmed; history moved to archive/claude-progress-history.txt.
 
 Next: docs/KNOWN-GAPS.md is the intended starting point for the larger changes.
+
+### 2026-08-27 — Pivot to a digital toolkit edition
+
+Removed the scenario simulator and rebuilt the app around the toolkit's own four-phase
+process, with a participation checklist as the primary surface.
+
+  - Deleted the AI tiers and WebLLM, the 182-template response engine, predict-before-
+    reveal, the scenario model, Dexie, the Explore tab and the scenario-derived
+    Communicate views. Dropped @mlc-ai/web-llm, dexie and recharts; React is the only
+    runtime dependency left.
+  - Added chapter 4, which had never been in the app: all seven engagement tools with
+    their implementation stages, requirements, prerequisites, practical considerations,
+    examples, evidence and boxes, plus the Step 4 objective-to-tool mapping.
+  - Rebuilt chapter 3 and chapter 5 from the publication. An audit found that most
+    content had been paraphrased or authored rather than quoted: the old profiles
+    condensed the good practices and carried invented simulation content, and the four
+    dissemination and glossary files had almost no basis in the publication and were
+    removed with the components that rendered them.
+  - Added scripts/verify-toolkit-quotes.mjs (npm run verify:quotes): every string of five
+    words or more in the data files must appear in docs/toolkit/. It runs in CI and
+    caught a transcription error in the new chapter 4 data.
+  - New checklist derived from the tool prerequisites and requirements, the stakeholder
+    good practices and the six decision framework steps. It contains no text of its own.
+    State in localStorage, with JSON export and import and a print stylesheet.
+  - base is now './'; the Google Fonts import is gone. dist 6.6 MB -> 301 kB,
+    build 75 s -> 15 s.
+  - 47 stale spec files replaced by 3. CI now gates on typecheck, verify:quotes, build
+    and the e2e suite.
+  - Docs for removed features moved to docs/archive/; CLAUDE.md, README.md,
+    docs/README.md and docs/KNOWN-GAPS.md rewritten against the code.
+
+Next: chapters 7 and 2 are the cheapest remaining content wins (docs/KNOWN-GAPS.md 1).
+Decide whether regional-bodies and development-partners stay (KNOWN-GAPS 2).
