@@ -7,11 +7,15 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
     "test": "playwright test",
+    "test:chromium": "playwright test --project=chromium",
     "test:ui": "playwright test --ui",
     "test:headed": "playwright test --headed",
     "test:debug": "playwright test --debug",
-    "test:report": "playwright show-report"
+    "test:report": "playwright show-report",
+    "test:quality": "node scripts/test-response-quality.cjs",
+    "responses:build": "node scripts/build-response-library.cjs > src/data/response-library.ts"
   },
   "keywords": [
     "energy",
@@ -23,6 +27,9 @@
   ],
   "author": "IRENA",
   "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
   "devDependencies": {
     "@playwright/test": "^1.57.0",
     "@tailwindcss/postcss": "^4.1.17",

@@ -1,5 +1,10 @@
 # Local LLM Setup with Ollama
 
+> **Last verified against the code: 2026-08-26.** Ollama is a *facilitator* convenience and
+> currently reaches the app through the Vite dev-server proxy `/api/ollama`, so it works
+> under `npm run dev` and **not** in a built copy (`npm run preview`, USB, GitHub Pages).
+> See `docs/KNOWN-GAPS.md` §1.
+
 This guide explains how to set up **Ollama** with **SmolLM2 1.7B** for AI-enhanced stakeholder responses in the Scenario Dialogue Tool.
 
 ## Why Local LLM?
@@ -54,13 +59,13 @@ Open a terminal/command prompt and run:
 ollama pull smollm2:1.7b
 ```
 
-This will download the **Gemma 2 2B** model (~1.6 GB). The download happens once and the model is cached locally.
+This downloads **SmolLM2 1.7B** (~1.8 GB). It happens once and the model is cached locally.
 
-**Why Gemma 2 2B?**
-- Small enough to run on laptops (2GB RAM for model)
-- Fast inference (~1-2 seconds on modern hardware)
-- Good quality for text enhancement tasks
-- Open license (Google's Gemma license)
+**Why SmolLM2 1.7B?**
+- The same model the browser tier (WebLLM) uses, so facilitator and participant output match
+- Small enough for a workshop laptop
+- Better instruction-following than the Gemma 2 2B originally trialled here
+- Apache-2.0 licensed
 
 ### Step 3: Verify Installation
 
@@ -95,13 +100,17 @@ The Ollama API will be available at `http://localhost:11434`.
 The Scenario Dialogue Tool uses these default settings:
 
 ```typescript
+// DEFAULT_AI_CONFIG in src/utils/stakeholder-ai.ts
 {
   ollamaEnabled: true,
-  ollamaUrl: 'http://localhost:11434',
+  ollamaUrl: '/api/ollama',   // Vite dev-server proxy -> http://localhost:11434
   ollamaModel: 'smollm2:1.7b',
-  ollamaTimeout: 3000, // 3 seconds max
+  ollamaTimeout: 120000,      // 2 minutes: responses stream, first token can take ~40 s
 }
 ```
+
+To talk to Ollama from a **built** copy, set `ollamaUrl` to `http://localhost:11434` and
+start Ollama with CORS allowed (`OLLAMA_ORIGINS=*`), since the proxy will not be there.
 
 ### Advanced Configuration
 
@@ -109,13 +118,17 @@ If you want to use a different model or configuration, you can modify `src/utils
 
 ```typescript
 export const DEFAULT_AI_CONFIG: AIConfig = {
+  // ...WebLLM settings...
   ollamaEnabled: true,
-  ollamaUrl: 'http://localhost:11434',
-  ollamaModel: 'gemma2:7b', // Larger model (better quality, slower)
-  ollamaTimeout: 5000, // Longer timeout for slower hardware
-  cloudEnabled: false,
+  ollamaUrl: '/api/ollama',
+  ollamaModel: 'llama3.2:3b',  // example: a larger model, better quality, slower
+  ollamaTimeout: 120000,
+  cloudEnabled: false,         // the cloud tier is a stub — see docs/KNOWN-GAPS.md §2
   cloudTimeout: 3000,
 };
+
+Changing the model here also changes what the prompts were tuned against; re-run
+`npx tsx scripts/test-prompts-ollama.ts` and check for echoed prompts before a workshop.
 ```
 
 ### Alternative Models
@@ -123,7 +136,7 @@ export const DEFAULT_AI_CONFIG: AIConfig = {
 You can experiment with other models supported by Ollama:
 
 ```bash
-# Larger Gemma model (better quality, requires more RAM)
+# Larger models (better quality, more RAM, slower)
 ollama pull gemma2:9b
 
 # Llama models (also work well)
@@ -223,7 +236,7 @@ If the workshop venue has **no internet**:
 - Check firewall isn't blocking localhost:11434
 
 **Responses slow:**
-- Gemma 2 2B should respond in 1-3 seconds on modern hardware
+- SmolLM2 1.7B typically responds in 5-15 seconds; the tool streams text as it arrives
 - If slower, check CPU/RAM usage
 - Consider using rule-based only (`ollamaEnabled: false`)
 
@@ -240,7 +253,7 @@ If the workshop venue has **no internet**:
 
 ## System Requirements
 
-### Minimum Requirements (for Gemma 2 2B)
+### Minimum Requirements (for SmolLM2 1.7B)
 - **RAM**: 4 GB (2 GB for model + 2 GB for OS/app)
 - **Disk Space**: 2 GB for model
 - **CPU**: Modern multi-core processor (2018 or newer)

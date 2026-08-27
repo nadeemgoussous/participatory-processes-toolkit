@@ -1,6 +1,10 @@
 # Technical Implementation Guide
 
-This document contains reference implementations for core algorithms and logic used in the Scenario Dialogue Tool.
+Reference implementations for the core algorithms of the Scenario Dialogue Tool.
+
+> **How to read this file:** code blocks marked *reference* are simplified illustrations of
+> the approach; the shipped code is the authority. Where the two differ materially, this
+> file says so explicitly. Last verified against the code: 2026-08-26.
 
 ## Response Generation System
 
@@ -131,6 +135,38 @@ export function generateRuleBasedResponse(
   };
 }
 ```
+
+### What actually runs: `generateEnhancedResponse`
+
+`generateRuleBasedResponse` above is the base layer. The UI calls
+`generateEnhancedResponse(scenario, derivedMetrics, stakeholder, options)`
+(`src/utils/stakeholder-rules.ts`), which wraps it with three extra layers from
+`src/data/stakeholder-enhancements.ts`:
+
+1. **Development context** — `'ldc' | 'emerging' | 'developed'` shifts thresholds and wording.
+2. **Variant** — `'conservative' | 'pragmatic' | 'progressive'` changes the personality.
+3. **Multi-metric interaction triggers** — conditions no single threshold can express
+   (e.g. high VRE share *and* low storage), which add concerns and appreciation points.
+
+Its `options` also carry `sessionHistory: number[]`, the template ids already shown this
+session, so repeated reveals do not repeat text.
+
+**Template selection** (`src/data/template-selector.ts`) picks the opening reaction:
+
+```
+score = 0.6 x gaussianProximity(|scenarioValue - templateValue|, sigma)
+      + 0.4 x (1 - recencyDecay(templateId, sessionHistory))
+```
+
+with a per-stakeholder `sigma` (finance and policy-makers 10, csos-ngos 20, public 25) and a
+Fisher-Yates shuffle bag per stakeholder+variant so a bag is exhausted before it refills.
+`interpolateTemplate` then fills values, drops `{?key:text}` blocks whose value is missing,
+and expands `{~a|b|c}` inline variations.
+
+`src/data/response-library.ts` (182 templates) is **generated** by
+`npm run responses:build`; edit `scripts/build-response-library.cjs` or the training data,
+never the output. Validate with `npm run test:quality`, which checks interpolation, grammar
+cleanup, duplicate/similar templates and anti-repetition across ~190 combinations.
 
 ### Helper Functions
 
@@ -279,73 +315,53 @@ function findRelatedQuestion(metric: string, questions: string[]): string | null
 
 ## AI Enhancement (OPTIONAL, Silent Failover)
 
-AI enhancement is completely optional and gracefully degrades to rule-based responses.
+AI is a bonus layer on top of an already-complete rule-based response. It is optional,
+best-effort, and invisible when it fails.
 
-### Main AI Function
+### The real failover chain — `src/utils/stakeholder-ai.ts`
 
 ```typescript
-// src/utils/stakeholder-ai.ts
+maybeEnhanceWithAI(ruleBasedResponse, stakeholder, scenario, derivedMetrics, config, onChunk?)
+```
 
-const AI_TIMEOUT_MS = 3000;  // Short timeout - don't block user
+| Tier | Function | Status | Notes |
+|---|---|---|---|
+| 1. WebLLM | `enhanceWithWebLLM` | Live | `SmolLM2-1.7B-Instruct-q4f16_1-MLC` over WebGPU, ~1.8 GB cached in the browser, 60 s timeout. Uses the chat API with 2 few-shot examples per stakeholder. |
+| 2. Ollama | `enhanceWithOllama` | Live, dev server only | `smollm2:1.7b` via `POST /api/ollama/api/generate`, streams chunks to `onChunk`, 120 s timeout. `/api/ollama` is a **Vite dev proxy**; it does not exist in a production build. |
+| 3. Cloud | `enhanceWithCloudAPI` | **Stub** | Returns `null` unconditionally. Nothing is implemented, and no key is read. |
+| 4. Rule-based | — | Always | The unmodified response is returned. |
 
-export async function maybeEnhanceWithAI(
-  ruleBasedResponse: StakeholderResponse,
-  scenario: ScenarioInput,
-  stakeholder: StakeholderProfile
-): Promise<StakeholderResponse> {
+Each tier catches its own errors and returns `null`, so control falls through. Nothing in
+this path is allowed to throw into the UI, show an error toast, or block a render.
 
-  // Check if AI is available
-  if (!navigator.onLine) {
-    return ruleBasedResponse;
-  }
-
-  const apiKey = import.meta.env.VITE_ANTHROPIC_API_KEY;
-  if (!apiKey) {
-    return ruleBasedResponse;
-  }
-
+```typescript
+// Shape of every tier
+async function enhanceWithX(...): Promise<StakeholderResponse | null> {
   try {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), AI_TIMEOUT_MS);
-
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01'
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: buildSystemPrompt(stakeholder),
-        messages: [{
-          role: 'user',
-          content: buildUserPrompt(scenario, stakeholder, ruleBasedResponse)
-        }]
-      }),
-      signal: controller.signal
-    });
-
-    clearTimeout(timeout);
-
-    if (!response.ok) {
-      // Silent failover
-      return ruleBasedResponse;
-    }
-
-    const data = await response.json();
-    const enhanced = parseAIResponse(data.content[0].text, ruleBasedResponse);
-    enhanced.generationType = 'ai-enhanced';
-    return enhanced;
-
-  } catch (error) {
-    // Silent failover - never show errors for AI
-    console.log('AI enhancement unavailable, using rule-based response');
-    return ruleBasedResponse;
+    const timeoutId = setTimeout(() => controller.abort(), config.xTimeout);
+    // ...call the backend, parse, run echo detection...
+    clearTimeout(timeoutId);
+    return enhanced;                 // generationType: 'ai-enhanced'
+  } catch {
+    return null;                     // silent failover to the next tier
   }
 }
 ```
+
+**Echo detection.** Small models frequently repeat the prompt back. Every enhanced response
+is checked for echoed prompt fragments and rejected (returning `null`) when detected — this
+is why the AI tiers can produce a *worse* result than rule-based and still not degrade the
+user's experience. See `docs/WEBLLM-STATUS.md` for the detection rules and test results.
+
+### If you implement the cloud tier
+
+The tool is a static PWA with no backend. **Do not put a provider API key in the client**:
+`VITE_*` variables are inlined into the bundle and readable by anyone with the dist folder or
+the Pages URL. Route cloud calls through a proxy the workshop organiser controls, keep the
+same `Promise<StakeholderResponse | null>` contract, and keep the tier disabled by default so
+offline behaviour never regresses. Model ids change often — check current model names in the
+provider's docs rather than copying an id out of this file.
 
 ### AI System Prompt (With Strict Guardrails)
 
@@ -651,61 +667,51 @@ export function calculateEmissions(scenario: ScenarioInput): EmissionMetrics {
 
 ## Testing Guidelines
 
-### Testing Offline Functionality
+Three layers, cheapest first:
 
-```typescript
-// tests/e2e/offline.spec.ts
+| Layer | Command | Covers |
+|---|---|---|
+| Types | `npm run typecheck` | every schema and signature change |
+| Response quality | `npm run test:quality` | template selection, interpolation, grammar, anti-repetition (no browser) |
+| End-to-end | `npm run test:chromium`, then `npm test` before a commit | UI flows, storage, PWA |
 
-import { test, expect } from '@playwright/test';
+### Stable selectors
 
-test.describe('Offline functionality', () => {
-  test('should generate responses when offline', async ({ page, context }) => {
-    // Load the app
-    await page.goto('http://localhost:5173');
+Prefer the `data-testid` hooks that already exist over text matching — most of the currently
+failing specs broke because UI copy changed:
 
-    // Wait for service worker to install
-    await page.waitForTimeout(2000);
+`load-example-button`, `quick-entry-button`, `paste-json-button`, `csv-upload-button`,
+`csv-file-input`, `csv-parse-button`, `csv-load-button`, `csv-country-input`,
+`csv-scenario-name-input`, `scenario-preview`, `preview-emissions`, `preview-investment`,
+`capacity-mix-chart`, `export-image-btn`, `proceed-button`, `load-different-button`,
+`loading-indicator`, `error-message`, `save-status`.
 
-    // Go offline
-    await context.setOffline(true);
+When a test needs an element that has no hook, add one rather than asserting on a sentence.
 
-    // Load scenario
-    await page.click('[data-testid="load-example"]');
+### Testing offline behaviour
 
-    // Select stakeholder
-    await page.click('[data-testid="stakeholder-grid-operators"]');
+The Playwright `webServer` runs `npm run dev`, and **vite-plugin-pwa does not generate a
+service worker in dev** (`devOptions` is not enabled). So `context.setOffline(true)` in the
+current suite proves only that the already-loaded page keeps working — it cannot prove the
+precache serves a cold load.
 
-    // Enter prediction
-    await page.fill('[data-testid="prediction-input"]', 'I think they will be concerned about renewable integration');
+To test the real thing:
 
-    // Reveal response
-    await page.click('[data-testid="reveal-response"]');
-
-    // Check response appears
-    await expect(page.locator('[data-testid="stakeholder-response"]')).toBeVisible();
-
-    // Verify it's rule-based
-    await expect(page.locator('[data-testid="response-type"]')).toHaveText('rule-based');
-  });
-});
+```bash
+npm run build && npm run preview     # serves dist/ with the generated sw.js
 ```
 
-### Testing AI Failover
+then point Playwright at the preview URL, load the page once, go offline, and reload. Either
+add a dedicated Playwright project with that `baseURL`, or enable
+`VitePWA({ devOptions: { enabled: true } })` for dev runs. Until one of those exists, treat
+"works offline" as **unverified by CI** and check it by hand before a workshop.
 
-```typescript
-test('should failover to rule-based when AI fails', async ({ page }) => {
-  // Mock API to fail
-  await page.route('https://api.anthropic.com/**', route => route.abort());
+### Testing AI failover
 
-  await page.goto('http://localhost:5173');
-
-  // ... generate response ...
-
-  // Should still work with rule-based
-  await expect(page.locator('[data-testid="stakeholder-response"]')).toBeVisible();
-  await expect(page.locator('[data-testid="response-type"]')).toHaveText('rule-based');
-});
-```
+The cloud tier is a stub, so aborting `api.anthropic.com` proves nothing. What is worth
+testing: with WebGPU unavailable and no Ollama running, a reveal still produces a response
+with `generationType` of `rule-based` or `enhanced-rule-based`, within a couple of seconds.
+Avoid running the WebLLM specs casually — they download ~1.8 GB.
 
 ---
 
@@ -736,23 +742,22 @@ const stakeholderProfiles = lazy(() => import('./data/stakeholder-profiles'));
 
 ### Bundle Size Optimization
 
-- Keep stakeholder profiles in separate chunk
-- Lazy load AI enhancement code
-- Use code splitting for calculator
+**Current state (measured 2026-08-26):** one chunk, `dist/assets/index-*.js`, **6.6 MB**
+(2.3 MB gzipped); the service worker precaches 26 entries totalling ~6.5 MB. The cause is a
+static `import * as webllm from '@mlc-ai/web-llm'` at the top of `src/utils/stakeholder-ai.ts`,
+which every user downloads even when AI is switched off.
+
+The fix is a dynamic import inside the WebLLM tier, so the runtime is fetched only when a
+user actually enables browser AI:
 
 ```typescript
-// vite.config.ts
-export default defineConfig({
-  build: {
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'stakeholders': ['./src/data/stakeholder-profiles.ts'],
-          'ai': ['./src/utils/stakeholder-ai.ts'],
-          'calculator': ['./src/utils/calculator.ts']
-        }
-      }
-    }
-  }
-});
+async function enhanceWithWebLLM(...) {
+  const webllm = await import('@mlc-ai/web-llm');   // pulled out of the main chunk
+  // ...
+}
 ```
+
+Recharts is the other large dependency and is a good candidate for a `manualChunks` split.
+Keep the first-load payload small: participants often install the PWA over a workshop
+hotspot.
+

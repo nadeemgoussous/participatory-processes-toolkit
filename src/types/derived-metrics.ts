@@ -1,5 +1,5 @@
 // Derived Metrics Schema (Soft Metrics ONLY)
-// Based on DATA-SCHEMAS.md
+// Source of truth for these shapes; annotated in docs/DATA-SCHEMAS.md.
 // CRITICAL: NO LCOE, tariffs, or technical feasibility calculations
 
 export interface DerivedMetrics {

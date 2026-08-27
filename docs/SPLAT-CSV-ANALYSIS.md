@@ -1,5 +1,9 @@
 # SPLAT CSV Analysis & Schema Comparison
 
+> **Status: Reference (2026-08-26).** The SPLAT column analysis below is still accurate and
+> is the basis for `src/utils/csv-parser.ts`. The "current schema" comparison predates the
+> milestone-based schema — for today's shapes see `docs/DATA-SCHEMAS.md`.
+
 ## Overview
 
 This document analyzes the actual SPLAT output CSV structure (Lesotho TES example) and compares it with our current data schema to identify necessary updates.

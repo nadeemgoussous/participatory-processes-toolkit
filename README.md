@@ -5,7 +5,7 @@
 **Interactive stakeholder engagement tool for energy scenario planning**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.2-blue.svg)](https://www.typescriptlang.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue.svg)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-19-61dafb.svg)](https://reactjs.org/)
 [![PWA](https://img.shields.io/badge/PWA-Enabled-5A0FC8.svg)](https://web.dev/progressive-web-apps/)
 
@@ -56,10 +56,13 @@ Simulates responses from:
 - **Excel Template**: Pre-formatted template (planned, not yet available)
 
 ### 🤖 **Multi-Tier AI Enhancement**
-1. **WebLLM** (browser-based, zero installation)
-2. **Ollama** (local server for facilitators)
-3. **Cloud API** (optional, requires API key)
-4. **Rule-based** (always works, no AI required)
+1. **WebLLM** (browser-based, zero installation, WebGPU)
+2. **Ollama** (local server for facilitators — currently works under `npm run dev` only)
+3. **Cloud API** (not implemented; the hook exists and returns nothing)
+4. **Rule-based** (always works, no AI required — this is the default experience)
+
+AI only ever *replaces* an already-generated rule-based response, and every tier fails
+silently to the next.
 
 ### 🧠 **Predict-Before-Reveal Pedagogy**
 Interactive learning workflow:
@@ -79,25 +82,25 @@ Interactive learning workflow:
 
 ### Prerequisites
 
-- **Node.js** 18+ and npm
+- **Node.js** 20+ and npm
 - **Modern browser** (Chrome 113+, Edge 113+, Firefox 115+, Safari 16+)
 - **Optional**: Ollama for local AI enhancement
 
 ### Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/IRENA/stakeholder-dialogue-tool.git
-cd stakeholder-dialogue-tool
-
-# Install dependencies
+# From a clone of this repository
 npm install
 
 # Start development server
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173) in your browser.
+Open **http://localhost:5173/stakeholder-dialogue/** — the app is served under that base
+path (it is configured for GitHub Pages), so plain `localhost:5173` will not load it.
+
+On Windows you can double-click `start-local.bat` (macOS/Linux: `./start-local.sh`); it
+installs dependencies if needed, starts the server and opens the browser.
 
 ### Building for Production
 
@@ -200,8 +203,9 @@ stakeholder_dialogue/
 ├── public/
 │   ├── icons/            # Stakeholder icons
 │   └── sample-data/      # Example scenarios
+├── scripts/              # Maintenance tools (response library, quality tests, icons)
 ├── tests/e2e/            # Playwright tests
-└── archive/              # Historical documentation
+└── archive/              # Source materials and the historical session log
 ```
 
 ### Key Documentation
@@ -211,7 +215,9 @@ stakeholder_dialogue/
 - **[docs/DATA-SCHEMAS.md](docs/DATA-SCHEMAS.md)** - TypeScript interfaces and data structures
 - **[docs/TECHNICAL-IMPLEMENTATION.md](docs/TECHNICAL-IMPLEMENTATION.md)** - Implementation guides
 - **[docs/UI-DESIGN.md](docs/UI-DESIGN.md)** - Design system and components
-- **[docs/SIMPLIFIED-SCHEMA-DESIGN.md](docs/SIMPLIFIED-SCHEMA-DESIGN.md)** - Flexible schema design
+- **[docs/README.md](docs/README.md)** - Documentation index (Current / Reference / Archived)
+- **[docs/KNOWN-GAPS.md](docs/KNOWN-GAPS.md)** - Verified defects and technical debt
+- **[docs/DECISIONS.md](docs/DECISIONS.md)** - Architectural decision log
 - **[docs/OLLAMA-SETUP.md](docs/OLLAMA-SETUP.md)** - Local AI setup guide
 - **[docs/WORKSHOP-DEPLOYMENT.md](docs/WORKSHOP-DEPLOYMENT.md)** - Workshop deployment guide
 
@@ -220,18 +226,17 @@ stakeholder_dialogue/
 ## 🧪 Testing
 
 ```bash
-# Run all tests (multi-browser)
-npm test
-
-# Run specific test file (Chromium only, faster)
-npm test tests/e2e/01-app-loads.spec.ts -- --project=chromium
-
-# Run tests in UI mode
-npx playwright test --ui
-
-# Generate test report
-npx playwright show-report
+npm run typecheck      # TypeScript, fast — run before every commit
+npm run test:quality   # rule-based response library QA, no browser needed
+npm run test:chromium  # Playwright, Chromium only (use while iterating)
+npm test               # Playwright, all four browser projects
+npm run test:report    # open the last HTML report
 ```
+
+> **Note:** part of the Playwright suite is currently stale — some specs assert on old UI
+> copy or build fixtures in a schema that no longer exists, and offline cold-start is not
+> covered by a passing test. See [docs/KNOWN-GAPS.md](docs/KNOWN-GAPS.md) before trusting a
+> red or green run.
 
 ---
 
@@ -241,7 +246,7 @@ npx playwright show-report
 
 - [ ] Build production PWA (`npm run build`)
 - [ ] Test offline functionality (DevTools offline mode)
-- [ ] Prepare Excel template with instructions
+- [ ] Prepare import files (the Excel template is not built yet — use CSV or quick entry)
 - [ ] Load sample scenarios for target region
 - [ ] Copy `dist/` folder to USB drives (for offline distribution)
 - [ ] Optional: Set up Ollama on facilitator laptop
@@ -249,12 +254,14 @@ npx playwright show-report
 
 ### Offline Distribution
 
-The tool can run entirely from a USB drive:
+The tool can run from a USB drive, with one caveat: the default build uses the absolute base
+path `/stakeholder-dialogue/`, so `dist/index.html` will **not** open correctly from
+`file://` or from the root of a static server.
 
-1. Build production PWA: `npm run build`
-2. Copy `dist/` folder to USB drive
-3. Participants open `dist/index.html` in their browser
-4. Tool works offline (no installation required)
+1. Build a relative-path copy: `npx vite build --base=./`
+2. Copy `dist/` to the USB drive along with a static file server
+3. Serve the folder locally on the participant machine (a browser cannot serve it itself)
+4. Verify offline on a disconnected machine before the workshop
 
 See [docs/WORKSHOP-DEPLOYMENT.md](docs/WORKSHOP-DEPLOYMENT.md) for detailed instructions.
 
@@ -344,13 +351,17 @@ ollama pull smollm2:1.7b
 ollama serve
 ```
 
-Configure in tool: Settings → AI Enhancement → Ollama → Enable
+Select **Ollama** in the AI backend selector on the Stakeholder Dialogue tab.
+
+> Ollama is reached through a Vite dev-server proxy (`/api/ollama`), so it currently works
+> under `npm run dev` and not in a built/deployed copy. See
+> [docs/KNOWN-GAPS.md](docs/KNOWN-GAPS.md).
 
 #### Cloud API
 
-Configure in tool: Settings → AI Enhancement → Cloud API
-- Enter API key
-- Select model (Claude, GPT-4, etc.)
+Not implemented. `enhanceWithCloudAPI()` is a stub that returns nothing, and the config
+fields are inert. If you add it, do not put a provider key in the client bundle — a static
+PWA cannot keep one secret. Route it through a proxy you control.
 
 #### WebLLM (Browser)
 
@@ -382,9 +393,12 @@ This tool was developed as part of IRENA's capacity building program for energy 
 
 For questions, suggestions, or support:
 
-- **GitHub Issues**: [Report bugs or request features](https://github.com/IRENA/stakeholder-dialogue-tool/issues)
 - **Email**: [capacity-building@irena.org](mailto:capacity-building@irena.org)
 - **IRENA Website**: [www.irena.org](https://www.irena.org)
+
+If this repository has been published, issues and pull requests are the best route; the
+GitHub Pages deployment workflow in `.github/workflows/` assumes a repository with Pages
+enabled.
 
 ---
 
@@ -397,7 +411,7 @@ For questions, suggestions, or support:
 - ✅ Nine stakeholder profiles with context-aware responses
 - ✅ Rule-based response generation (always works)
 - ✅ WebLLM browser-based AI (zero installation)
-- ✅ Ollama integration (local AI)
+- ✅ Ollama integration (local AI, dev server only)
 - ✅ Predict-before-reveal pedagogy
 - ✅ Soft metrics calculations (jobs, land, emissions)
 - ✅ Communication tab (dissemination strategies, templates, case studies)
@@ -424,6 +438,6 @@ For questions, suggestions, or support:
 
 **Built with ❤️ by the IRENA Capacity Building Team**
 
-[Website](https://www.irena.org) • [Documentation](docs/) • [Report Issue](https://github.com/IRENA/stakeholder-dialogue-tool/issues)
+[Website](https://www.irena.org) • [Documentation](docs/README.md)
 
 </div>

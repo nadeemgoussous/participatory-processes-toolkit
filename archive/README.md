@@ -12,6 +12,11 @@ Original source files used during initial setup (December 8, 2025):
 - `source-photos/` - original stakeholder icon photos before conversion
 - `extract-icons.py` - script used to extract and process those icons
 
+### claude-progress-history.txt
+The full Claude Code session log from December 2025 through August 2026 (~1 550 lines).
+Moved out of the repo root on 2026-08-26 so that `claude-progress.txt` can stay a one-page
+current-state file that is actually read at the start of a session.
+
 ## Last Cleanup
 
 **Date**: August 25, 2026

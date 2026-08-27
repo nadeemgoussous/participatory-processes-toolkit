@@ -1,5 +1,6 @@
-// Scenario Data Schema - Simplified Flexible Version
-// Based on SIMPLIFIED-SCHEMA-DESIGN.md
+// Scenario Data Schema - milestone-based, unit-tagged.
+// This file is the source of truth for scenario shapes; docs/DATA-SCHEMAS.md annotates it.
+// Design rationale: docs/DECISIONS.md (2025-01 schema entry).
 
 import { PowerUnit, EnergyUnit, MoneyUnit, EmissionsUnit } from '../utils/unit-conversions';
 

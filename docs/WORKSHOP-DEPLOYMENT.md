@@ -1,231 +1,138 @@
 # Workshop Deployment Guide
 
-Quick guide for deploying the Scenario Dialogue Tool in workshops with packaged AI models.
+How to get the tool in front of participants, in order of how much can go wrong.
 
-## Quick Start (Without WebLLM)
-
-**Current State**: Tool works immediately with rule-based responses (no AI). This is perfect for testing!
-
-```bash
-# 1. Start the tool
-npm run dev
-
-# 2. Open browser at http://localhost:5173/stakeholder-dialogue/
-# 3. Load example scenario
-# 4. Try stakeholder dialogue
-# ✅ Works instantly with rule-based responses
-```
+> Last verified against the code: 2026-08-26. Read `docs/KNOWN-GAPS.md` alongside this —
+> several deployment-relevant limitations are recorded there.
 
 ---
 
-## Adding AI Enhancement (Ollama - Recommended for Now)
+## The one thing to know first
 
-**For Facilitators/Developers Only:**
+The build is configured with `base: '/stakeholder-dialogue/'` (for GitHub Pages), so
+**every asset in `dist/` is referenced from an absolute `/stakeholder-dialogue/...` URL.**
+
+That has two consequences:
+
+- Opening `dist/index.html` directly from disk (`file://`) **does not work**.
+- Serving `dist/` at the root of a web server **does not work** either — assets 404.
+
+You must either serve `dist/` so that it answers under the `/stakeholder-dialogue/` path
+(see USB below), or build a copy with a relative base:
 
 ```bash
-# 1. Install Ollama
-# Download from: https://ollama.ai
-
-# 2. Pull SmolLM2 model
-ollama pull smollm2:1.7b
-
-# 3. Start the tool
-npm run dev
-
-# 4. Responses now AI-enhanced via Ollama!
-# ✅ Fast inference (~1-2 seconds)
-# ✅ Better quality responses
-# ✅ Works offline
+npx vite build --base=./          # self-contained copy, opens from any subfolder
 ```
+
+A relative-base build is the friendliest option for USB distribution. Test it with
+`npm run preview` before the workshop; the service worker and manifest paths change with the
+base, so do not assume it works because the Pages build works.
 
 ---
 
-## Adding WebLLM (For Workshop Participants)
-
-### Why Wait to Enable WebLLM?
-
-❌ **Problem**: Large model download (1.4GB) blocks UI
-❌ **Problem**: Requires fast internet during first use
-❌ **Problem**: Takes 2-5 minutes to download
-
-✅ **Solution**: Package model with PWA before workshop
-
-### Steps to Package WebLLM Model
-
-#### 1. Download and Convert Model
+## Option 1 — Facilitator laptop, dev server (simplest, and what most sessions use)
 
 ```bash
-# Option A: Download pre-built model from WebLLM
-# (Easiest - no conversion needed)
-# Visit: https://github.com/mlc-ai/binary-mlc-llm-libs
-# Download: gemma-2-2b-it-q4f16_1-MLC
-
-# Option B: Convert your fine-tuned model
-# See: docs/CUSTOM-MODELS.md for conversion guide
+npm install          # first time only, needs internet
+npm run dev
+# open http://localhost:5173/stakeholder-dialogue/
 ```
 
-#### 2. Package with PWA
+Windows users can double-click `start-local.bat` (macOS/Linux: `./start-local.sh`), which
+does the install-if-needed, start, and open-browser steps.
+
+This mode is the only one where the **Ollama** AI tier works, because `/api/ollama` is a
+Vite dev-server proxy.
+
+To let participants on the same network use the facilitator's machine:
 
 ```bash
-# 1. Create models directory
-mkdir -p public/models
+npm run dev -- --host
+# participants open http://<facilitator-ip>:5173/stakeholder-dialogue/
+```
 
-# 2. Copy model files
-cp -r /path/to/gemma-2-2b-it-q4f16_1-MLC public/models/
+## Option 2 — Built PWA on a local network
 
-# 3. Verify files copied
-ls -lh public/models/gemma-2-2b-it-q4f16_1-MLC/
-# Should see: weights, tokenizer, config
-
-# 4. Enable WebLLM in config
-# Edit src/utils/stakeholder-ai.ts:
-# webLLMEnabled: true
-# webLLMModel: '/models/gemma-2-2b-it-q4f16_1-MLC'
-
-# 5. Build PWA
+```bash
 npm run build
-
-# 6. Test build
-npm run preview
-```
-
-#### 3. Distribute to Participants
-
-**Option A: USB Drives**
-```bash
-# Copy dist/ folder to USB drives
-cp -r dist/ /media/usb/scenario-dialogue-tool/
-
-# On participant machines:
-cd scenario-dialogue-tool
-npx http-server -p 5000
-# Open: http://localhost:5000
-```
-
-**Option B: Local Network Server**
-```bash
-# On facilitator machine:
 npm run preview -- --host
-
-# Participants access via:
-# http://192.168.1.XXX:4173
+# participants open http://<facilitator-ip>:4173/stakeholder-dialogue/
 ```
 
-**Option C: Pre-install on Workshop Laptops**
+This exercises the real service worker, so it is the mode to use when you want to **verify
+offline behaviour** before the workshop: load the page, disconnect the network, reload, and
+confirm the app still starts and a stakeholder response can be revealed.
+
+## Option 3 — USB drives / fully air-gapped
+
 ```bash
-# Install on each laptop before workshop
-npm install
-npm run build
-npm run preview
+npx vite build --base=./         # relative-base build (see above)
 ```
+
+Copy `dist/` to the drive together with a static server, because a browser cannot serve the
+files itself and `npx http-server` needs internet on the participant machine. Either:
+
+- ship a tiny server binary (e.g. a static-file server executable) on the drive, or
+- rely on participants having Node installed, and ship `node_modules/.bin` for a server you
+  vendored ahead of time, or
+- keep the absolute-base build and place it in a folder named `stakeholder-dialogue`, then
+  serve the *parent* folder so the paths line up.
+
+Whichever route you take, **test it on a machine with the network switched off** before the
+workshop day. This is the deployment mode with the most failure points.
+
+## Option 4 — Hosted (GitHub Pages)
+
+`.github/workflows/deploy.yml` typechecks, builds and publishes `dist/` on every push to
+`master`. The `base` path already matches a Pages project site at
+`https://<org>.github.io/stakeholder-dialogue/`. Fine for remote participants, useless in a
+venue with bad connectivity — always have Option 1 or 3 as a backup.
 
 ---
 
-## Workshop Day Checklist
+## AI enhancement, realistically
 
-### Before Workshop
+The tool is complete without AI. Rule-based responses are instant, offline and are what the
+pedagogy is built around. Treat everything below as optional polish.
 
-- [ ] Tool built with packaged model (if using WebLLM)
-- [ ] USB drives prepared OR laptops pre-configured
-- [ ] Test tool works offline (disconnect internet and verify)
-- [ ] Example scenarios loaded and tested
-- [ ] Facilitator has Ollama installed (for better responses)
+| Tier | Who it is for | Reality check |
+|---|---|---|
+| Rule-based | everyone | Always available, <200 ms, no setup |
+| WebLLM | participants | Chrome/Edge 113+ with WebGPU. ~1.8 GB model download on first enable, then cached and offline. 5-15 s per response |
+| Ollama | facilitator | `ollama pull smollm2:1.7b`. **Only works under `npm run dev`** — the `/api/ollama` proxy does not exist in a built app |
+| Cloud | nobody yet | `enhanceWithCloudAPI()` is a stub that returns nothing |
 
-### During Workshop
-
-**If Using Rule-Based Only** (Current State):
-- ✅ Works immediately, no setup needed
-- ✅ Instant responses (< 200ms)
-- ✅ No internet required
-- ✅ Perfect for testing pedagogy
-
-**If Using Ollama** (Facilitator Only):
-- ✅ Fast AI-enhanced responses (~1-2 seconds)
-- ✅ Works offline
-- ✅ Better quality than rule-based
-- ⚠️ Requires Ollama installation
-
-**If Using WebLLM** (After Packaging):
-- ✅ AI-enhanced responses for all participants
-- ✅ Works offline (model pre-loaded)
-- ✅ No installation required
-- ✅ Zero-setup for participants
-- ⏱️ 2-4 seconds inference time
-
-### Troubleshooting
-
-**"Reveal Response" button doesn't work:**
-- Check WebLLM is disabled (webLLMEnabled: false) in config
-- If enabled, make sure model is packaged in public/models/
-- Check browser console for errors
-- Test with rule-based first (disable all AI)
-
-**Responses are slow:**
-- Use rule-based responses (fastest)
-- OR use Ollama (faster than WebLLM)
-- OR reduce webLLMTimeout in config
-
-**Model not loading:**
-- Verify files in public/models/
-- Check browser supports WebGPU (Chrome 113+)
-- Try rebuilding: npm run build
-- Fall back to rule-based responses
+**On pre-packaging the WebLLM model:** the model is fetched by the WebLLM runtime from its
+own CDN and cached in the browser, and the service worker has `CacheFirst` rules for
+`huggingface.co` and `raw.githubusercontent.com/mlc-ai`. There is no supported "drop the
+model in `public/models/`" path in the current code. The practical approach is to have each
+laptop load the model once on a good connection before the session; it stays cached.
+If you genuinely need an offline first-load of the model, see `docs/CUSTOM-MODELS.md` and
+budget real time for it.
 
 ---
 
-## Performance Comparison
+## Pre-workshop checklist
 
-| Method | Setup Time | Response Time | Quality | Offline |
-|--------|------------|---------------|---------|---------|
-| Rule-based | 0 min | < 200ms | Good | ✅ |
-| Ollama | 5 min | 1-2 sec | Better | ✅ |
-| WebLLM (packaged) | 30 min* | 2-4 sec | Better | ✅ |
-| WebLLM (download) | 0 min | 2-5 min first use | Better | ❌ |
+- [ ] `npm run typecheck` and `npm run build` both clean
+- [ ] Chosen deployment mode rehearsed end to end on a second machine
+- [ ] **Offline verified by hand**: `npm run preview`, load, disconnect, reload, reveal a
+      response (the automated suite does not cover this — `docs/KNOWN-GAPS.md` §5)
+- [ ] Example scenario loads; a real participant CSV imported successfully at least once
+- [ ] If AI is in scope: WebLLM model pre-downloaded on each laptop, or Ollama installed on
+      the facilitator machine with `smollm2:1.7b` pulled
+- [ ] Fallback plan written down: if anything misbehaves, switch the AI backend to
+      rule-based and continue — nothing in the workshop depends on AI
+- [ ] Backup copies of the build on more than one USB drive
 
-*One-time setup before workshop
+## Workshop-day troubleshooting
 
----
-
-## Recommended Deployment Strategy
-
-### Phase 1: NOW (Testing & Development)
-- Use **rule-based responses** for immediate testing
-- Facilitators use **Ollama** for better responses
-- Test all pedagogy features work correctly
-
-### Phase 2: BEFORE Workshop
-- Package **WebLLM model** with PWA
-- Test on workshop laptops
-- Create USB drive backups
-
-### Phase 3: Workshop Day
-- Participants use **packaged WebLLM** (instant, offline)
-- Facilitators use **Ollama** (faster responses)
-- Rule-based as ultimate fallback
-
----
-
-## Current Status
-
-✅ **Tool works right now** with rule-based responses
-✅ **Ollama ready** (just install and pull model)
-🚧 **WebLLM ready** (need to package model first)
-
-**To test immediately:**
-```bash
-npm run dev
-# Open browser, load example, try dialogue
-# Works with rule-based responses!
-```
-
-**To add AI (easy):**
-```bash
-ollama pull gemma2:2b
-# Restart tool, responses now AI-enhanced!
-```
-
-**To add WebLLM (requires packaging):**
-```bash
-# See "Adding WebLLM" section above
-# Or wait until you have fine-tuned model ready
-```
+| Symptom | First thing to check |
+|---|---|
+| Page blank, console 404s on `/stakeholder-dialogue/assets/...` | Base-path mismatch — see the top of this guide |
+| "Reveal Response" seems stuck | An AI tier is waiting on a timeout; switch the backend selector to rule-based |
+| WebLLM never becomes ready | WebGPU unsupported (not Chrome/Edge 113+), or browser storage quota full — rule-based still works |
+| Ollama shows unavailable in a built copy | Expected: the proxy is dev-server only |
+| Fonts look wrong offline | Google Fonts CDN is unreachable; cosmetic only (`docs/KNOWN-GAPS.md` §4) |
+| Imported CSV loses technologies | Unmatched technology names are dropped silently — check the preview against the model output |
+| Scenario disappeared | IndexedDB cleared or private browsing; re-import. Auto-save is 500 ms after each change |

@@ -1,651 +1,213 @@
-# Scenario Dialogue Tool
+# Scenario Dialogue Tool — Working Instructions
 
-## Project Overview
+Interactive web app for IRENA capacity-building workshops. Energy planners import their
+model results, then rehearse how nine stakeholder groups would react to them, and how to
+communicate the scenario to each audience.
 
-The Scenario Dialogue Tool is an interactive web application designed to accompany IRENA's capacity building workshops on energy system modelling. It bridges the gap between technical modelling outputs and stakeholder engagement by helping energy planners visualize how different stakeholders would perceive and respond to their energy scenarios.
-
-### Purpose
-
-Energy planners often struggle to balance technical modelling work with stakeholder engagement and communications. This tool helps them:
-
-1. **Understand stakeholder perspectives** on their modelling results through simulated dialogues
-2. **Practice anticipating concerns** before engaging real stakeholders (predict-before-reveal pedagogy)
-3. **Visualize co-benefits and trade-offs** using soft metrics (jobs, land use, emissions) that matter to different audiences
-4. **Communicate results effectively** by generating audience-specific framings of the same underlying data
-
-### Critical Design Principle: Complement, Don't Contradict
-
-**This tool must NEVER contradict energy system optimization models.** Participants may have spent days learning rigorous modelling. This tool is for exploring stakeholder perspectives, NOT for re-running scenarios or calculating technical feasibility.
-
-### Context
-
-This tool is part of IRENA's Participatory Processes for Strategic Energy Planning toolkit, which emphasizes that meaningful stakeholder engagement is essential for achieving ambitious energy and climate goals. The toolkit identifies three core engagement approaches:
-
-- **Knowledge gathering**: Collecting perspectives from stakeholders
-- **Co-creation**: Enabling stakeholders to participate in shaping scenarios
-- **Knowledge dissemination**: Communicating complex energy concepts to various audiences
-
-This tool primarily supports knowledge dissemination and co-creation by helping planners anticipate stakeholder responses and adapt their communication accordingly.
-
-### Target Users
-
-- Ministry of Energy officials and planners
-- Utility planning staff
-- Participants in energy planning capacity building workshops (e.g., MESSAGE, OSeMOSYS, LEAP, SPLAT)
-- Energy planning professionals seeking to improve stakeholder engagement
-- Regional power pool planners
-
-### Workshop Integration
-
-The tool is designed for use in a half-day to full-day module within existing energy planning workshops. Participants will:
-
-1. Import their scenario results using a pre-formatted Excel template (5 minutes max)
-2. **Predict** how different stakeholders would respond (learning exercise)
-3. **Compare** their predictions to the tool's simulated responses
-4. Explore how adjustments affect stakeholder sentiment (directional only)
-5. Generate communication materials for different audiences
+This file is the operating manual for anyone (human or agent) changing the code.
+It describes **what is actually in the repo today**. When code and this file disagree,
+fix one of them in the same change — do not leave them in conflict.
 
 ---
 
-## Critical Architecture Decisions
+## 1. Non-negotiable product invariants
 
-### 1. OFFLINE-FIRST (Non-Negotiable)
+These three constraints drive nearly every design decision. Do not relax them without
+recording the decision in `docs/DECISIONS.md`.
 
-**Internet in workshop venues is often unreliable.** The tool MUST work fully offline.
+**1. Offline-first.** Workshop venues have unreliable internet. Rule-based responses,
+data import, calculations and all four tabs must work with the network off. AI is a
+bonus tier that fails silently — never a spinner, an error toast, or a blocked UI.
 
-- **Primary Mode**: Rule-based stakeholder responses (always works)
-- **Enhanced Mode**: AI-powered responses (when API available)
-- **Silent Failover**: If API fails, switch to rule-based WITHOUT errors or spinners
-- **No Loading States for Core Functionality**: The tool should feel instant
+**2. No shadow model.** The tool must never contradict an energy system optimisation
+model (MESSAGE, OSeMOSYS, LEAP, SPLAT). It calculates *soft metrics only*:
 
-### 2. NO SHADOW MODEL
+- Calculated: jobs (construction job-years, operations positions), land use (ha), CO2 from
+  combustion, directional stakeholder sentiment
+- Never calculated: LCOE, tariffs, reserve margin, VRE integration limits, reliability,
+  dispatch, transmission constraints — these require the real model
 
-**The tool does NOT recalculate technical/economic feasibility.**
+Every view that shows a calculated number carries the disclaimer:
 
-What the tool DOES calculate (soft metrics only):
-- Estimated jobs (construction and operations)
-- Land use requirements (hectares)
-- Emissions trajectory
-- Directional stakeholder sentiment
+> ILLUSTRATIVE ESTIMATES ONLY — These figures show directional impacts for discussion
+> purposes. They do NOT replace energy system optimization model analysis. Always verify
+> feasibility in the full model.
 
-What the tool does NOT calculate:
-- ~~LCOE~~ (removed - contradicts optimization model)
-- ~~Tariff implications~~ (removed - requires economic modelling)
-- ~~Reserve margin impacts~~ (removed - requires dispatch modelling)
-- ~~System reliability~~ (removed - requires technical modelling)
-
-**Prominent Disclaimer Required**: "This tool shows DIRECTIONAL impacts only. It does not replace energy system optimization models. Always verify technical feasibility in the full model."
-
-### 3. PREDICT-BEFORE-REVEAL PEDAGOGY
-
-**The goal is to teach participants to think like stakeholders, not to give them answers.**
-
-Workflow:
-1. User inputs scenario data
-2. User selects a stakeholder group
-3. **Tool asks: "What do you think [Stakeholder] will say about this scenario?"**
-4. User types their prediction (required, minimum 20 characters)
-5. User clicks "Reveal Response"
-6. Tool shows simulated stakeholder response
-7. **Compare/Contrast moment**: User reflects on differences
-
-This creates active learning, not passive consumption.
-
-### 4. 5-MINUTE DATA INPUT (Not 50 Minutes)
-
-**Energy model outputs can be messy.** We cannot expect participants to manually format CSVs.
-
-Solution:
-- Provide a **pre-formatted Excel template** (SCENARIO-INPUT-TEMPLATE.xlsx)
-- Template has clear instructions and validates data
-- Single "Copy Results" button in Excel copies formatted JSON
-- User pastes into tool OR exports as JSON file to upload
-- Alternative: Manual entry form for key metrics only (10-15 fields)
+**3. Predict-before-reveal.** The user must write a prediction (min. 20 characters)
+before the simulated stakeholder response is revealed. The learning happens in the
+comparison, so never add a path that skips straight to the answer.
 
 ---
 
-## Technical Architecture
+## 2. Commands
 
-### Deployment Modes (Priority Order)
+Verified on Node 22 (Node 20+ required; CI pins 22).
 
-1. **PWA (Progressive Web App)** - Primary, works offline after first load
-2. **Local Server** - Runs via batch file for fully air-gapped workshops
-3. **Hosted Web App** - For remote access and updates
+```bash
+npm install                 # first run
+npm run dev                 # http://localhost:5173/stakeholder-dialogue/  <- note the base path
+npm run typecheck           # tsc --noEmit  (fast; run before every commit)
+npm run build               # tsc && vite build -> dist/ (~75 s, emits sw.js + workbox-*.js)
+npm run preview             # serve dist/ locally
 
-### Technology Stack
+npm test                    # Playwright, all 4 browser projects (slow, verbose)
+npm run test:chromium       # Chromium only — use this while iterating
+npm test -- tests/e2e/17-stakeholder-tab.spec.ts --project=chromium   # single file
 
-- **Frontend**: React 19 with Vite
-- **Styling**: Tailwind CSS (matching IRENA brand colors)
-- **State Management**: React Context or Zustand
-- **Charts**: Recharts
-- **AI Integration**: WebLLM (browser) / Ollama (local) / cloud API — all optional enhancements, not required
-- **Offline Storage**: IndexedDB via Dexie.js
-- **PWA**: vite-plugin-pwa with Workbox
-- **Testing**: Playwright for end-to-end testing
-
-### Key Technical Requirements
-
-- **MUST work fully offline** after initial load
-- **MUST silently failover** to rule-based responses if API unavailable
-- **MUST load and respond in under 2 seconds** for all core interactions
-- CSV and JSON import/export for scenario data
-- Responsive design (primarily desktop, tablet-friendly)
-
-### File Structure
-
-```
-scenario-dialogue-tool/
-├── CLAUDE.md                    # This file - project instructions
-├── docs/                        # Extended documentation
-│   ├── STAKEHOLDER-PROFILES.md  # All 9 stakeholder definitions
-│   ├── TECHNICAL-IMPLEMENTATION.md  # Code examples and algorithms
-│   ├── DATA-SCHEMAS.md          # TypeScript interfaces and constants
-│   ├── UI-DESIGN.md             # Design system and mockups
-│   └── toolkit/                 # IRENA Participatory Processes Toolkit (source material)
-│       ├── README.md            # Index and quick reference
-│       ├── chapter-3-stakeholders.md      # 7 stakeholder profiles
-│       ├── chapter-4-engagement-tools.md  # Tools: workshops, surveys, etc.
-│       ├── chapter-5-case-studies.md      # 13 country/org case studies
-│       └── ...                  # Full toolkit chapters 1-8 + appendix
-├── feature_list.json            # Feature tracking for development
-├── claude-progress.txt          # Session progress log
-├── init.sh                      # Development server startup
-├── playwright.config.ts         # Testing configuration
-├── package.json
-├── vite.config.ts
-├── public/
-│   ├── icons/                   # Stakeholder icons from toolkit
-│   │   ├── policy-makers.png
-│   │   ├── grid-operators.png
-│   │   ├── industry.png
-│   │   ├── public.png
-│   │   ├── csos-ngos.png
-│   │   ├── scientific.png
-│   │   ├── finance.png
-│   │   ├── regional-bodies.svg
-│   │   └── development-partners.svg
-│   └── sample-data/
-│       ├── scenarioland-baseline.json
-│       └── rwanda-baseline.json
-├── src/
-│   ├── components/
-│   │   ├── layout/
-│   │   ├── input/
-│   │   ├── stakeholder/
-│   │   ├── prediction/          # Predict-before-reveal components
-│   │   ├── calculator/
-│   │   └── output/
-│   ├── hooks/
-│   ├── context/
-│   ├── utils/
-│   │   ├── calculations.ts      # Soft metrics ONLY (jobs, land, emissions)
-│   │   ├── stakeholder-rules.ts # Rule-based responses (PRIMARY)
-│   │   ├── stakeholder-ai.ts    # AI responses (OPTIONAL enhancement)
-│   │   └── data-transforms.ts
-│   ├── data/
-│   │   ├── stakeholder-profiles.ts
-│   │   └── technology-factors.ts
-│   ├── types/
-│   └── App.tsx
-└── tests/
-    └── e2e/
+npm run test:quality        # scripts/test-response-quality.cjs — template QA, no browser, seconds
+npm run responses:build     # regenerate src/data/response-library.ts from training data
 ```
 
----
-
-## Documentation Structure
-
-The project documentation is split into focused files:
-
-1. **[CLAUDE.md](CLAUDE.md)** (this file) - Project overview, architecture decisions, and agent instructions
-2. **[docs/STAKEHOLDER-PROFILES.md](docs/STAKEHOLDER-PROFILES.md)** - Detailed profiles for all 9 stakeholder groups
-3. **[docs/TECHNICAL-IMPLEMENTATION.md](docs/TECHNICAL-IMPLEMENTATION.md)** - Reference code for response generation, AI enhancement, and calculations
-4. **[docs/DATA-SCHEMAS.md](docs/DATA-SCHEMAS.md)** - TypeScript interfaces, data structures, and reference constants
-5. **[docs/UI-DESIGN.md](docs/UI-DESIGN.md)** - Design system, layouts, and component specifications
-6. **[docs/WEBLLM-STATUS.md](docs/WEBLLM-STATUS.md)** - WebLLM browser-based AI integration (model, prompts, echo detection, testing)
-
-### IRENA Toolkit Source Documentation
-
-The **[docs/toolkit/](docs/toolkit/)** folder contains the complete IRENA "Participatory Processes for Strategic Energy Planning" toolkit converted to markdown. This is the authoritative source for:
-
-- **Stakeholder engagement approaches** - See [Chapter 3](docs/toolkit/chapter-3-stakeholders.md) for detailed profiles of 7 stakeholder groups with challenges and good practices
-- **Engagement tools** - See [Chapter 4](docs/toolkit/chapter-4-engagement-tools.md) for knowledge gathering, co-creation, and dissemination methods
-- **Case studies** - See [Chapter 5](docs/toolkit/chapter-5-case-studies.md) for 13 real-world examples (Belgium, Brazil, Canada, Chile, Colombia, Cyprus, Finland, Ghana, Panama, UAE, Kenya, PAC Consortium, World Energy Council)
-- **Dissemination guidance** - Section 4.3 covers public presentations, reports, visualisation tools, games and simulations
-
-**Quick Reference for Implementation:**
-
-| Feature Area | Toolkit Reference |
-|--------------|-------------------|
-| Stakeholder profiles & concerns | [Chapter 3](docs/toolkit/chapter-3-stakeholders.md) |
-| Workshop/survey/interview design | [Chapter 4.1](docs/toolkit/chapter-4-engagement-tools.md#41-knowledge-gathering) |
-| Communication tab content | [Chapter 4.3](docs/toolkit/chapter-4-engagement-tools.md#43-dissemination) |
-| Best practices / case studies | [Chapter 5](docs/toolkit/chapter-5-case-studies.md) |
-| Interactive tools (calculators, games) | [Box 6 in Chapter 4](docs/toolkit/chapter-4-engagement-tools.md#box-6-tools-for-visualising-and-gamifying-energy-scenarios) |
-| External resources & frameworks | [Chapter 7](docs/toolkit/chapter-7-additional-material.md) |
+**Testing policy:** Chromium-only while iterating; full multi-browser run before a commit
+that touches CSS, layout, PWA or offline behaviour. `npm run test:quality` is cheap and
+catches most rule-based response regressions — prefer it over Playwright for template work.
 
 ---
 
-## Data Input System
+## 3. Architecture
 
-### Design Goal: 5-Minute Import
-
-Participants should go from "I have my model results" to "I'm exploring stakeholder responses" in under 5 minutes.
-
-### Option 1: Excel Template (PLANNED - F013/F014, not yet available)
-
-**SCENARIO-INPUT-TEMPLATE.xlsx** - A macro-enabled Excel workbook (not yet created) that will:
-
-1. Has clear input cells for each metric (color-coded)
-2. Accepts copy-paste from model result files
-3. Validates data and highlights errors
-4. Generates JSON with a single button click
-5. Instructions in multiple languages (English, French, Spanish)
-
-Template Structure:
-```
-Sheet 1: Instructions
-Sheet 2: Metadata (Country, Scenario Name, Year)
-Sheet 3: Capacity (MW by technology and year)
-Sheet 4: Generation (GWh by technology and year)
-Sheet 5: Emissions (Mt CO2 by year)
-Sheet 6: Investment (USD millions by year)
-Sheet 7: Demand (Total, Peak, Sectoral)
-Sheet 8: OUTPUT (JSON - copy this)
-```
-
-### Option 2: Quick Entry Form
-
-For workshops where Excel isn't practical, provide a simplified form with 10-15 essential fields. See [docs/DATA-SCHEMAS.md](docs/DATA-SCHEMAS.md) for the `QuickScenarioInput` interface.
-
-### Option 3: Load Example
-
-Pre-loaded sample scenario for demonstration and testing.
-
----
-
-## Core Stakeholder Groups
-
-The tool implements nine stakeholder groups. For detailed profiles, concern triggers, and response templates, see **[docs/STAKEHOLDER-PROFILES.md](docs/STAKEHOLDER-PROFILES.md)**.
-
-1. **Policy Makers & Regulators** - Government officials responsible for energy policy
-2. **Grid Operators** - Transmission and distribution network operators
-3. **Industry & Business** - Energy-intensive industries and developers
-4. **Public & Communities** - General public and affected communities
-5. **CSOs & NGOs** - Civil society and advocacy organizations
-6. **Scientific Institutions** - Universities and research organizations
-7. **Financial Institutions** - Banks, development finance institutions, investors
-8. **Regional Bodies** - Power pools, regional integration bodies
-9. **Development Partners** - Bilateral and multilateral development agencies
-
-Each stakeholder has:
-- Unique priorities and concerns
-- Typical questions they would ask
-- Engagement best practices
-- Automated concern triggers based on scenario metrics
-- Response templates for common scenarios
-
----
-
-## Response Generation
-
-The tool uses a two-tier system:
-
-### Primary: Rule-Based Responses (Always Available)
-
-- Works 100% offline
-- Fast (< 200ms response time)
-- Based on stakeholder profiles and metric thresholds
-- Consistent and predictable
-
-### Optional: AI Enhancement (When Available)
-
-- Enhances rule-based responses with more natural language
-- 3-second timeout with silent failover
-- Never blocks the user or shows errors
-- Requires API key configuration
-
-For implementation details, see **[docs/TECHNICAL-IMPLEMENTATION.md](docs/TECHNICAL-IMPLEMENTATION.md)**.
-
----
-
-## Soft Metrics Calculations
-
-The tool calculates illustrative estimates for:
-
-### Jobs
-- Construction jobs (temporary, job-years)
-- Operations jobs (permanent positions)
-- Based on IRENA job factor studies
-
-### Land Use
-- Hectares required by technology
-- Only for solar PV, wind, and battery storage
-- Other technologies too site-specific
-
-### Emissions
-- CO2 emissions from fossil fuel combustion
-- Percent reduction from baseline
-- Does NOT include lifecycle emissions
-
-**See [docs/DATA-SCHEMAS.md](docs/DATA-SCHEMAS.md) for all job factors, land factors, and emission factors.**
-
-### What We Do NOT Calculate
-
-```typescript
-// REMOVED - These require technical modelling
-// ❌ LCOE (levelized cost of electricity)
-// ❌ Tariff implications
-// ❌ Reserve margin adequacy
-// ❌ VRE integration limits
-// ❌ System reliability metrics
-// ❌ Dispatch feasibility
-// ❌ Transmission constraints
-```
-
-### Required Disclaimer
-
-Every page showing calculations MUST display:
+React 19 + TypeScript (strict) + Vite 7, Tailwind **v4** (CSS-first, no `tailwind.config.js`),
+Recharts, Dexie/IndexedDB, vite-plugin-pwa/Workbox, Playwright.
 
 ```
-⚠️ ILLUSTRATIVE ESTIMATES ONLY
-These figures show directional impacts for discussion purposes.
-They do NOT replace energy system optimization model analysis.
-Always verify feasibility in the full model.
+src/
+├─ App.tsx                      four tabs: input | dialogue | explore | communicate
+├─ context/ScenarioContext.tsx  single source of scenario state; auto-saves to IndexedDB (500 ms debounce)
+├─ types/                       <- SOURCE OF TRUTH for data shapes
+│   ├─ scenario.ts              ScenarioInput { metadata, milestones[], detailedTech? }
+│   ├─ derived-metrics.ts       output of calculations.ts
+│   └─ response.ts stakeholder.ts adjustments.ts case-study.ts
+├─ data/                        content, not logic
+│   ├─ stakeholder-profiles.ts       the 9 profiles + concern triggers
+│   ├─ stakeholder-enhancements.ts   multi-metric triggers, dev-context, variants
+│   ├─ response-library.ts           GENERATED — 182 templates. Never hand-edit; run responses:build
+│   ├─ template-selector.ts          hand-written selection + interpolation (Gaussian scoring, shuffle bags)
+│   ├─ stakeholder-fewshot.ts        few-shot examples for the LLM tiers
+│   └─ dissemination-*.ts, case-studies.ts, glossary.ts, technology-factors.ts
+├─ utils/
+│   ├─ calculations.ts          soft metrics only (jobs, land, emissions, capacity, investment)
+│   ├─ stakeholder-rules.ts     PRIMARY response generator — always available, offline
+│   ├─ stakeholder-ai.ts        optional AI tiers + silent failover
+│   ├─ sentiment-calculator.ts  directional sentiment for the Explore tab
+│   ├─ csv-parser.ts            SPLAT / long-format CSV -> ScenarioInput
+│   ├─ unit-conversions.ts      MW/GW, GWh/TWh, m$/B$, Mt/kt
+│   └─ db.ts                    Dexie schema (scenarios, predictions, settings)
+├─ hooks/       useWebLLM.ts, useOnlineStatus.ts
+└─ components/  layout | input | stakeholder | prediction | calculator | output | common
 ```
 
----
+`scripts/` holds Node maintenance tools (response-library build, quality tests, icon
+generation, Ollama prompt testing). They are not part of the app bundle.
 
-## User Interface
+### Data model, in one paragraph
 
-The tool uses a four-tab layout:
+`ScenarioInput` is **milestone-based**: `metadata` plus `milestones: MilestoneData[]`,
+where each milestone has a `year` and unit-tagged values (`capacity`, `generation`,
+`reShare`, `investment`, `emissions`, `peakDemand`, plus optional `capacityAdditions`,
+`annualOMCosts`, `curtailment`, `imports`). Technologies are aggregated into
+`TechnologyMix { renewables, fossil, storage?, other? }`; granular per-technology data is
+optional in `detailedTech`. An older flat schema (`milestoneYears` + `supply.capacity.<tech>`)
+was replaced — if you meet it in a doc or test, that code is stale.
+**Read `src/types/scenario.ts` before writing anything that touches scenario data.**
 
-1. **Input** - Data import (5 minutes max)
-2. **Stakeholder Dialogue** - Predict-before-reveal learning
-3. **Explore Impacts** - Directional sensitivity (soft metrics only)
-4. **Communicate** - Dissemination strategy guidance (aligned with IRENA toolkit)
+### Response pipeline
 
-For complete design specifications, mockups, and component patterns, see **[docs/UI-DESIGN.md](docs/UI-DESIGN.md)**.
+```
+generateEnhancedResponse()              <- stakeholder-rules.ts, always runs, offline, <200 ms
+  ├ template-selector.selectTemplate()     Gaussian proximity + recency decay, per-stakeholder sigma
+  └ interpolateTemplate()                  {?key:text} conditional blocks, {~a|b|c} variation
+        v optionally passed through
+maybeEnhanceWithAI()                    <- stakeholder-ai.ts
+  1. WebLLM   SmolLM2-1.7B-Instruct-q4f16_1-MLC, WebGPU, ~1.8 GB cached in browser
+  2. Ollama   smollm2:1.7b via the Vite dev proxy /api/ollama  <- DEV SERVER ONLY (see KNOWN-GAPS)
+  3. Cloud    STUB — enhanceWithCloudAPI() returns null; nothing is implemented
+  4. Rule-based response returned unchanged
+```
 
-### Communication Tab: Dissemination Strategy Recommender
-
-The Communication tab teaches energy planners how to effectively disseminate scenario results to different stakeholders, based on **IRENA's Participatory Processes Toolkit Section 4.3** on dissemination techniques.
-
-**Design Philosophy: Educational, Not Automated**
-- **Primary Goal**: Teach practitioners which dissemination formats resonate with different audiences
-- **Approach**: Provide templates, examples, and guidance rather than fully automated outputs
-- **Focus**: Enable users to create their own materials customized to local context
-
-**Key Features:**
-
-**1. Dissemination Strategy Recommendations**
-For each stakeholder group, the tool suggests:
-- **Recommended formats** (policy briefs, interactive calculators, infographics, dashboards, etc.)
-- **Why this format works** for this audience
-- **Key messages to emphasize** (auto-populated from scenario data)
-- **What to avoid** when communicating to this group
-
-**2. Format Template Library**
-Text-based templates for common dissemination formats:
-- Policy briefs (for Policy Makers, Development Partners)
-- Infographics (for Public & Communities)
-- Investment briefings (for Financial Institutions)
-- Climate impact narratives (for CSOs & NGOs)
-- Technical appendices (for Scientific Institutions)
-
-**3. Interactive Demonstration Tools**
-Working examples showing communication concepts:
-- **Community Impact Calculator** - Demonstrates how to make scenarios personal (household bill impact, local jobs, air quality)
-- **Scenario Comparison Tool** - Shows how to compare ambition levels for climate-focused audiences
-- These are teaching tools users can adapt, not production-ready applications
-
-**4. Toolkit-Aligned Guidance**
-Educational content on:
-- Matching format to audience technical level
-- Using interactive visualizations effectively
-- Gamification approaches for broad engagement
-- Layering communication (headlines → details)
-- Storytelling with data
-
-**5. Best Practices Tab (Dissemination Tips)**
-Educational content directly from IRENA Toolkit Section 4.3, with three sub-tabs:
-
-- **Quick Tips**: 8 expandable cards with key principles (Match Format to Audience, Use Non-Technical Language, Make It Interactive, Consider Gamification, Plan for Feedback, Layer Your Communication, Leverage Online Tools, Provide Educational Context)
-
-- **Toolkit Principles**: Detailed expandable cards for Section 4.3.1 (Public Presentations and Reports) and Section 4.3.2 (Visualisation Tools, Games and Simulations), each showing:
-  - Implementation stages (Framing → Development → Validation → Communication)
-  - Strengths, Challenges, and Limitations
-  - Available tools with examples
-  - Resource requirements
-
-- **Case Studies**: Country examples grouped by flag (Belgium My2050 calculator, Kenya energy calculator, UAE board game, Cyprus policy briefs, Brazil virtual debates, Chile public hearings, IEA climate game)
-
-- **Contextual Tips**: When a stakeholder is selected, shows stakeholder-specific tips with recommended approaches and approaches to avoid
-
-**What This Tab Does NOT Do:**
-- ❌ Generate publication-ready documents (users customize templates themselves)
-- ❌ Create complex visualizations (users export data for their tools)
-- ❌ Build full interactive dashboards (provides demo examples only)
-
-**Toolkit Dissemination Methods Referenced:**
-- Public presentations and reports
-- Policy briefs
-- Interactive calculators (Belgium "My2050", Kenya energy calculator)
-- Simulations and games (IEA climate game, UAE board game)
-- Data visualization tools (Tableau, PowerBI, R)
-- Business intelligence dashboards
-
-This approach ensures workshop participants learn **how to think about dissemination** and gain **starter materials** they can refine for their specific contexts.
-
-### Design Principles
-
-- **IRENA branding** - Official colors and typography
-- **Accessibility** - WCAG 2.1 AA compliant
-- **Responsive** - Desktop primary, tablet-friendly
-- **Offline indicators** - Clear status of AI availability
-- **Fast feedback** - No unnecessary loading states
+Every tier catches its own errors and returns `null` to fall through. The user only ever
+sees a response.
 
 ---
 
-## Agent Instructions for Claude Code
+## 4. Conventions
 
-### On First Run (Initializer Mode)
-
-If `claude-progress.txt` does not exist:
-
-1. Create `init.sh` with:
-   - `npm install`
-   - `npm run dev`
-
-2. Create `feature_list.json` with ALL features marked `"passes": false`
-
-3. Create `claude-progress.txt` with initial state
-
-4. Set up project structure:
-   - Initialize Vite + React + TypeScript
-   - Configure Tailwind with IRENA tokens (see docs/UI-DESIGN.md)
-   - Set up PWA configuration IMMEDIATELY (offline-first)
-   - Create placeholder components
-
-5. Make initial git commit
-
-### On Subsequent Runs (Coding Agent Mode)
-
-If `claude-progress.txt` exists:
-
-1. Run `pwd` to confirm directory
-2. Read `claude-progress.txt` and `git log --oneline -20`
-3. Read `feature_list.json` for next failing feature
-4. Run `./init.sh` to start dev server
-5. Work on ONE feature only
-6. Test with Playwright (use Chromium-only during development, multi-browser before commits)
-7. Mark feature `"passes": true` only after testing
-8. Git commit
-9. Update `claude-progress.txt`
-
-### Critical Rules
-
-- **OFFLINE-FIRST**: PWA and rule-based responses are PRIORITY 1
-- Work on ONE feature per session
-- NEVER edit feature descriptions, only `passes` field
-- ALWAYS leave code committable
-- Reference CLAUDE.md and docs/ for all specifications
-- Test offline functionality explicitly
-- **Token Optimization**: Use Chromium-only tests during development (`--project=chromium`), full multi-browser before commits
-- **WebLLM Documentation**: When modifying any WebLLM-related files (`src/utils/stakeholder-ai.ts`, `src/data/stakeholder-fewshot.ts`, `src/hooks/useWebLLM.ts`, `scripts/test-prompts-ollama.ts`), update `docs/WEBLLM-STATUS.md` to reflect changes (prompts, models, test results, configuration)
-
-### Reference Documentation
-
-When implementing features, consult:
-
-- **Stakeholder logic**: [docs/STAKEHOLDER-PROFILES.md](docs/STAKEHOLDER-PROFILES.md)
-- **Response generation**: [docs/TECHNICAL-IMPLEMENTATION.md](docs/TECHNICAL-IMPLEMENTATION.md)
-- **Data structures**: [docs/DATA-SCHEMAS.md](docs/DATA-SCHEMAS.md)
-- **UI components**: [docs/UI-DESIGN.md](docs/UI-DESIGN.md)
-- **WebLLM/AI enhancement**: [docs/WEBLLM-STATUS.md](docs/WEBLLM-STATUS.md)
+- **TypeScript strict**, `noUnusedLocals` / `noUnusedParameters` on. `npm run typecheck` must be clean.
+- **Tailwind v4**: brand tokens live in `@theme` in `src/index.css` (`--color-irena-blue`,
+  `--color-stakeholder-*`). There is no `tailwind.config.js` — do not create one.
+- **No new runtime dependencies** without a clear reason; the bundle already ships WebLLM.
+  Prefer zero-dependency solutions (see the SVG-to-canvas JPG export in `ScenarioPreview.tsx`).
+- **Generated files** (`src/data/response-library.ts`) are regenerated, never edited.
+- **Base path is `/stakeholder-dialogue/`** (GitHub Pages). Any absolute asset URL must
+  include it, or use Vite's `import.meta.env.BASE_URL`.
+- **Never ship an API key in the client bundle.** A cloud AI tier, if built, goes through a
+  proxy the user controls — `VITE_*` variables are public.
+- **Commits**: conventional prefixes (`feat:`, `fix:`, `chore:`, `docs:`, `test:`).
+  Leave the tree committable; typecheck before committing.
+- **Comments** explain *why*, matching the density already in the file.
 
 ---
 
-## Adaptability and Customization
+## 5. How to work in this repo
 
-### Regional Adaptations
+Read `claude-progress.txt` (current state, one page) and `git log --oneline -20` first.
 
-The tool is designed to be adaptable to different regional contexts:
+**Small change / one feature:** pick the next failing item in `feature_list.json`, implement
+it, test it (Chromium first), set only its `passes` field to `true`, commit, append a short
+entry to `claude-progress.txt`. Never rewrite feature descriptions.
 
-- **Replace regional body profiles** - E.g., SAPP for Southern Africa, WAPP for West Africa, various regional power pools
-- **Adjust concern thresholds** - Based on local benchmarks and policy targets
-- **Customize stakeholder lists** - Add/remove stakeholders based on local context
-- **Localize language** - Support multiple languages in UI and templates
+**Large change / refactor:** do not drive it through `feature_list.json`. Record the intent
+in `docs/DECISIONS.md` (what changes, why, what breaks), work on a branch, keep
+`npm run typecheck` green at each step, and update the docs listed in §6 in the same change.
 
-### Model Compatibility
-
-The tool accepts outputs from various energy models:
-
-- **MESSAGE** (IIASA's integrated assessment model)
-- **OSeMOSYS** (Open Source Energy Modelling System)
-- **LEAP** (Long-range Energy Alternatives Planning system)
-- **SPLAT** (Long-term electricity planning model)
-- **Custom models** - As long as they provide the required data schema
-
-### Example Scenarios
-
-Sample scenarios should represent diverse contexts:
-- Different regions (Africa, Asia, Latin America, Small Island States)
-- Different starting points (high fossil, high hydro, island grids)
-- Different ambition levels (business-as-usual, moderate, ambitious)
+**Always:**
+- Verify a claim in the code before repeating it in a doc.
+- Changing `src/utils/stakeholder-ai.ts`, `src/data/stakeholder-fewshot.ts`,
+  `src/hooks/useWebLLM.ts` or `scripts/test-prompts-ollama.ts` -> update `docs/WEBLLM-STATUS.md`.
+- Changing `src/types/*` -> update `docs/DATA-SCHEMAS.md`.
+- Changing design tokens or layout -> update `docs/UI-DESIGN.md`.
+- Test offline behaviour explicitly when touching PWA, caching, storage or the AI tiers.
 
 ---
 
-## Testing Strategy
+## 6. Documentation map
 
-### Browser Testing Efficiency
+`docs/README.md` is the index and marks every file **Current** or **Historical**.
+The ones that matter for implementation work:
 
-To optimize token usage during development, use targeted browser testing:
+| Doc | Use it for |
+|---|---|
+| [docs/KNOWN-GAPS.md](docs/KNOWN-GAPS.md) | Verified defects and debt — read before planning big changes |
+| [docs/DATA-SCHEMAS.md](docs/DATA-SCHEMAS.md) | Scenario / derived-metrics shapes, job, land and emission factors |
+| [docs/STAKEHOLDER-PROFILES.md](docs/STAKEHOLDER-PROFILES.md) | The 9 profiles, triggers, response templates |
+| [docs/TECHNICAL-IMPLEMENTATION.md](docs/TECHNICAL-IMPLEMENTATION.md) | Response generation and calculation algorithms |
+| [docs/UI-DESIGN.md](docs/UI-DESIGN.md) | Design tokens, layout, component patterns |
+| [docs/WEBLLM-STATUS.md](docs/WEBLLM-STATUS.md) | WebLLM / Ollama config, prompts, echo detection |
+| [docs/WORKSHOP-DEPLOYMENT.md](docs/WORKSHOP-DEPLOYMENT.md) | USB, local-server and Pages deployment |
+| [docs/toolkit/](docs/toolkit/) | IRENA *Participatory Processes* toolkit — the content source of truth |
 
-**During Active Development:**
-- Run Chromium-only tests: `npm test -- <test-file> --project=chromium`
-- Saves ~75% tokens (~6,000-7,500 tokens per full test run)
-- Chromium tests are sufficient for most logic/data validation
-
-**Before Commits:**
-- Run full multi-browser suite: `npm test -- <test-file>`
-- Tests across Chromium, Firefox, Webkit, and Mobile Safari
-- Essential for PWA and cross-browser compatibility verification
-
-**Token Usage Estimates:**
-- Chromium-only: ~2,000-2,500 tokens
-- Multi-browser (4 browsers): ~8,000-10,000 tokens
-
-**When to Use Multi-Browser:**
-- Before git commits
-- CSS/styling changes
-- PWA/offline functionality changes
-- Final feature validation
-- Responsive design updates
-
-### Critical Test Scenarios
-
-1. **Offline functionality**
-   - Tool loads without internet
-   - Responses generate without API
-   - Data persists in IndexedDB
-
-2. **Data import**
-   - Excel template correctly formats JSON
-   - Quick entry validates inputs
-   - Example data loads properly
-
-3. **Predict-before-reveal workflow**
-   - Prediction required before reveal
-   - Comparison view shows both
-   - Can try multiple stakeholders
-
-4. **Response generation**
-   - Rule-based always works
-   - AI enhancement fails gracefully
-   - Responses match stakeholder profiles
-
-5. **Accessibility**
-   - Keyboard navigation works
-   - Screen reader compatible
-   - Color contrast passes WCAG AA
+Toolkit quick reference: stakeholder profiles -> chapter 3; engagement tools -> chapter 4.1;
+dissemination (the Communicate tab) -> chapter 4.3; case studies -> chapter 5.
 
 ---
 
-## Deployment Checklist
+## 7. Domain reference
 
-Before deploying to workshops:
+**The nine stakeholder groups** (ids in `src/data/stakeholder-profiles.ts`):
+`policy-makers`, `grid-operators`, `industry`, `public`, `csos-ngos`, `scientific`,
+`finance`, `regional-bodies`, `development-partners`. The first seven come from the IRENA
+toolkit; regional bodies and development partners were added for energy-planning practice.
 
-- [ ] PWA works offline (test with DevTools offline mode)
-- [ ] Excel template tested with real model outputs
-- [ ] Sample scenarios represent target region
-- [ ] All disclaimers present and prominent
-- [ ] Response generation < 2 seconds
-- [ ] Works on tablets (9.7" and larger)
-- [ ] Tested in low-bandwidth environment
-- [ ] User documentation prepared
-- [ ] Facilitator guide written
-- [ ] Backup USB drives prepared (for offline distribution)
+Each profile carries priorities, typical questions, concern triggers keyed to metric
+thresholds, and response templates. Responses are further shaped by **development context**
+(LDC / emerging / developed) and **variant** (conservative / pragmatic / progressive).
 
----
+**The four tabs:**
+1. **Input** — CSV upload, quick-entry form, or load example (target: under 5 minutes).
+2. **Stakeholder Dialogue** — predict, reveal, compare.
+3. **Explore Impacts** — directional sensitivity on soft metrics only.
+4. **Communicate** — dissemination strategy, templates, case studies, best practice.
+   Educational by design: it teaches formats, it does not generate publication-ready
+   documents or full dashboards.
 
-## WebLLM Integration (F043) - IMPLEMENTED
-
-**Status**: ✅ COMPLETE - WebLLM browser-based AI is implemented and tested
-**Documentation**: [docs/WEBLLM-STATUS.md](docs/WEBLLM-STATUS.md) (architecture, prompts, echo detection, testing)
-
-**What it provides**:
-- ✅ Zero installation for participants
-- ✅ Runs 100% in browser (WebGPU)
-- ✅ Truly offline after first model load
-- ✅ Privacy-preserving (data stays local)
-- ✅ PWA compatible
-- ✅ Can be pre-loaded on USB drives
-
-**Model**: SmolLM2-1.7B-Instruct (q4f16_1, ~1.8GB one-time download, cached in browser)
-**Browser Support**: Chrome 113+, Edge 113+ (WebGPU required); Apple Silicon works
-**Failover chain**: WebLLM → Ollama (smollm2:1.7b, for facilitators) → Cloud API → Rule-based (always works)
-
-**Implementation notes**:
-- Few-shot prompting (2 examples per stakeholder) for WebLLM's chat API
-- Simpler direct prompts for Ollama's generate endpoint (few-shot causes echo there)
-- Echo detection with automatic fallback to rule-based responses
-- Streaming text display for Ollama backend (F046)
-
----
-
-## Future Enhancements (Not Initial Scope)
-
-Potential future additions (after WebLLM):
-
-- Multi-scenario comparison
-- Sensitivity analysis visualization
-- Collaborative features (multi-user)
-- Integration with online models
-- Mobile app version
-- Additional stakeholder groups (e.g., labor unions, indigenous communities)
-- Support for other sectors (water, transport, industry)
-
----
-
-*This tool is designed to improve energy planning stakeholder engagement worldwide. It complements rigorous technical modelling with accessible communication and anticipatory stakeholder analysis.*
+**Adaptability:** stakeholder lists, regional bodies, concern thresholds and sample
+scenarios are all data, not logic — regional adaptation should not require code changes.

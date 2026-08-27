@@ -1,7 +1,8 @@
 # WebLLM Integration
 
-**Last Updated:** 2025-12-30
-**Status:** ✅ FULLY IMPLEMENTED - 100% quality after echo fix
+**Last verified against the code:** 2026-08-26
+**Status:** Implemented and enabled by default (F043). Optional by design — the tool is fully
+usable without it.
 **Feature:** F043 (WebLLM Browser-Based AI)
 
 ---
@@ -43,6 +44,39 @@ WebLLM enables **browser-based AI enhancement** for stakeholder responses. Works
 - **Parameters:** 1.7 billion
 - **Quantization:** 4-bit (q4f16)
 
+### Live configuration — `DEFAULT_AI_CONFIG` in `src/utils/stakeholder-ai.ts`
+
+```typescript
+webLLMEnabled: true,
+webLLMModel:   'SmolLM2-1.7B-Instruct-q4f16_1-MLC',
+webLLMTimeout: 60000,
+
+ollamaEnabled: true,
+ollamaUrl:     '/api/ollama',   // Vite DEV-SERVER proxy -> http://localhost:11434
+ollamaModel:   'smollm2:1.7b',
+ollamaTimeout: 120000,          // generous: Ollama streams, first token can take ~40 s
+
+cloudEnabled:  false,           // enhanceWithCloudAPI() is a stub returning null
+cloudTimeout:  3000,
+```
+
+> WebLLM is enabled by default, but nothing downloads until a user asks for it — the model
+> is fetched on the first `initializeWebLLM()` call from the Stakeholder Dialogue tab.
+
+> **Ollama is dev-server only.** `/api/ollama` is a proxy defined in `vite.config.ts`, so it
+> exists under `npm run dev` and nowhere else. In a built PWA (`npm run preview`, USB copy,
+> GitHub Pages) the Ollama tier silently fails and the chain falls through to rule-based. If
+> facilitators need Ollama in a packaged deployment, point `ollamaUrl` at
+> `http://localhost:11434` directly and start Ollama with CORS allowed
+> (`OLLAMA_ORIGINS=*`), or ship a tiny local proxy alongside the static files.
+
+### Bundle impact
+
+`@mlc-ai/web-llm` is imported statically, so the WebLLM runtime is inside the main chunk:
+`dist/assets/index-*.js` is 6.6 MB (2.3 MB gzipped) even for users who never enable AI.
+Making the import dynamic is the single biggest first-load win available — see
+`docs/KNOWN-GAPS.md`.
+
 ### Alternative Models (can swap in config)
 | Model | Size | Quality | Speed |
 |-------|------|---------|-------|
@@ -54,12 +88,12 @@ WebLLM enables **browser-based AI enhancement** for stakeholder responses. Works
 
 | Metric | Value |
 |--------|-------|
-| Model size | 1.77 GB |
-| First load time | 2-5 minutes (download) |
-| Subsequent loads | <2 seconds (from cache) |
+| Model size | ~1.77 GB |
+| First load time | 2-5 minutes (download, needs internet once) |
+| Subsequent loads | <2 seconds (from browser cache) |
 | Inference time | 5-15 seconds |
-| Timeout | 20 seconds |
-| Quality rate | 100% (after echo fix) |
+| Timeout (`webLLMTimeout`) | 60 000 ms — raised from 20 s for slower workshop laptops |
+| Echo rate after the 2025-12-30 prompt fix | 0% in the recorded Ollama test run |
 
 ---
 

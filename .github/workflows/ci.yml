@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      - main
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      # Browser-free check of the rule-based response library:
+      # template selection, interpolation, grammar cleanup, anti-repetition.
+      - name: Response quality
+        run: npm run test:quality
+
+      - name: Build
+        run: npm run build
+
+      # The Playwright suite is not run here yet: several specs are stale and the
+      # WebLLM specs download ~1.8 GB. See docs/KNOWN-GAPS.md section 5 — once those
+      # are fixed, add:
+      #   - run: npx playwright install --with-deps chromium
+      #   - run: npm run test:chromium

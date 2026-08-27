@@ -1,5 +1,8 @@
 # Workshop Customization System - Implementation Plan
 
+> **Status: Reference — not implemented (2026-08-26).** A deferred plan, kept for the ideas.
+> Nothing described here exists in `src/`.
+
 > **Status**: DEFERRED - Implement after core features complete (F027-F042)
 > 
 > **Reason**: Complete workshop functionality first, then add customization based on pilot feedback

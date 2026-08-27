@@ -42,13 +42,13 @@ export interface AIConfig {
 /**
  * Default AI configuration
  *
- * IMPORTANT: WebLLM is DISABLED by default to prevent blocking the UI while downloading model.
- * Enable it after packaging the model with the PWA or when users have fast internet.
+ * WebLLM is ENABLED here, but nothing downloads until the user asks for it: the model is
+ * fetched on the first initializeWebLLM() call, triggered from the Stakeholder Dialogue tab.
+ * Rule-based responses remain the default experience and never depend on this config.
  *
- * For workshop deployment:
- * 1. Package model with PWA (see docs/CUSTOM-MODELS.md)
- * 2. Set webLLMEnabled: true
- * 3. Test that model loads correctly
+ * For workshop deployment see docs/WORKSHOP-DEPLOYMENT.md and docs/CUSTOM-MODELS.md.
+ * Note: ollamaUrl below is a Vite DEV-SERVER proxy and does not exist in a built app
+ * (docs/KNOWN-GAPS.md).
  */
 export const DEFAULT_AI_CONFIG: AIConfig = {
   // WebLLM for participants (browser-based, zero setup)

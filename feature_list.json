@@ -195,7 +195,7 @@
       "category": "input",
       "priority": 13,
       "description": "JSON paste functionality for Excel template output",
-      "status": "DEFERRED - Skip for now, focus on core stakeholder dialogue features first",
+      "status": "DEFERRED - Excel template never built; public/templates/ does not exist. CSV upload, quick entry and JSON paste cover import today.",
       "steps": [
         "Create components/input/JsonPasteInput.tsx",
         "Add large text area for pasting JSON",
@@ -210,7 +210,7 @@
       "category": "input",
       "priority": 14,
       "description": "Excel template file for SPLAT output import",
-      "status": "DEFERRED - Skip for now, focus on core stakeholder dialogue features first",
+      "status": "DEFERRED - Excel template never built; public/templates/ does not exist. CSV upload, quick entry and JSON paste cover import today.",
       "steps": [
         "Create public/templates/SPLAT-OUTPUT-IMPORTER.xlsx",
         "Add Instructions sheet with clear guidance",
@@ -531,7 +531,7 @@
       "category": "persistence",
       "priority": 34,
       "description": "Export scenario and responses as JSON",
-      "status": "DEFERRED - Focus on core UX and packaging features first",
+      "status": "DEFERRED - Session export (scenario + predictions + responses) still open. Scenario JSON import and chart JPG export exist; session export does not.",
       "steps": [
         "Add 'Export Session' button",
         "Combine scenario, predictions, responses",
@@ -613,7 +613,7 @@
       "category": "documentation",
       "priority": 40,
       "description": "README with setup instructions",
-      "status": "DEFERRED - Wait until project is production-ready for deployment",
+      "status": "COMPLETE - README.md exists at the repo root (verified 2026-08-26)",
       "steps": [
         "Write comprehensive README.md",
         "Include installation steps",
@@ -621,14 +621,14 @@
         "Add screenshots of key features",
         "Include troubleshooting section"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": "F041",
       "category": "documentation",
       "priority": 41,
       "description": "Workshop facilitator guide",
-      "status": "DEFERRED - Wait until project is production-ready for deployment",
+      "status": "DEFERRED - Workshop documentation. F042 depends on the Excel template (F013/F014), which does not exist.",
       "steps": [
         "Create FACILITATOR_GUIDE.md",
         "Document predict-before-reveal pedagogy",
@@ -643,7 +643,7 @@
       "category": "documentation",
       "priority": 42,
       "description": "Excel template user instructions",
-      "status": "DEFERRED - Wait until project is production-ready for deployment",
+      "status": "DEFERRED - Workshop documentation. F042 depends on the Excel template (F013/F014), which does not exist.",
       "steps": [
         "Create TEMPLATE_INSTRUCTIONS.md",
         "Step-by-step guide for using Excel template",

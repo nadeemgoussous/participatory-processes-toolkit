@@ -1,5 +1,9 @@
 # Using Custom/Fine-Tuned Models with WebLLM
 
+> **Status: Reference (2026-08-26).** How to swap in a different or fine-tuned model. The
+> shipped configuration is SmolLM2-1.7B for both WebLLM and Ollama — see
+> `docs/WEBLLM-STATUS.md` before changing it.
+
 This guide explains how to use your own fine-tuned models with the Scenario Dialogue Tool.
 
 ## Overview
@@ -350,4 +354,4 @@ npm run dev
 
 ---
 
-**Need Help?** Check the WebLLM implementation guide at `docs/WEBLLM-IMPLEMENTATION.md` for more details on the integration architecture.
+**Need Help?** See `docs/WEBLLM-STATUS.md` for the current integration architecture, model configuration and echo detection.

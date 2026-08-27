@@ -1,5 +1,5 @@
 // Stakeholder Response Schema
-// Based on DATA-SCHEMAS.md
+// Source of truth for these shapes; annotated in docs/DATA-SCHEMAS.md.
 
 export interface StakeholderResponse {
   stakeholderId: string;

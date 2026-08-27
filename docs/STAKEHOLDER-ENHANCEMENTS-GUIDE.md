@@ -1,5 +1,9 @@
 # Stakeholder Profile Enhancements - Implementation Guide
 
+> **Status: Reference (2026-08-26).** Design rationale for the enhancement layer that is now
+> implemented in `src/data/stakeholder-enhancements.ts` and applied by
+> `generateEnhancedResponse`. For the live shapes see `src/types/stakeholder.ts`.
+
 ## Overview
 
 The stakeholder enhancement framework significantly improves the sophistication of stakeholder responses by adding:

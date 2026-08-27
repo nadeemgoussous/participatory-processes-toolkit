@@ -1,6 +1,10 @@
 # Stakeholder Profiles
 
-This document contains detailed profiles for all stakeholder groups implemented in the Scenario Dialogue Tool.
+Detailed profiles for the nine stakeholder groups implemented in the tool.
+
+> **Source of truth:** `src/data/stakeholder-profiles.ts` (the profiles) and
+> `src/types/stakeholder.ts` (the shapes). This document is the narrative version.
+> Last verified against the code: 2026-08-26.
 
 ## Core Stakeholder Groups
 
@@ -65,6 +69,26 @@ interface ResponseTemplate {
   questionsToAsk: string[];
 }
 ```
+
+The live interface additionally carries four optional enhancement fields
+(`src/types/stakeholder.ts`), all defined per stakeholder in
+`src/data/stakeholder-enhancements.ts`:
+
+```typescript
+interactionTriggers?: InteractionTrigger[];        // multi-metric conditions
+variants?: Record<StakeholderVariant, VariantProfile>;   // conservative | pragmatic | progressive
+expandedResponseTemplates?: ExpandedResponseTemplate[];  // conditional support, next steps
+contextAdjustments?: {                             // by development stage
+  [context in DevelopmentContext]?: {              // ldc | emerging | developed
+    priorityShifts: { priority: string; weight: number }[];
+    additionalConcerns?: string[];
+  };
+};
+```
+
+These are what `generateEnhancedResponse` layers on top of the base rule-based response;
+see `docs/STAKEHOLDER-ENHANCEMENTS-GUIDE.md` for the design and
+`docs/TECHNICAL-IMPLEMENTATION.md` for how they combine.
 
 ---
 

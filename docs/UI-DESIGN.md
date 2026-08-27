@@ -1,133 +1,85 @@
 # UI Design Specifications
 
-This document contains design system specifications, layout mockups, and user interface guidelines for the Scenario Dialogue Tool.
+> **Source of truth:** `src/index.css`. The project uses **Tailwind CSS v4**, which is
+> CSS-first — tokens are declared in an `@theme` block, and there is **no
+> `tailwind.config.js`**. Do not create one.
+> Last verified against the code: 2026-08-26.
 
 ## Design System
 
-### IRENA Brand Colors
+### Tokens (`src/index.css`)
 
-```typescript
-const designTokens = {
-  colors: {
-    // Primary brand colors
-    primary: '#0078a7',        // IRENA blue
-    primaryDark: '#005373',    // Darker shade for hover states
-    accent: '#f7941d',         // Orange accent for highlights
+```css
+@import "tailwindcss";
 
-    // Stakeholder colors (from IRENA toolkit)
-    policyMakers: '#c94f4f',
-    gridOperators: '#4a90a4',
-    industry: '#7b8a3e',
-    public: '#e8a54b',
-    csosNgos: '#6b4c9a',
-    scientific: '#3d7ea6',
-    finance: '#2e5a3a',
-    regionalBodies: '#1a5276',
-    developmentPartners: '#117a65',
+@theme {
+  /* IRENA brand */
+  --color-irena-blue:        #0078a7;
+  --color-irena-blue-dark:   #005373;
+  --color-irena-blue-light:  #4da6ca;
+  --color-irena-orange:      #f7941d;
+  --color-irena-orange-dark: #d67a10;
 
-    // Neutral colors
-    background: '#ffffff',
-    surface: '#f5f5f5',
-    surfaceElevated: '#ffffff',
-    border: '#e0e0e0',
-    borderLight: '#f0f0f0',
-    text: '#333333',
-    textSecondary: '#666666',
-    textDisabled: '#999999',
+  /* Stakeholder colours (from the IRENA toolkit) */
+  --color-stakeholder-policy:      #c94f4f;
+  --color-stakeholder-grid:        #4a90a4;
+  --color-stakeholder-industry:    #7b8a3e;
+  --color-stakeholder-public:      #e8a54b;
+  --color-stakeholder-csos:        #6b4c9a;
+  --color-stakeholder-science:     #3d7ea6;
+  --color-stakeholder-finance:     #2e5a3a;
+  --color-stakeholder-regional:    #1a5276;
+  --color-stakeholder-development: #117a65;
 
-    // Semantic colors
-    success: '#2e7d32',
-    successLight: '#e8f5e9',
-    warning: '#f57c00',
-    warningLight: '#fff3e0',
-    error: '#c62828',
-    errorLight: '#ffebee',
-    info: '#0288d1',
-    infoLight: '#e1f5fe'
-  },
-
-  typography: {
-    fontFamily: "'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-    headingFamily: "'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-
-    // Font sizes (rem)
-    h1: '2.5rem',      // 40px
-    h2: '2rem',        // 32px
-    h3: '1.5rem',      // 24px
-    h4: '1.25rem',     // 20px
-    h5: '1.125rem',    // 18px
-    body: '1rem',      // 16px
-    small: '0.875rem', // 14px
-    tiny: '0.75rem',   // 12px
-
-    // Font weights
-    light: 300,
-    regular: 400,
-    medium: 500,
-    semibold: 600,
-    bold: 700
-  },
-
-  spacing: {
-    xs: '0.25rem',   // 4px
-    sm: '0.5rem',    // 8px
-    md: '1rem',      // 16px
-    lg: '1.5rem',    // 24px
-    xl: '2rem',      // 32px
-    xxl: '3rem',     // 48px
-  },
-
-  borderRadius: {
-    sm: '4px',
-    md: '8px',
-    lg: '12px',
-    full: '9999px'
-  },
-
-  shadows: {
-    sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
-    md: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-    lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
-    xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1)'
-  },
-
-  transitions: {
-    fast: '150ms ease-in-out',
-    normal: '250ms ease-in-out',
-    slow: '350ms ease-in-out'
-  }
-};
+  --font-sans:    'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Montserrat', system-ui, -apple-system, sans-serif;
+}
 ```
 
-### Tailwind Configuration
+Each token is usable both as a Tailwind utility (`bg-irena-blue`, `text-stakeholder-finance`)
+and as a CSS variable (`var(--color-irena-blue)`), which is how inline `style` props in
+`Header.tsx` and the chart components reference it.
 
-```javascript
-// tailwind.config.js
-module.exports = {
-  theme: {
-    extend: {
-      colors: {
-        'irena-blue': '#0078a7',
-        'irena-blue-dark': '#005373',
-        'irena-orange': '#f7941d',
-        'stakeholder-policy': '#c94f4f',
-        'stakeholder-grid': '#4a90a4',
-        'stakeholder-industry': '#7b8a3e',
-        'stakeholder-public': '#e8a54b',
-        'stakeholder-csos': '#6b4c9a',
-        'stakeholder-science': '#3d7ea6',
-        'stakeholder-finance': '#2e5a3a',
-        'stakeholder-regional': '#1a5276',
-        'stakeholder-development': '#117a65',
-      },
-      fontFamily: {
-        sans: ['Open Sans', 'sans-serif'],
-        heading: ['Montserrat', 'sans-serif']
-      }
-    }
-  }
-};
-```
+Greys, spacing, radii, shadows and transitions come from **Tailwind's defaults** — use
+`text-gray-700`, `p-6`, `rounded-lg`, `shadow-md` rather than inventing a parallel scale.
+
+> **Font note:** `Inter` and `Montserrat` are pulled from the Google Fonts CDN by an
+> `@import` at the top of `src/index.css`. That request is not covered by the service worker,
+> so a genuinely offline first load falls back to `system-ui`. Self-hosting the two families
+> is the open fix — see `docs/KNOWN-GAPS.md`.
+>
+> **Brand colour note:** the PWA `theme_color` / `background_color` in `vite.config.ts` and
+> `index.html` is `#005a82`, which is not the brand blue `#0078a7`. Align them when you next
+> touch the manifest.
+
+### Component classes
+
+Defined once in `src/index.css`, used across the app instead of repeating utility strings:
+
+| Class | Use |
+|---|---|
+| `.btn-primary` | Filled IRENA-blue action button (has a visible focus outline) |
+| `.btn-secondary` | Neutral bordered button |
+| `.btn-outline` | IRENA-blue outlined button, fills on hover |
+| `.card` | White surface, rounded, soft shadow, `1.5rem` padding |
+| `.disclaimer` | Small grey italic note — the standard illustrative-estimates wording |
+| `.section-divider` | Top rule with consistent vertical rhythm |
+| `.metric-row` | Blue left rule + `.metric-label` / `.metric-value` / `.metric-sub` stack |
+| `.offline-indicator` | Slow pulse animation for the connectivity dot |
+| `.slider-thumb-irena` | Branded range-slider thumb (WebKit + Firefox) |
+
+### Typography
+
+`Inter` for body text, `Montserrat` for headings (applied to `h1`-`h6` in the base layer).
+Sizes come from Tailwind's scale; the app leans on `text-2xl` for the page title,
+`text-lg`/`font-semibold` for section headings and `text-sm` for supporting copy.
+
+### Accessibility
+
+Target is WCAG 2.1 AA. What the code already relies on: `role="banner"` / `role="status"`
+with `aria-live="polite"` in the header, `aria-expanded` on collapsible sections, visible
+focus outlines on `.btn-primary`, and `data-testid` hooks where text is ambiguous. Keep
+those when restyling — several are load-bearing for the Playwright suite.
 
 ---
 
