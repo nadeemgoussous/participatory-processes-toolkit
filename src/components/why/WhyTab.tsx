@@ -9,7 +9,26 @@ import {
   futureOpportunities,
   keyTakeaways,
 } from '../../data/toolkit-background';
-import { Blocks, Disclosure, Section, SourceNote, Table } from '../common/Blocks';
+import { figures } from '../../data/figures';
+import {
+  Blocks,
+  Disclosure,
+  FigureImage,
+  Section,
+  SourceNote,
+  Table,
+} from '../common/Blocks';
+
+/** Figures the publication prints inside these sections. */
+const SECTION_FIGURES: Record<string, number> = {
+  scope: 2,
+  responsibility: 3,
+};
+
+function figureFor(sectionId: string) {
+  const number = SECTION_FIGURES[sectionId];
+  return number ? figures[number] : undefined;
+}
 
 export default function WhyTab() {
   return (
@@ -34,6 +53,11 @@ export default function WhyTab() {
       {rationaleSections.map((section) => (
         <Section key={section.id} heading={`${section.toolkitSection} ${section.heading}`}>
           <Blocks blocks={section.blocks} />
+          {figureFor(section.id) && (
+            <div className="pt-2">
+              <FigureImage figure={figureFor(section.id)!} />
+            </div>
+          )}
           {section.table && (
             <div className="pt-2">
               <Table
@@ -94,11 +118,12 @@ export default function WhyTab() {
 
       <Disclosure summary="about this toolkit and how it was developed">
         {aboutSections.map((section) => (
-          <div key={section.id} className="space-y-2">
+          <div key={section.id} className="space-y-3">
             <h3 className="font-medium text-gray-900">
               {section.toolkitSection} {section.heading}
             </h3>
             <Blocks blocks={section.blocks} />
+            {section.id === 'objective' && <FigureImage figure={figures[1]} />}
           </div>
         ))}
         <div className="space-y-2 border-t border-gray-100 pt-5">

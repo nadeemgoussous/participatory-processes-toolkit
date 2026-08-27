@@ -139,3 +139,47 @@ test.describe('Guidance from chapters 1 and 6', () => {
     await expect(about).toBeVisible();
   });
 });
+
+test.describe('Figures from the publication', () => {
+  test('figures render and decode, with the caption as alt text', async ({ page }) => {
+    await page.goto('/');
+    await page
+      .getByRole('navigation', { name: 'Sections' })
+      .getByRole('button', { name: 'Why participate' })
+      .click();
+
+    const mentalModel = page.getByRole('img', {
+      name: 'Figure 2. Mental model of a stakeholder-led energy planning process',
+    });
+    await expect(mentalModel).toBeVisible();
+
+    // Visible in the DOM is not the same as decoded; a broken source still
+    // renders an <img> box.
+    await expect
+      .poll(() => mentalModel.evaluate((i: HTMLImageElement) => i.naturalWidth))
+      .toBeGreaterThan(0);
+
+    await expect(
+      page.getByRole('img', {
+        name: 'Figure 3. Allocation of energy planning capacity in the national context',
+      })
+    ).toBeVisible();
+  });
+
+  test('the tool categories figure appears on the category route', async ({ page }) => {
+    await page.goto('/');
+    await page
+      .getByRole('navigation', { name: 'Sections' })
+      .getByRole('button', { name: 'Engagement tools' })
+      .click();
+    await page.getByRole('button', { name: 'By category' }).click();
+
+    const figure = page.getByRole('img', {
+      name: 'Figure 4. Categorisation of engagement tools and activities',
+    });
+    await expect(figure).toBeVisible();
+    await expect
+      .poll(() => figure.evaluate((i: HTMLImageElement) => i.naturalWidth))
+      .toBeGreaterThan(0);
+  });
+});

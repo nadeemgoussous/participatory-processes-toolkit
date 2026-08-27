@@ -3,7 +3,8 @@ import { engagementTools, objectives, getTool } from '../../data/engagement-tool
 import { getCaseStudy } from '../../data/case-studies';
 import { PHASES, TOOL_CATEGORIES } from '../../types/toolkit';
 import type { EngagementTool, Phase, ToolId } from '../../types/toolkit';
-import { Blocks, Bullets, Section, SourceNote } from '../common/Blocks';
+import { figures } from '../../data/figures';
+import { Blocks, Bullets, FigureImage, Section, SourceNote } from '../common/Blocks';
 import { usePlan } from '../../context/PlanContext';
 
 type Route = 'objective' | 'phase' | 'category';
@@ -119,6 +120,7 @@ function ByPhase({ onSelect }: { onSelect: (id: ToolId) => void }) {
 function ByCategory({ onSelect }: { onSelect: (id: ToolId) => void }) {
   return (
     <div className="space-y-6">
+      <FigureImage figure={figures[4]} />
       {TOOL_CATEGORIES.map((category) => (
         <div key={category.id} className="rounded-lg border border-gray-200 bg-white p-5">
           <h2 className="text-lg font-semibold text-gray-900">{category.label}</h2>
@@ -212,6 +214,11 @@ function ToolDetail({ tool, onBack }: { tool: EngagementTool; onBack: () => void
 
       {tool.lists?.map((list) => (
         <Section key={list.label} heading={list.label}>
+          {tool.id === 'committees' && (
+            <div className="pb-1">
+              <FigureImage figure={figures[5]} />
+            </div>
+          )}
           <Bullets items={list.items} />
         </Section>
       ))}

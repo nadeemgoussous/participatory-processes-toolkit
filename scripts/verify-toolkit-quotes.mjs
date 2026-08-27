@@ -48,9 +48,13 @@ function normalise(s) {
     .toLowerCase();
 }
 
+// Both the markdown transcription and the publication's own extracted text.
+// The markdown is lossy — it drops Table 1's Resource requirements column and
+// every figure caption — so text quoted straight from the PDF has to verify
+// against the PDF.
 const source = normalise(
   readdirSync(TOOLKIT_DIR)
-    .filter((f) => f.endsWith('.md'))
+    .filter((f) => f.endsWith('.md') || f === 'publication-text.txt')
     .map((f) => readFileSync(join(TOOLKIT_DIR, f), 'utf8'))
     .join('\n')
     // the source uses markdown emphasis and table pipes around the text we quote

@@ -113,6 +113,27 @@ export function Table({
   );
 }
 
+/**
+ * A figure from the publication. The caption is part of the rendered image, so
+ * it is not repeated here; the title is the alt text.
+ */
+export function FigureImage({
+  figure,
+}: {
+  figure: { number: number; title: string; src: string };
+}) {
+  return (
+    <figure>
+      <img
+        src={figure.src}
+        alt={`Figure ${figure.number}. ${figure.title}`}
+        loading="lazy"
+        className="w-full rounded-lg border border-gray-200"
+      />
+    </figure>
+  );
+}
+
 /** An external link the publication lists. */
 export function ExternalLink({ url, label }: { url: string; label?: string }) {
   return (

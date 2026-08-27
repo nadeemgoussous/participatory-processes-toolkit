@@ -2,24 +2,38 @@
 
 Verified on **2026-08-27** against the `toolkit-pivot` branch, Node 22.
 
-Baseline: `npm run typecheck` clean, `npm run verify:quotes` passes 790 strings,
-`npm run build` produces 326 kB (100 kB gzipped), `npm run build:offline` produces a single
-360 kB `dist-offline/index.html`, `npm run test:chromium` passes 17 tests.
+Baseline: `npm run typecheck` clean, `npm run verify:quotes` passes 795 strings,
+`npm run build` produces 341 kB of JS plus 197 kB of figures, `npm run build:offline` produces a single
+624 kB `dist-offline/index.html`, `npm run test:chromium` passes 19 tests.
 
 ---
 
 ## Open
 
-### 1. The publication is fully digitised
+### 1. The markdown transcription is lossy, and only partly worked around
 
-Chapters 1 to 7 are in the app. Chapter 8 is a reference list and appendix A is methodology;
-neither is planner-facing, and neither is planned.
+`docs/toolkit/*.md` was transcribed by hand and drops content that is in the PDF. Two
+confirmed cases:
 
-The one piece not reproduced is the process flow diagram each chapter 5 case study carries.
-They are ASCII boxes in `docs/toolkit/` and were dropped rather than rendered badly. If they
-are wanted, they need drawing as SVG from the source diagrams, not from the markdown.
+- **Table 1** in the publication has seven columns including *Resource requirements*; the
+  markdown has six and omits it. `case-studies.ts` therefore has no resource-requirements
+  summary, though the per-study Resources sections are present.
+- **Figure captions** appear nowhere in the markdown.
 
-### 2. Two stakeholder ids have no profile
+`docs/toolkit/publication-text.txt` (from `scripts/extract-pdf-text.py`) now sits alongside
+the markdown and the verifier checks both, so text quoted from the PDF passes. That fixes
+verification but not the data: nothing has audited the markdown against the PDF chapter by
+chapter, so other omissions are likely. Worth doing before treating the content as complete.
+
+### 2. Case study process flows are not reproduced
+
+Each chapter 5 case study has a process flow diagram (inputs in blue, process in green,
+outcomes in orange). They are vector drawings on the even pages 48-72 of the PDF and are not
+in the app. `scripts/extract-figures.py` handles the five numbered figures and could be
+extended to them, but they are not captioned "Figure N", so they need locating by page
+rather than by caption search.
+
+### 3. Two stakeholder ids have no profile
 
 `regional-bodies` and `development-partners` are not chapter 3 groups. They were added by an
 earlier version of this tool. The ids remain in `StakeholderId` because `case-studies.ts`
@@ -27,20 +41,20 @@ references them; there is no profile behind them and they are not listed in the 
 section. Either the case study mappings should drop them, or the product owner should decide
 they are worth carrying as clearly-marked additions.
 
-### 3. Fonts are not self-hosted
+### 4. Fonts are not self-hosted
 
 `src/index.css` asks for Inter and Montserrat and falls back to the system stack. Neither is
 fetched — the CDN import is gone — so an offline load is correct but renders in the system
 font on most machines. Self-hosting both families in `public/fonts/` with `@font-face` would
 give the intended typography without a network request.
 
-### 4. No linter or formatter
+### 5. No linter or formatter
 
 No ESLint or Prettier. TypeScript strict catches type errors; nothing catches unused effects,
 missing hook dependencies or inconsistent formatting. `eslint` + `typescript-eslint` +
 `eslint-plugin-react-hooks` is the conventional baseline for this stack.
 
-### 5. The service worker is not covered by a test
+### 6. The service worker is not covered by a test
 
 `tests/e2e/05-file-protocol.spec.ts` covers the offline build running with no server at all,
 which is the workshop case that matters. What is still untested is the *service worker* path
@@ -52,14 +66,14 @@ Note that the offline build deliberately drops the service worker and the PWA ma
 neither works from `file://` — so it is not installable. That is the trade for opening by
 double-click.
 
-### 6. The plan is not portable between browsers except by file
+### 7. The plan is not portable between browsers except by file
 
 `localStorage` is per-browser and per-machine. Export and import cover the gap, but a planner
 who does not export loses the plan when clearing site data. This is a deliberate trade
 against an account system; it should be stated in the interface more clearly than the footer
 currently does.
 
-### 7. The suite is sensitive to this machine, not just to the code
+### 8. The suite is sensitive to this machine, not just to the code
 
 Two settings exist because of the environment rather than the product, and both are worth
 revisiting on a normal filesystem:
@@ -74,7 +88,7 @@ Neither masks a product defect: the same tests pass serially and against a warm 
 cold `npm run dev` on this path can take long enough that the first navigation still times
 out, so a failed first run is worth re-running before investigating.
 
-### 8. browserslist data is out of date
+### 9. browserslist data is out of date
 
 `npx update-browserslist-db@latest` clears the build warning.
 
@@ -91,7 +105,7 @@ Recorded here so the history is legible; see `docs/DECISIONS.md`.
 | Ollama tier worked only under the dev server | AI removed entirely |
 | Cloud AI tier was a stub presented as a feature | AI removed entirely |
 | `dist/index.html` failed from `file://` | `npm run build:offline` emits one self-contained file that does work from `file://`; base is `'./'` so the normal build works from any directory |
-| Playwright suite ~59 failures of ~250, 36 minutes | 17 tests, all passing, gating CI |
+| Playwright suite ~59 failures of ~250, 36 minutes | 19 tests, all passing, gating CI |
 | CI gated nothing | typecheck, verify:quotes, build and e2e all gate |
 | `StakeholderTab.tsx` was 1 239 lines | removed with the simulation layer |
 | CSV parser split on commas with no quote handling | removed with the scenario model |
