@@ -1,22 +1,14 @@
-/**
- * Footer component with IRENA toolkit reference
- *
- * Features:
- * - Reference to IRENA's Participatory Processes toolkit
- * - Version information
- * - Offline-first indicator
- * - Dark gray background for contrast
- */
 export default function Footer() {
   return (
-    <footer className="bg-gray-800 text-white mt-16 py-8" role="contentinfo">
-      <div className="container mx-auto px-4 text-center">
-        <p className="text-sm">
-          Part of IRENA's <strong>Participatory Processes for Strategic Energy Planning</strong> toolkit
+    <footer className="border-t border-gray-200 bg-white print:hidden">
+      <div className="container mx-auto px-4 py-6 text-sm text-gray-600">
+        <p>
+          Based on IRENA (2025), <em>Participatory processes for strategic energy planning: A
+          toolkit for national energy planners</em>, International Renewable Energy Agency, Abu
+          Dhabi. ISBN 978-92-9260-680-0.
         </p>
-        <p className="text-xs text-gray-500 mt-3">Illustrative tool only. Results are directional and do not replace energy system optimisation models.</p>
-        <p className="text-xs text-gray-400 mt-2">
-          Version 1.0.0 • Offline-First Design
+        <p className="mt-2">
+          Your plan is stored in this browser only. Use Export to keep a copy or share it.
         </p>
       </div>
     </footer>

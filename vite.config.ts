@@ -4,30 +4,20 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/stakeholder-dialogue/', // GitHub Pages base path
-  // Proxy to bypass CORS for local Ollama server
-  server: {
-    proxy: {
-      '/api/ollama': {
-        target: 'http://localhost:11434',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api\/ollama/, ''),
-        // Increase timeout for slow inference (default is 30s)
-        timeout: 120000, // 2 minutes
-      },
-    },
-  },
+  // Relative base so the build works from GitHub Pages, from a plain static
+  // server, and from a folder opened directly off a USB drive.
+  base: './',
   plugins: [
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['icons/*.svg', 'graphics/*.svg', 'templates/*.xlsx', 'sample-data/*.json', 'icon-*.png', 'apple-touch-icon.png'],
+      includeAssets: ['icon-*.png', 'apple-touch-icon.png'],
       manifest: {
-        name: 'IRENA Scenario Dialogue Tool',
-        short_name: 'Scenario Dialogue',
-        description: 'Interactive tool for understanding stakeholder perspectives on energy scenarios. Helps energy planners simulate how different stakeholder groups respond to modelling scenarios.',
-        theme_color: '#005a82',
-        background_color: '#005a82',
+        name: 'Participatory Processes Toolkit',
+        short_name: 'Participation',
+        description: 'A digital edition of the IRENA toolkit Participatory processes for strategic energy planning.',
+        theme_color: '#0078a7',
+        background_color: '#0078a7',
         display: 'standalone',
         start_url: '/stakeholder-dialogue/',
         scope: '/stakeholder-dialogue/',

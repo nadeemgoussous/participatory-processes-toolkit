@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
-/* IRENA Typography */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap');
+/* Typography. No webfont is fetched: the toolkit has to work with the network
+   off, and a CDN import would leave a cold offline load without it. Inter and
+   Montserrat are used when installed locally, otherwise the system stack. */
 
 /* Tailwind v4: Define custom properties using @theme */
 @theme {
@@ -24,8 +25,8 @@
   --color-stakeholder-development: #117a65;
 
   /* Font families */
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-heading: 'Montserrat', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
 
 /* Base styles */
@@ -195,4 +196,26 @@ input[type="range"].slider-thumb-irena::-moz-range-thumb {
 input[type="range"].slider-thumb-irena::-moz-range-thumb:hover {
   background: var(--color-irena-blue-dark);
   transform: scale(1.1);
+}
+
+/* Printing a plan produces the working document a planner takes into a meeting. */
+@media print {
+  body {
+    background: white;
+  }
+
+  a[href]::after {
+    content: none;
+  }
+
+  textarea {
+    border: none;
+    padding: 0;
+    resize: none;
+  }
+
+  section,
+  li {
+    break-inside: avoid;
+  }
 }

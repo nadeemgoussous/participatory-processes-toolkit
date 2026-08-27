@@ -1,71 +1,38 @@
-/**
- * Tab navigation component for the four main sections of the tool
- *
- * Tabs:
- * 1. Input - Data import (5 minutes max)
- * 2. Stakeholder Dialogue - Predict-before-reveal learning
- * 3. Explore Impacts - Directional sensitivity (soft metrics only)
- * 4. Communicate - Audience-specific outputs
- *
- * Features:
- * - Active tab highlighting with IRENA blue
- * - Inactive tabs with hover effects
- * - Responsive layout
- * - Keyboard accessible
- */
+import type { TabId } from '../../App'
 
 interface TabNavigationProps {
-  activeTab: 'input' | 'dialogue' | 'explore' | 'communicate'
-  onTabChange: (tab: 'input' | 'dialogue' | 'explore' | 'communicate') => void
+  activeTab: TabId
+  onTabChange: (tab: TabId) => void
 }
 
+const TABS: { id: TabId; label: string }[] = [
+  { id: 'plan', label: 'Plan' },
+  { id: 'stakeholders', label: 'Stakeholders' },
+  { id: 'tools', label: 'Engagement tools' },
+  { id: 'cases', label: 'Case studies' },
+]
+
 export default function TabNavigation({ activeTab, onTabChange }: TabNavigationProps) {
-  const tabs = [
-    { id: 'input' as const, label: 'Input', description: 'Import scenario data' },
-    { id: 'dialogue' as const, label: 'Stakeholder dialogue', description: 'Predict & learn' },
-    { id: 'explore' as const, label: 'Explore impacts', description: 'Directional sensitivity' },
-    { id: 'communicate' as const, label: 'Communicate', description: 'Audience-specific outputs' },
-  ]
-
   return (
-    <nav className="bg-white border-b border-gray-200 shadow-sm" role="navigation" aria-label="Main navigation">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-wrap gap-1">
-          {tabs.map((tab) => {
-            const isActive = activeTab === tab.id
-
-            return (
-              <button
-                key={tab.id}
-                onClick={() => onTabChange(tab.id)}
-                className={`
-                  px-6 py-4 text-sm font-medium transition-all duration-200
-                  border-b-3 rounded-t-lg
-                  ${
-                    isActive
-                      ? 'text-white shadow-sm'
-                      : 'text-gray-600 hover:text-gray-800 hover:bg-gray-100 bg-gray-50 border-gray-200'
-                  }
-                `}
-                style={
-                  isActive
-                    ? { backgroundColor: 'var(--color-irena-blue)', borderBottomColor: 'var(--color-irena-orange)', borderBottomWidth: '3px' }
-                    : { borderBottomWidth: '3px', borderBottomColor: 'transparent' }
-                }
-                role="tab"
-                aria-selected={isActive}
-                aria-controls={`${tab.id}-panel`}
-              >
-                <div className="flex flex-col items-start">
-                  <span className="font-semibold">{tab.label}</span>
-                  <span className={`text-xs ${isActive ? 'text-white opacity-90' : 'text-gray-500'}`}>
-                    {tab.description}
-                  </span>
-                </div>
-              </button>
-            )
-          })}
-        </div>
+    <nav className="border-b border-gray-200 bg-white print:hidden" aria-label="Sections">
+      <div className="container mx-auto flex gap-1 overflow-x-auto px-4">
+        {TABS.map((tab) => {
+          const active = activeTab === tab.id
+          return (
+            <button
+              key={tab.id}
+              onClick={() => onTabChange(tab.id)}
+              aria-current={active ? 'page' : undefined}
+              className={`whitespace-nowrap border-b-2 px-4 py-3 text-sm font-medium transition-colors ${
+                active
+                  ? 'border-[var(--color-irena-blue)] text-[var(--color-irena-blue)]'
+                  : 'border-transparent text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              {tab.label}
+            </button>
+          )
+        })}
       </div>
     </nav>
   )
