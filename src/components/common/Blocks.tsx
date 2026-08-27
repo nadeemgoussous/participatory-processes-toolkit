@@ -46,6 +46,64 @@ export function Section({
   );
 }
 
+/** A table the publication presents. */
+export function Table({
+  columns,
+  rows,
+  caption,
+}: {
+  columns: string[];
+  rows: string[][];
+  caption?: string;
+}) {
+  return (
+    <div className="space-y-2">
+      {caption && <p className="font-medium text-gray-900">{caption}</p>}
+      <div className="overflow-x-auto rounded-lg border border-gray-200 bg-white">
+        <table className="w-full min-w-[32rem] text-left text-sm">
+          <thead className="border-b border-gray-200 bg-gray-50 text-gray-600">
+            <tr>
+              {columns.map((column) => (
+                <th key={column} className="p-3 font-medium">
+                  {column}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-100">
+            {rows.map((row, i) => (
+              <tr key={i} className="align-top">
+                {row.map((cell, j) => (
+                  <td
+                    key={j}
+                    className={j === 0 ? 'p-3 font-medium text-gray-900' : 'p-3 text-gray-700'}
+                  >
+                    {cell}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+/** An external link the publication lists. */
+export function ExternalLink({ url, label }: { url: string; label?: string }) {
+  return (
+    <a
+      href={url}
+      target="_blank"
+      rel="noreferrer noopener"
+      className="break-all text-sm text-[var(--color-irena-blue)] hover:underline"
+    >
+      {label ?? url}
+    </a>
+  );
+}
+
 /** Reference line shown at the foot of any panel built from the publication. */
 export function SourceNote({ section }: { section: string }) {
   return (

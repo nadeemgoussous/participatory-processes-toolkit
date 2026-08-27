@@ -54,7 +54,7 @@ npm run build               # tsc && vite build -> dist/  (~15 s)
 npm run build:offline       # -> dist-offline/index.html, one self-contained file
 npm run preview             # serve dist/
 
-npm run test:chromium       # 13 Playwright tests, ~50 s — needs both builds present
+npm run test:chromium       # 15 Playwright tests — needs both builds present
 npm test                    # all browser projects
 ```
 
@@ -71,7 +71,7 @@ Keep it that way.
 
 ```
 src/
-├─ App.tsx                     four sections: plan | stakeholders | tools | cases
+├─ App.tsx                     plan | why | stakeholders | tools | cases | resources
 ├─ context/PlanContext.tsx     the plan; persists to localStorage on change
 ├─ types/                      <- SOURCE OF TRUTH for data shapes
 │   ├─ toolkit.ts              Phase, ToolCategory, EngagementTool, Objective, ContentBlock
@@ -82,9 +82,11 @@ src/
 │   ├─ engagement-tools.ts     chapter 4: seven tools + the Step 4 objective mapping
 │   ├─ stakeholder-profiles.ts chapter 3: seven groups
 │   ├─ case-studies.ts         chapter 5: thirteen studies + the summary table
-│   └─ checklist.ts            items DERIVED from the three files above
+│   ├─ checklist.ts            items DERIVED from the three files above
+│   ├─ participation-rationale.ts  chapter 2: why participate, the four objectives
+│   └─ resources.ts            chapter 7: publications, platforms, frameworks
 ├─ utils/plan-storage.ts       localStorage, JSON export and import
-└─ components/  plan | stakeholders | tools | cases | layout | common
+└─ components/  plan | why | stakeholders | tools | cases | resources | layout | common
 ```
 
 ### The data model
@@ -113,7 +115,7 @@ The publication supports three ways in, and the app offers all three:
 ## 4. Conventions
 
 - **TypeScript strict**, `noUnusedLocals` / `noUnusedParameters` on.
-- **No new runtime dependencies.** The bundle is 301 kB and should stay in that range.
+- **No new runtime dependencies.** The bundle is 326 kB and should stay in that range.
 - **Tailwind v4**: tokens live in `@theme` in `src/index.css`. No `tailwind.config.js`.
 - **No webfonts.** A CDN import breaks invariant 2. If Inter is wanted, self-host it.
 - **Base path is `'./'`.** Never hard-code an absolute asset path — `index.html` and the
@@ -161,9 +163,9 @@ the verifier checks against — treat it as read-only.
 
 ## 7. Scope
 
-**In scope:** chapter 3 stakeholder groups, chapter 4 engagement tools and decision
-framework, chapter 5 case studies, the participation plan checklist, and the reference
-material in chapters 1, 2, 6 and 7 as it is digitised.
+**In scope:** chapter 2 rationale, chapter 3 stakeholder groups, chapter 4 engagement tools
+and decision framework, chapter 5 case studies, chapter 7 additional material, and the
+participation plan checklist. Chapters 1 and 6 are not yet digitised.
 
 **Out of scope:** anything requiring text the publication does not contain. Two earlier
 features were removed for this reason — per-audience dissemination strategies and message

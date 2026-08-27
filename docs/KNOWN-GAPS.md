@@ -2,27 +2,26 @@
 
 Verified on **2026-08-27** against the `toolkit-pivot` branch, Node 22.
 
-Baseline: `npm run typecheck` clean, `npm run verify:quotes` passes 612 strings,
-`npm run build` produces 301 kB (92 kB gzipped), `npm run build:offline` produces a single
-322 kB `dist-offline/index.html`, `npm run test:chromium` passes 13 tests in ~50 s.
+Baseline: `npm run typecheck` clean, `npm run verify:quotes` passes 721 strings,
+`npm run build` produces 326 kB (100 kB gzipped), `npm run build:offline` produces a single
+346 kB `dist-offline/index.html`, `npm run test:chromium` passes 15 tests.
 
 ---
 
 ## Open
 
-### 1. Chapters 1, 2, 6 and 7 are not digitised
+### 1. Chapters 1 and 6 are not digitised
 
-The app covers chapters 3, 4 and 5. Not yet in the app:
+The app covers chapters 2, 3, 4, 5 and 7. Not yet in the app:
 
-- **Chapter 2** — what participatory processes are and the four objectives they serve.
-  This is the "why" a planner would want before the "how".
 - **Chapter 6** — Using This Toolkit, the five current challenges, and the key takeaways.
-  The challenges are the counterweight to a checklist and are referenced in the plan
-  section, but only one of them is quoted there.
-- **Chapter 7** — publications, survey and polling platforms, co-creation platforms,
-  visualisation tools, and the two frameworks. This is a directory of external tools a
-  planner can act on immediately, and it is the cheapest remaining content win.
-- **Chapter 1** — how to use the toolkit, as a three-step guide.
+  The challenges are the counterweight to a checklist; only one of them is quoted in the
+  plan section today.
+- **Chapter 1** — how to use the toolkit, as a three-step guide. It overlaps heavily with
+  what the four sections already do, so it may not be worth adding as its own page.
+
+Chapter 8 is a reference list and appendix A is methodology; neither is user-facing content
+for a planner.
 
 ### 2. Two stakeholder ids have no profile
 
@@ -96,7 +95,7 @@ Recorded here so the history is legible; see `docs/DECISIONS.md`.
 | Ollama tier worked only under the dev server | AI removed entirely |
 | Cloud AI tier was a stub presented as a feature | AI removed entirely |
 | `dist/index.html` failed from `file://` | `npm run build:offline` emits one self-contained file that does work from `file://`; base is `'./'` so the normal build works from any directory |
-| Playwright suite ~59 failures of ~250, 36 minutes | 13 tests, ~50 s, all passing, gating CI |
+| Playwright suite ~59 failures of ~250, 36 minutes | 15 tests, all passing, gating CI |
 | CI gated nothing | typecheck, verify:quotes, build and e2e all gate |
 | `StakeholderTab.tsx` was 1 239 lines | removed with the simulation layer |
 | CSV parser split on commas with no quote handling | removed with the scenario model |

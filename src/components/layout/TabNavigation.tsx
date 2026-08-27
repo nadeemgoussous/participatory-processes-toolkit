@@ -7,9 +7,11 @@ interface TabNavigationProps {
 
 const TABS: { id: TabId; label: string }[] = [
   { id: 'plan', label: 'Plan' },
+  { id: 'why', label: 'Why participate' },
   { id: 'stakeholders', label: 'Stakeholders' },
   { id: 'tools', label: 'Engagement tools' },
   { id: 'cases', label: 'Case studies' },
+  { id: 'resources', label: 'Resources' },
 ]
 
 export default function TabNavigation({ activeTab, onTabChange }: TabNavigationProps) {

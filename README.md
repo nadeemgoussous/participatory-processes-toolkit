@@ -9,6 +9,8 @@ countries did, and a working checklist to take into the process.
 
 ## Sections
 
+- **Why participate** — chapter 2: what participatory processes are, who is responsible for
+  energy planning, and the four objectives participation serves.
 - **Plan** — a checklist assembled from the toolkit's prerequisites, resource requirements
   and good practices. Choose your planning phases, stakeholder groups and tools and the
   checklist narrows to what applies. Each item carries its section reference and a note
@@ -19,6 +21,8 @@ countries did, and a working checklist to take into the process.
   phase or by category, each with its implementation stages, requirements, prerequisites and
   practical considerations.
 - **Case studies** — the thirteen processes in chapter 5.
+- **Resources** — chapter 7: publications, repositories, survey and polling platforms,
+  co-creation and visualisation tools, and the two assessment frameworks.
 
 ## Content
 
@@ -41,6 +45,9 @@ Nothing is fetched at runtime in either build — no fonts, no analytics, no API
 stylesheet and script inlined. Copy it to a USB drive, email it, or open it by double-click;
 it needs no server and no network. Use `npm run build` for a hosted deployment — that one is
 a normal ES-module site and has to be served over http, not opened from disk.
+
+External links in Resources open in a new tab when clicked. Nothing is fetched by the page
+itself, so the app still works with the network off.
 
 Your plan is stored in your browser only. Use Export to keep a copy or pass it on.
 

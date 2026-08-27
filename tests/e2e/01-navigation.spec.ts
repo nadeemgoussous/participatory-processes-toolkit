@@ -9,7 +9,14 @@ test.describe('Navigation', () => {
     );
 
     const nav = page.getByRole('navigation', { name: 'Sections' });
-    for (const label of ['Plan', 'Stakeholders', 'Engagement tools', 'Case studies']) {
+    for (const label of [
+      'Plan',
+      'Why participate',
+      'Stakeholders',
+      'Engagement tools',
+      'Case studies',
+      'Resources',
+    ]) {
       await expect(nav.getByRole('button', { name: label, exact: true })).toBeVisible();
     }
   });
@@ -26,5 +33,15 @@ test.describe('Navigation', () => {
 
     await nav.getByRole('button', { name: 'Case studies' }).click();
     await expect(page.getByRole('heading', { name: 'Case studies', level: 1 })).toBeVisible();
+
+    await nav.getByRole('button', { name: 'Why participate' }).click();
+    await expect(
+      page.getByRole('heading', { name: 'The importance of participatory processes', level: 1 })
+    ).toBeVisible();
+
+    await nav.getByRole('button', { name: 'Resources' }).click();
+    await expect(
+      page.getByRole('heading', { name: 'Additional material', level: 1 })
+    ).toBeVisible();
   });
 });
