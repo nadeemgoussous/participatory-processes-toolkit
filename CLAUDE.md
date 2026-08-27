@@ -26,8 +26,14 @@ types: `region`, `stakeholderIds`, `toolIds`, `caseStudyIds`, colours and icon p
 support filtering and cross-linking, and are never displayed as publication prose.
 
 **2. Offline-first.** Workshop venues have unreliable internet. Nothing is fetched at
-runtime — no fonts, no analytics, no API. The build must open from `file://`, from a USB
-drive and from GitHub Pages, which is why `base` is `'./'`.
+runtime — no fonts, no analytics, no API.
+
+There are two builds. `npm run build` is a normal ES-module site for GitHub Pages or any
+static server; `base` is `'./'` so it does not care which directory it is served from.
+**It cannot be opened from `file://`** — a file:// page has origin `null`, so its module
+script and stylesheet are blocked by CORS and nothing renders. `npm run build:offline`
+produces `dist-offline/index.html`, a single self-contained file that a browser runs
+straight off a USB drive. `tests/e2e/05-file-protocol.spec.ts` holds that property.
 
 **3. No calculation.** The tool holds no model, no metrics and no arithmetic over user data.
 It presents guidance and records what the planner decides. Anything that computes a number
@@ -45,9 +51,10 @@ npm run dev                 # http://localhost:5173/
 npm run typecheck           # tsc --noEmit — run before every commit
 npm run verify:quotes       # checks all data text against docs/toolkit/ — seconds
 npm run build               # tsc && vite build -> dist/  (~15 s)
+npm run build:offline       # -> dist-offline/index.html, one self-contained file
 npm run preview             # serve dist/
 
-npm run test:chromium       # 8 Playwright tests, ~22 s — use this while iterating
+npm run test:chromium       # 13 Playwright tests, ~50 s — needs both builds present
 npm test                    # all browser projects
 ```
 
@@ -109,7 +116,8 @@ The publication supports three ways in, and the app offers all three:
 - **No new runtime dependencies.** The bundle is 301 kB and should stay in that range.
 - **Tailwind v4**: tokens live in `@theme` in `src/index.css`. No `tailwind.config.js`.
 - **No webfonts.** A CDN import breaks invariant 2. If Inter is wanted, self-host it.
-- **Base path is `'./'`.** Never hard-code an absolute asset path.
+- **Base path is `'./'`.** Never hard-code an absolute asset path — `index.html` and the
+  PWA manifest included. An absolute path breaks both Pages and the offline build.
 - **One `<h1>` per page** — the section heading. The masthead is a `<p>`.
 - Every panel built from the publication ends with `<SourceNote />`.
 - **Commits**: conventional prefixes. Typecheck and verify:quotes before committing.

@@ -30,12 +30,17 @@ there. It runs in CI.
 
 ```bash
 npm install
-npm run dev        # http://localhost:5173/
-npm run build      # -> dist/
+npm run dev            # http://localhost:5173/
+npm run build          # -> dist/            for GitHub Pages or any static server
+npm run build:offline  # -> dist-offline/index.html   one self-contained file
 ```
 
-The build uses a relative base path, so `dist/` works from GitHub Pages, from any static
-server, and from a folder opened directly off a USB drive. Nothing is fetched at runtime.
+Nothing is fetched at runtime in either build — no fonts, no analytics, no API.
+
+**Sharing it.** `npm run build:offline` produces a single 322 kB `index.html` with the
+stylesheet and script inlined. Copy it to a USB drive, email it, or open it by double-click;
+it needs no server and no network. Use `npm run build` for a hosted deployment — that one is
+a normal ES-module site and has to be served over http, not opened from disk.
 
 Your plan is stored in your browser only. Use Export to keep a copy or pass it on.
 

@@ -29,7 +29,7 @@ fi
 echo " Starting local server..."
 echo ""
 echo " The tool will open automatically in your browser."
-echo " If it doesn't open, navigate to:  http://localhost:5173/stakeholder-dialogue/"
+echo " If it doesn't open, navigate to:  http://localhost:5173/"
 echo ""
 echo " Press Ctrl+C to stop the server."
 echo ""
@@ -37,9 +37,9 @@ echo ""
 # Open browser (works on macOS and most Linux desktops)
 sleep 2 && (
     if command -v open &>/dev/null; then
-        open "http://localhost:5173/stakeholder-dialogue/"
+        open "http://localhost:5173/"
     elif command -v xdg-open &>/dev/null; then
-        xdg-open "http://localhost:5173/stakeholder-dialogue/"
+        xdg-open "http://localhost:5173/"
     fi
 ) &
 

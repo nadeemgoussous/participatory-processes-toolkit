@@ -22,7 +22,10 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
 
   /* Opt out of parallel tests on CI */
-  workers: process.env.CI ? 1 : undefined,
+  // Two workers, not one per core. The suite drives a Vite dev server and a
+  // browser from a synced folder; at four workers, clicks and downloads that
+  // take three seconds in isolation stall past the test timeout.
+  workers: process.env.CI ? 1 : 2,
 
   /* Reporter to use */
   reporter: [
@@ -65,6 +68,10 @@ export default defineConfig({
       use: { ...devices['iPad Pro'] },
     },
   ],
+
+  /* Warm the dev server so Vite's first-run dep optimisation does not abort
+     requests from the first specs to start. */
+  globalSetup: './tests/global-setup.ts',
 
   /* Run local dev server before starting tests */
   webServer: {

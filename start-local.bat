@@ -37,11 +37,11 @@ if not exist node_modules\ (
 echo  Starting local server...
 echo.
 echo  The tool will open automatically in your browser.
-echo  If it doesn't open, navigate to:  http://localhost:5173/stakeholder-dialogue/
+echo  If it doesn't open, navigate to:  http://localhost:5173/
 echo.
 echo  Press Ctrl+C to stop the server.
 echo.
 
 :: Start the dev server and open browser
-start "" "http://localhost:5173/stakeholder-dialogue/"
+start "" "http://localhost:5173/"
 npm run dev

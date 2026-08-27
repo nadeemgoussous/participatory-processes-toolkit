@@ -2,13 +2,44 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
+// Two builds.
+//
+// The default build is a normal ES-module site for GitHub Pages or any static
+// server.
+//
+// `--mode offline` produces a build that a browser will run straight off the
+// filesystem. Module scripts and stylesheets fetched from a file:// page have
+// origin 'null' and are blocked by CORS, so that build emits one classic IIFE
+// bundle with no imports, which scripts/build-offline.mjs then inlines into a
+// single self-contained index.html. The service worker is dropped: it cannot
+// register on file:// either.
 // https://vitejs.dev/config/
-export default defineConfig({
-  // Relative base so the build works from GitHub Pages, from a plain static
-  // server, and from a folder opened directly off a USB drive.
+export default defineConfig(({ mode }) => {
+  const offline = mode === 'offline'
+
+  return {
+  // Relative base so the build works from GitHub Pages and from any static
+  // server regardless of the directory it is served from.
   base: './',
+  build: offline
+    ? {
+        outDir: 'dist-offline',
+        assetsInlineLimit: Number.MAX_SAFE_INTEGER,
+        cssCodeSplit: false,
+        modulePreload: false,
+        rollupOptions: {
+          output: {
+            format: 'iife' as const,
+            inlineDynamicImports: true,
+            entryFileNames: 'app.js',
+            assetFileNames: 'app.[ext]',
+          },
+        },
+      }
+    : {},
   plugins: [
     react(),
+    ...(offline ? [] : [
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['icon-*.png', 'apple-touch-icon.png'],
@@ -19,31 +50,31 @@ export default defineConfig({
         theme_color: '#0078a7',
         background_color: '#0078a7',
         display: 'standalone',
-        start_url: '/stakeholder-dialogue/',
-        scope: '/stakeholder-dialogue/',
+        start_url: '.',
+        scope: '.',
         orientation: 'any',
         categories: ['education', 'utilities'],
         icons: [
           {
-            src: '/stakeholder-dialogue/icon-192.png',
+            src: './icon-192.png',
             sizes: '192x192',
             type: 'image/png',
             purpose: 'any'
           },
           {
-            src: '/stakeholder-dialogue/icon-512.png',
+            src: './icon-512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'any'
           },
           {
-            src: '/stakeholder-dialogue/icon-512.png',
+            src: './icon-512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'maskable'
           },
           {
-            src: '/stakeholder-dialogue/apple-touch-icon.png',
+            src: './apple-touch-icon.png',
             sizes: '180x180',
             type: 'image/png'
           }
@@ -119,5 +150,7 @@ export default defineConfig({
         ]
       }
     })
+    ]),
   ],
+  }
 })

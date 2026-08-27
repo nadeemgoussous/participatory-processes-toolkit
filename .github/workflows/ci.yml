@@ -35,6 +35,11 @@ jobs:
       - name: Build
         run: npm run build
 
+      # The single-file build is the artefact people are handed on a USB drive.
+      # 05-file-protocol.spec.ts needs it present.
+      - name: Build offline
+        run: npm run build:offline
+
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
 

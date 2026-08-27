@@ -56,7 +56,9 @@ export function exportPlan(plan: PlanState): void {
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
-  URL.revokeObjectURL(url);
+  // Revoking synchronously can cancel the download before the browser has read
+  // the blob. Release it on a later task instead.
+  setTimeout(() => URL.revokeObjectURL(url), 30_000);
 }
 
 /** Reads a plan from a file chosen by the user. Rejects anything else. */
