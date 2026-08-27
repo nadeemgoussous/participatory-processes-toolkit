@@ -9,12 +9,14 @@ countries did, and a working checklist to take into the process.
 
 ## Sections
 
-- **Why participate** — chapter 2: what participatory processes are, who is responsible for
-  energy planning, and the four objectives participation serves.
+- **Why participate** — chapters 1 and 2: the background to the toolkit, what participatory
+  processes are, who is responsible for energy planning, and the four objectives
+  participation serves.
 - **Plan** — a checklist assembled from the toolkit's prerequisites, resource requirements
   and good practices. Choose your planning phases, stakeholder groups and tools and the
   checklist narrows to what applies. Each item carries its section reference and a note
-  field. Export as JSON or print.
+  field. Export as JSON or print. Two panels carry the toolkit's own guidance on using it
+  (chapters 1.3 and 6) and the five challenges it says a checklist does not solve.
 - **Stakeholders** — the seven groups in chapter 3: who they are, why to engage them, what
   they gain, the challenges, and the good practices.
 - **Engagement tools** — the seven tools in chapter 4, reachable by objective, by planning

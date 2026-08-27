@@ -56,6 +56,8 @@ const source = normalise(
     // the source uses markdown emphasis and table pipes around the text we quote
     .replace(/\*\*/g, '')
     .replace(/\|/g, ' ')
+    // cross-references are written as links; we quote the visible text only
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
 );
 
 const targets = process.argv.slice(2);

@@ -9,6 +9,15 @@ import type { Phase, ToolId } from '../../types/toolkit';
 import type { StakeholderId } from '../../types/stakeholder';
 import { usePlan } from '../../context/PlanContext';
 import { exportPlan, importPlan } from '../../utils/plan-storage';
+import {
+  challengesIntro,
+  currentChallenges,
+  projectDesignQuestions,
+  threeStepGuide,
+  threeStepIntro,
+  usingTheToolkit,
+} from '../../data/using-the-toolkit';
+import { Blocks, Disclosure, Table } from '../common/Blocks';
 
 export default function PlanTab() {
   const { plan, setMeta, setSetup, setItem, replacePlan } = usePlan();
@@ -42,6 +51,27 @@ export default function PlanTab() {
           and tools, and the checklist narrows to what applies.
         </p>
       </header>
+
+      <Disclosure summary="how to use this toolkit">
+        <Blocks blocks={threeStepIntro} />
+        {threeStepGuide.map((step) => (
+          <div key={step.id} className="space-y-2">
+            <h3 className="font-medium text-gray-900">{step.heading}</h3>
+            <Blocks blocks={step.blocks} />
+          </div>
+        ))}
+        <div className="space-y-5 border-t border-gray-100 pt-5">
+          {usingTheToolkit.map((step) => (
+            <div key={step.id} className="space-y-2">
+              <h3 className="font-medium text-gray-900">{step.heading}</h3>
+              <Blocks blocks={step.blocks} />
+            </div>
+          ))}
+        </div>
+        <p className="border-t border-gray-100 pt-4 text-sm text-gray-500">
+          Sections 1.3 and 6.
+        </p>
+      </Disclosure>
 
       <section className="rounded-lg border border-gray-200 bg-white p-5 print:hidden">
         <div className="grid gap-4 sm:grid-cols-2">
@@ -151,6 +181,27 @@ export default function PlanTab() {
           each item was addressed.
         </p>
       </div>
+
+      <Disclosure summary="the challenges a checklist does not solve">
+        <Table columns={currentChallenges.columns} rows={currentChallenges.rows} />
+        <div className="space-y-2">
+          <p className="text-gray-700 leading-relaxed">{challengesIntro}</p>
+          <ul className="space-y-1.5">
+            {projectDesignQuestions.map((question) => (
+              <li key={question} className="flex gap-2 text-gray-700 leading-relaxed">
+                <span
+                  aria-hidden="true"
+                  className="h-1.5 w-1.5 shrink-0 translate-y-[0.6em] rounded-full bg-gray-400"
+                />
+                <span>{question}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <p className="border-t border-gray-100 pt-4 text-sm text-gray-500">
+          Section 6, Challenges and Future Work.
+        </p>
+      </Disclosure>
 
       {CHECKLIST_GROUPS.map((group) => {
         const groupItems = items.filter((i) => i.group === group.id);

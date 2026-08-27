@@ -36,7 +36,7 @@ test.describe('Navigation', () => {
 
     await nav.getByRole('button', { name: 'Why participate' }).click();
     await expect(
-      page.getByRole('heading', { name: 'The importance of participatory processes', level: 1 })
+      page.getByRole('heading', { name: 'Why participate', level: 1 })
     ).toBeVisible();
 
     await nav.getByRole('button', { name: 'Resources' }).click();

@@ -46,6 +46,29 @@ export function Section({
   );
 }
 
+/**
+ * Collapsible panel. Guidance sits on the plan page alongside the checklist,
+ * so it opens on demand rather than pushing the checklist down the page.
+ */
+export function Disclosure({
+  summary,
+  children,
+}: {
+  summary: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <details className="group rounded-lg border border-gray-200 bg-white print:hidden">
+      <summary className="cursor-pointer list-none px-5 py-4 font-medium text-gray-900 marker:content-none">
+        <span className="text-[var(--color-irena-blue)] group-open:hidden">Show</span>
+        <span className="hidden text-[var(--color-irena-blue)] group-open:inline">Hide</span>{' '}
+        {summary}
+      </summary>
+      <div className="space-y-5 border-t border-gray-100 px-5 py-5">{children}</div>
+    </details>
+  );
+}
+
 /** A table the publication presents. */
 export function Table({
   columns,

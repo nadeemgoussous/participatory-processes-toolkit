@@ -54,7 +54,7 @@ npm run build               # tsc && vite build -> dist/  (~15 s)
 npm run build:offline       # -> dist-offline/index.html, one self-contained file
 npm run preview             # serve dist/
 
-npm run test:chromium       # 15 Playwright tests — needs both builds present
+npm run test:chromium       # 17 Playwright tests — needs both builds present
 npm test                    # all browser projects
 ```
 
@@ -84,7 +84,9 @@ src/
 │   ├─ case-studies.ts         chapter 5: thirteen studies + the summary table
 │   ├─ checklist.ts            items DERIVED from the three files above
 │   ├─ participation-rationale.ts  chapter 2: why participate, the four objectives
-│   └─ resources.ts            chapter 7: publications, platforms, frameworks
+│   ├─ resources.ts            chapter 7: publications, platforms, frameworks
+│   ├─ using-the-toolkit.ts    chapters 1.3 and 6: guidance, shown on the plan page
+│   └─ toolkit-background.ts   chapters 1 and 6: background, shown on the why page
 ├─ utils/plan-storage.ts       localStorage, JSON export and import
 └─ components/  plan | why | stakeholders | tools | cases | resources | layout | common
 ```
@@ -163,9 +165,13 @@ the verifier checks against — treat it as read-only.
 
 ## 7. Scope
 
-**In scope:** chapter 2 rationale, chapter 3 stakeholder groups, chapter 4 engagement tools
-and decision framework, chapter 5 case studies, chapter 7 additional material, and the
-participation plan checklist. Chapters 1 and 6 are not yet digitised.
+**In scope:** the whole publication except chapter 8 (references) and appendix A
+(methodology), neither of which is planner-facing.
+
+Chapters 1 and 6 are placed by function rather than as their own sections: the operational
+guidance (1.3 and 6's Using This Toolkit, plus 6's current challenges) sits on the plan page
+beside the checklist, and the background (1, 1.1, 1.2 and 6's takeaways) sits on the why
+page. Both are in collapsible panels so the working surface stays first.
 
 **Out of scope:** anything requiring text the publication does not contain. Two earlier
 features were removed for this reason — per-audience dissemination strategies and message
