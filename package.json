@@ -14,8 +14,7 @@
     "test:headed": "playwright test --headed",
     "test:debug": "playwright test --debug",
     "test:report": "playwright show-report",
-    "test:quality": "node scripts/test-response-quality.cjs",
-    "responses:build": "node scripts/build-response-library.cjs > src/data/response-library.ts"
+    "verify:quotes": "node scripts/verify-toolkit-quotes.mjs src/data/engagement-tools.ts src/data/stakeholder-profiles.ts src/data/checklist.ts src/types/toolkit.ts src/types/stakeholder.ts"
   },
   "keywords": [
     "energy",
@@ -45,10 +44,7 @@
     "vite-plugin-pwa": "^1.2.0"
   },
   "dependencies": {
-    "@mlc-ai/web-llm": "^0.2.80",
-    "dexie": "^4.2.1",
     "react": "^19.2.1",
-    "react-dom": "^19.2.1",
-    "recharts": "^3.5.1"
+    "react-dom": "^19.2.1"
   }
 }

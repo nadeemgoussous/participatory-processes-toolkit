@@ -1,755 +1,540 @@
-/**
- * Stakeholder Profiles for IRENA Scenario Dialogue Tool
- *
- * Based on IRENA's Participatory Processes for Strategic Energy Planning toolkit
- * Chapter 3: Stakeholder Engagement
- *
- * This file contains detailed profiles for 9 stakeholder groups that energy planners
- * typically engage with during scenario development and communication.
- */
+// Stakeholder profiles, chapter 3
+// Source: IRENA (2025), Participatory processes for strategic energy planning:
+// A toolkit for national energy planners.
+//
+// Text is quoted from chapter 3. Icons and colours are presentation values.
 
 import type { StakeholderProfile } from '../types/stakeholder';
 
-/**
- * 1. Policy Makers & Regulators
- * Government officials responsible for energy policy, laws, and regulations
- */
-export const policyMakers: StakeholderProfile = {
-  id: 'policy-makers',
-  name: 'Policy Makers & Regulators',
-  icon: 'icons/policy-makers.svg',
-  color: '#c94f4f',
-
-  description: 'Government officials responsible for laws, policies and regulations across energy, transport, industry, environment, and climate-focused departments.',
-
-  whyEngage: 'Active involvement throughout scenario development keeps scenarios relevant, realistic and aligned with policy needs.',
-
-  benefitForThem: 'Understanding scenario trade-offs helps decision making and assessment of policy measure implications.',
-
-  challenges: [
-    'Limited understanding of scenario concept and purpose',
-    'Balancing different political visions and priorities',
-    'Not necessarily energy system specialists',
-    'Time constraints limit engagement capacity'
-  ],
-
-  goodPractices: [
-    'Prepare succinct briefs addressing direct concerns',
-    'Explain what modelling can and cannot do',
-    'Use non-biased intermediaries to facilitate',
-    'Conduct capacity-building for decision-makers'
-  ],
-
-  priorities: [
-    'Alignment with national development goals',
-    'Energy security and reliability',
-    'Affordability for consumers',
-    'Political feasibility',
-    'Job creation and economic development',
-    'Climate commitment compliance (e.g., NDCs, net-zero targets)'
-  ],
-
-  typicalQuestions: [
-    'How does this align with our climate commitments?',
-    'What are the implications for electricity tariffs?',
-    'How many jobs will be created?',
-    'What is the timeline for key investment decisions?',
-    'How does this compare to regional peers?'
-  ],
-
-  concernTriggers: [
-    {
-      metric: 'investment.cumulative.2050',
-      threshold: 10000,
-      direction: 'above',
-      concernText: 'The total investment requirement of {value} million USD is substantial.',
-      explanation: 'Policy makers need to understand financing strategy and fiscal implications.'
-    },
-    {
-      metric: 'jobs.total.2030',
-      threshold: 2000,
-      direction: 'below',
-      concernText: 'Job creation appears limited with only {value} jobs by 2030.',
-      explanation: 'Employment is a key political priority.'
-    }
-  ],
-
-  positiveIndicators: [
-    {
-      metric: 'jobs.total.2030',
-      threshold: 5000,
-      direction: 'above',
-      praiseText: 'Strong job creation potential of {value} jobs supports employment goals.'
-    },
-    {
-      metric: 'emissions.reductionPercent2030',
-      threshold: 20,
-      direction: 'above',
-      praiseText: 'Significant emissions reduction of {value}% demonstrates climate leadership.'
-    }
-  ],
-
-  responseTemplates: [
-    {
-      condition: 'highInvestment',
-      initialReaction: 'This is an ambitious plan. We need to understand the financing strategy.',
-      appreciationPoints: [
-        'Clear long-term vision for the sector',
-        'Alignment with regional integration goals'
-      ],
-      concernPoints: [
-        'Total investment requirement needs careful fiscal planning',
-        'Timeline for major decisions needs political alignment'
-      ],
-      questionsToAsk: [
-        'What is the proposed financing mix (public/private/concessional)?',
-        'What are the tariff implications for households?',
-        'How does this align with our fiscal space?'
-      ]
-    }
-  ]
-};
-
-/**
- * 2. Grid Operators
- * Entities responsible for operating and developing power networks
- */
-export const gridOperators: StakeholderProfile = {
-  id: 'grid-operators',
-  name: 'Grid Operators',
-  icon: 'icons/grid-operators.svg',
-  color: '#4a90a4',
-
-  description: 'Entities responsible for operating and developing power networks (transmission and distribution).',
-
-  whyEngage: 'Deep understanding of grid dynamics, infrastructure limitations and operational challenges. Technical expertise and real-time data make them essential for grid stability.',
-
-  benefitForThem: 'Ensuring their development plans are considered in national planning and that plans are consistent with infrastructure capabilities.',
-
-  challenges: [
-    'Established mid-term plans may conflict with scenarios',
-    'Weak collaboration across voltage levels',
-    'Grid role often underestimated by policy makers',
-    'Need to reconcile multiple operator perspectives'
-  ],
-
-  goodPractices: [
-    'Engage early to incorporate existing plans',
-    'Include distribution-level operators',
-    'Involve regulators for grid permits',
-    'Prioritize cost-efficient solutions'
-  ],
-
-  priorities: [
-    'System reliability and security of supply',
-    'Manageable renewable integration pace',
-    'Transmission infrastructure planning',
-    'Interconnector development coordination',
-    'Storage and flexibility resources'
-  ],
-
-  typicalQuestions: [
-    'What transmission upgrades are assumed?',
-    'What flexibility resources support high renewable shares?',
-    'How are interconnector flows coordinated with neighbors?',
-    'What is the battery storage deployment timeline?',
-    'How will distribution networks handle new loads?'
-  ],
-
-  concernTriggers: [
-    {
-      metric: 'renewableShare.2040',
-      threshold: 70,
-      direction: 'above',
-      concernText: 'Variable renewable share of {value}% by 2040 requires significant grid upgrades.',
-      explanation: 'Grid operators need time and investment for infrastructure adaptation.'
-    },
-    {
-      metric: 'supply.capacity.battery.2035',
-      threshold: 100,
-      direction: 'below',
-      concernText: 'Limited battery storage of {value} MW may constrain renewable integration.',
-      explanation: 'Flexibility resources are essential for variable renewable management.'
-    }
-  ],
-
-  positiveIndicators: [
-    {
-      metric: 'supply.capacity.interconnector.2040',
-      threshold: 500,
-      direction: 'above',
-      praiseText: 'Strong interconnector expansion of {value} MW enables regional balancing.'
-    },
-    {
-      metric: 'supply.capacity.battery.2040',
-      threshold: 300,
-      direction: 'above',
-      praiseText: 'Adequate battery deployment of {value} MW supports system flexibility.'
-    }
-  ],
-
-  responseTemplates: []
-};
-
-/**
- * 3. Industry & Business
- * Energy-intensive industries, manufacturers, renewable energy developers
- */
-export const industry: StakeholderProfile = {
-  id: 'industry',
-  name: 'Industry & Business',
-  icon: 'icons/industry.svg',
-  color: '#7b8a3e',
-
-  description: 'Energy-intensive industries, manufacturers, SMEs, renewable energy developers, and energy service providers.',
-
-  whyEngage: 'Central to energy transition due to significant energy use, emissions, and innovation potential. Technical expertise on decarbonisation barriers.',
-
-  benefitForThem: 'Preserve business interests, anticipate policy changes, position competitively, support climate disclosures.',
-
-  challenges: [
-    'Diverse interests across industrial sectors',
-    'Competitiveness concerns about energy costs',
-    'Limited capacity for engagement',
-    'Short-term focus vs long-term planning'
-  ],
-
-  goodPractices: [
-    'Segment by industry type for targeted engagement',
-    'Highlight opportunities alongside challenges',
-    'Involve industry associations',
-    'Provide early visibility into policy direction'
-  ],
-
-  priorities: [
-    'Reliable electricity supply',
-    'Competitive energy costs',
-    'Predictable policy environment',
-    'Clean energy supply chain opportunities',
-    'Realistic demand growth assumptions'
-  ],
-
-  typicalQuestions: [
-    'What are the projected industrial electricity costs?',
-    'How reliable will supply be for continuous operations?',
-    'What local manufacturing opportunities exist?',
-    'Are industrial demand projections realistic?',
-    'What incentives exist for industrial efficiency?'
-  ],
-
-  concernTriggers: [
-    {
-      metric: 'investment.cumulative.2030',
-      threshold: 3000,
-      direction: 'above',
-      concernText: 'High investment costs of {value} million USD may translate to higher industrial tariffs.',
-      explanation: 'Industry competitiveness depends on energy costs.'
-    }
-  ],
-
-  positiveIndicators: [
-    {
-      metric: 'supply.capacity.solarPV.2030',
-      threshold: 500,
-      direction: 'above',
-      praiseText: 'Large solar pipeline of {value} MW creates opportunities for local businesses.'
-    },
-    {
-      metric: 'jobs.construction.total',
-      threshold: 10000,
-      direction: 'above',
-      praiseText: 'Significant construction activity of {value} job-years benefits local contractors.'
-    }
-  ],
-
-  responseTemplates: []
-};
-
-/**
- * 4. Public & Communities
- * General public, local communities, indigenous communities
- */
-export const publicCommunities: StakeholderProfile = {
-  id: 'public',
-  name: 'Public & Communities',
-  icon: 'icons/public.svg',
-  color: '#e8a54b',
-
-  description: 'General public, local communities affected by infrastructure, indigenous communities, and vulnerable households.',
-
-  whyEngage: 'Essential for social acceptance and just transition. Local knowledge identifies barriers and opportunities.',
-
-  benefitForThem: 'Ensuring concerns are heard, participating in decisions affecting their lives, benefiting from local opportunities.',
-
-  challenges: [
-    'Diverse and fragmented stakeholder landscape',
-    'Power imbalances in participation',
-    'Limited technical capacity',
-    'Time and resource constraints for engagement'
-  ],
-
-  goodPractices: [
-    'Use accessible language and formats',
-    'Ensure geographic representation',
-    'Provide capacity building support',
-    'Demonstrate how input influenced decisions'
-  ],
-
-  priorities: [
-    'Electricity access and affordability',
-    'Local jobs and economic benefits',
-    'Land use impacts',
-    'Fair distribution of costs and benefits',
-    'Health and environmental improvements'
-  ],
-
-  typicalQuestions: [
-    'How will this affect electricity bills?',
-    'Will there be jobs for local people?',
-    'What land will be used for projects?',
-    'How will affected communities be supported?',
-    'When will our area get electricity?'
-  ],
-
-  concernTriggers: [
-    {
-      metric: 'landUse.totalNewLand.2040',
-      threshold: 10000,
-      direction: 'above',
-      concernText: 'Large land requirements of {value} hectares affect many communities.',
-      explanation: 'Land acquisition is often contentious and requires careful consultation.'
-    }
-  ],
-
-  positiveIndicators: [
-    {
-      metric: 'jobs.operations.2040',
-      threshold: 3000,
-      direction: 'above',
-      praiseText: 'Permanent jobs of {value} positions provide stable employment for communities.'
-    },
-    {
-      metric: 'emissions.reductionPercent2040',
-      threshold: 50,
-      direction: 'above',
-      praiseText: 'Major air quality improvements from {value}% emissions reduction benefit public health.'
-    }
-  ],
-
-  responseTemplates: []
-};
-
-/**
- * 5. CSOs & NGOs
- * Civil society organisations, environmental groups, advocacy organisations
- */
-export const csosNgos: StakeholderProfile = {
-  id: 'csos-ngos',
-  name: 'CSOs & NGOs',
-  icon: 'icons/csos-ngos.svg',
-  color: '#6b4c9a',
-
-  description: 'Trade unions, environmental groups, humanitarian organisations, charities, and think tanks working on energy, climate, and development.',
-
-  whyEngage: 'Represent public interests, provide evidence-based research, highlight overlooked issues, can support or oppose projects.',
-
-  benefitForThem: 'Ensuring representation of social and environmental concerns, shaping a just transition.',
-
-  challenges: [
-    'Diverse agendas across organisations',
-    'May advocate for positions beyond technical feasibility',
-    'Resource constraints limit participation',
-    'Balancing advocacy with constructive engagement'
-  ],
-
-  goodPractices: [
-    'Engage early and transparently',
-    'Acknowledge legitimate concerns',
-    'Provide access to technical data',
-    'Create space for alternative perspectives'
-  ],
-
-  priorities: [
-    'Climate ambition and Paris alignment',
-    'Just transition for workers',
-    'Environmental protection',
-    'Energy access for vulnerable populations',
-    'Transparency in planning',
-    'Gender equity'
-  ],
-
-  typicalQuestions: [
-    'Is this scenario Paris-compatible?',
-    'What happens to fossil fuel workers?',
-    'How were communities consulted?',
-    'What environmental assessments are planned?',
-    'How does this address energy poverty?'
-  ],
-
-  concernTriggers: [
-    {
-      metric: 'supply.emissions.2050',
-      threshold: 30,
-      direction: 'above',
-      concernText: 'Remaining emissions of {value} Mt CO2 in 2050 may be incompatible with net-zero.',
-      explanation: 'CSOs focus on climate ambition and long-term targets.'
-    },
-    {
-      metric: 'renewableShare.2030',
-      threshold: 50,
-      direction: 'below',
-      concernText: 'Renewable share of {value}% appears unambitious.',
-      explanation: 'CSOs often advocate for faster transition.'
-    }
-  ],
-
-  positiveIndicators: [
-    {
-      metric: 'emissions.reductionPercent.2050',
-      threshold: 80,
-      direction: 'above',
-      praiseText: 'Deep emissions reduction of {value}% shows serious climate commitment.'
-    },
-    {
-      metric: 'renewableShare.2040',
-      threshold: 80,
-      direction: 'above',
-      praiseText: 'Ambitious renewable share of {value}% aligns with climate science.'
-    }
-  ],
-
-  responseTemplates: []
-};
-
-/**
- * 6. Scientific Institutions
- * Universities, research institutions, energy experts
- */
-export const scientificInstitutions: StakeholderProfile = {
-  id: 'scientific',
-  name: 'Scientific Institutions',
-  icon: 'icons/scientific.svg',
-  color: '#3d7ea6',
-
-  description: 'Universities, research institutions, energy experts, economists, and social scientists.',
-
-  whyEngage: 'Build modelling capacity, provide expertise and feedback, enable robust scenarios through rigorous methodologies.',
-
-  benefitForThem: 'Policy impact, funding opportunities, data access, partnerships with decision makers.',
-
-  challenges: [
-    'Academic timelines vs policy deadlines',
-    'Balancing rigor with policy relevance',
-    'Limited resources for engagement',
-    'Competing research priorities'
-  ],
-
-  goodPractices: [
-    'Involve early in methodology design',
-    'Provide access to data and models',
-    'Support peer review processes',
-    'Acknowledge contributions publicly'
-  ],
-
-  priorities: [
-    'Methodological rigor',
-    'Data quality and transparency',
-    'Uncertainty quantification',
-    'Model validation',
-    'Alignment with research findings'
-  ],
-
-  typicalQuestions: [
-    'What are the key uncertainties?',
-    'How sensitive are results to assumptions?',
-    'What discount rate was used?',
-    'Has the model been validated?',
-    'What are the technology cost assumptions?'
-  ],
-
-  concernTriggers: [
-    {
-      metric: 'supply.capacity.solarPV.CAGR',
-      threshold: 25,
-      direction: 'above',
-      concernText: 'Solar growth rate of {value}% exceeds historical precedents.',
-      explanation: 'Scientists scrutinize whether assumptions are evidence-based.'
-    }
-  ],
-
-  positiveIndicators: [
-    {
-      metric: 'methodology.sensitivityIncluded',
-      threshold: 1,
-      direction: 'above',
-      praiseText: 'Sensitivity analysis strengthens confidence in results.'
-    }
-  ],
-
-  responseTemplates: []
-};
-
-/**
- * 7. Financial Institutions
- * Banks, DFIs, MDBs, climate funds, investors
- */
-export const financialInstitutions: StakeholderProfile = {
-  id: 'finance',
-  name: 'Financial Institutions',
-  icon: 'icons/finance.svg',
-  color: '#2e5a3a',
-
-  description: 'Banks, DFIs, MDBs, climate funds, private equity, and institutional investors.',
-
-  whyEngage: 'Critical for mobilizing capital. Risk assessments shape what projects are bankable.',
-
-  benefitForThem: 'Visibility into policy direction and pipeline, opportunity to shape bankable structures.',
-
-  challenges: [
-    'Risk aversion and return requirements',
-    'Currency and sovereign risk concerns',
-    'Limited familiarity with sector specifics',
-    'Long approval processes'
-  ],
-
-  goodPractices: [
-    'Present clear project pipelines',
-    'Address risk mitigation explicitly',
-    'Highlight revenue certainty mechanisms',
-    'Involve early in project structuring'
-  ],
-
-  priorities: [
-    'Project bankability',
-    'Revenue certainty (PPAs, offtake)',
-    'Currency and sovereign risk',
-    'Policy stability',
-    'ESG compliance',
-    'Climate finance eligibility'
-  ],
-
-  typicalQuestions: [
-    'What is the financing gap?',
-    'What offtake arrangements are assumed?',
-    'How will currency risk be managed?',
-    'What guarantees provide revenue certainty?',
-    'Are projects IFC/Equator Principles compliant?'
-  ],
-
-  concernTriggers: [
-    {
-      metric: 'investment.cumulative.2030',
-      threshold: 5000,
-      direction: 'above',
-      concernText: 'Large financing requirements of {value} million USD need clear mobilisation strategy.',
-      explanation: 'Financiers assess whether investment needs are realistic.'
-    }
-  ],
-
-  positiveIndicators: [
-    {
-      metric: 'supply.capacity.solarPV.2030',
-      threshold: 500,
-      direction: 'above',
-      praiseText: 'Significant solar pipeline of {value} MW is increasingly bankable.'
-    }
-  ],
-
-  responseTemplates: []
-};
-
-/**
- * 8. Regional Bodies
- * Power pools, economic communities, regional integration bodies
- */
-export const regionalBodies: StakeholderProfile = {
-  id: 'regional-bodies',
-  name: 'Regional Bodies',
-  icon: 'icons/regional-bodies.svg',
-  color: '#1a5276',
-
-  description: 'Regional power pools, economic communities, regional development banks, and integration bodies coordinating cross-border energy cooperation.',
-
-  whyEngage: 'Essential for cross-border trade, regulatory harmonisation, and regional investment optimisation.',
-
-  benefitForThem: 'Ensuring national plans align with regional master plans, identifying trade opportunities.',
-
-  challenges: [
-    'Coordinating multiple national interests',
-    'Varying levels of member state capacity',
-    'Limited enforcement mechanisms',
-    'Funding constraints for regional infrastructure'
-  ],
-
-  goodPractices: [
-    'Align with regional master plans',
-    'Coordinate timing with neighbors',
-    'Share data and assumptions',
-    'Highlight regional benefits'
-  ],
-
-  priorities: [
-    'Alignment with regional master plans',
-    'Cross-border trade optimisation',
-    'Interconnector coordination',
-    'Regional reserve sharing',
-    'Technical standard harmonisation'
-  ],
-
-  typicalQuestions: [
-    'How do projections align with regional master plans?',
-    'What interconnector flows are assumed?',
-    'Is there coordination with neighbors on timing?',
-    'What regional reserve sharing is assumed?',
-    'Are standards compatible with regional codes?'
-  ],
-
-  concernTriggers: [
-    {
-      metric: 'regional.importDependence.2040',
-      threshold: 30,
-      direction: 'above',
-      concernText: 'High import dependence of {value}% raises regional coordination questions.',
-      explanation: 'Regional bodies assess interdependencies and security.'
-    }
-  ],
-
-  positiveIndicators: [
-    {
-      metric: 'regional.exportPotential.2040',
-      threshold: 2000,
-      direction: 'above',
-      praiseText: 'Export potential of {value} GWh positions country as regional clean energy hub.'
-    },
-    {
-      metric: 'supply.capacity.interconnector.2040',
-      threshold: 500,
-      direction: 'above',
-      praiseText: 'Strong interconnector capacity of {value} MW enables regional integration.'
-    }
-  ],
-
-  responseTemplates: []
-};
-
-/**
- * 9. Development Partners
- * Bilateral agencies, multilateral banks, climate funds
- */
-export const developmentPartners: StakeholderProfile = {
-  id: 'development-partners',
-  name: 'Development Partners',
-  icon: 'icons/development-partners.svg',
-  color: '#117a65',
-
-  description: 'Bilateral agencies, multilateral development banks, climate funds, and technical assistance providers supporting energy transitions.',
-
-  whyEngage: 'Major source of concessional financing. Their criteria shape what projects receive support.',
-
-  benefitForThem: 'Alignment with country strategies, pipeline visibility, development impact demonstration.',
-
-  challenges: [
-    'Multiple partners with different priorities',
-    'Complex approval and procurement processes',
-    'Coordination across sectors',
-    'Balancing development and financial goals'
-  ],
-
-  goodPractices: [
-    'Align with partner country strategies',
-    'Demonstrate development impact',
-    'Address debt sustainability explicitly',
-    'Coordinate across partner agencies'
-  ],
-
-  priorities: [
-    'Universal energy access (SDG7)',
-    'Climate impact and Paris alignment',
-    'Debt sustainability',
-    'Sovereign guarantee requirements',
-    'Private sector mobilisation',
-    'Gender and social inclusion',
-    'Institutional capacity building'
-  ],
-
-  typicalQuestions: [
-    'How does this contribute to universal access?',
-    'What is the climate mitigation impact?',
-    'What is the debt sustainability analysis?',
-    'Who is guaranteeing the PPAs?',
-    'What sovereign exposure is required?',
-    'How will private investment be mobilized?',
-    'What capacity building is needed?',
-    'How are gender considerations incorporated?'
-  ],
-
-  concernTriggers: [
-    {
-      metric: 'investment.cumulative.2030',
-      threshold: 4000,
-      direction: 'above',
-      concernText: 'Large investment requirements of {value} million USD raise debt sustainability questions.',
-      explanation: 'Development partners assess debt sustainability and guarantee exposure.'
-    },
-    {
-      metric: 'access.electrificationRate.2030',
-      threshold: 80,
-      direction: 'below',
-      concernText: 'Electrification trajectory of {value}% may fall short of universal access goals.',
-      explanation: 'Universal access is a core development partner priority.'
-    },
-    {
-      metric: 'investment.sovereignGuaranteeShare',
-      threshold: 50,
-      direction: 'above',
-      concernText: 'High sovereign guarantee requirements of {value}% create fiscal risk.',
-      explanation: 'Development partners monitor contingent liabilities closely.'
-    }
-  ],
-
-  positiveIndicators: [
-    {
-      metric: 'emissions.reductionPercent2030',
-      threshold: 30,
-      direction: 'above',
-      praiseText: 'Strong emissions reduction of {value}% supports climate finance eligibility.'
-    },
-    {
-      metric: 'investment.privateSectorShare',
-      threshold: 40,
-      direction: 'above',
-      praiseText: 'Significant private sector mobilisation of {value}% reduces public financing burden.'
-    }
-  ],
-
-  responseTemplates: []
-};
-
-/**
- * Export all stakeholder profiles as an array for iteration
- */
 export const stakeholderProfiles: StakeholderProfile[] = [
-  policyMakers,
-  gridOperators,
-  industry,
-  publicCommunities,
-  csosNgos,
-  scientificInstitutions,
-  financialInstitutions,
-  regionalBodies,
-  developmentPartners
+  // ------------------------------------------------------------------ 3.1
+  {
+    id: 'policy-makers',
+    name: 'Policy Makers, Administrators and Regulators',
+    toolkitSection: '3.1',
+    icon: 'icons/policy-makers.png',
+    color: '#c94f4f',
+    whoAreThey: [
+      {
+        text: 'Government officials responsible for laws, policies and regulations and their implementation across sectors, including:',
+        items: [
+          'Energy',
+          'Transport',
+          'Industry',
+          'Environment',
+          'Research and development',
+          'Agriculture',
+          'Climate-focused departments',
+        ],
+      },
+    ],
+    whyEngage: [
+      {
+        text: 'In policy planning contexts, scenarios are developed to guide policy and strategic decisions at national and sub-national levels. The active involvement of policy makers throughout the scenario development process helps to keep scenarios:',
+        items: ['Relevant', 'Realistic', 'Aligned with policy needs'],
+      },
+      {
+        label: 'Participation can range from:',
+        items: [
+          'Initial discussions to define critical policy questions',
+          'Collaborative formulation of scenarios that reflect grounded assumptions',
+          'Clear communication of results to inform policy',
+        ],
+      },
+      {
+        text: 'Effective cross-sectoral co-ordination among policy makers also supports various data-sharing efforts and the alignment of investment and strategies across a highly interconnected energy system.',
+      },
+    ],
+    benefit: [
+      {
+        text: 'Understanding the process and limitations of scenario development and trade-offs between scenarios can help decision making, including through assessment of the implications and impacts of policy measures.',
+      },
+    ],
+    challenges: [
+      {
+        challenge: 'Limited understanding of scenario concept',
+        description:
+          'Purpose and limitations of scenario analysis as a forecasting, predictive or exploratory tool may not be clear',
+      },
+      {
+        challenge: 'Political perspective',
+        description:
+          'Balancing different political visions, priorities and insights might prove challenging',
+      },
+      {
+        challenge: 'Knowledge gaps',
+        description:
+          'Many policy makers who influence energy policy are not necessarily specialists in energy systems',
+      },
+      {
+        challenge: 'Time constraints',
+        description:
+          'Most policy makers have busy schedules and might not have the ability to engage in long participatory processes or read long reports',
+      },
+    ],
+    goodPractices: [
+      "Preparing succinct briefs and visuals that can address policy makers' direct concerns and priorities",
+      'Explaining what modelling tools can and cannot do, and which concerns can be addressed within these tools',
+      'Using non-biased intermediaries to facilitate discussion with diverse groups of policy makers to avoid perceived bias',
+      'Conducting capacity-building exercises for policy makers and their staff to help guide decision making',
+    ],
+    summary: {
+      primaryValue: 'Keep scenarios relevant and aligned with policy needs',
+      keyChallenge: 'Time constraints, knowledge gaps',
+      criticalGoodPractice: 'Succinct briefs and capacity-building',
+    },
+  },
+
+  // ------------------------------------------------------------------ 3.2
+  {
+    id: 'grid-operators',
+    name: 'Grid Operators',
+    toolkitSection: '3.2',
+    icon: 'icons/grid-operators.png',
+    color: '#4f7ec9',
+    whoAreThey: [
+      {
+        text: 'Grid system operators refer to the entities responsible for operating and often developing power and gas networks (both transmission and distribution).',
+      },
+    ],
+    whyEngage: [
+      {
+        text: 'Engaging both electricity and gas grid operators is crucial because of their:',
+        items: [
+          'Deep understanding of grid dynamics',
+          'Knowledge of infrastructure limitations',
+          'Understanding of operational challenges posed by the energy transition',
+          'Technical expertise',
+          'Historical and real-time data',
+          'Future expansion plans',
+        ],
+      },
+      {
+        text: 'By aligning their scenarios with national energy plans and involving them in public engagement, grid operators help ensure a co-ordinated and resilient transition, particularly as the integration of renewables and decarbonised gases reshapes both power and gas networks.',
+      },
+    ],
+    benefit: [
+      {
+        text: "Ensuring their development plans and other procedures are considered in the country's long-term plans (and vice versa), and that national plans are consistent and consider infrastructural developments and upgrades as needed.",
+      },
+    ],
+    challenges: [
+      {
+        challenge: 'Established plans',
+        description:
+          'System operators have existing mid-term plans for grid expansion and upgrades that might necessitate adjustments to wider long-term energy plans',
+      },
+      {
+        challenge: 'Collaboration across voltage levels',
+        description:
+          'Collaboration mechanisms across different voltage levels or energy vectors (power and gas) might be weak or non-existent',
+      },
+      {
+        challenge: 'Policy maker awareness',
+        description:
+          "Electricity and gas grids' pivotal role in the energy transition is often underestimated by policy makers",
+      },
+      {
+        challenge: 'Compatibility of plans',
+        description:
+          'In countries with many TSOs and DSOs, reconciling plans for different regions, sectors and jurisdictions might be complex',
+      },
+    ],
+    goodPractices: [
+      'Engaging early with grid operators to incorporate existing plans and limitations into the planning process',
+      'Engaging with distribution-level operators to ensure compatibility with local conditions',
+      'Including regulators responsible for issuing permits to grid operators ensures alignment of legal and regulatory frameworks',
+      'Involving grid operators can help ensure that the most cost-efficient solutions will be prioritised',
+    ],
+    summary: {
+      primaryValue: 'Technical expertise and infrastructure knowledge',
+      keyChallenge: 'Reconciling existing plans',
+      criticalGoodPractice: 'Early engagement to incorporate limitations',
+    },
+  },
+
+  // ------------------------------------------------------------------ 3.3
+  {
+    id: 'industry',
+    name: 'Industry and Business Representatives',
+    toolkitSection: '3.3',
+    icon: 'icons/industry.png',
+    color: '#c98a4f',
+    whoAreThey: [
+      {
+        text: 'A diverse set of stakeholders spanning multiple sectors of the economy encompassing both established players and new entrants, including:',
+        items: [
+          'Energy-intensive industries',
+          'Manufacturers',
+          'Logistics companies',
+          'Small- and medium-sized enterprises (SMEs)',
+          'Renewable energy developers',
+          'Energy efficiency solution providers',
+          'Carbon capture technology companies',
+          'Non-energy sectors',
+        ],
+      },
+    ],
+    whyEngage: [
+      {
+        text: 'Industry players are central to achieving the energy transition because of their:',
+        items: [
+          'Significant energy use',
+          'Emissions footprint',
+          'Innovation potential',
+          'Technical expertise',
+          'Practical experience in implementing low-carbon technologies',
+        ],
+      },
+      {
+        text: 'Technology developers contribute detailed knowledge about:',
+        items: ['Costs', 'Scalability challenges', 'Technology readiness'],
+      },
+      {
+        text: 'Sectors such as shipping, logistics, aviation, agriculture and automotive provide essential perspectives on sector-specific changes in energy use and technological possibilities.',
+      },
+    ],
+    benefit: [
+      {
+        items: [
+          'Preserving their business interests',
+          'Adjusting business models as necessary',
+          'Better positioning competitively by anticipating and preparing for strengthening climate policies',
+          'Supporting climate-related financial disclosures by aligning business and national targets',
+        ],
+      },
+    ],
+    challenges: [
+      {
+        challenge: 'Diverse interests',
+        description: 'Different industrial sectors have varied priorities and challenges',
+      },
+      {
+        challenge: 'Confidentiality concerns',
+        description: 'Industries may be reluctant to share proprietary or sensitive information',
+      },
+      {
+        challenge: 'Balancing economic and environmental goals',
+        description: 'Especially challenging in fossil-fuel–reliant sectors',
+      },
+      {
+        challenge: 'Communication gap',
+        description:
+          'Energy experts may lack knowledge of business specificities, while industry may lack understanding of the broader energy system',
+      },
+      {
+        challenge: 'Balancing national and international goals',
+        description:
+          'Companies bound by foreign parent company targets may struggle to align with national objectives',
+      },
+      {
+        challenge: 'Different time horizons',
+        description: 'The private sector typically has a shorter planning time horizon',
+      },
+    ],
+    goodPractices: [
+      'Conducting thorough stakeholder mapping to identify relevant stakeholders needed at different stages',
+      'Co-developing sector scenarios with associations to incorporate findings into national planning',
+      'Placing limits on lobbying influence and balancing views appropriately to avoid unbalanced power dynamics',
+    ],
+    summary: {
+      primaryValue: 'Innovation potential and implementation experience',
+      keyChallenge: 'Confidentiality, diverse interests',
+      criticalGoodPractice: 'Stakeholder mapping and sector co-development',
+    },
+  },
+
+  // ------------------------------------------------------------------ 3.4
+  {
+    id: 'public',
+    name: 'General Public and Local Communities',
+    toolkitSection: '3.4',
+    icon: 'icons/public.png',
+    color: '#4fc98a',
+    whoAreThey: [
+      {
+        text: 'The general public, or sometimes leaders or representatives of communities based on:',
+        items: [
+          'Locality',
+          'Identity (e.g. indigenous groups)',
+          'Other means of demographic classification (e.g. age group or income level)',
+        ],
+      },
+      { text: "These usually represent their group's interest." },
+    ],
+    whyEngage: [
+      {
+        text: 'Planning for a just energy transition requires a collective effort that is led by the public while also paying attention to the most vulnerable in society.',
+      },
+      {
+        label: 'Key considerations:',
+        items: [
+          'Social acceptance by communities is vital for renewables and infrastructure project development',
+          'Energy efficiency, technology adoption and change in consumer behaviour patterns are key to reaching sectoral targets',
+          'The transition will have effects that must be communicated to citizens, such as price changes',
+          'They may be voters who can indirectly or directly affect policy decisions',
+        ],
+      },
+    ],
+    benefit: [
+      {
+        text: "Local communities and the public at large can help shape a just transition that considers citizens' needs and concerns, allowing them to learn about their role in facilitating this transition.",
+      },
+    ],
+    challenges: [
+      {
+        challenge: 'Generating interest',
+        description: 'Scenario development processes are unfamiliar to the public',
+      },
+      {
+        challenge: 'Knowledge gaps',
+        description:
+          'Technical concepts found in energy system analysis might not be familiar to most',
+      },
+      {
+        challenge: 'Time constraints',
+        description: 'Jobs, childcare and other responsibilities may limit time available',
+      },
+      {
+        challenge: 'Ensuring inclusivity',
+        description:
+          'Certain members of the public might be more likely to join, creating an unbalanced snapshot',
+      },
+    ],
+    goodPractices: [
+      'Starting discussions from perceived existing issues and concerns, as opposed to simply attempting to visualise a perfectly just scenario',
+      'Leveraging existing engagement platforms (local town halls or community spaces)',
+      'Identifying and training members of planning staff from local communities to act as focal points',
+      'Keeping registries to maintain communication with interested participants and monitor inclusivity',
+      'Including decentralised actors, such as community energy projects',
+      'Publishing plans online to broaden consultation possibilities',
+      'Allocating necessary time to ensure effective engagement',
+      'Offering online and in-person options to participate',
+    ],
+    summary: {
+      primaryValue: 'Social acceptance and just transition input',
+      keyChallenge: 'Generating interest, inclusivity',
+      criticalGoodPractice: 'Focal points and accessible communication',
+    },
+  },
+
+  // ------------------------------------------------------------------ 3.5
+  {
+    id: 'csos-ngos',
+    name: 'Civil Society Organisations and Non-Governmental Organisations',
+    toolkitSection: '3.5',
+    icon: 'icons/csos-ngos.png',
+    color: '#8a4fc9',
+    whoAreThey: [
+      {
+        text: 'Civil society organisations (CSOs) and non-governmental organisations (NGOs) typically denote different types of non-profit institutions such as:',
+        items: [
+          'Trade unions',
+          'Environmental advocacy groups',
+          'Humanitarian organisations',
+          'Charities',
+        ],
+      },
+    ],
+    whyEngage: [
+      {
+        text: 'CSOs and NGOs typically form a crucial role in representing various interests held by the public.',
+      },
+      {
+        label: 'Examples:',
+        items: [
+          'Trade unions can represent workers from different sectors affected by the energy transition',
+          'Environmental and humanitarian advocacy groups can present evidence-based research and analysis to highlight issues, benefits and impacts',
+        ],
+      },
+    ],
+    benefit: [
+      {
+        text: 'They can ensure the collective representation of the concerns arising from their social and environmental mandates, to help shape a just and sustainable transition.',
+      },
+    ],
+    challenges: [
+      {
+        challenge: 'Diverse perspectives',
+        description: 'Wide array of represented viewpoints can lead to conflicting interests',
+      },
+      {
+        challenge: 'Resource constraints',
+        description: 'Many CSOs and NGOs operate with limited resources',
+      },
+      {
+        challenge: 'Communication barriers',
+        description:
+          'Effective communication between technical experts and representatives can be challenging',
+      },
+      {
+        challenge: 'Inclusivity and representation',
+        description:
+          'Ensuring all relevant voices, especially from underrepresented groups, is challenging',
+      },
+    ],
+    goodPractices: [
+      'Ensuring transparent and consistent communications from the outset over time to build trust, including explaining how inputs are incorporated into the results',
+      'Maintaining political neutrality in activities to avoid alienating different groups',
+      'Providing technical knowledge through preparatory courses or briefing',
+      'Conducting thorough stakeholder mapping to ensure affected stakeholders are engaged',
+      'Communicating clearly how inputs will be taken or not taken in the plans',
+    ],
+    summary: {
+      primaryValue: 'Representing diverse societal interests',
+      keyChallenge: 'Resource constraints',
+      criticalGoodPractice: 'Transparent communication on how inputs are used',
+    },
+  },
+
+  // ------------------------------------------------------------------ 3.6
+  {
+    id: 'scientific',
+    name: 'Scientific Institutions',
+    toolkitSection: '3.6',
+    icon: 'icons/scientific.png',
+    color: '#4fb8c9',
+    whoAreThey: [
+      {
+        text: 'Members of the scientific community, including researchers and experts working at:',
+        items: ['Universities', 'Research institutions'],
+      },
+      {
+        text: 'This could include:',
+        items: [
+          'Energy and power system experts',
+          'Economists',
+          'Natural scientists',
+          'Researchers in the social sciences',
+        ],
+      },
+    ],
+    whyEngage: [
+      {
+        text: 'Scientific institutions play an important role in many national energy planning processes, whether through:',
+        items: [
+          'Building modelling capacity',
+          'Conducting the modelling',
+          'Providing system-specific expertise, data and feedback',
+        ],
+      },
+      {
+        label: 'Benefits:',
+        items: [
+          'Enable more robust scenarios through rigorous scientific methodologies and quality assurance',
+          'Promote inter-institutional knowledge exchange',
+          'Provide key contributions from interdisciplinary experts who can facilitate the inclusion of qualitative socio-political and environmental insights',
+        ],
+      },
+    ],
+    benefit: [
+      {
+        items: [
+          'Leverage subject matter expertise and research to contribute to energy planning and create social and policy impact',
+          'Access funding opportunities',
+          'Strengthen reputations in action-oriented research',
+          'Possibly access real-time data',
+          'Enhance partnerships with decision makers',
+        ],
+      },
+    ],
+    challenges: [
+      {
+        challenge: 'Professional constraints',
+        description:
+          'Engaging in consultations might take time away from research, teaching and other professional engagements',
+      },
+      {
+        challenge: 'Balancing independence',
+        description:
+          'Academics value their independence and might be cautious about processes that appear politically influenced',
+      },
+      {
+        challenge: 'Lack of funding',
+        description:
+          'Scientists may face a lack of funding for activities not related to their main research grants',
+      },
+    ],
+    goodPractices: [
+      'Establishing and providing resources as a mechanism for continuous engagement with the scientific community (see Canada case study)',
+      'Promoting transparency and open-source data in scenario modelling, enabling academia and other independent experts to review, validate and contribute',
+      'Promoting independent scientific institutions as a conduit for wider stakeholder engagement to increase trust',
+      'Providing funding through grants and tenders to ensure continuous and consistent academic engagement',
+    ],
+    summary: {
+      primaryValue: 'Rigorous methodologies and interdisciplinary expertise',
+      keyChallenge: 'Professional constraints',
+      criticalGoodPractice: 'Mechanisms for continuous engagement',
+    },
+  },
+
+  // ------------------------------------------------------------------ 3.7
+  {
+    id: 'finance',
+    name: 'Financial Institutions',
+    toolkitSection: '3.7',
+    icon: 'icons/finance.png',
+    color: '#c9a84f',
+    whoAreThey: [
+      {
+        text: 'The finance sector includes a wide range of stakeholders:',
+        items: [
+          'Public finance ministries',
+          'National and international financial institutions',
+          'Commercial and development banks',
+          'Investment funds',
+          'Insurers and reinsurers',
+          'Other financial entities engaged in funding and investing activities',
+        ],
+      },
+    ],
+    whyEngage: [
+      {
+        text: 'Financial organisations play a pivotal role in the energy transition due to their capacity to:',
+        items: [
+          'Mobilise funds',
+          'Invest in sustainable energy projects and initiatives',
+          'Inject necessary capital into energy transition projects',
+        ],
+      },
+      {
+        label: 'Key considerations:',
+        items: [
+          'Involving banks and insurers is critical for understanding de-risking options',
+          'Public finance entities play a pivotal role in aligning national budgetary policy with energy transition goals',
+          'Private financial institutions can drive investment in innovative technologies',
+        ],
+      },
+    ],
+    benefit: [
+      {
+        text: 'Involving financial institutions early in energy transition planning ensures they understand the challenges, risks, pathways and opportunities, increasing their willingness to contribute and finance projects. Their input in the context of macroeconomics, project feasibility and risk helps refine the plan.',
+      },
+    ],
+    challenges: [
+      {
+        challenge: 'Aversion to political processes',
+        description:
+          'Financial institutions may be reluctant to engage in processes that appear political',
+      },
+      {
+        challenge: 'Diverse mechanisms and interests',
+        description: 'Financial entities have varied investment strategies and risk appetites',
+      },
+    ],
+    goodPractices: [
+      'Involving key finance departments early in energy planning ensures effective integration of financial and energy policies',
+      'Engaging financial institutions early allows the examination of limitations, blind spots and opportunities in supporting low-carbon development',
+      'Working together on specialised tools to communicate the financial implications of energy transitions',
+    ],
+    summary: {
+      primaryValue: 'Capital mobilisation and de-risking expertise',
+      keyChallenge: 'Aversion to political processes',
+      criticalGoodPractice: 'Early involvement in planning',
+    },
+  },
 ];
 
-/**
- * Helper function to get a stakeholder profile by ID
- */
-export function getStakeholderById(id: string): StakeholderProfile | undefined {
-  return stakeholderProfiles.find(profile => profile.id === id);
-}
-
-/**
- * Helper function to get all stakeholder IDs
- */
-export function getAllStakeholderIds(): string[] {
-  return stakeholderProfiles.map(profile => profile.id);
+export function getProfile(id: string): StakeholderProfile | undefined {
+  return stakeholderProfiles.find((p) => p.id === id);
 }

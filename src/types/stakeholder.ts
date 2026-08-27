@@ -1,71 +1,18 @@
-// Stakeholder Profile Schema
-// Based on CLAUDE.md and STAKEHOLDER-PROFILES.md
-// Enhanced with interaction triggers, context profiles, and variants
+// Stakeholder profiles, chapter 3
+// Source: IRENA (2025), Participatory processes for strategic energy planning:
+// A toolkit for national energy planners.
+//
+// Chapter 3 gives each group the same five sections: Who Are They?, Why Engage
+// Them?, What Is the Benefit for Them?, Challenges in Engaging and Good
+// Practices. The shape below follows that.
 
-export interface StakeholderProfile {
-  id: string;
-  name: string;
-  icon: string;                    // Path to toolkit icon
-  color: string;                   // For UI consistency
-
-  // From toolkit Chapter 3
-  description: string;
-  whyEngage: string;
-  benefitForThem: string;
-  challenges: string[];
-  goodPractices: string[];
-
-  // For response generation
-  priorities: string[];
-  typicalQuestions: string[];
-  concernTriggers: ConcernTrigger[];
-  positiveIndicators: PositiveIndicator[];
-
-  // For rule-based responses
-  responseTemplates: ResponseTemplate[];
-
-  // ENHANCED: Multi-metric interaction triggers
-  interactionTriggers?: InteractionTrigger[];
-
-  // ENHANCED: Variant profiles (conservative/progressive/pragmatic)
-  variants?: Record<StakeholderVariant, VariantProfile>;
-
-  // ENHANCED: Expanded response templates with conditional support
-  expandedResponseTemplates?: ExpandedResponseTemplate[];
-
-  // ENHANCED: Context-specific adjustments by development stage
-  contextAdjustments?: {
-    [context in DevelopmentContext]?: {
-      priorityShifts: { priority: string; weight: number }[];
-      additionalConcerns?: string[];
-    };
-  };
-}
-
-export interface ConcernTrigger {
-  metric: string;
-  threshold: number;
-  direction: 'above' | 'below';
-  concernText: string;
-  explanation: string;
-}
-
-export interface PositiveIndicator {
-  metric: string;
-  threshold: number;
-  direction: 'above' | 'below';
-  praiseText: string;
-}
-
-export interface ResponseTemplate {
-  condition: string;           // e.g., "highInvestment"
-  initialReaction: string;
-  appreciationPoints: string[];
-  concernPoints: string[];
-  questionsToAsk: string[];
-}
-
-// Stakeholder IDs
+/**
+ * Ids for the seven groups in chapter 3.
+ *
+ * `regional-bodies` and `development-partners` are not chapter 3 groups. They
+ * were added for this application and are referenced by the chapter 5 case
+ * study data, so the id type still admits them.
+ */
 export type StakeholderId =
   | 'policy-makers'
   | 'grid-operators'
@@ -77,112 +24,55 @@ export type StakeholderId =
   | 'regional-bodies'
   | 'development-partners';
 
-// ============================================================================
-// ENHANCED STAKEHOLDER TYPES
-// Multi-metric interactions, context awareness, and variant personalities
-// ============================================================================
+/** The seven groups described in chapter 3. */
+export const TOOLKIT_STAKEHOLDER_IDS: StakeholderId[] = [
+  'policy-makers',
+  'grid-operators',
+  'industry',
+  'public',
+  'csos-ngos',
+  'scientific',
+  'finance',
+];
 
-// Development context for threshold adjustments
-export type DevelopmentContext = 'least-developed' | 'emerging' | 'developed';
-
-// Stakeholder personality variants
-export type StakeholderVariant = 'conservative' | 'progressive' | 'pragmatic';
-
-// Multi-metric condition for interaction triggers
-export interface MetricCondition {
-  metric: string;
-  threshold: number;
-  direction: 'above' | 'below';
+/**
+ * A run of content from a chapter 3 section: a paragraph, a list, or a labelled
+ * list. Sections mix all three, so they are stored in the order they appear.
+ */
+export interface ContentBlock {
+  /** Paragraph text. */
+  text?: string;
+  /** Heading introducing a list, where the section uses one. */
+  label?: string;
+  /** Bullet list items. */
+  items?: string[];
 }
 
-// Interaction trigger - combines multiple metrics
-export interface InteractionTrigger {
-  id: string;
-  metrics: MetricCondition[];
-  operator: 'AND' | 'OR';
-  type: 'concern' | 'appreciation'; // Distinguishes positive from negative triggers
-  concernText: string; // Will be renamed to 'text' in future, but keeping for compatibility
-  explanation: string;
-  suggestedResponse: string;
+/** A row from a Challenges in Engaging table. */
+export interface Challenge {
+  challenge: string;
+  description: string;
 }
 
-// Threshold modifier for context profiles
-export interface ThresholdModifier {
-  metric: string;
-  multiplier: number;
-  rationale: string;
-}
-
-// Priority shift for context profiles
-export interface PriorityShift {
-  stakeholder: string;
-  priorityAdjustments: { priority: string; weight: number }[];
-}
-
-// Context profile - adjusts behavior by development stage
-export interface ContextProfile {
-  id: DevelopmentContext;
+export interface StakeholderProfile {
+  id: StakeholderId;
+  /** Section heading. */
   name: string;
-  description: string;
-  thresholdModifiers: ThresholdModifier[];
-  priorityShifts: PriorityShift[];
-}
+  /** Section number, for example "3.1". */
+  toolkitSection: string;
+  icon: string;
+  color: string;
 
-// Conditional support for expanded responses
-export interface ConditionalSupport {
-  condition: string;
-  supportStatement: string;
-  requirements: string[];
-}
+  whoAreThey: ContentBlock[];
+  whyEngage: ContentBlock[];
+  benefit: ContentBlock[];
+  challenges: Challenge[];
+  goodPractices: string[];
 
-// Broader context for expanded responses
-export interface BroaderContext {
-  alignsWith?: string[];
-  conflictsWith?: string[];
-  regionalImplications?: string;
-}
-
-// Next steps for expanded responses
-export interface NextStep {
-  action: string;
-  responsible: string;
-  timeline: string;
-}
-
-// Quantitative anchor for expanded responses
-export interface QuantitativeAnchor {
-  metric: string;
-  value: number;
-  unit: string;
-  comparison: string;
-  implication: string;
-}
-
-// Expanded response template with additional fields
-export interface ExpandedResponseTemplate {
-  condition: string;
-  initialReaction: string;
-  appreciationPoints: string[];
-  concernPoints: string[];
-  questionsToAsk: string[];
-  conditionalSupport?: ConditionalSupport;
-  broaderContext?: BroaderContext;
-  nextSteps?: NextStep[];
-  quantitativeAnchors?: QuantitativeAnchor[];
-}
-
-// Tone adjustment for variant profiles
-export interface ToneAdjustment {
-  riskTolerance: 'low' | 'medium' | 'high';
-  changeOpenness: 'resistant' | 'cautious' | 'embracing';
-  collaborationStyle: 'defensive' | 'transactional' | 'partnership';
-}
-
-// Variant profile - personality variations within stakeholder group
-export interface VariantProfile {
-  variant: StakeholderVariant;
-  description: string;
-  thresholdModifiers: { metric: string; multiplier: number }[];
-  toneAdjustment: ToneAdjustment;
-  framingPreference: string;
+  /** Row from the Summary: Stakeholder Engagement Matrix. */
+  summary: {
+    primaryValue: string;
+    keyChallenge: string;
+    criticalGoodPractice: string;
+  };
 }
