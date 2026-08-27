@@ -14,7 +14,7 @@
     "test:headed": "playwright test --headed",
     "test:debug": "playwright test --debug",
     "test:report": "playwright show-report",
-    "verify:quotes": "node scripts/verify-toolkit-quotes.mjs src/data/engagement-tools.ts src/data/stakeholder-profiles.ts src/data/checklist.ts src/types/toolkit.ts src/types/stakeholder.ts"
+    "verify:quotes": "node scripts/verify-toolkit-quotes.mjs src/data/case-studies.ts src/data/checklist.ts src/data/engagement-tools.ts src/data/stakeholder-profiles.ts src/types/toolkit.ts src/types/stakeholder.ts src/types/case-study.ts"
   },
   "keywords": [
     "energy",

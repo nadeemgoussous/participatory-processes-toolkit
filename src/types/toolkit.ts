@@ -47,6 +47,19 @@ export const PHASES: PhaseInfo[] = [
   },
 ];
 
+/**
+ * A run of content from a section: a paragraph, a list, or a labelled list.
+ * Sections mix all three, so they are stored in the order they appear.
+ */
+export interface ContentBlock {
+  /** Paragraph text. */
+  text?: string;
+  /** Heading introducing a list, where the section uses one. */
+  label?: string;
+  /** List items. */
+  items?: string[];
+}
+
 /** The three categories in the chapter 4 overview. */
 export type ToolCategory = 'knowledge-gathering' | 'co-creation' | 'dissemination';
 

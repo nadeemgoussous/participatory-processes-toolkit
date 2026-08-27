@@ -6,6 +6,10 @@
 // Them?, What Is the Benefit for Them?, Challenges in Engaging and Good
 // Practices. The shape below follows that.
 
+import type { ContentBlock } from './toolkit';
+
+export type { ContentBlock };
+
 /**
  * Ids for the seven groups in chapter 3.
  *
@@ -35,18 +39,6 @@ export const TOOLKIT_STAKEHOLDER_IDS: StakeholderId[] = [
   'finance',
 ];
 
-/**
- * A run of content from a chapter 3 section: a paragraph, a list, or a labelled
- * list. Sections mix all three, so they are stored in the order they appear.
- */
-export interface ContentBlock {
-  /** Paragraph text. */
-  text?: string;
-  /** Heading introducing a list, where the section uses one. */
-  label?: string;
-  /** Bullet list items. */
-  items?: string[];
-}
 
 /** A row from a Challenges in Engaging table. */
 export interface Challenge {
