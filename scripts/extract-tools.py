@@ -1,6 +1,7 @@
 """Pull the chapter 4 engagement tools out of the PDF into JSON.
 
-The markdown transcription rewrote this chapter more heavily than any other.
+The markdown transcription (now in docs/archive/) rewrote this chapter more
+heavily than any other.
 Chapter 4 contains no bullet lists at all: pages 31 to 44 are prose plus
 tables. Every bulleted requirement, prerequisite, strength, challenge and
 limitation in the transcription is invented structure over reworded text.

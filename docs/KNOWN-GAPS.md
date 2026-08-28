@@ -2,7 +2,7 @@
 
 Verified on **2026-08-27** against the `toolkit-pivot` branch, Node 22.
 
-Baseline: `npm run typecheck` clean, `npm run verify:quotes` passes 756 strings,
+Baseline: `npm run typecheck` clean, `npm run verify:quotes` passes 756 strings against the publication text alone,
 `npm run build` produces 341 kB of JS plus 712 kB of figures, process flows and icons, `npm run build:offline` produces a single
 1.35 MB `dist-offline/index.html`, `npm run test:chromium` passes 21 tests.
 
@@ -13,8 +13,9 @@ Baseline: `npm run typecheck` clean, `npm run verify:quotes` passes 756 strings,
 ### 1. The markdown transcription is no longer used as a source
 
 `docs/toolkit/*.md` was transcribed by hand and both rewrites and truncates the publication.
-Every chapter has now been re-derived from the PDF, and `npm run audit:drift` reports 759
-strings in the publication and none that exist only in the transcription.
+Every chapter has now been re-derived from the PDF. A one-off audit before the transcription
+was archived reported 759 strings in the publication and none that existed only in the
+transcription.
 
 Six structures the transcription had invented were removed along the way, all of which the
 app had been displaying as IRENA's:
@@ -28,8 +29,9 @@ app had been displaying as IRENA's:
 - descriptions for the three tool categories, which the publication names in Figure 4 and
   does not describe
 
-Keep `audit:drift` green. `verify:quotes` accepts either source and so cannot see this class
-of problem on its own.
+The transcription is now in `docs/archive/markdown-transcription/` and `verify:quotes` reads
+`publication-text.txt` alone, so this class of problem cannot recur: there is no longer a
+second source for an invented string to verify against.
 
 ### 3. Two stakeholder ids have no profile
 

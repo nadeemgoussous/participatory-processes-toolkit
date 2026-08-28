@@ -27,8 +27,11 @@ jobs:
       - name: Typecheck
         run: npm run typecheck
 
-      # Fails if any displayed text is not present in docs/toolkit/.
-      # This is the check that keeps invariant 1 true. See CLAUDE.md section 1.
+      # Fails if any displayed text is not present in the publication's own
+      # text. This is the check that keeps invariant 1 true, and it reads only
+      # docs/toolkit/publication-text.txt: the hand-made transcription it used
+      # to also accept had invented content that passed because of it.
+      # See CLAUDE.md section 1.
       - name: Verify toolkit quotes
         run: npm run verify:quotes
 

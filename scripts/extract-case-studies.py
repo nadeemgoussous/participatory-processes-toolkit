@@ -1,6 +1,6 @@
 """Pull the chapter 5 case studies out of the PDF into JSON.
 
-docs/toolkit/chapter-5-case-studies.md does not just abbreviate the case
+The markdown transcription (now in docs/archive/) did not just abbreviate the case
 studies, it rewrites them. Belgium's objective reads "Engage citizens,
 particularly secondary school students, in dialogue on transitioning to
 net-zero" in the markdown, where the publication says "My2050 is dedicated to

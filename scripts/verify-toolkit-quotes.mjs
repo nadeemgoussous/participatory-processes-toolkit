@@ -1,12 +1,13 @@
-// Checks that the text in the toolkit data files appears in docs/toolkit/.
+// Checks that the text in the toolkit data files appears in the publication.
 //
 // Run: node scripts/verify-toolkit-quotes.mjs
 // Exits non-zero if any string cannot be found in the source chapters.
 
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const TOOLKIT_DIR = 'docs/toolkit';
+const PUBLICATION = 'publication-text.txt';
 
 // Strings that are structural rather than quoted: ids, labels we compose, and
 // headings we render in sentence case. Each needs a reason.
@@ -67,21 +68,16 @@ function normalise(s) {
     .toLowerCase();
 }
 
-// Both the markdown transcription and the publication's own extracted text.
-// The markdown is lossy — it drops Table 1's Resource requirements column and
-// every figure caption — so text quoted straight from the PDF has to verify
-// against the PDF.
-const source = normalise(
-  readdirSync(TOOLKIT_DIR)
-    .filter((f) => f.endsWith('.md') || f === 'publication-text.txt')
-    .map((f) => readFileSync(join(TOOLKIT_DIR, f), 'utf8'))
-    .join('\n')
-    // the source uses markdown emphasis and table pipes around the text we quote
-    .replace(/\*\*/g, '')
-    .replace(/\|/g, ' ')
-    // cross-references are written as links; we quote the visible text only
-    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
-);
+// The publication's own text, and nothing else.
+//
+// This used to accept docs/toolkit/*.md as a source too. That markdown was
+// transcribed by hand and had invented a stakeholder engagement matrix, three
+// tables in chapter 2, a table in chapter 7 and a six-point takeaways list,
+// none of which are in the publication. Because the checker accepted it as a
+// source, every one of them passed. Checking against the PDF alone is what
+// makes this mean "quoted from the publication" rather than "matches something
+// somebody wrote down".
+const source = normalise(readFileSync(join(TOOLKIT_DIR, PUBLICATION), 'utf8'));
 
 const targets = process.argv.slice(2);
 if (targets.length === 0) {
@@ -173,4 +169,4 @@ if (missing.length > 0) {
   process.exit(1);
 }
 
-console.log(`${checked} strings verified against ${TOOLKIT_DIR}.`);
+console.log(`${checked} strings verified against ${PUBLICATION}.`);

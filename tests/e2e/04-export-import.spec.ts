@@ -3,6 +3,10 @@ import { readFileSync } from 'node:fs';
 
 test.describe('Plan export and import', () => {
   test('exports the plan as JSON with ticks and notes', async ({ page }) => {
+    // Waiting on a real browser download is the slowest thing in the suite and
+    // the first to be starved when the machine is loaded: it takes about four
+    // seconds alone and has timed out at thirty under contention.
+    test.slow();
     await page.goto('/');
 
     await page.getByRole('textbox', { name: 'Plan name' }).fill('Lesotho consultation');
