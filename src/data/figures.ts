@@ -31,10 +31,23 @@ const flowModules = import.meta.glob('../assets/process-flows/*.png', {
 }) as Record<string, string>;
 
 export const processFlows: Record<string, string> = Object.fromEntries(
-  Object.entries(flowModules).map(([path, src]) => [
-    path.replace(/^.*\/(.+)\.png$/, '$1'),
-    src,
-  ])
+  Object.entries(flowModules).map(([path, src]) => [basename(path), src])
+);
+
+/** File name without directory or extension: '../a/b/kenya.png' -> 'kenya'. */
+function basename(path: string): string {
+  const file = path.split('/').pop() ?? path;
+  return file.endsWith('.png') ? file.slice(0, -4) : file;
+}
+
+/** Stakeholder icons, keyed by stakeholder id. */
+const iconModules = import.meta.glob('../assets/icons/*.png', {
+  eager: true,
+  import: 'default',
+}) as Record<string, string>;
+
+export const stakeholderIcons: Record<string, string> = Object.fromEntries(
+  Object.entries(iconModules).map(([path, src]) => [basename(path), src])
 );
 
 export const figures: Record<number, Figure> = {

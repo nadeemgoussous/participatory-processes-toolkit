@@ -4,7 +4,7 @@ import { getTool } from '../../data/engagement-tools';
 import { getProfile } from '../../data/stakeholder-profiles';
 import type { CaseStudy, Region } from '../../types/case-study';
 import { processFlows } from '../../data/figures';
-import { Blocks, Bullets, Section, SourceNote } from '../common/Blocks';
+import { Blocks, Section, SourceNote } from '../common/Blocks';
 
 const REGIONS: (Region | 'All')[] = ['All', 'Africa', 'Americas', 'Asia', 'Europe', 'Global'];
 
@@ -51,13 +51,14 @@ export default function CasesTab() {
       </div>
 
       <div className="overflow-x-auto rounded-lg border border-gray-200 bg-white">
-        <table className="w-full min-w-[56rem] text-left text-sm">
+        <table className="w-full min-w-[68rem] text-left text-sm">
           <thead className="border-b border-gray-200 bg-gray-50 text-gray-600">
             <tr>
               <th className="p-3 font-medium">Country or institution</th>
               <th className="p-3 font-medium">Planning context</th>
               <th className="p-3 font-medium">Primary objectives</th>
               <th className="p-3 font-medium">Methods used</th>
+              <th className="p-3 font-medium">Resource requirements</th>
               <th className="p-3 font-medium">Transferable elements</th>
             </tr>
           </thead>
@@ -75,6 +76,7 @@ export default function CasesTab() {
                 <td className="p-3 text-gray-700">{c.summary.planningContext}</td>
                 <td className="p-3 text-gray-700">{c.summary.primaryObjectives}</td>
                 <td className="p-3 text-gray-700">{c.summary.methodsUsed}</td>
+                <td className="p-3 text-gray-700">{c.summary.resourceRequirements}</td>
                 <td className="p-3 text-gray-700">{c.summary.transferableElements}</td>
               </tr>
             ))}
@@ -114,11 +116,13 @@ function CaseDetail({ study, onBack }: { study: CaseStudy; onBack: () => void })
               ['Governance', study.overview.governance],
               ['Scope', study.overview.scope],
               ['Objectives', study.overview.objectives],
-            ] as [string, string][]
+            ] as [string, typeof study.overview.governance][]
           ).map(([label, value]) => (
             <div key={label} className="grid gap-1 p-4 sm:grid-cols-3">
               <dt className="font-medium text-gray-900">{label}</dt>
-              <dd className="text-gray-700 sm:col-span-2">{value}</dd>
+              <dd className="sm:col-span-2">
+                <Blocks blocks={value} />
+              </dd>
             </div>
           ))}
         </dl>
@@ -134,7 +138,7 @@ function CaseDetail({ study, onBack }: { study: CaseStudy; onBack: () => void })
 
       {study.resources.length > 0 && (
         <Section heading="Resources">
-          <Bullets items={study.resources} />
+          <Blocks blocks={study.resources} />
         </Section>
       )}
 
@@ -166,6 +170,10 @@ function CaseDetail({ study, onBack }: { study: CaseStudy; onBack: () => void })
             </li>
           ))}
         </ol>
+      </Section>
+
+      <Section heading="Resource requirements">
+        <p className="text-gray-700">{study.summary.resourceRequirements}</p>
       </Section>
 
       <Section heading="Transferable elements">

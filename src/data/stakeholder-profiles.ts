@@ -2,7 +2,8 @@
 // Source: IRENA (2025), Participatory processes for strategic energy planning:
 // A toolkit for national energy planners.
 //
-// Text is quoted from chapter 3. Icons and colours are presentation values.
+// Text is quoted from chapter 3. Colours are presentation values; the icons are
+// extracted from the chapter 3 section headings by scripts/extract-figures.py.
 
 import type { StakeholderProfile } from '../types/stakeholder';
 
@@ -12,7 +13,6 @@ export const stakeholderProfiles: StakeholderProfile[] = [
     id: 'policy-makers',
     name: 'Policy Makers, Administrators and Regulators',
     toolkitSection: '3.1',
-    icon: 'icons/policy-makers.png',
     color: '#c94f4f',
     whoAreThey: [
       {
@@ -90,7 +90,6 @@ export const stakeholderProfiles: StakeholderProfile[] = [
     id: 'grid-operators',
     name: 'Grid Operators',
     toolkitSection: '3.2',
-    icon: 'icons/grid-operators.png',
     color: '#4f7ec9',
     whoAreThey: [
       {
@@ -158,7 +157,6 @@ export const stakeholderProfiles: StakeholderProfile[] = [
     id: 'industry',
     name: 'Industry and Business Representatives',
     toolkitSection: '3.3',
-    icon: 'icons/industry.png',
     color: '#c98a4f',
     whoAreThey: [
       {
@@ -249,7 +247,6 @@ export const stakeholderProfiles: StakeholderProfile[] = [
     id: 'public',
     name: 'General Public and Local Communities',
     toolkitSection: '3.4',
-    icon: 'icons/public.png',
     color: '#4fc98a',
     whoAreThey: [
       {
@@ -323,7 +320,6 @@ export const stakeholderProfiles: StakeholderProfile[] = [
     id: 'csos-ngos',
     name: 'Civil Society Organisations and Non-Governmental Organisations',
     toolkitSection: '3.5',
-    icon: 'icons/csos-ngos.png',
     color: '#8a4fc9',
     whoAreThey: [
       {
@@ -392,7 +388,6 @@ export const stakeholderProfiles: StakeholderProfile[] = [
     id: 'scientific',
     name: 'Scientific Institutions',
     toolkitSection: '3.6',
-    icon: 'icons/scientific.png',
     color: '#4fb8c9',
     whoAreThey: [
       {
@@ -473,7 +468,6 @@ export const stakeholderProfiles: StakeholderProfile[] = [
     id: 'finance',
     name: 'Financial Institutions',
     toolkitSection: '3.7',
-    icon: 'icons/finance.png',
     color: '#c9a84f',
     whoAreThey: [
       {

@@ -19,6 +19,8 @@ export interface CaseStudySummary {
   primaryObjectives: string;
   keyStakeholders: string;
   methodsUsed: string;
+  /** Absent from the markdown transcription; taken from the PDF. */
+  resourceRequirements: string;
   transferableElements: string;
 }
 
@@ -33,15 +35,17 @@ export interface CaseStudy {
   /** Opening paragraphs of the section. */
   intro: string[];
 
+  // Cyprus and Kenya state their objectives as a list, so these hold blocks
+  // rather than plain strings.
   overview: {
-    governance: string;
-    scope: string;
-    objectives: string;
+    governance: ContentBlock[];
+    scope: ContentBlock[];
+    objectives: ContentBlock[];
   };
 
   engagementActivities: ContentBlock[];
   keyOutcomes: ContentBlock[];
-  resources: string[];
+  resources: ContentBlock[];
 
   highlight: string;
   lessonsLearnt: string[];

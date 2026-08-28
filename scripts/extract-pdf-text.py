@@ -26,9 +26,40 @@ if not os.path.exists(PDF):
 doc = pymupdf.open(PDF)
 parts = [f"# Extracted from {os.path.basename(PDF)} by scripts/extract-pdf-text.py.",
          "# Do not edit. Regenerate when the source PDF changes.", ""]
+def sized_text(page, clip=None, min_size=8.0):
+    """Page text without the superscript footnote markers, the footnote bodies
+    or the running header, all of which are set below 8pt.
+
+    The data files are extracted the same way, so a quotation that omits a
+    marker ("15 000 hours" for "15 000 hours10") still verifies."""
+    lines = []
+    blocks = page.get_text("dict", clip=clip)["blocks"] if clip else page.get_text("dict")["blocks"]
+    for block in blocks:
+        for line in block.get("lines", []):
+            spans = [s["text"] for s in line["spans"] if s["size"] >= min_size]
+            if spans:
+                lines.append("".join(spans))
+    return "\n".join(lines)
+
+
 for i, page in enumerate(doc):
     parts.append(f"--- page {i + 1} ---")
-    parts.append(page.get_text())
+    parts.append(sized_text(page))
+    # Table cells again, cell by cell. In the linear page text the columns of a
+    # table interleave, so a quotation taken from one cell does not appear as a
+    # contiguous run. Reading each cell by its rectangle makes it verifiable.
+    try:
+        tables = page.find_tables().tables
+    except Exception:
+        tables = []
+    for table in tables:
+        for row in table.rows:
+            for cell in row.cells:
+                if not cell:
+                    continue
+                text = sized_text(page, clip=pymupdf.Rect(cell)).strip()
+                if text:
+                    parts.append(text)
 
 text = "\n".join(parts)
 with open(OUT, "w", encoding="utf-8") as handle:

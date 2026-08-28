@@ -52,7 +52,6 @@ export interface StakeholderProfile {
   name: string;
   /** Section number, for example "3.1". */
   toolkitSection: string;
-  icon: string;
   color: string;
 
   whoAreThey: ContentBlock[];

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { stakeholderProfiles, getProfile } from '../../data/stakeholder-profiles';
 import { getCaseStudiesForStakeholder } from '../../data/case-studies';
+import { stakeholderIcons } from '../../data/figures';
 import type { StakeholderProfile, StakeholderId } from '../../types/stakeholder';
 import { Blocks, Bullets, Section, SourceNote } from '../common/Blocks';
 import { usePlan } from '../../context/PlanContext';
@@ -32,11 +33,14 @@ export default function StakeholdersTab() {
               onClick={() => setSelected(p.id)}
               className="flex h-full w-full flex-col rounded-lg border border-gray-200 bg-white p-5 text-left transition-colors hover:border-[var(--color-irena-blue)]"
             >
-              <span
-                aria-hidden="true"
-                className="mb-3 h-1 w-10 rounded-full"
-                style={{ backgroundColor: p.color }}
-              />
+              {stakeholderIcons[p.id] && (
+                <img
+                  src={stakeholderIcons[p.id]}
+                  alt=""
+                  aria-hidden="true"
+                  className="mb-3 h-10 w-10"
+                />
+              )}
               <span className="font-semibold text-gray-900">{p.name}</span>
               <span className="mt-2 text-sm text-gray-600">{p.summary.primaryValue}</span>
             </button>
@@ -100,9 +104,19 @@ function ProfileDetail({
 
       <header className="space-y-3">
         <p className="text-sm font-medium text-gray-500">Section {profile.toolkitSection}</p>
-        <h1 className="text-3xl font-bold" style={{ color: 'var(--color-irena-blue)' }}>
-          {profile.name}
-        </h1>
+        <div className="flex items-center gap-4">
+          {stakeholderIcons[profile.id] && (
+            <img
+              src={stakeholderIcons[profile.id]}
+              alt=""
+              aria-hidden="true"
+              className="h-12 w-12 shrink-0"
+            />
+          )}
+          <h1 className="text-3xl font-bold" style={{ color: 'var(--color-irena-blue)' }}>
+            {profile.name}
+          </h1>
+        </div>
         <button
           onClick={toggle}
           className={`rounded-md px-4 py-2 text-sm font-medium transition-colors ${

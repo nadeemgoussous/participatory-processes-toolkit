@@ -43,6 +43,12 @@ function normalise(s) {
   return s
     .replace(/[‘’]/g, "'")
     .replace(/[“”]/g, '"')
+    // The layout uses non-breaking and figure hyphens inside words
+    // ("Co‑ordinate") and en dashes in ranges.
+    .replace(/[‐-―−]/g, '-')
+    // A hyphen at a line break belongs to the word: the publication sets
+    // "long-\nterm", which has to match "long-term" in the data.
+    .replace(/-[ \t]*\r?\n[ \t]*/g, '-')
     .replace(/\s+/g, ' ')
     .trim()
     .toLowerCase();
@@ -73,33 +79,68 @@ if (targets.length === 0) {
 let checked = 0;
 const missing = [];
 
+// Values of these keys are references and presentation values, not quotations.
+const NOT_CONTENT = new Set(['source', 'icon', 'color', 'id', 'toolkitSection']);
+
+/**
+ * Every string literal in a source file, with the object key it is assigned to.
+ *
+ * This is a character scanner rather than a regular expression. Stripping
+ * comments with /\/\*[\s\S]*?\*\//  silently destroyed files containing a glob
+ * pattern: the `/*` inside '../assets/process-flows/*.png' reads as the start
+ * of a block comment and swallows everything up to the next `*​/`.
+ */
+function stringLiterals(code) {
+  const found = [];
+  let i = 0;
+
+  while (i < code.length) {
+    const c = code[i];
+    const next = code[i + 1];
+
+    if (c === '/' && next === '/') {
+      while (i < code.length && code[i] !== '\n') i += 1;
+      continue;
+    }
+    if (c === '/' && next === '*') {
+      i += 2;
+      while (i < code.length && !(code[i] === '*' && code[i + 1] === '/')) i += 1;
+      i += 2;
+      continue;
+    }
+    if (c === "'" || c === '"' || c === '`') {
+      const quote = c;
+      const start = i;
+      let text = '';
+      i += 1;
+      while (i < code.length && code[i] !== quote) {
+        if (code[i] === '\\') {
+          text += code[i + 1];
+          i += 2;
+        } else {
+          text += code[i];
+          i += 1;
+        }
+      }
+      i += 1;
+      // Look back from the opening quote for `key:`, so reference fields can be
+      // skipped. Escapes make the literal shorter than its source, so the start
+      // index has to be remembered rather than derived from the text length.
+      const keyed = /(\w+)\s*:\s*$/.exec(code.slice(Math.max(0, start - 60), start));
+      found.push({ text, key: keyed ? keyed[1] : null });
+      continue;
+    }
+    i += 1;
+  }
+  return found;
+}
+
 for (const file of targets) {
   const code = readFileSync(file, 'utf8');
-  // Strip comments so annotations are not treated as content.
-  const body = code.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
 
-  // Values of these keys are references and presentation values, not quotations.
-  const NOT_CONTENT = new Set(['source', 'icon', 'color', 'id', 'toolkitSection']);
-
-  // Single- and double-quoted literals of five words or more, with the key they
-  // are assigned to when there is one. Shorter strings are ids, keys and labels,
-  // which the ALLOWED list covers explicitly.
-  const literals =
-    body.match(/(?:(\w+)\s*:\s*)?(['"])(?:(?!\2)[^\\]|\\.)*\2/g) ?? [];
-
-  for (const match of literals) {
-    const keyed = /^(\w+)\s*:\s*(.*)$/s.exec(match);
-    const key = keyed ? keyed[1] : null;
-    const raw = keyed ? keyed[2] : match;
-
+  for (const { text, key } of stringLiterals(code)) {
     if (key && NOT_CONTENT.has(key)) continue;
-
-    const text = raw
-      .slice(1, -1)
-      .replace(/\\'/g, "'")
-      .replace(/\\"/g, '"');
-
-    if (text.split(/\s+/).length < 5) continue;
+    if (text.split(/\s+/).filter(Boolean).length < 5) continue;
     if (ALLOWED.has(text)) continue;
 
     checked += 1;

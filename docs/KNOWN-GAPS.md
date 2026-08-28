@@ -2,49 +2,30 @@
 
 Verified on **2026-08-27** against the `toolkit-pivot` branch, Node 22.
 
-Baseline: `npm run typecheck` clean, `npm run verify:quotes` passes 795 strings,
-`npm run build` produces 341 kB of JS plus 669 kB of figures and process flows, `npm run build:offline` produces a single
-1.25 MB `dist-offline/index.html`, `npm run test:chromium` passes 21 tests.
+Baseline: `npm run typecheck` clean, `npm run verify:quotes` passes 784 strings,
+`npm run build` produces 341 kB of JS plus 712 kB of figures, process flows and icons, `npm run build:offline` produces a single
+1.33 MB `dist-offline/index.html`, `npm run test:chromium` passes 21 tests.
 
 ---
 
 ## Open
 
-### 1. The markdown transcription is lossy, and only partly worked around
+### 1. Chapter 3 has not been re-derived from the PDF
 
-`docs/toolkit/*.md` was transcribed by hand and drops content that is in the PDF. Two
-confirmed cases:
+`docs/toolkit/*.md` was transcribed by hand and both truncates and rewrites the
+publication. Chapter 5 has been rebuilt from the PDF; chapter 3 has not, and the same
+damage is present in `stakeholder-profiles.ts`. One confirmed example, from 3.1:
 
-- **Table 1** in the publication has seven columns including *Resource requirements*; the
-  markdown has six and omits it. `case-studies.ts` therefore has no resource-requirements
-  summary, though the per-study Resources sections are present.
-- **Figure captions** appear nowhere in the markdown.
+- markdown: "Many policy makers who influence energy policy are not necessarily specialists
+  in energy systems"
+- publication: "Many policy makers **and sector experts** who influence energy policy are not
+  necessarily specialists in energy systems. **Bridging this gap through education - or less
+  technical communication - can help ensure more informed decision making.**"
 
-`docs/toolkit/publication-text.txt` (from `scripts/extract-pdf-text.py`) now sits alongside
-the markdown and the verifier checks both, so text quoted from the PDF passes. That fixes
-verification but not the data: nothing has audited the markdown against the PDF chapter by
-chapter, so other omissions are likely. Worth doing before treating the content as complete.
-
-### 2. Case study text is truncated in places
-
-Confirmed by comparing `case-studies.ts` against the PDF:
-
-- Belgium's three lessons learnt all stop early. The first ends "awareness of the energy
-  transition" where the publication continues "and an understanding of complex energy
-  scenarios".
-- Summary table values are cut: Brazil's primary objective is "Build consensus by exploring
-  scenarios and addressing divergences in technology policies", not "Build consensus by
-  exploring scenarios". Belgium's transferable elements end "youth engagement" rather than
-  "youth engagement approach".
-- Canada's fourth lesson ends "essential to sustain progress" rather than "and ensure the
-  continuity of collaborative efforts".
-
-A rough pass over 605 quoted strings flagged 98 as continuing in the publication, but that
-count is not trustworthy: it cannot tell a truncated sentence from one followed by a new
-section, and 391 strings did not match at all, most likely because the PDF text carries
-line-break and hyphenation artefacts. The examples above were checked by eye against the
-rendered pages. Re-deriving `case-studies.ts` from `publication-text.txt` is the fix, and it
-is the largest content job outstanding.
+`scripts/extract-case-studies.py` is the model for the fix: read the section by font and by
+table cell rather than from the markdown. Chapters 2, 4, 6 and 7 have not been audited
+either, though they were transcribed as prose rather than as tables and may have fared
+better.
 
 ### 3. Two stakeholder ids have no profile
 
