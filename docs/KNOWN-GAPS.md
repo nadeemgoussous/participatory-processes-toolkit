@@ -3,8 +3,8 @@
 Verified on **2026-08-27** against the `toolkit-pivot` branch, Node 22.
 
 Baseline: `npm run typecheck` clean, `npm run verify:quotes` passes 795 strings,
-`npm run build` produces 341 kB of JS plus 197 kB of figures, `npm run build:offline` produces a single
-624 kB `dist-offline/index.html`, `npm run test:chromium` passes 19 tests.
+`npm run build` produces 341 kB of JS plus 669 kB of figures and process flows, `npm run build:offline` produces a single
+1.25 MB `dist-offline/index.html`, `npm run test:chromium` passes 21 tests.
 
 ---
 
@@ -25,13 +25,26 @@ the markdown and the verifier checks both, so text quoted from the PDF passes. T
 verification but not the data: nothing has audited the markdown against the PDF chapter by
 chapter, so other omissions are likely. Worth doing before treating the content as complete.
 
-### 2. Case study process flows are not reproduced
+### 2. Case study text is truncated in places
 
-Each chapter 5 case study has a process flow diagram (inputs in blue, process in green,
-outcomes in orange). They are vector drawings on the even pages 48-72 of the PDF and are not
-in the app. `scripts/extract-figures.py` handles the five numbered figures and could be
-extended to them, but they are not captioned "Figure N", so they need locating by page
-rather than by caption search.
+Confirmed by comparing `case-studies.ts` against the PDF:
+
+- Belgium's three lessons learnt all stop early. The first ends "awareness of the energy
+  transition" where the publication continues "and an understanding of complex energy
+  scenarios".
+- Summary table values are cut: Brazil's primary objective is "Build consensus by exploring
+  scenarios and addressing divergences in technology policies", not "Build consensus by
+  exploring scenarios". Belgium's transferable elements end "youth engagement" rather than
+  "youth engagement approach".
+- Canada's fourth lesson ends "essential to sustain progress" rather than "and ensure the
+  continuity of collaborative efforts".
+
+A rough pass over 605 quoted strings flagged 98 as continuing in the publication, but that
+count is not trustworthy: it cannot tell a truncated sentence from one followed by a new
+section, and 391 strings did not match at all, most likely because the PDF text carries
+line-break and hyphenation artefacts. The examples above were checked by eye against the
+rendered pages. Re-deriving `case-studies.ts` from `publication-text.txt` is the fix, and it
+is the largest content job outstanding.
 
 ### 3. Two stakeholder ids have no profile
 
@@ -105,7 +118,7 @@ Recorded here so the history is legible; see `docs/DECISIONS.md`.
 | Ollama tier worked only under the dev server | AI removed entirely |
 | Cloud AI tier was a stub presented as a feature | AI removed entirely |
 | `dist/index.html` failed from `file://` | `npm run build:offline` emits one self-contained file that does work from `file://`; base is `'./'` so the normal build works from any directory |
-| Playwright suite ~59 failures of ~250, 36 minutes | 19 tests, all passing, gating CI |
+| Playwright suite ~59 failures of ~250, 36 minutes | 21 tests, all passing, gating CI |
 | CI gated nothing | typecheck, verify:quotes, build and e2e all gate |
 | `StakeholderTab.tsx` was 1 239 lines | removed with the simulation layer |
 | CSV parser split on commas with no quote handling | removed with the scenario model |

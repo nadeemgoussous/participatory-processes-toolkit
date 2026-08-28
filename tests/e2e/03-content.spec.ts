@@ -183,3 +183,38 @@ test.describe('Figures from the publication', () => {
       .toBeGreaterThan(0);
   });
 });
+
+test.describe('Case study process flows', () => {
+  test('a case study shows its process diagram', async ({ page }) => {
+    await page.goto('/');
+    await page
+      .getByRole('navigation', { name: 'Sections' })
+      .getByRole('button', { name: 'Case studies' })
+      .click();
+    await page.getByRole('button', { name: 'Belgium' }).click();
+
+    await expect(page.getByRole('heading', { name: 'Process' })).toBeVisible();
+    const flow = page.getByRole('img', { name: /Process flow for the Belgium case study/ });
+    await expect(flow).toBeVisible();
+    await expect
+      .poll(() => flow.evaluate((i: HTMLImageElement) => i.naturalWidth))
+      .toBeGreaterThan(0);
+  });
+
+  test('every case study has a process flow', async ({ page }) => {
+    await page.goto('/');
+    const nav = page.getByRole('navigation', { name: 'Sections' });
+    await nav.getByRole('button', { name: 'Case studies' }).click();
+
+    const names = await page.locator('tbody tr td:first-child button').allInnerTexts();
+    expect(names).toHaveLength(13);
+
+    for (const name of names) {
+      await page.getByRole('button', { name, exact: true }).click();
+      await expect(
+        page.getByRole('img', { name: new RegExp(`Process flow for the`) })
+      ).toBeVisible();
+      await page.getByRole('button', { name: 'Back to all case studies' }).click();
+    }
+  });
+});

@@ -3,6 +3,7 @@ import { caseStudies, getCaseStudy } from '../../data/case-studies';
 import { getTool } from '../../data/engagement-tools';
 import { getProfile } from '../../data/stakeholder-profiles';
 import type { CaseStudy, Region } from '../../types/case-study';
+import { processFlows } from '../../data/figures';
 import { Blocks, Bullets, Section, SourceNote } from '../common/Blocks';
 
 const REGIONS: (Region | 'All')[] = ['All', 'Africa', 'Americas', 'Asia', 'Europe', 'Global'];
@@ -134,6 +135,19 @@ function CaseDetail({ study, onBack }: { study: CaseStudy; onBack: () => void })
       {study.resources.length > 0 && (
         <Section heading="Resources">
           <Bullets items={study.resources} />
+        </Section>
+      )}
+
+      {processFlows[study.id] && (
+        <Section heading="Process">
+          <figure>
+            <img
+              src={processFlows[study.id]}
+              alt={`Process flow for the ${study.name} case study, from inputs through process and activities to outcomes.`}
+              loading="lazy"
+              className="w-full rounded-lg border border-gray-200"
+            />
+          </figure>
         </Section>
       )}
 

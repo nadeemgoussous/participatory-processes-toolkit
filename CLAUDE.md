@@ -60,7 +60,7 @@ npm run build               # tsc && vite build -> dist/  (~15 s)
 npm run build:offline       # -> dist-offline/index.html, one self-contained file
 npm run preview             # serve dist/
 
-npm run test:chromium       # 19 Playwright tests — needs both builds present
+npm run test:chromium       # 21 Playwright tests — needs both builds present
 npm test                    # all browser projects
 ```
 
@@ -94,7 +94,9 @@ src/
 │   ├─ using-the-toolkit.ts    chapters 1.3 and 6: guidance, shown on the plan page
 │   └─ toolkit-background.ts   chapters 1 and 6: background, shown on the why page
 ├─ utils/plan-storage.ts       localStorage, JSON export and import
-├─ assets/figures/             PNGs produced by scripts/extract-figures.py
+├─ assets/figures/             the five numbered figures
+├─ assets/process-flows/       one per case study, keyed by case study id
+│                              both produced by scripts/extract-figures.py
 └─ components/  plan | why | stakeholders | tools | cases | resources | layout | common
 ```
 
@@ -151,6 +153,10 @@ If the check fails, the text was altered — fix the data, not the checker. Chec
 the page number to `FIGURES` in `scripts/extract-figures.py` and run it (needs Python with
 pymupdf and pillow — not project dependencies). SVG export was tried and rejected at
 40-650 kB per figure; quantised PNG at 1200 px is a tenth of that and identical on screen.
+
+The case study process flows are found by page rather than by caption, since the publication
+does not number them. Images cost 669 kB in total: separate lazy-loaded files in the hosted
+build, inlined in the offline one, which is why `dist-offline/index.html` is 1.25 MB.
 
 **Adding a feature:** if it needs text the publication does not contain, it is out of scope.
 Say so rather than writing the text.

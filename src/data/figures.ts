@@ -21,6 +21,22 @@ export interface Figure {
   toolkitSection: string;
 }
 
+/**
+ * Process flow diagrams, one per chapter 5 case study, keyed by case study id.
+ * Loaded as a glob so adding one is a matter of running the extract script.
+ */
+const flowModules = import.meta.glob('../assets/process-flows/*.png', {
+  eager: true,
+  import: 'default',
+}) as Record<string, string>;
+
+export const processFlows: Record<string, string> = Object.fromEntries(
+  Object.entries(flowModules).map(([path, src]) => [
+    path.replace(/^.*\/(.+)\.png$/, '$1'),
+    src,
+  ])
+);
+
 export const figures: Record<number, Figure> = {
   1: {
     number: 1,
