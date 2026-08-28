@@ -2,7 +2,7 @@
 
 Verified on **2026-08-27** against the `toolkit-pivot` branch, Node 22.
 
-Baseline: `npm run typecheck` clean, `npm run verify:quotes` passes 761 strings,
+Baseline: `npm run typecheck` clean, `npm run verify:quotes` passes 747 strings,
 `npm run build` produces 341 kB of JS plus 712 kB of figures, process flows and icons, `npm run build:offline` produces a single
 1.35 MB `dist-offline/index.html`, `npm run test:chromium` passes 21 tests.
 
@@ -10,16 +10,18 @@ Baseline: `npm run typecheck` clean, `npm run verify:quotes` passes 761 strings,
 
 ## Open
 
-### 1. Chapters 2, 6 and 7 have not been re-derived from the PDF
+### 1. Chapters 2 and 7 have not been re-derived from the PDF
 
 `docs/toolkit/*.md` was transcribed by hand and both rewrites and truncates the publication.
-Chapters 3, 4 and 5 have been rebuilt from the PDF. `npm run audit:drift` reports what is
-left: 638 strings are in the publication, 125 exist only in the transcription. Those 125 are
-in `participation-rationale.ts` (chapter 2), `resources.ts` (chapter 7),
-`toolkit-background.ts` and `using-the-toolkit.ts` (chapters 1 and 6).
+Chapters 1, 3, 4, 5 and 6 have been rebuilt from the PDF. `npm run audit:drift` reports what
+is left: 668 strings are in the publication, 82 exist only in the transcription, in
+`participation-rationale.ts` (chapter 2) and `resources.ts` (chapter 7).
 
-Chapters 2 and 7 are prose and tables like chapter 4, so `scripts/extract-tools.py` is the
-model: read the page by font, split prose into sentences, read tables by cell.
+Both are prose and tables like chapter 4, so `scripts/extract-tools.py` is the model: read
+the page by font, split prose into sentences, read tables by cell. The substance in both is
+expected to be sound - the audit of chapter 4 found that every derived item corresponded to
+a real statement, and only the wording had drifted - but that has not been checked for these
+two.
 
 ### 3. Two stakeholder ids have no profile
 

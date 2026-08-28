@@ -17,7 +17,7 @@ import {
   threeStepIntro,
   usingTheToolkit,
 } from '../../data/using-the-toolkit';
-import { Blocks, Disclosure, Table } from '../common/Blocks';
+import { Blocks, Disclosure } from '../common/Blocks';
 
 export default function PlanTab() {
   const { plan, setMeta, setSetup, setItem, replacePlan } = usePlan();
@@ -60,13 +60,8 @@ export default function PlanTab() {
             <Blocks blocks={step.blocks} />
           </div>
         ))}
-        <div className="space-y-5 border-t border-gray-100 pt-5">
-          {usingTheToolkit.map((step) => (
-            <div key={step.id} className="space-y-2">
-              <h3 className="font-medium text-gray-900">{step.heading}</h3>
-              <Blocks blocks={step.blocks} />
-            </div>
-          ))}
+        <div className="space-y-3 border-t border-gray-100 pt-5">
+          <Blocks blocks={[{ items: usingTheToolkit }]} />
         </div>
         <p className="border-t border-gray-100 pt-4 text-sm text-gray-500">
           Sections 1.3 and 6.
@@ -183,7 +178,7 @@ export default function PlanTab() {
       </div>
 
       <Disclosure summary="the challenges a checklist does not solve">
-        <Table columns={currentChallenges.columns} rows={currentChallenges.rows} />
+        <Blocks blocks={[{ items: currentChallenges }]} />
         <div className="space-y-2">
           <p className="text-gray-700 leading-relaxed">{challengesIntro}</p>
           <ul className="space-y-1.5">

@@ -5084,3 +5084,2422 @@ non-governmental settings.
 --- page 84 ---
 www.irena.org
 © IRENA 2025
+--- continuous prose ---
+PARTICIPATORY 
+PROCESSES FOR 
+STRATEGIC ENERGY 
+PLANNING
+A toolkit for national
+
+energy planners
+CONTENTS
+ABBREVIATIONS................................................................................................................. 6
+EXECUTIVE SUMMARY........................................................................................................ 7
+1.	 INTRODUCTION ............................................................................................................ 9
+1.1	 Objective of the publication............................................................................................. 10
+1.2	 How the toolkit was developed.........................................................................................11
+1.3 	 How to use this toolkit.........................................................................................................12
+2.	 THE IMPORTANCE OF PARTICIPATORY PROCESSES IN NATIONAL LONG-TERM ENERGY 
+PLANNING................................................................................................................... 13
+2.1 	 Defining the scope of energy planning............................................................................13
+2.2 	 Who is responsible for energy planning in governments?..............................................14
+2.3	 What are participatory processes in the context of energy planning?.........................16
+2.4	 How do participatory processes support energy planning?..........................................16
+3.	 STAKEHOLDERS IN THE NATIONAL SCENARIO DEVELOPMENT PROCESS...................... 19
+3.1	 Policy makers, administrators and regulators................................................................. 20
+3.2	 Grid operators.................................................................................................................... 21
+3.3	 Industry and business representatives............................................................................. 22
+3.4	 General public and local communities........................................................................... 23
+3.5	 Civil society organisations and non‑governmental organisations................................ 24
+3.6	 Scientific institutions.......................................................................................................... 25
+3.7	 Financial institutions ......................................................................................................... 26
+4.	 ENGAGEMENT TOOLS AND ACTIVITIES........................................................................ 27
+4.1	 Knowledge gathering....................................................................................................... 31
+4.2	 Co-creation........................................................................................................................ 37
+4.3	 Dissemination.................................................................................................................... 41
+5. CASE STUDIES.............................................................................................................. 45
+5.1	 Belgium.............................................................................................................................. 48
+5.2	 Brazil................................................................................................................................... 50
+5.3	 Canada.............................................................................................................................. 52
+5.4	 Chile................................................................................................................................... 54
+5.5	 Colombia........................................................................................................................... 56
+5.6	 Cyprus................................................................................................................................ 58
+5.7	 Finland................................................................................................................................ 60
+5.8	 Ghana................................................................................................................................ 62
+5.9	 Panama.............................................................................................................................. 64
+5.10	 United Arab Emirates..............................................................................................................66
+5.11	 KCERT 2050 (Kenya Carbon Emission Reduction Tool)................................................... 68
+5.12	 Paris Agreement Compatible (PAC) Scenario Consortium............................................ 70
+5.13	 World Energy Council........................................................................................................ 72
+6.	 CONCLUSION.............................................................................................................. 74
+7.	 ADDITIONAL MATERIAL................................................................................................ 76
+7.1	
+Publications........................................................................................................................76
+7.2	 Tools and platforms........................................................................................................... 78
+8.	 REFERENCES ............................................................................................................... 80
+APPENDIX A – METHODOLOGY AND DATA COLLECTION................................................. 82
+FIGURES
+Figure 1	
+Overview and objectives of the participatory energy planning process.............................11
+Figure 2	
+Mental model of a stakeholder-led energy planning process.................................................14
+Figure 3	
+Allocation of energy planning capacity in the national context............................................15
+Figure 4	
+Categorisation of engagement tools and activities....................................................................28
+Figure 5	
+Possible participants in a working group or steering committee..........................................38
+BOXES
+Box 1	
+Ideas for interactive workshops.......................................................................................................32
+Box 2	
+Examples of survey formats..............................................................................................................34
+Box 3	
+Types of interviews...............................................................................................................................36
+Box 4	
+Possible activities and outputs.........................................................................................................40
+Box 5	
+Tools for publicly presenting and discussing scenarios............................................................42
+Box 6	
+Tools for visualising and gamifying energy scenarios...............................................................44
+TABLES
+Table 1	
+Summary of case studies...................................................................................................................46
+ABBREVIATIONS
+CEBRI	
+Centro Brasileiro de Relações Internacionais (Brazilian Centre for International Relations)
+CSO	
+civil society organisation
+DSO	
+distribution system operator
+EMH	
+Energy Modelling Hub (Canada)
+EPE	
+Empresa de Pesquisa Energética (Energy Research Office) (Brazil)
+IDB	
+Inter-American Development Bank
+IRENA	
+International Renewable Energy Agency
+KCERT	
+Kenya Carbon Emission Reduction Tool
+LT-LEDS	
+long-term low emission development strategies
+LTES	
+long-term energy scenarios
+NECP	
+National Energy and Climate Plan
+NGO	
+non-governmental organisation
+NLP	
+natural language processing
+NRCan	
+Natural Resources Canada
+PAC	
+Paris Agreement Compatible (scenario consortium)
+PELP	
+Planificación Energética de Largo Plazo (Long-Term Energy Planning in Chile)
+PNE	
+Plano Nacional de Energia (National Energy Plan in Brazil)
+PTE	
+Energy Transition Programme (Brazil)
+REN21	
+Renewable Energy Policy Network for the 21 Century
+RGI	
+Renewables Grid Initiative
+TEAM	
+Technical Economic Analysis Model (Finland)
+TSO	
+transmission system operator
+TYNDP	
+Ten-Year Network Development Plan (European electricity grid planning)
+UAE	
+United Arab Emirates
+UPME	
+Mining Energy Planning Unit (Colombia)
+VRE	
+variable renewable energy
+WEC	
+World Energy Council
+EXECUTIVE SUMMARY
+The global energy transition requires unprecedented co‑ordination across all sectors of society. As 
+countries accelerate their shift toward renewable energy systems, the complexity and scale of the 
+transformation demands inclusive planning processes that engage diverse stakeholders and build 
+broad consensus for ambitious climate and energy goals. This toolkit, developed through IRENA’s Long-
+Term Energy Scenarios (LTES) Network, provides government energy planners with practical guidance 
+for implementing effective participatory processes in national energy scenario development.
+The expanding stakeholder landscape
+The energy transition has fundamentally expanded the landscape of stakeholders involved in energy 
+systems. Beyond traditional utilities and fossil fuel companies, energy planning now encompasses 
+prosumers, energy co‑operatives, local communities, indigenous groups, civil society organisations 
+and businesses across all economic sectors. Despite widespread recognition of the importance of 
+participatory processes, comprehensive guidance has been lacking on approaches and best practices 
+for national-level energy planning. This toolkit addresses this gap by synthesising experiences from 
+government planning institutions worldwide.
+Key benefits of participatory energy planning
+Evidence from IRENA’s LTES Network shows that effective stakeholder engagement can lead to multiple 
+benefits:
+•	 Building consensus and trust: Participatory processes foster stakeholder ownership and social 
+acceptance by involving diverse voices in scenario development. Countries have shown how inclusive 
+engagement builds legitimacy for energy plans while identifying potential risks and conflicts early.
+•	 Gathering diverse inputs: Stakeholder participation helps identify planning blind spots and improve 
+the extent to which scenarios reflect real-world conditions. Engagement with at-risk communities, 
+for instance, brings essential perspectives on energy access that might otherwise be overlooked.
+•	 Enhancing implementation: Scenarios developed through participatory processes are more likely 
+to be accepted by policy makers and society. Early involvement of key stakeholders ensures energy 
+plans align with institutional capacities and political realities.
+•	 Building energy literacy: Engagement activities enhance understanding of energy systems across 
+stakeholder groups, creating more informed participants who can contribute meaningfully to 
+energy transition discussions and decisions.
+Strategic framework
+The toolkit presents a comprehensive framework organised around three core categories of participatory 
+approaches:
+Knowledge gathering includes workshops, surveys, public consultations and expert interviews 
+designed to collect diverse perspectives from stakeholders across sectors.
+Co-creation encompasses steering committees, working groups and network structures that 
+enable stakeholders to actively participate in shaping scenarios and building consensus.
+Knowledge dissemination focuses on presentations, reports, visualisation tools and interactive 
+platforms that communicate complex energy concepts to various audiences.
+Stakeholder engagement strategies
+The toolkit identifies seven key stakeholder groups often considered important for comprehensive 
+energy planning: policy makers and regulators, grid operators, industry representatives, the general 
+public and local communities, civil society organisations, scientific institutions, and financial institutions. 
+Successful engagement requires tailored approaches that recognise different stakeholders’ capacities, 
+interests and constraints.
+Global evidence and lessons
+Thirteen detailed case studies from a range of countries and international organisations illustrate 
+diverse approaches to participatory energy planning, ranging from Chile’s comprehensive consultation 
+framework to Canada’s Energy Modelling Hub. Key lessons include the importance of clear governance 
+structures, sustained funding commitments, skilled facilitation and transparent communication about 
+how stakeholder inputs influence final outcomes.
+The path forward
+This toolkit serves as both a reference guide for immediate application and a foundation for continued 
+innovation in participatory energy planning. By adapting these proven approaches to their specific 
+contexts, government energy planners can foster more inclusive, transparent and effective processes that 
+accelerate the clean energy transition while ensuring no one is left behind. The experiences documented 
+demonstrate that meaningful stakeholder engagement is essential for planning and achieving ambitious 
+energy and climate goals. 
+1.	INTRODUCTION 
+Individuals or entities that both produce and consume energy, for instance through solar panels. Excess 
+energy is then potentially fed back into the grid, making them participants in the broader power system.
+The transition to a more sustainable and cleaner energy future requires strategic energy planning and 
+informed decision making. Energy scenarios are a critical aspect of this planning process, enabling 
+governments to prepare for future socio-technical changes and lifestyles, identify risks and opportunities, 
+and shape effective policies. Scenarios can also be used as tools to engage with a wide range of 
+stakeholders, from industry experts to the general public, and can become a tool for enhancing the 
+legitimacy of and buy-in to the planning process (IRENA, 2020).
+Since 2018 IRENA has operated the Long-Term Energy Scenarios (LTES) Network, where government 
+planning institutions across the world have shared their experiences and practices in developing and 
+using long-term energy scenarios for clean energy policy making and its associated challenges. Within 
+the LTES Network, members and partners have continuously highlighted participatory processes in 
+scenario development as a priority topic for accelerating the clean energy transition.
+The accelerated uptake of renewable energy and energy system innovation around it has brought many 
+new players into the energy landscape. The extent of the energy transition goes far beyond the traditional 
+power generation and transmission dynamics and incumbent (mainly fossil fuel) providers and companies. 
+The range of stakeholders who are involved and affected has increased to include energy prosumers, 
+energy co‑operatives, local communities, indigenous and minority groups, and businesses, bringing the 
+importance of energy to the foreground of people’s day-to-day lives, and increasing their interest in 
+participating in energy-related planning and decision making (Wahlund and Palm, 2022; Dawson, 2020). 
+And while interest in participatory energy planning continues to grow, meaningful participation remains 
+a challenge that requires deliberate effort (Knudsen et al., 2015). Energy planning experts have stressed 
+the importance of including the values and insights of different stakeholders in their short- and long-term 
+planning processes to be able to represent the true complexity of an energy system in transition.
+Participatory processes have thus been implemented in many countries’ energy and climate planning 
+strategies. IRENA analysis of energy and climate planning alignment has shown that a majority of both 
+energy plans and long-term low emission development strategies (LT-LEDS) have involved participatory 
+processes as part of their development. These activities have ranged from simple surveys and interviews 
+to years-long agendas that involve workshops, committees and other interactive activities aimed at a 
+wide range of stakeholders.
+The findings of this toolkit stem from a collaborative process, using experience-sharing activities and 
+practitioner insights from around the world. Despite the prevalence of these participatory processes, 
+a comprehensive overview of approaches and best practices at the national energy planning level is 
+lacking. Following this introductory chapter, Chapter 2 introduces the concepts of energy planning, 
+energy scenarios and how participatory processes are used to support planning processes. Chapter 3 
+outlines possible stakeholder groups with whom to engage and the benefits of collaborating with each 
+group, and Chapter 4 delves deeper into tools and methods used in participatory activities, and how 
+they can be applied in the context of an energy planning cycle. Chapter 5 highlights case studies where 
+countries and other institutions have used one or more types of activities in their energy planning process 
+to engage and involve stakeholders. Chapter 6 concludes the report by tying these concepts together 
+and posing questions for upcoming work.
+1.1	 OBJECTIVE OF THE PUBLICATION
+This toolkit is aimed at scenario practitioners and energy planners in government planning institutions, 
+and establishes the importance of participatory processes in energy planning, especially in the context 
+of the energy transition. It offers a comprehensive and practical resource for incorporating participatory 
+processes by showcasing country, regional and global experiences. Building on previously published 
+resources on the topic of participatory policy making, community engagement and communication 
+in various fields of planning and project implementation (see Chapter 7), this publication is intended 
+for national-level energy planners, especially at a time when there is growing emphasis on involving 
+stakeholders in shaping future pathways for a just transition. It features a chapter with detailed case 
+studies, illustrating how participatory processes can be effectively implemented (see Chapter 5). 
+Figure 1 below highlights the contents of this toolkit. At its core, it highlights the importance of 
+participatory energy planning. It then proposes different lessons, tools and stakeholders that can be 
+engaged at the different stages, providing practical recommendations for maximising the results of these 
+participatory approaches.
+(Göke et al., 2023; Howells et al., 2021; IRENA, 2020b; McGookin et al., 2024; Waisman, 2018).
+Figure 1	
+Overview and objectives of the participatory energy planning process
+WHO PARTICIPATES
+HOW THEY ENGAGE
+CSOs/NGOs
+Finance
+Scientiﬁc
+institutions
+Public
+Policy
+makers
+Grid
+operators
+Industry
+Legitimacy, trust 
+and buy-in
+Implementable and 
+context-appropriate 
+scenarios
+Robust inputs and 
+identifying blind spots
+Enhanced 
+understanding and 
+energy literacy
+FRAMING
+DEVELOPMENT
+VALIDATION
+COMMUNICATION
+WHEN IN THE PROCESS
+ACHIEVING OBJECTIVES OF THE PARTICIPATORY PROCESS
+Knowledge gathering tools 
+(workshops, surveys, 
+interviews)
+Co-creation mechanisms 
+(cross-sector committees, 
+networks and hubs)
+Knowledge dissemination tools 
+(public presentations, reports, 
+visualizations and games)
+1.2	 HOW THE TOOLKIT WAS DEVELOPED
+This toolkit has been developed on the basis of collective experiences and participatory processes 
+observed within the LTES Network since 2018. The activities that have provided the content of this 
+report emphasised engagement and collaboration, key to understanding and improving participatory 
+processes in LTES planning processes. A variety of thematic workshops, webinars and events facilitated 
+engagement with crucial stakeholders for understanding the landscape of this topic for this report, 
+involving over 50 speakers and 300 participants in meaningful discussions on participatory processes 
+and public engagement in energy planning, which can be explored in the Appendix. These interactions 
+were enriched by the guidance of a scientific advisory committee, which influenced the report’s structure 
+and content. The development of this report included interactive sessions, literature reviews and expert 
+interviews, ensuring a comprehensive understanding of effective participatory practices in LTES 
+development within governmental and non-governmental settings. This methodology, centred on active 
+participation and expert guidance, has been instrumental in shaping a toolkit that reflects the current 
+good practices and innovative strategies in facilitating inclusive participatory processes in LTES.
+1.3 	 HOW TO USE THIS TOOLKIT
+This toolkit aims to both showcase the relevance of participatory energy planning for a clean and just 
+transition, and provide resources for national government energy planners (and other planners more 
+broadly) to refer to as they design participatory activities for their planning process. This toolkit was 
+developed in a modular fashion so that different chapters can be used individually for the different 
+elements of a participatory energy planning strategy. Planners can use the toolkit in the following way:
+1. Identify approaches that match your planning context
+	
+; Review the case studies in Chapter 5 to find examples from countries with similar challenges or 
+objectives.
+	
+; Use the stakeholder mapping guidance in Chapter 3 to identify and determine which stakeholder 
+groups are most critical for your planning process and stage.
+	
+; Consider your objectives, available resources and institutional capacity when selecting tools from 
+Chapter 4.
+2. Design your participation strategy
+	
+; Begin with the framework in Chapter 2 to understand which benefits of stakeholder participation 
+align with your planning objectives.
+	
+; Use the stakeholder analysis in Chapter 3 to develop targeted engagement approaches.
+	
+; Select appropriate tools from Chapter 4 based on your planning stage and specific needs.
+3. Implement effectively
+	
+; Draw on the practical lessons from case studies in Chapter 5 to anticipate challenges.
+	
+; Adapt the approaches to your institutional context and available resources.
+	
+; Utilise the additional resources in Chapter 7 for detailed implementation guidance.
+2.	THE IMPORTANCE 
+OF PARTICIPATORY 
+PROCESSES IN NATIONAL 
+LONG-TERM ENERGY 
+PLANNING
+The clean energy transition requires a comprehensive change in policy making and the way investment is 
+channelled. Long-term international and national targets need robust long-term planning that addresses 
+short-, medium- and long-term policy needs, aligned with climate and development strategies, with 
+stakeholders on board to support the smoother and more urgent implementation of measures to reach 
+energy and climate targets. This chapter introduces the concepts of long-term energy planning and 
+scenario development, a general definition of participatory processes in the context of energy planning, 
+and the objectives and benefits of utilising participatory processes to achieve a faster and more equitable 
+energy transition.
+2.1 	 DEFINING THE SCOPE OF ENERGY PLANNING
+Within the context of this report, long-term energy planning is defined as a process that involves the 
+formulation of national or regional energy strategies and investments, guided by quantitative energy 
+sector scenarios, often aided by energy system modelling. Such approaches can be supported by 
+qualitative scenario-building, and vice versa. This evidence-based process has proven vital for energy 
+policy development globally, supporting investment decisions in the energy sector (Luscombe et al., 
+2024). The process, especially when institutionalised and supported with strong governance, involves 
+analytical rigour and effective scenario communication, all of which are being reassessed due to the 
+ongoing energy transition. Scenario planning enhances policy clarity by translating qualitative aspirations 
+into quantitative pathways and policy options, helping stakeholders to confront trade-offs and negotiate 
+feasible pathways. Scenario-based planning requires concrete numerical inputs – preventing unrealistic 
+expectations where every technology and policy can dominate simultaneously and ambiguously. By 
+structuring discussions around measurable outcomes, it ensures that stakeholders move beyond vague 
+consensus to a clearer, more actionable vision, fostering alignment and realism in decision-making.
+Long-term energy scenarios (LTES), projecting over two decades or more, have been a pivotal tool for 
+stimulating policy discussions and shaping informed long-term visions and energy policies. Insights from 
+LTES can help prepare governments and other actors for future policy interventions, highlight immediate 
+challenges and opportunities, inform sectoral policies and guide investment directions. Energy modelling 
+tools can be used to formulate LTES by quantifying technological pathways, enhancing the understanding 
+of energy system complexities and interdependencies. At times, they also reveal the need for new tools to 
+be adopted. The framework (Figure 2) shows the basic mental model used in the LTES Network to frame 
+how LTES are utilised to inform policy makers, with bidirectional and iterative interaction happening at 
+different stages of the energy planning process, where stakeholders can actively collaborate and engage 
+throughout.
+Figure 2	
+Mental model of a stakeholder-led energy planning process
+Long-term energy
+policy making
+Long-term energy 
+scenarios
+Energy modelling tools
+Collaborative engagement
+2.2 	 WHO IS RESPONSIBLE FOR ENERGY PLANNING IN 
+GOVERNMENTS?
+When discussing energy planning in the context of government, various actors are involved in shaping 
+energy policies and strategies. The primary energy planners are typically government officials and policy 
+makers within energy ministries or specialised energy agencies. For instance, in Chile, the Ministry of 
+Energy plays a leading role in long-term energy planning, including developing energy scenarios and 
+preparing energy planning documents. Similarly, the Danish Energy Agency, under the Ministry of Climate, 
+Energy and Utilities, is responsible for informing the policy-making process through energy and climate 
+outlooks based on long-term energy scenarios. These government entities often use dedicated in-house 
+teams or agencies with expertise in energy modelling and scenario-building. This internal capacity is 
+crucial for ensuring that policy makers can effectively understand and utilise scenario insights to inform 
+policy and investment decisions.
+While in-house capacity is essential, governments may also utilise external organisations in the energy 
+planning process. This outsourcing approach aims to gather diverse perspectives and expertise, ultimately 
+fostering a more comprehensive and robust planning process. Examples of these organisations include 
+research institutions and consultancies. A third model also exists, which is a combination of the two, 
+where governments and external institutions work hand-in-hand on energy planning to provide different 
+types of expertise. For example, in Germany, while the Ministry for Economic Affairs and Climate Action 
+possesses strong internal scenario development capacity, independent research institutions contribute to 
+scenario studies, providing a broader range of insights. The key benefits, challenges and considerations 
+for the different models are discussed in a previous publication (IRENA, 2020). The model is shown in 
+Figure 3.
+Figure 3	
+Allocation of energy planning capacity in the national context
+OUT-SOURCING
+LTES capacity out-sourced 
+to research/technical 
+institutions or consultancies
+50/50
+IN-SOURCING
+LTES capacity allocated 
+solely within ministries or 
+energy agencies
+Technical 
+institution 1
+Technical 
+institution 3
+Technical 
+institution 2
+Government
+Government
+Technical 
+institution or 
+Agency
+Source:	
+(IRENA, 2020).
+It is worth noting that energy planning involves multiple actors beyond central government. This includes 
+regulatory bodies, transmission system operators (TSOs) and distribution system operators (DSOs), 
+research institutions, local governments and other institutions with planning responsibilities and possibly 
+their own scenario development exercises. While the allocation of responsibilities varies significantly 
+between countries depending on governance structures, institutional traditions and available resources, 
+effective collaboration among these various entities is essential for coherent energy planning. The 
+participatory processes described in this toolkit are relevant across these different models, though they 
+may need to be adapted to specific institutional contexts.
+2.3	 WHAT ARE PARTICIPATORY PROCESSES IN THE CONTEXT OF 
+ENERGY PLANNING?
+Participatory energy planning processes include a set of activities designed to define, design, influence 
+and validate energy plans and their implementation in a collaborative manner. Participatory processes 
+may also be used to gauge the social acceptance of potential energy sector developments. This can 
+take the shape of knowledge gathering, co-creation and dissemination activities involving the various 
+stakeholder groups participating in the clean energy transition at the various stages of the energy 
+planning process, including policy framing, scenario development, validation and communication. These 
+are further discussed in Chapter 4. 
+Governments developing national energy strategies and roadmaps have long employed various types 
+of participatory activities, ranging from interviews with certain stakeholders to public hearings, surveys, 
+workshops, online public consultations and validation of results. The specific choice of tools and 
+approaches depends on the planning stage, the stakeholder groups involved and the available resources.
+2.4	 HOW DO PARTICIPATORY PROCESSES SUPPORT ENERGY 
+PLANNING?
+Participatory processes have multiple possible objectives when organised by governments and can bring 
+numerous benefits to the energy planning process itself, as well as to the participants. Some of the 
+objectives identified from case studies shared throughout the LTES Network’s activities include:
+1. Building consensus, trust and stakeholder ownership
+Long-term scenarios, by their data-driven and quantitative nature, face the challenge of reflecting the 
+views of diverse societies, where citizens, public and private entities, policy makers and civil society 
+organisations have various and sometimes conflicting priorities, concerns and beliefs.
+While scenarios produced within a ministry or planning agency could be developed with a robust 
+methodology, they may not represent the views of society at large, or even be considered acceptable to 
+most. As highlighted in the Chilean case study (see Chapter 5), bringing in stakeholders as part of the 
+scenario development process can be an effective method of building consensus among stakeholders 
+of the energy transition, while identifying divergences and potential risks. It enables stakeholders to 
+understand how plans are created and the trade-offs involved, as well as the views and insights of 
+their counterparts (IRENA, 2023a). Engaging stakeholders as active participants in the process not 
+only cultivates a sense of ownership, enhancing their support for the scenarios, but also promotes 
+transparency and credibility by visibly incorporating their input. Furthermore, this collaborative method 
+fosters trust and mutual understanding among stakeholders, essential for the smooth implementation of 
+energy plans and mitigating potential conflicts. This process helps involve stakeholders as drivers of the 
+clean transition through the collective shaping of national plans, rather than as observers on the sidelines.
+Countries have acknowledged the value of participatory scenario development in generating credible 
+and widely supported energy scenarios, emphasising the collective wisdom of diverse stakeholders 
+for creating realistic and socially resonant scenarios (IRENA, 2023a). This approach ensures technical 
+robustness while aligning with societal values and concerns, thereby increasing the scenarios’ legitimacy 
+(Ernst et al., 2018) and accountability to entities responsible for scenario-building.
+2. Gathering diverse inputs and identifying planning blind spots
+Scenario-building requires input from a wide range of stakeholders, including sector and industry experts 
+(power, transport, heating and cooling, agriculture, and other energy and non-energy sectors), policy 
+makers, civil society organisations and the public (IRENA, 2020). Inputs can be categorised into two 
+types: quantitative data, which encompass a variety of metrics from energy supply characteristics to 
+demand profiles, including behavioural habits, and qualitative data, which involve insights such as social 
+acceptance of technologies and socio-political issues. These inputs are essential for creating scenarios 
+that closely align with real-world socio-economic and political conditions, as well as for envisioning the 
+transition to future systems and their alternatives.
+The participatory process in energy planning can be a valuable method for gathering these data and 
+formulating scenario narratives and storylines, ensuring scenarios are as representative as possible 
+(while acknowledging the limitations of mathematical models and scenarios as forecasting tools), and 
+can accurately incorporate future technologies, business models and lifestyles. This makes stakeholder 
+inclusion vital to avoid missing key insights and knowledge (IRENA, 2022). The case studies from Panama 
+and Colombia shown in this toolkit highlight how countries engage with indigenous communities to 
+develop their national grid modernisation and energy access strategies.
+Some experts have highlighted that the techno-economic focus of most power and energy system tools 
+used in energy planning means that the key concerns and priorities of different stakeholders might not be 
+captured in scenarios, either due to technical limitations or due to “blind spots” (IRENA, 2023a; McGookin 
+et al., 2021). A just energy transition, however, is deeply rooted in social, procedural and distributional 
+justice (IRENA & IEECP, 2023). Engaging stakeholders could bring to light these concerns, which may 
+galvanise either support for or opposition to energy and infrastructure projects. Decisions can then be 
+made on how these issues should feature in strategies and scenarios, either quantitatively or qualitatively 
+(Lonergan et al., 2023a). For instance, IRENA’s analysis in 2023 showed that factors such as job creation, 
+health and behavioural change often featured more qualitatively in energy and climate strategies, as 
+opposed to quantitatively (IRENA, 2023b). This finding suggests that more work is needed to model and 
+highlight evidence-based energy policies that can be beneficial in those areas (e.g. how improving air 
+quality by reducing fossil fuel consumption can have positive health outcomes).
+3. Developing more implementable and context-appropriate scenarios
+Scenarios are an important source of data-driven policy advice. Policy decisions, however, are largely 
+determined by the will of policy makers and their constituents, as well as the capacity and resources of 
+the country. Experts have highlighted that the early involvement of policy makers and citizens, as well as 
+other public establishments (such as the ministries of finance, as highlighted by Cyprus [see Chapter 5]), 
+could define scenarios that are relevant to their context, either economically, socially or politically 
+(IRENA, 2022). This can help scenario developers focus on scenarios that can more easily be accepted 
+and adopted by legislators, policy makers, investors and technology developers (IRENA, 2021) and which 
+also reflect local realities (as highlighted by Colombia in Chapter 5).
+For further discussion see: Freeman, 2021; Schmid et al., 2011; Steg, 2023; Süsser et al., 2022; Venturini 
+et al., 2019; Wüstenhagen et al., 2007.
+Energy planning and scenario development inevitably intersect with political realities and perspectives. 
+What constitutes a “realistic” or “implementable” scenario is often influenced by political judgments rather 
+than technical feasibility alone. As energy transitions accelerate and gain prominence in public discourse, 
+scenarios may face challenges based on political perceptions of “realism” rather than technical analysis. 
+Stakeholder engagement processes provide valuable opportunities to address these political dimensions 
+by surfacing concerns about equity, financial impacts, and perceived winners and losers in transition 
+pathways.
+However, scenario development is not restricted to considering only “plausible” or “realistic” scenarios. 
+Exploratory scenarios, including “what if” scenarios and alternative imagined futures, can play an 
+important role in raising ambitions and driving lifestyle and policy changes (IRENA, 2020). These “what 
+if” scenarios are crucial to understanding the robustness of energy scenarios against various factors and 
+in highlighting the range of possible futures. Participatory processes can support both the development 
+of such scenarios, as well as the communication of these futures to stakeholders.
+4. Enhancing energy literacy and system understanding across stakeholders
+Experts underscore the critical role of stakeholder engagement in energy scenario planning as a means 
+to facilitate dialogue, foster a common understanding and simplify complex energy concepts (IRENA, 
+2022). The interaction can help stakeholders grasp the nuances of energy systems and plans, their 
+associated uncertainties and the objectives of the energy transition. The tools used in many instances 
+of energy planning are technically complex, and their assumptions and outputs need to be carefully 
+communicated, rather than limiting engagement due to perceived complexity.
+Information exchange can be structured to help participants build their foundational knowledge about 
+energy systems, such as through workshops and the use of interactive tools and simulations. Such 
+interactive experiences additionally enhance the quality of stakeholder contributions and allows them 
+to envisage different futures (Ketonen-Oksi and Vigren, 2024), which can spur different stakeholders to 
+action or increase their acceptance of these pathways.
+Stakeholder contributions to the planning process also benefit from spontaneous information sharing 
+among stakeholders, which broadens each participant’s understanding by exposing them to new 
+viewpoints and expertise. This interaction not only enriches the collective knowledge base, but also 
+ensures a more comprehensive representation of the energy ecosystem in scenario planning. This 
+iterative communication loop, where feedback from participants informs ongoing discussions and 
+scenario refinements, is crucial for the evolution of effective energy strategies (IRENA, 2022).
+3.	STAKEHOLDERS IN THE 
+NATIONAL SCENARIO 
+DEVELOPMENT PROCESS
+Fair and comprehensive stakeholder mapping is critical for successful engagement but requires its own 
+methodology beyond the scope of this toolkit. Key considerations include using systematic approaches 
+rather than ad-hoc methods, employing multiple identification techniques to reduce bias, ensuring 
+representation of vulnerable groups, validating through feedback channels, and potentially involving 
+third parties for enhanced credibility. Some examples of mapping techniques can be found here: 
+https://‌simplystakeholders.com/stakeholder-mapping/ 
+This chapter outlines the different stakeholder groups identified throughout this project with whom 
+it is crucial for national energy planning teams to engage during the scenario development process. 
+This chapter discusses the objectives of engaging these stakeholders, the challenges, good practices in 
+overcoming these challenges, and the benefits for the stakeholders themselves for engaging in national 
+energy planning. Challenges and good practices in this chapter are sourced from the various interactions 
+within LTES Network activities, and from discussions with experts. 
+The following stakeholder list represents the groups present and discussed broadly during the preparatory 
+activities to this report. However, each planning activity should examine their context to identify whether 
+additional or other relevant stakeholders or categorization would be utilized.
+3.1	 POLICY MAKERS, ADMINISTRATORS AND REGULATORS
+Who are they? Government officials responsible for laws, policies and regulations and their implementation 
+across sectors, including energy, transport, industry, environment, research and development, agriculture 
+and climate-focused departments.
+Why engage them? In policy planning contexts, scenarios are developed to guide policy and strategic 
+decisions at national and sub-national levels. The active involvement of policy makers throughout the 
+scenario development process helps to keep scenarios relevant, realistic and aligned with policy needs. 
+The participation of policy makers and regulators with the energy planning teams can range from initial 
+discussions to define critical policy questions to collaborative formulation of scenarios that reflect 
+grounded assumptions, and ultimately to clear communication of results to inform policy. Effective cross-
+sectoral co‑ordination among policy makers also supports various data-sharing efforts and the alignment 
+of investment and strategies across a highly interconnected energy system.
+What is the benefit for them? Understanding the process and limitations of scenario development and 
+trade-offs between scenarios can help decision making, including through assessment of the implications 
+and impacts of policy measures.
+Challenges in engaging with this stakeholder
+•	 Limited understanding of scenario concept: Purpose and limitations of scenario analysis as 
+a forecasting, predictive or exploratory tool may not be clear, which may affect policy makers’ 
+expectations for the use of the scenarios.
+•	 Political perspective: Balancing different political visions, priorities and insights might prove 
+challenging.
+•	 Knowledge gaps: Many policy makers and sector experts who influence energy policy are not 
+necessarily specialists in energy systems. Bridging this gap through education - or less technical 
+communication - can help ensure more informed decision making.
+•	 Time constraints: Most policy makers have busy schedules and might not have the ability to engage 
+in long participatory processes or read long reports.
+Good practices collected
+•	 Preparing succinct briefs and visuals that can address policy makers’ direct concerns and priorities.
+•	 Explaining what modelling tools can and cannot do, and which concerns can be addressed within 
+these tools.
+•	 Using non-biased intermediaries to facilitate discussion with diverse groups of policy makers to 
+avoid perceived bias.
+•	 Conducting capacity-building exercises for policy makers and their staff to help guide decision 
+making.
+3.2	 GRID OPERATORS
+Who are they? Grid system operators refer to the entities responsible for operating and often developing 
+power and gas networks (both transmission and distribution).
+Why engage them? Engaging both electricity and gas grid operators is crucial because of their deep 
+understanding of grid dynamics, infrastructure limitations and the operational challenges posed by the 
+energy transition. Their technical expertise, historical and real-time data, and future expansion plans make 
+them key players in ensuring grid stability and security as energy systems evolve towards a higher share 
+of variable renewable energy (VRE). By aligning their scenarios with national energy plans and involving 
+them in public engagement, grid operators help ensure a co‑ordinated and resilient transition, particularly 
+as the integration of renewables and decarbonised gases reshapes both power and gas networks.
+What is the benefit for them? Ensuring their development plans and other procedures are considered 
+in the country’s long-term plans (and vice versa), and that national plans are consistent and consider 
+infrastructural developments and upgrades as needed.
+Challenges in engaging with this stakeholder
+•	 Established plans: System operators have existing mid-term plans for grid expansion and upgrades 
+that might necessitate adjustments to wider long-term energy plans. Gas grids may need to 
+accommodate decarbonised gases, requiring infrastructure investment.
+•	 Collaboration across voltage levels and energy vectors: Collaboration mechanisms across 
+different voltage levels or energy vectors (power and gas) might be weak or non-existent, especially 
+with distribution-level operators who could provide robust demand data.
+•	 Policy maker awareness and perception: Electricity and gas grids’ pivotal role in the energy 
+transition is often underestimated by policy makers, who have only recently begun to prioritise it, 
+viewing it more as an obstacle to renewables than an enabler. Although infrastructure lock-ins are 
+possible, gas infrastructure could also play a role in transporting decarbonised gases and balancing 
+renewable energy supply. 
+•	 Compatibility of plans: In countries with many TSOs and DSOs, reconciling plans for different 
+regions, sectors and jurisdictions might be a complex task (IRENA, 2020).
+Good practices collected
+•	 Engaging early with grid operators to incorporate existing plans and limitations into the planning process.
+•	 Engaging with distribution-level operators to ensure compatibility with local conditions and identify 
+any vital issues (e.g. technical) that might affect planning.
+•	 Including regulators responsible for issuing permits to grid operators ensures that the energy 
+system’s legal and regulatory framework aligns with national scenarios and transition goals. This 
+approach also aids in streamlining approvals for necessary infrastructure upgrades and expansions.
+•	 Involving grid operators can help to ensure that the most cost-efficient solutions will be prioritised, 
+reducing the costs of the energy system at large.
+3.3	 INDUSTRY AND BUSINESS REPRESENTATIVES
+Who are they? A diverse set of stakeholders spanning multiple sectors of the economy encompassing 
+both established players and new entrants, including energy-intensive industries, manufacturers, 
+logistics companies, small- and medium-sized enterprises (SMEs), renewable energy developers, energy 
+efficiency solution providers, and carbon capture technology companies, as well as non-energy sectors.
+Why engage them? Industry players are central to achieving the energy transition because of their 
+significant energy use, emissions footprint and innovation potential. Their technical expertise 
+and practical experience in implementing low-carbon technologies provide crucial insights into 
+decarbonisation barriers and opportunities. Technology developers contribute detailed knowledge about 
+costs, scalability challenges and technology readiness, enabling the creation of more comprehensive and 
+realistic transition scenarios that reflect their future pathways and strategies. Sectors such as shipping, 
+logistics, aviation, agriculture and automotive provide essential perspectives on sector-specific changes 
+in energy use and technological possibilities, helping to shape more robust energy plans and pathways. 
+Their understanding of supply chains and market dynamics is vital for identifying intervention points for 
+emissions reduction. Countries have also engaged with industry players to develop consensus on national 
+plans and understand the vision of various sectors for incorporation within these strategies.
+What is the benefit for them? Engagement helps them preserve their business interests and adjust their 
+business models as necessary. Companies can better position themselves competitively by anticipating 
+and preparing for strengthening climate policies and changing market demands. Climate-related financial 
+disclosures could also be supported by aligning business and national targets and plans.
+Challenges in engaging with this stakeholder
+•	 Diverse interests and priorities: Different industrial sectors have varied priorities and challenges, 
+making it difficult to develop a one-size-fits-all approach to the scenario process.
+•	 Confidentiality concerns: Industries may be reluctant to share proprietary or sensitive information 
+that could be crucial for accurate scenario modelling.
+•	 Balancing economic and environmental goals: Balancing industrial growth and competitiveness 
+with sustainability goals is challenging, especially in fossil-fuel–reliant sectors, compromising buy-in.
+•	 Communication gap: Energy experts may lack knowledge of business specificities, while industry 
+may lack understanding of the broader energy system.
+•	 Balancing national and international goals: Companies bound by foreign parent company targets 
+may struggle to align with national government objectives.
+•	 Different time horizons: The private sector typically has a shorter planning time horizon and may 
+not see value in long-term planning.
+Good practices collected
+•	 Conducting thorough stakeholder mapping to identify relevant stakeholders needed at the different 
+stages.
+•	 Co-developing sector scenarios with associations to incorporate findings into national planning.
+•	 Placing limits on lobbying influence and balancing views appropriately to avoid unbalanced power 
+dynamics.
+3.4	 GENERAL PUBLIC AND LOCAL COMMUNITIES
+Who are they? The general public, or sometimes leaders or representatives of communities based on 
+locality, identity (e.g. indigenous groups) or other means of demographic classification (e.g. age group 
+or income level), who usually represent their group’s interest.
+Why engage them? Planning for a just energy transition requires a collective effort that is led by the public 
+while also paying attention to the most vulnerable in society. Social acceptance by communities, for instance, 
+is vital for renewables and accompanying infrastructure project development. Energy efficiency, technology 
+adoption and change in consumer behaviour patterns are also key to reaching sectoral targets in the residential 
+and transport sectors. The transition will also have effects that must be communicated to citizens, such as price 
+changes and other policy shifts. They may also be voters who can indirectly or directly affect policy decisions.
+What is the benefit for them? Local communities and the public at large can help shape a just transition that 
+considers citizens’ needs and concerns, allowing them to learn about their role in facilitating this transition.
+Challenges in engaging with this stakeholder
+•	 Generating interest: Scenario development processes are unfamiliar to the public and inviting 
+participants requires a clear framing of the objectives of such projects.
+•	 Knowledge gaps: Technical concepts found in energy system analysis might not be familiar to 
+most, and such gaps might affect the quality of participation in the process.
+•	 Time constraints: Jobs, childcare and other responsibilities may limit the time that members of the 
+public can afford for these processes, especially affecting the most vulnerable.
+•	 Ensuring inclusivity: Certain members of the public (e.g. those with more time available) might be 
+more likely to join, creating an unbalanced snapshot of societal perspectives.
+Good practices collected
+•	 Starting discussions from perceived existing issues and concerns, as opposed to simply attempting 
+to visualise a perfectly just scenario.
+•	 Leveraging existing engagement platforms (local town halls or community spaces) to secure 
+stakeholder participation in a familiar environment.
+•	 Identifying and training members of planning staff from local communities to act as focal points to 
+enable continuous dialogue and address community concerns.
+•	 Keeping registries to maintain communication with interested participants and monitor inclusivity 
+and the diversity of representatives. 
+•	 Including decentralised actors, such as community energy projects, in the public engagement.
+•	 Publishing plans online to broaden consultation possibilities for the general public.
+•	 Allocating the necessary time to ensure effective engagement with local communities.
+•	 Offering online and in-person options to participate in participatory activities.
+3.5	 CIVIL SOCIETY ORGANISATIONS AND 
+NON‑GOVERNMENTAL ORGANISATIONS
+Who are they? Civil society organisations (CSOs) and non-governmental organisations (NGOs) typically 
+denote different types of non-profit institutions such as trade unions, environmental advocacy groups, 
+humanitarian organisations, charities and others.
+Why engage them? CSOs and NGOs typically form a crucial role in representing various interests held 
+by the public. For example, trade unions can represent workers from different sectors, many of which 
+will be affected by the energy transition, and thus have a critical stake in delivering the insights of their 
+constituents to the energy planning process to ensure a just transition. Similarly, environmental and 
+humanitarian advocacy groups can present evidence-based research and analysis to highlight issues, 
+benefits and impacts that should be accounted for in long-term national energy plan.
+What is the benefit for them? They can ensure the collective representation of the concerns arising from 
+their social and environmental mandates, to help shape a just and sustainable transition.
+Challenges in engaging with this stakeholder
+•	 Diverse perspectives: The wide array of represented viewpoints can lead to conflicting interests 
+and priorities, making consensus-building a complex task.
+•	 Resource constraints: Many CSOs and NGOs operate with limited resources, which might restrict 
+their ability to participate effectively in lengthy or demanding processes.
+•	 Communication barriers: Effective communication between technical experts and representatives 
+can be challenging due to differences in expertise and focus areas.
+•	 Inclusivity and representation: Ensuring that all relevant voices, especially those from 
+underrepresented groups, are included in the participatory process can be challenging.
+Good practices collected
+•	 Ensuring transparent and consistent communications from the outset over time to build trust, 
+including explaining how inputs are incorporated into the results.
+•	 Maintaining political neutrality in activities to avoid alienating different groups.
+•	 Providing technical knowledge through preparatory courses or briefing to allow for more meaningful 
+engagement. 
+•	 Conducting thorough stakeholder mapping to ensure affected stakeholders are engaged.
+•	 Communicating clearly how inputs will be taken or not taken in the plans.
+3.6	 SCIENTIFIC INSTITUTIONS
+Who are they? Members of the scientific community, including researchers and experts working at 
+universities and research institutions. They could include energy and power system experts, economists 
+and natural scientists, as well as researchers in the social sciences.
+Why engage them? Scientific institutions play an important role in many national energy planning 
+processes, whether through building modelling capacity, conducting the modelling, or providing system-
+specific expertise, data and feedback throughout the process, leading to an expansion of the scope 
+of discussion. Stronger systemic engagement with the scientific community can enable more robust 
+scenarios through rigorous scientific methodologies and quality assurance, promote inter-institutional 
+knowledge exchange, and provide key contributions from interdisciplinary experts who can facilitate the 
+inclusion of qualitative socio-political and environmental insights in these scenarios. 
+What is the benefit for them? They are able to leverage their subject matter expertise and research to 
+contribute to energy planning and create social and policy impact. It also enables them to access funding 
+opportunities, strengthen reputations in action-oriented research, possibly access real-time data and 
+enhance partnerships with decision makers.
+Challenges in engaging with this stakeholder
+•	 Professional constraints: Engaging in stakeholder consultations might be a time-consuming 
+activity that takes time away from research, teaching and other professional engagements.
+•	 Balancing independence: Academics value their independence. They might be cautious about 
+engaging in processes that appear to be politically influenced. 
+•	 Lack of funding: Scientists may face a lack of funding for activities not related to some of their main 
+research grants and, as such, may find it difficult to prioritise attending such national planning-
+related engagements if alternative funding is unavailable.
+Good practices collected
+•	 Establishing and providing resources as a mechanism for continuous engagement with the scientific 
+community (see section 5.3 case study).
+•	 Promoting transparency and open-source data in scenario modelling, enabling academia, research 
+institutes and other independent experts to review, validate and contribute evidence-based 
+feedback that strengthens the national planning process and informs decision making.
+•	 Promoting independent scientific institutions as a conduit for wider stakeholder engagement to 
+increase trust and avoid perception of political bias.
+•	 Providing funding through grants and tenders to ensure continuous and consistent academic 
+engagement.
+3.7	 FINANCIAL INSTITUTIONS 
+Who are they? The finance sector includes a wide range of stakeholders, such as public finance ministries, 
+national and international financial institutions, commercial and development banks, investment funds, 
+insurers and reinsurers, and other financial entities engaged in funding and investing activities.
+Why engage them? Financial organisations play a pivotal role in the energy transition due to their capacity 
+to mobilise funds and invest in sustainable energy projects and initiatives. Their involvement is crucial 
+for injecting the necessary capital into energy transition projects, such as renewable energy deployment, 
+energy efficiency improvements, infrastructure upgrades and new technology deployment. Involving 
+banks and insurers is critical for understanding the de-risking options, which may be particularly important 
+when developing new technologies or pursuing system development in countries facing multiple endemic 
+risks (Lonergan et al., 2023b; Steckel and Jakob, 2018). Public finance entities, such as finance ministries, 
+play a pivotal role in aligning national budgetary policy with energy transition goals, while private financial 
+institutions can drive investment in innovative technologies and sustainable projects.
+What is the benefit for them? Involving financial institutions early in energy transition planning ensures 
+they understand the challenges, risks, pathways and opportunities, increasing their willingness to 
+contribute and finance projects. Their input in the context of macroeconomics, project feasibility and risk 
+helps refine the plan, making it attractive to investors and minimising transition risks.
+Challenges in engaging with this stakeholder
+•	 Aversion to political processes: Financial institutions may be reluctant to engage in processes that 
+appear political, and they might be unwilling to co-create scenarios with national energy planners, 
+fearing potential reputational risks.
+•	 Diverse mechanisms and interests: Financial entities have varied investment strategies and risk 
+appetites, which may make the alignment of priorities challenging for energy planners.
+Good practices collected
+•	 Involving key finance departments early in energy planning ensures effective integration of financial 
+and energy policies. This approach facilitates streamlined communication and strategic alignment.
+•	 Engaging financial institutions early allows the examination of limitations, blind spots and 
+opportunities in supporting low-carbon development.
+•	 There is benefit in working together on specialised tools to communicate the financial implications 
+of energy transitions to financial entities, investors and policy makers outside the planning team 
+(see section 4.3.2).
+4.	ENGAGEMENT 
+TOOLS AND ACTIVITIES
+This chapter outlines the different tools and activities that government planners can utilise when 
+engaging stakeholders in energy planning processes, with many of them used in the case studies in 
+Chapter 5. These tools fulfil different purposes in the planning process: some help to collect stakeholder 
+perspectives and feedback, others are oriented towards the dissemination of information and fostering 
+understanding within the target audience, while some can be used for both purposes. The following 
+sections outline these tools and their use cases, advantages and challenges, while also addressing 
+resources and good practices.
+The tools can be categorised into three main types according to the level of engagement and how the 
+information flows between planners and stakeholders: 
+Knowledge-gathering tools and activities are primarily designed to collect insights, 
+perspectives and information from stakeholders. These approaches enable planners to access 
+diverse knowledge and viewpoints that enhance the quality and relevance of energy scenarios. 
+While their primary purpose is input collection, these tools and activities often have the 
+secondary benefit of building stakeholder understanding through the engagement process. 
+Co-creation tools and activities take engagement further by enabling stakeholders to actively 
+participate in shaping the planning process and its outcomes. These approaches establish 
+collaborative environments where stakeholders work alongside planners to develop scenarios, 
+explore trade-offs and build consensus on potential pathways. Co-creation fosters deeper 
+ownership and commitment to the resulting plans. 
+Knowledge dissemination tools and activities focus on communicating energy planning 
+concepts, scenarios and implications to various audiences. These approaches transform 
+complex technical information into accessible formats tailored to different stakeholder needs. 
+Effective knowledge dissemination builds energy literacy, supports informed dialogue and 
+strengthens the foundation for broader participation.
+Within this chapter, tools are categorised as illustrated in Figure 4, and are accompanied by an explanation 
+and discussion of their application in alignment with specific objectives.
+Figure 4	
+Categorisation of engagement tools and activities
+DISSEMINATION
+CO-CREATION
+KNOWLEDGE GATHERING
+Each tool description in this chapter covers the following dimensions:
+Implementation stage
+Each tool can be strategically used in one or several stages of the planning process:
+•	 Policy framing: This stage initiates the process by defining policy questions and clear objectives, 
+outlining methodologies, and assembling initial data as critical inputs to scenario design.
+•	 Scenario development: Methodologies are put into action, essential information is defined 
+and collected , including assumptions and input data, and narratives and scenarios are created 
+(sometimes through the use of modelling tools).
+•	 Validation: After the formulation of energy scenarios and potential policies, the validation stage 
+follows. This might be before publication or at the point of a draft publication. Stakeholder inputs 
+are valuable for feedback at this stage.
+•	 Communication: Outcomes derived from the scenario-building require effective communication. 
+The communication stage involves sharing the results with stakeholders. 
+Under this dimension, energy planners will find guidance on how and when to use each tool during 
+the planning cycle.
+Resource requirements
+This dimension provides insights into the resources needed to implement each tool effectively:
+•	 Human expertise.
+•	 Financial and time allocations.
+•	 Technological infrastructure.
+Prerequisites
+This dimension addresses the essential conditions for achieving the objectives and desired outcomes 
+by implementing the tool.
+Practical considerations
+Based on the experiences collected, this dimension provides insights into:
+•	 Strengths: The activity’s advantages. 
+•	 Challenges: Potential obstacles or complexities that might arise in employing this tool.
+•	 Limitations: The inherent boundaries or weaknesses that shape the tool’s application. 
+Implementation example or evidence
+This dimension provides concrete examples and learnings from real case studies, highlighting specific 
+outcomes achieved, key lesson, success factors or common pitfalls observed.
+TOOL SELECTION DECISION FRAMEWORK 
+With numerous participatory tools available for energy planning, selecting the right approaches can be 
+challenging. This framework provides a flexible method to choose the most appropriate tools based on 
+your planning objectives, stakeholder priorities and available resources.
+The six-step process below helps you navigate from your initial planning goals through to practical tool 
+selection and evaluation, ensuring your participatory activities are both strategically aligned and feasible 
+within your constraints.
+STEP 1: Define your planning objective and phase
+Framing
+Development
+Validation
+Communication
+STEP 2: Identify priority stakeholders
+For each planning phase, identify which stakeholder groups are most critical.
+STEP 3: Assess available resources
+Evaluate the resources you can commit to participatory tools and activities.
+STEP 4: Select appropriate tools
+IF YOUR 
+OBJECTIVE IS TO…
+Multi-stakeholder 
+workshops, 
+steering 
+committees
+Expert interviews, 
+technical 
+working groups, 
+modelling 
+networks/hubs
+Interdisciplinary 
+committees, 
+workshops
+Visualisation 
+tools, targeted 
+brieﬁngs and 
+reports, 
+presentations
+Surveys, public 
+hearings, focus 
+groups
+Networks/hubs; 
+steering 
+committees; 
+working groups; 
+workshops
+Build 
+consensus 
+on policy 
+priorities
+Gather 
+specialised 
+technical 
+input
+Balance 
+competing 
+stakeholder 
+interests
+Communicate 
+complex 
+scenario 
+results
+Understand 
+public 
+acceptance 
+concerns
+Build 
+long-term 
+engagement
+CONSIDER 
+THESE TOOLS…
+STEP 5: Adapt to limitations and constraints
+Explore good practices and prerequisites identified in each tool’s subsection.
+STEP 6: Evaluate the benefits of the selection
+Develop and compare indicators to help measure the success of the choice to the planning process.
+4
+5
+6
+7
+8
+4.1	 KNOWLEDGE GATHERING
+4.1.1	 WORKSHOPS 
+Workshops provide structured environments for energy planners to facilitate engagement with many 
+different types of stakeholders, to share information, foster discussions and collect feedback. Workshops 
+help identify and map divergences and convergences between stakeholder groups. For example, Brazil 
+used virtual debates to identify key disagreements and develop scenarios that reflected different 
+perspectives. Finland used workshops to foster collaboration and transparency in their carbon neutrality 
+scenarios. Brazil also held workshops to present their National Energy Plan 2050, while Cyprus used 
+workshops to communicate scenario results to policy makers.
+Implementation stage
+Framing
+Development
+Validation
+Communication
+Resource requirements and prerequisites
+Workshops require dedicated, skilled facilitators with expertise in energy scenario development. 
+Adequate financial resources are also needed to cover logistics for stakeholder gatherings, including 
+location, technology, facilitation and possibly funding for attendance and related per diem payments. 
+Access to technology may also be necessary, depending on the format of the workshop. As demonstrated 
+in the case studies, the ideal format varies by setting. In some cases, physical meetings may be the 
+most effective way to facilitate participatory processes, fostering transparency and building trust in the 
+process, as was the case for developing the Ghanaian National Energy Plan. Other instances, like Chile’s 
+long-term energy planning , made use of a variety of online tools and platforms to engage stakeholders 
+at different stages of the energy planning process. In some instances, countries like Brazil employed a 
+hybrid approach, utilising both online and in-person workshops. 
+In all cases, it is important to map the required stakeholders depending on the workshop’s objectives, and 
+determine the format most appropriate for the stakeholders invited and the desired outcomes. Ensuring 
+confidentiality when necessary is also vital for building trust in the process. A preliminary engagement 
+phase may be useful for non-expert audiences, to build foundational knowledge and enhance participant 
+involvement through courses, tutorials, interviews or a combination of them. This also informs workshop 
+design and potential sources of tension.
+Practical considerations
+Strengths: Workshops are adaptable and flexible, allowing for diverse formats to meet specific needs. 
+Their interactive nature encourages active participation and may foster social acceptance. They engage 
+a wide range of stakeholders and promote social learning. In-person workshops can also foster informal 
+exchanges and relationships between participants, adding potential value for possible collaborations.
+Limitations: It might be difficult to translate qualitative discussions into quantitative inputs for scenario 
+development, risking the loss of key data that shape the produced scenarios. Expert participation can be 
+limited by time and availability, while resource constraints can also pose challenges.
+Challenges: Workshops may risk allowing misinformation, manipulation or reinforcement of biases (echo 
+chambers). Public settings might discourage marginalised voices from speaking up. Addressing these 
+challenges requires careful facilitation and inclusivity.
+Implementation evidence
+Numerous case studies illustrate how workshops have been used in participatory processes for energy 
+planning. These workshops varied in format, attendees and content. In Finland, VTT’s workshops focused 
+on vision and storyline development, using creative methods and formats. Participants, including national 
+industrial federations, contributed low-carbon sectoral roadmaps that fed into the national energy strategy. 
+Canada’s Energy Modelling Hub hosted workshops for energy modellers, policy makers, regulators and 
+system operators to facilitate discussions on planning for clean energy policies. In Colombia, multisector 
+dialogue forums were held that effectively brought together various departments under a regional context. 
+The World Energy Council held global scenario-weaving workshops, gathering stakeholders from academia, 
+government, industry and start-ups to co-create socio-political narratives for global energy scenarios. 
+Similarly, the Paris Agreement Compatible (PAC) project organised several workshops with CSOs, technical 
+experts and TSOs to develop a Paris-compatible energy scenario for Europe, but also to facilitate exchange 
+of knowledge, discuss methodologies and data, and compare the results of different modelling exercises.
+Some workshops addressed specific thematic areas, such as the Cyprus case, where academia, financial 
+institutions and the Ministry of Energy collaborated to prepare sector-specific policy briefs, including on 
+the job impacts of the energy transition. In the Chilean case, regional workshops and seminars engaged 
+with a wide range of stakeholders to discuss the outcomes of the national energy planning process. In one 
+project in Ireland, the researcher-led Deliberative Futures Workshops employed creative exercises like 
+community mapping and storyboarding, paired with expert-led presentations on climate issues, to foster 
+informed discussions and scenario creation over two weekends (LTES Network, 2022; Revez et al., 2021).
+Box 1	
+Ideas for interactive workshops
+World Café: Participants discuss topics at rotating 
+café-style tables, with hosts summarising previous 
+conversations. This process fosters diverse insights, 
+collaboration and the identification of effective actions.
+Transition simulator: Groups simulate different stakeholders and 
+propose actions in response to various scenarios. Used by the 
+World Energy Council, it helps stakeholders plan actions to meet 
+targets, such as net zero, while balancing their own interests.
+Me-We-Us: This method starts with individual work, moves to group 
+discussions, and ends with a collective conversation, promoting equal 
+participation and improving engagement, as shown in Finland’s case study.
+Futures Wheel: Ideal for complex issues, 
+this involves critical analysis, envisioning 
+potential futures and assessing the 
+practicality of ideas. It promotes social 
+learning and helps drive change, as seen 
+in Finland’s energy transition workshops.
+Narrative workshop: A 
+foresight lab blending scientific, 
+artistic and social elements, 
+this workshop uses storytelling 
+to reimagine energy futures, 
+encouraging participants to 
+integrate personal stories into 
+scenario planning.
+4
+5
+6
+7
+8
+4.1.2	 SURVEYS AND PUBLIC CONSULTATIONS
+Surveys provide a structured method for national energy planners to gather standardised information 
+and perspectives from a wide range of stakeholders. They offer a means of understanding public opinion, 
+collecting quantitative and qualitative data, and receiving feedback on energy plans and scenarios. For 
+example, Finland’s VTT employed large-scale surveys, including consumer surveys, as part of their 
+engagement activities for developing their carbon neutrality scenarios. The Chilean team also utilised 
+surveys to gather feedback on their energy planning process, aiming to incorporate diverse stakeholder 
+perspectives. The Ghanian Energy Planning Committee, similarly, leveraged surveys to inform their 
+energy transition planning, focusing on understanding stakeholder opinions and preferences.
+Implementation stage
+Framing
+Development
+Validation
+Communication
+Resource requirements and prerequisites
+To conduct surveys effectively, specialists with expertise in energy scenario development and data 
+collection are essential to define survey questions and guide the design process. Financial resources are 
+required to facilitate the surveys, particularly for in-person surveys. Online surveys may offer a lower-
+cost option, as many surveying tools are free, and can help reach a more geographically dispersed 
+set of stakeholders than who would otherwise be available to attend in-person sessions. However, 
+facilitating online surveys still requires expertise in survey design, must be mindful of data protection 
+law, and depends upon internet access. The preparation phase should include defining the survey’s main 
+objectives and identifying the target audience, whether citizens or expert stakeholders, and ensuring this 
+selection constitutes a representative sample. Thoughtful planning of the survey format (fully online, in-
+person gatherings, hybrid or by telephone) and method (group discussions or individual responses) will 
+help ensure engagement and relevance. To maximise the impact of the survey results, planners should 
+also consider how participants will be involved in subsequent stages of energy scenario development. 
+Practical considerations
+Strengths: Surveys can engage a diverse group of stakeholders, making them effective for gathering a 
+wide range of perspectives. They can be tailored to collect valuable data that inform energy scenario 
+modelling, and there are methodologies suited to various formats and contexts to ensure flexibility in 
+approach.
+Limitations: Accessibility can be an issue, especially for certain citizen groups who may lack access to the 
+necessary technology or resources to respond to these surveys. Additionally, some topics may need to be 
+simplified, which might exclude certain complexities from the energy modelling discussions.
+Challenges: Gaining meaningful inputs within a limited interaction period is a core challenge, as is defining 
+a sample that is representative of the broader population, especially if faced with limited participant 
+recruitment. Surveys may face sampling and framing biases, which could impact the representativeness 
+of the data. Crafting surveys that accommodate different levels of knowledge, especially for non-expert 
+participants, is essential to gather comprehensive and inclusive feedback. Longer surveys can help 
+planning teams develop deeper insights, but may be off-putting to respondents. Survey design must 
+therefore balance the need for data collection against the desirability of concise, targeted surveys or 
+identifying specific audiences to ensure effective engagement and accurate data collection.
+Implementation evidence
+Numerous case studies illustrate how surveys have been applied in participatory processes for energy 
+planning. These surveys varied in format, focus and target respondents. In Brazil, online surveys were 
+integrated into the National Energy Plan (PNE) 2050 through a three-month public consultation hosted 
+on the Ministry of Mines and Energy website. This survey invited feedback on the national energy planning 
+agenda, projections and governance issues, helping guide Brazil’s long-term energy strategy. The 
+Brazilian team also used surveys to collect feedback on draft energy scenarios, reaching a broad audience 
+beyond workshop participants. By gathering diverse perspectives through surveys, they ensured that the 
+energy planning process was more inclusive and reflective of stakeholder priorities. In Finland, survey 
+questions were designed to capture energy consumption patterns, preferences for energy sources and 
+public acceptance of emerging policies. In Ghana, surveys were employed to understand stakeholder 
+preferences and attitudes towards the energy transition. 
+Box 2	
+Examples of survey formats
+Online surveys: This option can be distinct in its type and audience. Online surveys may be used for the 
+collection of feedback with mass outreach in public consultations, or to reach certain stakeholders in 
+geographically dispersed locations. Their low-cost nature makes them widely used. 
+Deliberative survey: These aim to involve participants in an informed and structured dialogue on a specific 
+topic. This approach encourages discussion, the exchange of ideas and the thorough consideration of 
+diverse perspectives before reaching conclusions. They are utilised to foster thoughtful discussions and 
+informed deliberations among participants.
+Delphi panels: An iterative method of conducting surveys, Delphi panels are structured surveying 
+techniques that allows for reconsidering survey responses through different rounds of surveys. This can 
+facilitate social learning and a common understanding of convergences and divergences by experts and 
+policy makers. 
+Polls and ballots: These can be quick and convenient methods to gauge participants’ preferences and 
+priorities, without being too time-consuming or requiring details, and can be done either virtually or in-
+person.
+4
+5
+6
+7
+8
+4.1.3	 INTERVIEWS
+Interviews offer energy planners a focused method to deeply explore participants’ perspectives, opinions 
+and experiences in mostly one-on-one settings. They provide a platform for gaining detailed qualitative 
+insights, fostering a richer understanding of individual motivations and viewpoints, and uncovering 
+nuances that may inform energy plans and scenarios. The interview format is usually used to engage 
+industry or expert stakeholders as opposed to the general public due to being time-consuming. The 
+World Energy Council and Finnish energy planning processes both used interviews to understand 
+stakeholder preferences and to draft scenario narratives.
+Implementation stage
+Framing
+Development
+Validation
+Communication
+Resource requirements and prerequisites
+Conducting interviews requires expert support to design the structure and define questions that align 
+with the study’s objectives. Interviewers play a critical role in guiding dialogue, ensuring constructive 
+dialogue and keeping participants focused on the objectives of the discussion. In the preparation phase, 
+the primary goals of the interview must be clearly defined and the target groups identified – whether 
+they are citizens, stakeholders or subject matter experts. Careful planning of the interview approach, 
+including whether it will be structured, semi-structured or informal, is essential to ensure relevance and 
+engagement. Additionally, it is important to consider how participants’ input will feed into subsequent 
+stages of energy scenario development. Confidentiality measures should also be established to create a 
+safe and open environment for participants, particularly when sensitive topics are discussed.
+Practical considerations
+Strengths: Interviews allow stakeholders to express their individual views in detail, making them 
+particularly effective for gathering qualitative and descriptive data. This format fosters meaningful 
+conversations, enabling participants to articulate their motivations and identify potential divergences. 
+By offering a space for focused discussion, interviews can generate in-depth insights that are valuable 
+for understanding complex issues in energy scenario planning.
+Limitations: One major limitation of interviews is the small number of participants typically involved, 
+which can limit the diversity of perspectives captured. Interviews are also time-intensive, both in 
+conducting and analysing the discussions, which can strain resources. Additionally, interviews lack the 
+group dynamics that can reveal new information, help build consensus or evolve collective opinions, 
+potentially leaving gaps in understanding.
+Challenges: Interpreting and translating interview findings into actionable insights for quantitative energy 
+scenarios can be complex. Ensuring balance between diverse opinions within the same stakeholder group 
+is another challenge. 
+Implementation evidence
+Interviews are a powerful method for collecting qualitative data and gaining in-depth insights. Several 
+countries and organisations incorporate them into participatory processes for developing scenarios. For 
+instance, the United Arab Emirates uses bilateral interviews and discussions to ensure alignment between 
+national long-term energy plans and the mid-term strategies of regional utilities. Finland’s VTT leverages 
+interviews to capture individual stakeholder perspectives, opinions and experiences. Similarly, the World 
+Energy Council employs interviews to craft narratives for their energy scenarios.
+Box 3	
+Types of interviews
+4
+5
+6
+7
+8
+4.2	 CO-CREATION
+4.2.1	 INTER-INSTITUTIONAL STEERING COMMITTEES, TASK FORCES AND 
+WORKING GROUPS
+Several countries co‑ordinate their energy planning through inter-institutional committees (including 
+public and non-public organisations) to bring their unique expertise, data and viewpoints to the table. 
+Working together helps create a more comprehensive, aligned and interconnected understanding of 
+the long-term energy scenarios, which supports the quantification of socio-political insights and their 
+inclusion in energy scenarios and planning. Many of these examples are outlined in previous reports (on 
+Africa, Latin America and Asia), as well as in the case studies in this toolkit. Also, the PAC consortium 
+established an advisory committee consisting of sector experts, which accompanied the project and 
+scenario development and provided commentary, challenged the results and enriched the work with 
+further insights.
+Implementation stage
+Framing
+Development
+Validation
+Communication
+Resource requirements and prerequisites
+Effective inter-institutional planning committees and working groups require dedicated institutional 
+resources to ensure sustained engagement for operational activities and other extraordinary needs. To 
+function effectively, the planning committee requires: a well-structured core team with clear leadership; 
+secure participation of key ministries, such as energy or environment; and strategic engagement with 
+external technical expertise. Formalising the committee along with the associated roles, responsibilities, 
+objectives, resources and constraints is crucial to achieving legitimacy and longevity. Participants should 
+commit to the process for its duration.
+Practical considerations
+Strengths: Committees bring together diverse expertise (Figure 5), making them well-suited to 
+addressing complex issues critical to the energy transition. Committees’ collaborative nature enables 
+the integration of multiple perspectives, which can foster stronger consensus-building and more 
+comprehensive solutions. They also have a clear mandate, enhancing communication, reduce the risk of 
+conflicting policies and build a strong case for implementation and funding allocation.
+Challenges: Committees may have slow decision-making processes with limited flexibility, and can be 
+resource intensive. The efficiency and effectiveness of committees may suffer due to internal power 
+dynamics or a lack of mutual understanding among members, which can hinder collaboration. Sustaining 
+enthusiasm and commitment over a prolonged period is another common challenge. Additionally, the 
+prioritisation of certain disciplines, sectors or policies over others can reflect self-interest, potentially 
+skewing the outcomes.
+Limitations: Large committees or those with disproportionate representation from different energy 
+sectors can limit effectiveness by slowing decision making, narrowing perspectives or creating imbalances 
+in stakeholder influence. Differences in participants’ knowledge of energy scenario development can also 
+create disparities in contributions. Impartiality may also be compromised, depending on the leadership 
+and mandate guiding the committee’s work.
+Implementation evidence
+Countries worldwide have adopted various approaches to structuring transdisciplinary, cross-sectoral 
+and cross-ministerial committees and working groups to promote participatory energy planning. For 
+instance, Cyprus employs a hierarchical system of technical committees feeding into ministerial decision 
+making, ensuring that insights from diverse domains inform policy. Ghana’s Energy Planning Committee 
+integrates multiple economic sectors, underscoring a holistic approach. In another case study presented 
+in LTES activities, Botswana presented a multi-sectoral steering committee, including members from 
+the power utility, environment ministry and private sector, to oversee long-term energy scenario 
+development (IRENA, 2023c). These examples highlight the significance of inter-sectoral collaboration 
+in crafting effective energy plans.
+Figure 5	
+Possible participants in a working group or steering committee
+Notes:	
+LT-LEDS = Long-Term Low Emission Development Strategies; NDC = Nationally Determined Contribution.
+4
+5
+6
+7
+8
+4.2.2	 NETWORK/HUBS
+Establishing a network or hub involves the creation of a temporary or permanent structure to co‑ordinate 
+activities, share knowledge and build a modelling ecosystem. Canada leverages its Energy Modelling Hub 
+(EMH), a university-based structure, to connect modelling experts with clean energy policy makers. This 
+hub fosters dialogue among energy modellers, policy makers and other stakeholders through various 
+engagement activities, including an annual forum, regional and modelling workshops, and thematic 
+committees.
+Implementation stage 
+Framing
+Development
+Validation
+Communication
+Resource requirements and prerequisites
+Establishing and maintaining collaborative networks requires sustained funding to support both 
+permanent and temporary staff, as well as activities such as workshops and meetings. Adequate 
+technology infrastructure, including software for online engagement and shared databases, tools or 
+models, is essential for effective co‑ordination and collaboration. A strong governance structure with 
+expertise in relevant topics is necessary to steer activities and provide vision, while open communication 
+channels enable co‑ordination and networking among participants. Political will at various levels is 
+critical to foster connections and ensure alignment with broader goals. Additionally, recognising and 
+accommodating resource disparities among network members helps maintain inclusivity and balance. 
+A robust monitoring and evaluation mechanism is also required to assess progress and ensure network/
+hub objectives are met.
+Practical considerations
+Strengths: Collaborative networks provide a platform for regular interaction among technical civil 
+servants, policy makers and academics, fostering alignment and avoiding duplication of efforts. These 
+networks leverage the diverse capacities, strengths and scrutiny of participating institutions, enabling 
+more relevant and impactful contributions to energy planning.
+Challenges: Sustained funding requirements can be substantial, posing a barrier to long-term operation. 
+Differing institutional priorities may complicate co‑ordination and alignment of objectives. Political will 
+is a crucial factor in ensuring the network’s outputs contribute effectively to governmental goals and 
+visions.
+Limitations: These networks are best suited for ongoing collaboration rather than singular projects. The 
+success of formalised networks and hubs relies heavily on the sustained commitment of a broad and 
+diverse group of members, making continuity a potential vulnerability.
+Implementation evidence
+Canada, the World Energy Council and the PAC consortium all use networks and hubs to support their 
+energy scenario development and communication processes. Canada’s Energy Modelling Hub (EMH), a 
+university-based network, connects modelling experts with policy makers and stakeholders to build a 
+shared understanding of sustainable energy systems. This collaborative approach, featuring an annual 
+forum and thematic committees, fosters dialogue and knowledge exchange among a wide range of 
+participants and informs national and provincial energy planning and policy making directly. The World 
+Energy Council applies a different approach, using its country committees to organise activities and tools 
+to engage stakeholders in interactive simulations and discussions. These activities allow participants from 
+business, civil society, government and investment sectors to explore different pathways to the energy 
+transition, fostering a shared understanding of the challenges and opportunities involved, showcased 
+in their World Energy Scenarios. The PAC, focused on a Paris-compatible energy scenario for Europe, 
+leverages its consortium structure, which includes prominent environmental NGOs and TSOs. This 
+network facilitates knowledge exchange among modellers and system planning experts and empowers 
+civil society organisations to influence policy discussions through developing ambitious Europe-wide 
+net-zero scenarios.
+Box 4	
+Possible activities and outputs
+Capacity-building sessions
+Joint scenario 
+development activities
+Model and scenario comparison 
+sessions (e.g. to explore a 
+certain policy or target)
+Open-source modelling 
+platforms
+Shared datasets for 
+energy modelling
+Thematic workshops 
+and forums
+4
+5
+6
+7
+8
+4.3	 DISSEMINATION
+4.3.1	 PUBLIC PRESENTATIONS AND REPORTS
+Scenario practitioners use public presentations as a strategic tool throughout the energy scenario 
+development process to inform, engage and, in many cases, gather feedback from stakeholders. These 
+presentations, public hearings and reports typically include introductory sessions to outline the process, 
+updates during intermediate stages to share progress and solicit input, and discussions of partial or final 
+outcomes to present findings and encourage dialogue. Public presentations are essential for effectively 
+communicating with non-expert audiences and fostering broader stakeholder buy-in.
+Implementation stage
+Framing
+Development
+Validation
+Communication
+Resource requirements and prerequisites
+Conducting presentations requires planning teams to deliver clear and engaging content, and calls 
+for skilled communication, possibly through dedicated communication and external relations teams. 
+Technological support may also be necessary to enhance presentations, especially for online formats. 
+Specific objectives should be outlined in advance, including introducing the participatory process for 
+energy scenario development, presenting progress, gathering feedback on preliminary results and 
+communicating final outcomes. Additionally, a well-defined methodology for collecting and incorporating 
+audience feedback is essential to improve the energy scenarios being developed.
+Practical considerations
+Strengths: Presentations provide an opportunity to educate non-expert groups about energy scenario 
+development, fostering greater understanding and engagement. They also serve as a platform to gather 
+feedback from a broad audience, including stakeholders who might otherwise not participate. Online 
+presentations, in particular, offer a highly efficient way to reach even larger and more diverse audiences.
+Challenges: Crafting an appropriate narrative is key to effectively describing the energy scenario 
+modelling process and its outcomes, especially for non-expert audiences. Presenters must employ non-
+technical language and ensure clarity to communicate complex ideas in an accessible manner.
+Limitations: Due to the nature of public presentations and the diverse audience, it may be necessary to 
+limit the depth and complexity of the content. Additionally, the time available for presenting extensive 
+results or content or answering questions can be constrained, potentially limiting the scope of the 
+discussion.
+Implementation evidence
+Dissemination is a common feature across all case studies, but it is important to note the variation in how 
+countries strategically combined different tools to effectively engage stakeholders. These tools were 
+tailored to target specific audiences and achieve their objectives while integrating methods such as the 
+workshops, surveys and public consultations discussed earlier. For example, Cyprus prepared concise 
+policy briefs tailored for ministries and national authorities, as well as sector-specific briefs addressing 
+topics such as employment policy and energy transition impacts. Brazil leveraged virtual debates during 
+the development of its National Energy Plan 2050 to highlight diverse perspectives and build consensus 
+through participatory processes such as workshops and public consultations. Additionally, Chile held 
+various public hearings to ensure broad stakeholder engagement.
+Box 5	
+Tools for publicly presenting and discussing scenarios
+Public hearings: Formal gatherings provide a platform for government agencies or 
+other project/scenario developers to present information and proposals related to 
+energy plans or policies to the public. These hearings are also an opportunity for the 
+public to give feedback, express concerns and ask questions. The hearings can also 
+be easily advertised on social media.
+Online conferencing tools: Virtual conferencing tools, such as webinar platforms, 
+can broaden the outreach and delivery of information regarding energy plans 
+and scenarios to a much wider audience as compared to in-person events. Online 
+conferences provide similar opportunities to public hearings with regard to feedback 
+sharing and the ability to ask questions, with potentially lower financial and resource 
+requirements related to hosting the event itself.
+Reports and publications: Written publications can deliver highly detailed 
+information about energy plans and scenarios, providing full narratives, details about 
+the assumptions and data, and visualisations showcasing different scenarios and 
+results. Such reports can be highly useful for stakeholders with the required technical 
+knowledge, and can provide a clear reference for building on this work if needed.
+4
+5
+6
+7
+8
+4.3.2	 VISUALISATION TOOLS, GAMES AND SIMULATIONS
+Detailed energy system plans can be data-heavy and difficult to interpret for non-experts due to the 
+highly technical nature of energy system planning. Countries have highlighted that visualising data, 
+pathways and results can be vital to communicating complex ideas, policy-making implications and 
+investment needs. This can be achieved through a variety of methods, including public-oriented charts 
+and graphs, interactive dashboards, and simulations and games.
+Implementation stage
+Framing
+Development
+Validation
+Communication
+Resource requirements and prerequisites
+Developing and utilising interactive visualisations requires access to appropriate technology, including 
+necessary licences and subscriptions, as well as sufficient knowledge and capacity to create and interpret 
+the tools. To ensure successful engagement, clear instructions should be provided to the audience on 
+how to interpret and interact with the tools. It is also essential to define key concepts related to energy 
+scenarios and to highlight the information most relevant to different stakeholder groups. For example, 
+stakeholders interested in affordability may benefit from having scenario results presented in terms of 
+energy prices and how different scenario developments would affect the average household cost of 
+energy in the short, medium and long term.
+Practical considerations
+Strengths: Interactive visualisations complement and enhance storytelling, capturing the audience’s 
+interest through engaging and dynamic presentations. They provide an effective way to reach a 
+broader audience, particularly non-expert groups, by making complex information more accessible and 
+interactive.
+Challenges: Creating effective visualisations requires dedicated training and expertise, which may not 
+always be available within the planning team. Alternatively, outsourcing the task to specialised contractors 
+incurs additional financial cost. Ensuring high-quality visualisation while balancing these personnel and 
+financial constraints can be challenging.
+Limitations: Interactive visualisations depend on reliable internet access and may require accompanying 
+educational resources, as seen in the Belgian case for the “My2050” app. Furthermore, as a one-way 
+communication tool, they may not fully address audience questions or provide opportunities for dialogue, 
+limiting their explanatory potential.
+Implementation evidence
+It is important to tailor the visualisation of energy scenarios to the objectives and the needs of the target 
+stakeholders. While experts, academics and financial institutions might benefit from detailed charts 
+with downloadable data for in-depth analysis, non-expert audiences such as students and the general 
+public often find game-like tools and interactive calculators more engaging and accessible. This flexibility 
+ensures that scenario communication is both effective and inclusive.
+For example, most countries employ simple, clear graphs to illustrate the impacts of energy scenarios 
+on factors such as renewable energy share and electricity costs, making the information accessible to a 
+broad audience. The calculators used by Belgium and Kenya take an interactive approach, enabling users to 
+manipulate variables and assumptions, demonstrating how different inputs influence emissions and energy 
+outcomes. This hands-on interaction fosters a deeper understanding of energy plans and policies.
+Some countries have gone further by “gamifying” scenario communication. The International Energy 
+Agency (IEA) in collaboration with the Financial Times has developed a climate role-playing online 
+game, while activities like the COP Simulations allow participants to explore different policies and 
+behaviours interactively and in-person. The United Arab Emirates also built an interactive board game to 
+communicate scenario results to high-level policy makers (IRENA, 2020). These gamified tools simplify 
+complex technical concepts, making them more engaging and understandable, especially for non-
+expert audiences. By presenting the energy transition in an interactive and experiential format, they help 
+demystify intricate processes and foster broader engagement.
+Other examples are also showcased in Chapter 7.
+Box 6	
+Tools for visualising and gamifying energy scenarios
+Data visualisation tools: Business intelligence (BI) tools, such as Tableau and 
+PowerBI, statistical software such as R and Stata, and other tools such as Excel and 
+Python, have all been used to visualise quantitative data in colourful charts and 
+graphs that can be easily read and navigated when hosted on online platforms such 
+as dashboards, or in static media such as publications.
+Energy calculators: Energy calculators can be used to allow users to manipulate 
+different assumptions and triggers to form their own scenarios. It gives users 
+the ability to see how adjusting different inputs can lead to different results and 
+emissions, giving them a better understanding of plans and policies, as well as 
+giving them an indication of how their own behaviour and role can affect the energy 
+transition.
+Simulations and games: Simulations and games have been developed to “gamify” 
+scenario communication, allowing users to play games that navigate the energy 
+transition by presenting different policies and behaviours in an interactive manner, 
+leading to a better understanding of more technical concepts. These simulations 
+and games can be developed for digital deployment to reach a broad audience and 
+benefit from continuous updating, or can be developed for analogue play to build a 
+general understanding about the trade-offs facing energy system planners.
+5. CASE STUDIES
+This chapter presents case studies of participatory processes conducted by government and non-
+government institutions, as shared during exchanges within the LTES Network and beyond. This chapter 
+makes clear reference to the tools and stakeholders in the participatory process mentioned in previous 
+chapters. It aims to present real-life examples of participatory processes that involved a wide range of 
+stakeholders and included innovative tools to ensure inclusivity and engagement. The main focus is 
+on national scenario development processes; however, examples of non-government processes were 
+included to provide novel and unique applicable methodologies and cross-cutting lessons learnt.
+Understanding the case studies
+Each case study is divided into four main components, outlining different aspects of stakeholder 
+engagement:
+1.	 At the top of the first page, icons are used to represent the different stakeholders that may be 
+engaged (see Chapter 3), and their level of engagement is highlighted via a greyscale colour system.
+Finance Scientific institutions Grid operators
+Public
+Policy makers
+CSOs/NGOs Industry
+2.	The first page then consists of the executive summary, which contains the following elements:
+a.	Short description of the participatory process and the challenge it aims to address.
+b.	Governance – the institution that co‑ordinated this process, and the other institutions that 
+were involved. 
+c.	Scope – the geographical and sector scope of this process.
+d.	Objectives – the purpose of holding this participatory process.
+e.	Engagement activities – the tools and activities used throughout this process.
+f.	 Key outcomes – the main results of this process.
+g.	Resources – the financial, human and technological resources used.
+3.	The second page of each case study visualises the participatory process in the example. The first 
+column (in blue) indicates inputs into the process, the second column (in green) indicates the 
+process itself and its related activities, and the third column (in orange) indicates the outcomes of 
+the activities and the complete process. Arrows are used to indicate the stages of these processes 
+and any iterative or bilateral interaction between different elements.
+4.	At the bottom of the second page, highlights and lessons learnt from these procedures are outlined 
+as presented by the organising institutions.
+Table 1 acts as a “cheat sheet” to allow the user to navigate to the case study most relevant to their own 
+context.
+Table 1	
+Summary of case studies
+5
+6
+7
+8
+5.1	
+BELGIUM
+Scenarios as a communication tool: how Belgium utilises an interactive participatory process to 
+communicate climate and energy transition topics to the country’s youth
+Youth constitute a vital driver for the energy transition. The Climate Change Department of the Federal 
+Public Service Health, Food Chain Safety and Environment aimed to develop a strategy to engage citizens, 
+especially youth, as a way to increase awareness and education through its energy and climate scenario 
+work. Under the “Low Carbon Belgium by 2050” initiative, the Belgian government has developed their 
+version of My2050, a “calculator” tool enabling citizens and students to envision their own transition 
+scenarios towards a sustainable future. In 2023, the My2050 tool was updated to allow students to 
+explore net-zero scenarios for Belgium by 2050.
+Overview of tool’s history: www.imperial.ac.uk/2050-calculator/history/. 
+ 
+ 
+ 
+ 
+ 
+ 
+Process
+• Scenarios for a low 
+carbon Belgium by 
+2050 (2013)
+• Vision and strategic 
+workstreams for a 
+decarbonised Belgium 
+by 2050 (2020)
+• Scenarios for a 
+climate neutral 
+Belgium by 2050 
+(2021)
+My2050 tool
+Outreach to students:
+• Promotion and training 
+in secondary schools
+• Animation sessions
+• Meeting to exchange 
+experiences
+Inputs
+Process and activities
+Outcomes
+Note:	
+GHG = greenhouse gases
+Highlight
+Outreach to students through an interactive tool ensures planners reach a broad slice of society who will 
+be active changemakers in the years to come.
+Lessons learnt
+1.	 Engaging school children ensures broader citizen participation and enhances knowledge and 
+awareness of the energy transition and an understanding of complex energy scenarios.
+2.	 Transfer of training and teaching knowledge from energy planners to teachers can ensure long-
+term sustainability of this activity and a broader reach and impact.
+3.	 Discussing climate neutrality scenarios with pupils is an effective way to communicate important 
+information to both parents and children, fostering a deeper understanding of energy and climate 
+transition across generations.
+5.2	 BRAZIL
+Partnerships for stakeholder-led net-zero scenarios: how Brazil leveraged a diverse partnership 
+between government, financial institutions and the scientific community to develop a consensus-
+based energy roadmap
+The first phase of the Energy Transition Programme (PTE), run jointly by the Inter-American Development 
+Bank (IDB), the Brazilian Centre for International Relations (CEBRI) and the Energy Research Office (EPE), 
+was established to assess the constraints and the potential of Brazil’s energy transition and to offer an 
+independent and open contribution to the formulation of public policy geared towards Brazil’s energy 
+mix in 2050.
+ 
+ 
+ 
+ 
+ 
+ 
+Process
+White paper 
+consolidating the insights 
+obtained
+Three net-zero scenarios 
+and nine policy 
+recommendations
+Inputs
+Process and activities
+Outcomes
+Notes:	
+CEBRI = Brazilian Centre for International Relations EPE = Energy Research Office; IDB = Inter-American 
+Development Bank.
+Highlight
+A jointly developed scenario study between government, a multilateral finance institution and a think 
+tank leveraged the strengths of each institution in a collaborative manner, bringing in various other 
+stakeholders to shape the scenario’s narrative, improve its quality and expand data availability.
+Lessons learnt
+1.	 Online tools for virtual conferencing and polling were highly effective for reaching stakeholders 
+across the country.
+2.	 Completing the necessary surveys within a workshop was more effective than outside workshop 
+hours due to the limited time participants have available.
+3.	 Workshop design should be compatible with specific objectives, for example informing and 
+aligning on a certain topic or promoting deep exploration of topics and debate.
+5.3	 CANADA
+Collaboration with the scientific community: how Canada leverages its diverse energy modelling 
+capacities for co‑operative scenario development
+With the second-largest land mass in the world and a diverse range of energy resources, Canada faces 
+unique challenges in transforming its energy system. Its federal structure, which grants significant 
+political autonomy to its ten provinces, adds complexity to national energy planning and co‑ordination. 
+In response, Natural Resources Canada (NRCan) established the Energy Modelling Hub (EMH) in 2022 
+as a national forum to co‑ordinate energy modelling efforts across the country. EMH serves as a network 
+of energy and electricity modellers, policy makers and experts dedicated to guiding Canada’s transition 
+to a net-zero economy. Its mission is to bridge the gap between public policy and energy modelling 
+communities by facilitating dialogue, enhancing access to modelling expertise, and promoting the use 
+of open-source tools and data. By fostering collaboration and providing timely, evidence-based insights, 
+EMH supports informed decision making to advance a decarbonised, affordable, reliable and equitable 
+energy system for Canada.
+ 
+ 
+ 
+ 
+ 
+ 
+Process
+National network of 
+energy and electricity 
+modelers, policy makers 
+and other experts for:
+a. convening, 
+collaborative 
+engagement and 
+networking
+b. capacity building and 
+transfer and rapid 
+response service
+c. open-source models, 
+data maintenance 
+and expansion
+Inputs
+Process and activities
+Outcomes
+Highlight
+The EMH Forum and workshops successfully convened hundreds of energy modellers, government 
+civil servants and policy makers, fostering a direct exchange of insights within the national modelling 
+ecosystem to inform and respond to policy questions.
+Lessons learnt
+1.	 An institutional approach combined with “co‑operative federalism” aligns effectively with Canada’s 
+constitutional requirements, facilitating co‑ordinated energy planning across provinces.
+2.	 The rapid pace of technical change and interdependencies demands input from a diverse range of 
+experts, including those specialising in labour, supply chains and land use.
+3.	 Open-source models and data play a critical role in enhancing transparency and credibility, 
+enabling broader participation and scrutiny in the energy planning process.
+4.	 Longer-term funding commitments are essential to sustain progress and ensure the continuity of 
+collaborative efforts.
+Prioritising public engagement: how Chile’s engagement strategy allows its people to actively 
+contribute to planning a just and inclusive energy system
+Chile’s Ministry of Energy aims to enhance citizen and minority involvement in shaping public policy. 
+This commitment to broadening participation was critical to the development of the Long-Term 
+Energy Plan (Planificacion Energética de Largo Plazo, PELP). It includes developing LTES, pinpointing 
+development zones for electricity generation, and forecasting energy demand and supply. This inclusive 
+approach ensures diverse perspectives are considered, making energy policies more representative and 
+comprehensive.
+ 
+ 
+ 
+ 
+ 
+ 
+Process 
+Draft Long-Term 
+Energy Plan (2021)
+Final report (2024)
+Interests, trends and 
+limitations
+Publication of 
+preliminary report
+Inputs
+Process and activities
+Outcomes
+Highlight
+Chile’s Citizen Consultation Registry is an online platform where individuals and organisations formally 
+register to participate in the energy planning process. Registrants gain access to all PELP documents and 
+can submit suggestions and comments throughout the process. The registry collects data on participants’ 
+region, gender and organisational affiliation, allowing the government to monitor representation and 
+strategically improve participation from underrepresented segments of society.
+Lessons learnt
+1.	 Multidisciplinary teams in the planning process are essential for success. Chile’s approach integrates 
+experts from technical and social disciplines to design strategies that address both the technical 
+aspects of energy planning and the specific needs of diverse stakeholder groups.
+2.	 Participation’s impact relies on the chosen methodology of engagement.
+3.	 This approach has successfully advanced citizen involvement in strategic decisions by enabling the 
+ministry to collect input from traditionally underrepresented groups.
+5.5	 COLOMBIA
+Shifting from national to territorial focus: how Colombia’s energy planning incorporates social 
+dialogue and intersectional approaches to drive a just energy transition
+Colombia’s energy sector is in transition, moving from a focus primarily on energy reliability and 
+maximising revenue from coal and oil, to addressing climate goals while ensuring development across 
+all regions of the country. The Unidad de Planeación Minero Energética (Mining Energy Planning Unit) 
+(UPME) leads this transformation with a participatory approach to planning that emphasises territorial 
+inclusion, particularly for previously marginalised regions and indigenous communities.
+ 
+ 
+ 
+ 
+ 
+ 
+Process
+Inputs
+Process and activities
+Outcomes
+Notes:	
+EE = energy efficiency; LEAP = Low Emissions Analysis Platform; OSeMOSYS = open source energy modelling 
+system; PEN = Plan Energético Nacional; PIEGT = Planeamiento Integrado de la Expansión en Generación y 
+Transmisión; PNSL = Plan Nacional de Sustitución de Leña; PIEC = Plan Indicativo de Expansión de Cobertura 
+Energética; RE = renewable energy.
+Highlight
+Colombia’s innovative “focal points” strategy places UPME staff members directly within communities 
+across the country, creating continuous channels of communication that build trust and strengthen 
+engagement. These focal points belong to the communities they serve, which enables UPME to maintain 
+ongoing dialogue with regions that were previously underrepresented in energy planning processes.
+Lessons learnt
+1.	 Shifting from a purely technical approach to an integrated territorial framework requires multi-
+sectoral dialogue and strategic deployment of focal points living within communities to facilitate 
+ongoing engagement.
+2.	 Incorporating socio-environmental variables into energy planning models is essential for a just and 
+sustainable transition, particularly in a country with high renewable energy potential but significant 
+developmental disparities.
+3.	 A skilled moderator is vital to ensure that engagements with communities – which are usually 
+limited in time – are efficient, gather useful insights and priorities, and do not veer off-topic.
+4.	 Continuity of focal points is still challenging. The territorial framework must be constantly revised 
+for improvement and to ensure continuity and stability.
+5.6	
+CYPRUS
+Reports and briefs for delivering information: how Cyprus utilises concise publications and other 
+materials to communicate scenario results to policy makers
+Policy makers and finance ministries sometimes have limited time to read and analyse energy and climate 
+plans in order to inform their decision-making. The Cyprus National Energy and Climate Plan involves a 
+comprehensive process of stakeholder engagement and information dissemination, primarily focused on 
+the intricacies of energy transition and financing.
+Example: www.cyi.ac.cy/index.php/stedi-rc/research-information/stedi-rc-scientific-publications/climate-
+policy-is-good-economic-and-social-policy. 
+Example: https://repository.cyi.ac.cy/bitstream/CyI/2496/1/Zachariadis_PlanBleu_Jan2025.pdf. 
+ 
+ 
+ 
+ 
+ 
+ 
+Process
+Visualisation tools
+Sector-speciﬁc policy briefs
+Collaboration 
+between ministries 
+and academia
+Inputs
+Process and activities
+Outcomes
+Highlight
+The Cyprus Institute produces short and concise briefs that provide model-supported insights into 
+proposed policies and measures, frequently targeting specific sectors present in its scenarios. For 
+example, for advising on the suggested increase in the biofuel blend, the institute would produce a brief 
+concerning the projected impact on automotive fuel prices.
+Lessons learnt
+1.	 The involvement of key government departments, such as the Ministry of Finance, in energy 
+planning ensures streamlined communication and effective integration of financial considerations 
+into energy policies.
+2.	 Employing clear and concise communication tools, like policy briefs with key indicators and simple 
+visual aids, is essential for effectively conveying complex energy scenarios and their implications 
+to diverse stakeholders.
+3.	 Enhancing stakeholder participation supports proactive planning – e.g. to reconcile green energy 
+development with environmental concerns, to mainstream energy transition goals within public 
+investment, and to plan for the construction of enabling infrastructure.
+5.7	
+FINLAND
+Research institutions as primary conveners: how Finland utilises the capacity of VTT Research Centre 
+to develop energy and climate scenarios based on extensive stakeholder engagement with different 
+sectors
+Finland has an ambitious target to reach net-zero by 2035, and such a rapid transition requires a well-
+informed and robust approach that involves all stakeholders. VTT Technical Research Centre of Finland, 
+a state-owned research company, supports the government of Finland by combining qualitative foresight 
+methods with quantitative scenario modelling in interactive processes with stakeholders and decision 
+makers to develop their strategies.
+ 
+ 
+ 
+ 
+ 
+ 
+Process
+Inputs
+Inputs and comments
+Long-term energy 
+scenario published
+Inputs
+Process and activities
+Outcomes
+Highlight
+A long-standing history of facilitating active dialogue to achieve stakeholder involvement in scenario 
+development has encouraged stakeholders from different industries and areas to consistently engage in 
+planning activities. This approach showcases how local industries and other stakeholders can effectively 
+contribute to energy planning, with key learnings on how system specifics can be included with greater 
+accuracy.
+Lessons learnt
+1.	 A well-structured process is key, covering scenario formulation, data gathering, analysis and 
+feedback loops.
+2.	 The development of LTES, being a complex and multidisciplinary problem, demands 
+multidisciplinary skills to effectively engage with different stakeholders.
+3.	 Involving stakeholders, including citizens, is vital. Given limited resources, effective prioritisation 
+of engagement at different stages is essential (see Chapter 4 to explore use of tools at different 
+stages of energy planning).
+5.8	
+GHANA
+Consultation as a strategic approach: how Ghana leverages structured stakeholder participation in 
+energy transition planning
+Ghana has a Strategic National Energy Plan initiative, led by the country’s Ministry of Energy, which 
+demonstrates a commitment to achieving climate neutrality by 2070. The Energy Commission, 
+established under the Energy Commission Act 541 and the Ministry of Energy, provides the technical 
+support for modelling, scenario development and analysis. The whole planning process is characterised 
+by intensive stakeholder engagement, co‑ordinated by the Energy Commission. The process ensures the 
+involvement of a diverse group of stakeholders, including regulatory agencies, legislators, the judiciary, 
+utilities, policy makers, civil society organisations, the private sector and international partners, with the 
+goal of achieving a sector-wide consensus.
+ 
+ 
+ 
+ 
+ 
+ 
+Process
+Final National 
+Energy Plan
+Final draft of the 
+plan
+Feedback
+Inputs
+Process and activities
+Outcomes
+Highlight
+Clear stakeholder mapping and identification allowed a targeted and catered approach to engaging 
+stakeholders, fostering trust in and the legitimacy of the process. The Energy Commission identified 
+and invited specific organisations from different categories, including government ministries, regulatory 
+bodies, state enterprises, private sector companies, NGOs, academic institutions and media organisations. 
+Participants are then strategically assigned to relevant committees and groups based on technical 
+expertise and sectoral knowledge.
+Lessons learnt
+Physical meetings with stakeholders are the most effective way to facilitate participatory processes in 
+Ghana, conducted through consultative workshops and committee sessions, fostering transparency 
+and acceptability of energy plans.
+1.	 Engaging in participatory processes allows for the analysis of various risks and uncertainties related 
+to energy planning.
+2.	 Building relationships and trust with stakeholders is a time-consuming but crucial aspect of 
+successful participatory energy policy development.
+5.9	
+PANAMA
+Stakeholder consultation to democratise energy planning: how Panama embraced an inclusive and 
+dynamic stakeholder outreach plan to enhance market and community acceptance
+Under the context of its National Energy Plan (PEN) and Energy Transition Agenda (ATE), Panama 
+aimed to achieve societal buy-in for grid expansion and renewable energy to address energy access and 
+energy poverty. In response, the Secretariat of Energy initiated a robust engagement process, investing 
+15 000 hours in consultations and developing a strategic plan with stakeholders for grid innovation to 
+ensure the success of the new energy plan across diverse communities.
+This figure represents the total consultation time invested by Panama’s Secretariat of Energy, conducted 
+over three years, involving workshops and evaluation sessions with diverse stakeholders including civil 
+society, academia, private sector, indigenous communities and government entities. The consultations 
+specifically focused on developing five strategies for the power sector and two for the hydrocarbon sector. 
+A key component was analysing opportunities and challenges in grid modernisation and energy access. 
+ 
+ 
+ 
+ 
+ 
+ 
+Process
+Update to the National 
+Energy Plan (2015-2025)
+Inputs
+Process and activities
+Outcomes
+Highlight
+Extensive consultations across the country with often-neglected groups, within a clear framing of 
+democratising the energy transition in Panama.
+Lessons learnt
+1.	 Investing significant time and resources in consultations ensures that issues like energy access and 
+poverty are addressed comprehensively by incorporating diverse perspectives.
+2.	 Explicitly including marginalised groups in the process promotes a democratic transition and 
+ensures representation from all sectors of society. This was done by including indigenous and rural 
+populations through direct engagement and on-the-ground focus groups.
+3.	 Prioritising public acceptance and support is critical for the success of initiatives like grid expansion 
+and renewable energy projects.
+Leveraging a bottom-up and top-down stakeholder engagement strategy: the United Arab Emirates’ 
+innovative approach to integrating utilities into its energy vision
+For its UAE Energy Strategy 2050, the United Arab Emirates needed to include existing grid expansion 
+plans and limitations within their long-term energy scenarios to develop more realistic pathways. The 
+Ministry of Energy and Infrastructure implemented a sophisticated stakeholder engagement process, 
+utilising a bottom-up approach for achieving short- to medium-term goals and a top-down approach for 
+long-term objectives. 
+ 
+ 
+ 
+ 
+ 
+ 
+Process
+Development of 
+scenarios and 
+national plan
+Inputs
+Process and activities
+Outcomes
+Top-down
+Bottom-up
+Highlight
+Early and proactive engagement with utilities enables the United Arab Emirates to integrate existing 
+plans while establishing clear, strategic targets for utilities and stakeholders. This approach ensures 
+alignment with long-term emission reduction and energy transition goals.
+Lessons learnt
+1.	 A dual approach, combining bottom-up methodologies for short- to medium-term goals and a top-
+down vision for long-term objectives, ensures adaptability and sustainability.
+2.	 Stakeholder collaboration – early and thorough engagement with key stakeholders, including 
+utilities and industry players, is essential for aligning ambitious energy and emission targets with 
+operational realities.
+3.	 Continuous stakeholder feedback enables dynamic adjustments, ensuring policies and initiatives 
+remain responsive to emerging challenges and opportunities.
+5.11	KCERT 2050 (KENYA 
+CARBON EMISSION 
+REDUCTION TOOL)
+Scientific expertise in scenario communication: how the KCERT 2050 project leverages academic 
+experts to enhance their scenario communication for energy policy making and understanding
+The collaboration between academia and government in Kenya showcases innovative approaches to 
+support the country’s energy transition. Such initiatives highlight the role of academic research and tools 
+in informing national policy and finance strategies.
+The KCERT 2050 project represents the first interactive energy model of its kind in East Africa, designed 
+to help identify energy-secure pathways between 2015 and 2050. This collaborative effort demonstrates 
+how engaging research institutions can bridge data gaps and foster integrated policy development 
+environments, while creating user-friendly visualisation tools that enhance scenario communication for 
+diverse stakeholder groups.
+  
+  
+  
+  
+  
+  
+Process
+Launch of KCERT 2050
+Inputs
+Process and activities
+Outcomes
+Note	
+CSO = civil society organisation; KCERT = KENYA CARBON EMISSION REDUCTION TOOL.
+Highlight
+Using a multitude of visualisation tools catered for different audiences to communicate national scenarios 
+effectively for decarbonisation strategies, educational purposes, and investment objectives.
+Lessons learnt
+1.	 Developing audience-specific tools, ranging from spreadsheet-based to visualisation-based tools, 
+to engage stakeholders effectively improves communication and data transparency, and breaks 
+down departmental silos, enhancing collaboration.
+2.	 Ongoing refinement of tools like the 2050 calculator, driven by data, ensures policies stay relevant 
+and adapt to changing scenarios and information.
+3.	 Collaborative efforts between academia and government are vital for national capacity building, 
+bridging data gaps and fostering integrated, co‑operative policy development environments.
+4.	 These dynamic tools transform citizen engagement and participation in matters related to 
+individual and societal decarbonisation measures.
+5.12	PARIS AGREEMENT 
+COMPATIBLE (PAC) 
+SCENARIO CONSORTIUM
+Leveraging civil society participation for ambitious scenarios: how the PAC Scenario and PAC 
+approach contributed to the European grid planning process through deep engagement of CSOs 
+A coalition of NGOs, supported by TSOs and technical and research institutions, aimed to enhance 
+European decarbonisation ambitions in relation to infrastructure planning by developing a scenario 
+that would be in line with the Paris Agreement goals. The PAC Scenario process leveraged thorough 
+engagement with a diverse set of organisations across the continent to present an alternative and 
+ambitious pathway for meeting climate neutrality in Europe by 2040.
+At the time of writing this report.
+  
+  
+  
+  
+  
+  
+Process
+PAC Scenario 2019-2021
+PAC 2.0 Scenario 2022-2024
+Inputs
+Process and activities
+Outcomes
+Notes:	
+CSO = civil society organisation; EU27 = European Union, which consists of 27 countries; PAC = Paris Agreement 
+Compatible.
+Highlight
+Active contributions, centred on modelling, from civil society in political and system planning discussions 
+provided added value by presenting alternatives for the future energy system design. This enriched the 
+discussions, improved the quality of the following modelling and (European) system planning iterations, 
+empowered civil society actors, and made the perceived image of the decision makers more open and 
+transparent.
+Lessons learnt
+1.	 The PAC project demonstrates the importance and added value of bringing the civil society 
+perspective into the policy making, scenario-building and grid planning processes, which increases 
+the legitimacy and accountability of the planning outcome and these processes.
+2.	 The experiences from the PAC project underline the need to dedicate adequate resources to 
+establish meaningful relationships with diverse stakeholders (NGOs, researchers, industry and 
+others) for strategic energy planning, which should be maintained throughout the entire process, 
+not only after delivering the initial input from these actors. 
+3.	 Publishing the datasets used for modelling in open source increases transparency and allows external 
+entities to check, replicate and improve the overall approach and modelling/planning methodologies.
+5.13	WORLD ENERGY COUNCIL
+Global engagement to define regional 
+priorities: how the World Energy Council 
+(WEC) uses socio-political frameworks 
+and simulations to derive insights to 
+shape its global scenarios
+The WEC conducts a rigorous stakeholder 
+engagement process leading up to its 
+World Energy Scenarios publication. 
+The process involves hundreds of 
+stakeholders, including academia, 
+government, industry and start-ups, 
+through regional deep dives and other 
+activities, which aim to identify regional 
+priorities and challenges.
+  
+  
+  
+  
+  
+  
+Process
+Regional deep dives
+Publication of World 
+Energy Scenarios
+Publication of Insight Briefs
+Inputs
+Process and activities
+Outcomes
+Highlight
+WEC’s thorough and diverse workshops leverage strong facilitation to co-create socio-political narratives 
+for global scenarios, combined with interactive exercises that allow stakeholders to examine their own 
+roles within the changes exemplified in these scenarios.
+Lessons learnt
+1.	 Ensuring diverse participation from across sectors (e.g. academia, government, industry, start-ups) 
+and regions is critical for capturing global energy priorities and challenges.
+2.	 Employing diverse tools, such as policy simulators, frameworks and interactive workshops, helps 
+cater to varying stakeholder needs and fosters dynamic collaboration.
+3.	 Narrative-based scenarios that consider socio-political realities alongside technical and economic 
+factors provide actionable and relatable insights for stakeholders. This can provide a useful 
+accompaniment to more common techno-economic scenarios.
+6.	CONCLUSION
+Participatory methods continue to be utilised more widely in government planning activities, especially 
+with the essential and timely focus on a clean and just energy transition. Engaging in stakeholder 
+consultation can help achieve these goals by building inclusive and empowering processes, increasing 
+public acceptance and buy-in for the ongoing transition. This toolkit, designed for scenario planners in 
+government planning institutions, but relevant also for other actors involved in scenario building and 
+energy system modelling, provides a versatile resource for planners to enhance their energy scenario 
+development processes. It offers a range of tools, case studies, and insights that can be applied in several 
+practical ways.
+One key use of the toolkit is identifying relevant case studies. Planners can examine the detailed 
+examples provided, selecting those that align with their specific objectives and contexts. For instance, a 
+country aiming to improve public engagement might draw inspiration from Brazil’s use of virtual debates 
+and online workshops. Similarly, another focusing on concise policy communication could benefit from 
+Cyprus’s approach to creating clear and effective policy briefs. 
+By reviewing the activities and tools showcased in the case studies, planners can evaluate the feasibility of 
+the different participatory methods within the constraints of their resources and institutional capabilities. 
+For example, a country with limited financial resources might prioritise online consultations over more 
+resource-intensive in-person workshops, ensuring practical and efficient implementation.
+By analysing successful examples, planners can also identify best practices for working with specific 
+stakeholder groups and select tools that align with their desired outcomes. The toolkit also highlights 
+lessons from other countries, enabling planners to anticipate and avoid potential challenges.
+By leveraging the toolkit as a guide and reference, national energy planners can integrate effective 
+participatory processes into their energy planning. Drawing on real-world examples and tailoring these 
+insights to their unique circumstances, planners can foster a more inclusive, transparent and successful 
+energy planning process.
+Challenges and future work
+This toolkit also highlights the importance of participatory processes in national energy planning, and 
+some existing and novel cases and tools that have been used by governmental and non-governmental 
+institutions to engage these stakeholders. However, overarching challenges and gaps remain that warrant 
+further research and implementation. For example, during our activities, experts highlighted the dearth of 
+existing mechanisms to inform stakeholders about how their participation influenced planning results and 
+project outcomes. A more reciprocal communication style could be key to ensuring stakeholders maintain 
+their interest in participating in such activities. Other experts also highlighted that in some instances, 
+stakeholder engagement could be considered a “box-ticking” exercise, nullifying its alleged purposes and 
+decreasing confidence among stakeholders. Some experts also shared concerns regarding the project 
+team’s inherent biases affecting inputs and the way they are represented within modelling exercises.
+Challenges also remain in translating some innovative methodologies of public participation within a 
+comprehensive national-level planning process, where constraints such as resources and/or political will 
+may exist, limiting the potential of stakeholder engagement in national scenarios. Others highlighted 
+the challenge of evaluating the participatory process outcomes, measuring key performance indicators 
+(KPIs), and evaluating the benefits of implementing a participatory process versus not conducting one.
+New opportunities and challenges may also arise, including the use of artificial intelligence (AI), machine 
+learning and natural language processing (NLP) techniques to improve and analyse stakeholder priorities 
+and inputs into designing the participatory activities, as well as addressing their comments in the scenario 
+development process and results.
+Such challenges can be worth examining at the project design level, in relation to the project’s purported 
+objectives. Can the challenges be overcome simply by improving the participatory strategy and using 
+the correct tools? Or are novel methods and frameworks needed? As further importance and funding 
+are placed on using participatory methods in scenario design and policy making, we may continue to 
+see these questions being addressed, with innovative solutions and case studies that will continue to be 
+explored within the work of the LTES Network.
+7.	ADDITIONAL MATERIAL
+This chapter presents a non-conclusive list of various publications, tools, software and other material 
+to support planners in designing and implementing their participatory strategies for long-term energy 
+scenario development. These are not necessarily endorsed by IRENA, but are the result of discussions 
+with experts throughout the project’s activities, alongside desktop research. 
+7.1	 PUBLICATIONS
+PARTICIPATORY METHODS TOOLKIT: A practitioner’s manual
+
+Dr Nikki Slocum – UN University – CRIS
+Designed for both new and experienced practitioners, this toolkit includes detailed fiches on 10 methods, 
+an overview of 40 others, and general guidelines. The manual’s format is adaptable for easy use and 
+customisation, serving as a dynamic resource for sharing practical knowledge in the field of participatory 
+approaches.
+https://archive.unu.edu/hq/library/Collection/PDF_files/CRIS/PMT.pdf
+DELIBERATIVE FUTURES TOOLKIT: TOWARD ‘FUTURE-ORIENTED’ COMMUNITIES 
+AND DECISION MAKING
+
+MaREI Centre
+This toolkit offers future-thinking strategies to tackle climate change, focusing on inclusive and 
+sustainable decision making. It includes scenario analysis, modelling tools and practical guides for various 
+stakeholders like educators, activists and community practitioners. It aims to facilitate collaborative and 
+forward-thinking approaches for building low-carbon, climate-resilient societies.
+www.ucc.ie/en/media/projectsandcentres/imagining2050/Imagining2050Toolkit.pdf
+COMMUNITY ENERGY PLANNING: BEST PRACTICES AND LESSONS LEARNT IN 
+NREL’S WORK WITH COMMUNITIES
+
+NREL
+This document is a best practice guide focused on community energy planning. It is informed by expert 
+interviews and literature reviews, emphasising the importance of local engagement in clean energy 
+initiatives. The guide outlines five key practices: thorough preparation, authenticity in community 
+interactions, respecting community agency, meeting specific community needs, and promoting inclusive 
+participation. It is designed to enhance the effectiveness of community-based energy planning and 
+deployment.
+www.nrel.gov/docs/fy22osti/82937.pdf
+PARTICIPATORY METHODS IN ENERGY SYSTEM MODELLING AND PLANNING – 
+A REVIEW
+
+Connor McGookin, Brian Ó Gallachóir and Edmond Byrne
+This paper reviews participatory methods in energy system modelling and planning, analysing 59 studies. 
+It focuses on stakeholder engagement and its integration with quantitative analysis, highlighting 
+differences in approaches at national and subnational levels. The review reveals limited collaboration 
+with non-academic stakeholders and a need for more democratised processes in energy research.
+www.sciencedirect.com/science/article/pii/S1364032121007838
+ADVANCING PARTICIPATORY ENERGY SYSTEMS MODELLING
+
+Connor McGookin, Diana Süsser, Georgios Xexakis, Evelina Trutnevyte, Will 
+McDowall, Alexandros Nikas, Sheridan Few, Per Anderson, Brian Ó Gallachóir 
+and Fionn Rogan
+This paper emphasises the need for integrating diverse perspectives into energy system models, crucial 
+for guiding emissions reduction strategies and informing energy policies. It addresses the lack of 
+structured participatory processes in energy modelling by offering good practice guidance for involving 
+stakeholders and the public. The proposed framework provides various entry points for participatory 
+elements, acknowledging the complexities of energy modelling and participatory research. The paper 
+highlights key challenges and future research areas, advocating for practitioners to support a fair and just 
+transition to a climate-neutral future.
+https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4509315
+USING ROBUST DECISION-MAKING TO DEVELOP LONG-TERM STRATEGIES – A 
+PRACTICAL GUIDE
+
+Jairo Quirós-Tortós, Luis Víctor-Gallardo, Mariana Rodríguez-Arce and Alejandra 
+Soto-Rodríguez
+Robust decision-making (RDM) offers an adaptive approach, engaging stakeholders to create flexible, 
+resilient strategies. Developed by The Climate Lead Group and 2050 Pathways Platform, this RDM Guide 
+provides a ten-step framework, informed by Latin American and Caribbean experiences, to design 
+effective LTS under varying future scenarios.
+https://2050pathways.org/wp-content/uploads/2024/09/2050PP_RDMReport_FINAL092624Pages.pdf 
+SCENARIOS FOR THE ENERGY TRANSITION (LTES NETWORK PUBLICATION SERIES)
+
+IRENA
+These publications contain numerous case studies on good practices and experiences shared by experts 
+throughout engagements and activities within the LTES Network. These case studies contain examples 
+of stakeholder engagement, scenario communication and institutional governance that can support 
+practitioners in designing their own practices.
+www.irena.org/publications/2020/Sep/Scenarios-for-the-Energy-Transition-Global-experience-and-
+best-practices
+www.irena.org/Publications/2023/Jan/Scenarios-for-the-energy-transition-Experience-and-good-
+practices-in-Africa
+www.irena.org/publications/2022/Jul/Scenarios-for-the-Energy-Transition-LAC 
+7.2	 TOOLS AND PLATFORMS
+REPOSITORIES
+Facilitator School: Alongside online courses on facilitating workshops and meetings, this website 
+contains a repository of different templates that could be used to facilitate and plan workshops, different 
+guidelines and tips, and links to helpful applications and tools.
+www.facilitator.school
+URBACT Toolbox: The URBACT Toolbox, designed for local-level urban planning, offers a range of 
+resources including tools, templates and guidance for participatory, integrated action. While tailored for 
+community-focused initiatives, its comprehensive framework and emphasis on stakeholder engagement 
+and knowledge sharing make it adaptable for national planning contexts as well. 
+https://urbact.eu/toolbox-home 
+ILO International Training Centre: This is a repository of different methodologies to facilitate in-person 
+participatory meetings including icebreakers and creative co-creation methods.
+www.itcilo.org/methods 
+USYS Transdisciplinarity Lab: A toolbox for the co-production of knowledge and co-production between 
+different scientific disciplines and between science and society. The various tools offered have all been 
+successfully used and tested in different teaching and research environments by the TdLab or the td-net. 
+They are simple and straightforward and thus can be applied in any research or teaching project. The 
+TdLab offers conceptual guidance for the application of these tools.
+https://tdlab.usys.ethz.ch/toolbox.html
+Guidelines for public engagement in energy infrastructure (IEECP and RGI): These guidelines, aimed 
+at citizens, developers and policy makers, provide tailored recommendations for engaging in energy 
+projects using an interactive tool that structures advice around four principles: early engagement, 
+transparency, inclusiveness and trust. 
+https://renewables-grid.eu/activities/engage4energy.html 
+Electricity Transition Playbook: A tool to help policy makers build and deliver plans to transition to a clean 
+electricity system. Through good practices and case studies, one section explores public participation 
+and support, and considers the consumers and the communities that are impacted by the transition and 
+the importance of engaging with them.
+www.greengridsinitiative.net/general-8 
+IIASA’s Scenario ensembles and database resources: This resource contains a large number of scenario 
+explorers, visualisations and databases from the integrated assessment modelling community.
+https://iiasa.ac.at/scenario-ensembles-and-database-resources
+Callio.pe: A scenario visualisation tool that allows you to navigate hundreds of alternative energy system 
+configurations (SPORES) to reach carbon neutrality across the entire European energy system in 2050.
+https://explore.callio.pe/
+Decision Theatre: The Decision Theatre method is an participatory approach designed to facilitate 
+collaborative decision making for complex societal challenges. It combines interactive visualisation, empirical 
+data, mathematical modelling and structured dialogue among stakeholders – including researchers, policy 
+makers, experts and citizens – to build shared understanding and explore possible futures.
+https://dt.asu.edu/publications
+SURVEY PLATFORMS
+Online surveys: To conduct surveys that might need time to complete.
+Microsoft Forms, Google Forms, SurveyMonkey, Qualtrics
+Real-time polling: For use during events and webinars for real-time interaction and insight-gathering.
+Mentimeter, Slido, Kahoot, Prezi, Ahaslides
+CO-CREATION PLATFORMS
+Brainstorming: To facilitate group co-creating and deliberation in online settings.
+Miro, Mural, Microsoft Whiteboard
+Virtual workshops: Video conferencing platforms with facilities for conducting webinars, meetings and 
+break-out groups.
+Zoom, Microsoft Teams, Webex
+DATA VISUALISATION 
+Dashboards: For the creation of interactive data visualisation platforms to be presented in reports or 
+digital platforms.
+PowerBI, Tableau, Looker Studio
+Charts: 
+Microsoft Excel, Google Sheets, Python/ Stata, R, Canva
+FRAMEWORKS
+World Energy Trilemma Index: This tool, created by the World Energy Council, can serve as a valuable 
+assessment tool in participatory processes, analysing national energy systems across three key 
+dimensions: security, equity and sustainability. It can be utilised to jointly evaluate various indicators and 
+understand their policy implications, assisting stakeholders in shaping and refining energy strategies, 
+informing policy decisions, and guiding effective energy transitions through detailed data analysis and 
+expert insights.
+www.worldenergy.org/transition-toolkit/world-energy-trilemma-index
+Social acceptance of renewable energy: This paper introduces a framework for the understanding of 
+social acceptance of renewable energy, from the socio-political, community and market perspectives. 
+This might be helpful in guiding discussions with citizens and CSOs on their perspectives on energy 
+developments in their area.
+www.researchgate.net/publication/227997801_Social_Acceptance_of_Renewable_Energy_
+Innovation_An_Introduction_to_the_Concept
+8.	REFERENCES 
+Dawson, A. (2020), People's power: Reclaiming the 
+energy commons, OR Books.
+Ernst, A., et al. (2018), “Benefits and challenges 
+of participatory methods in qualitative energy 
+scenario development”, Technological Forecasting 
+and Social Change, vol. 127, pp. 245–57, https://doi.
+org/10.1016/j.techfore.2017.09.026
+Fallde, M., et al. (2017), “Energy System Models 
+as a Means of Visualising Barriers and Drivers 
+of Forest-Based Biofuels: An Interview Study of 
+Developers and Potential Users”, Sustainability, 
+vol. 9/10, pp. 1792, Multidisciplinary Digital 
+Publishing Institute, https://doi.org/10.3390/
+su9101792
+Freeman, R. (2021), “Modelling the socio-political 
+feasibility of energy transition with system 
+dynamics”, Environmental Innovation and Societal 
+Transitions, vol. 40, pp. 486–500, https://doi.
+org/10.1016/j.eist.2021.10.005
+Göke, L., et al. (2023), “A collective blueprint, not 
+a crystal ball: How expectations and participation 
+shape long-term energy scenarios”, Energy 
+Research & Social Science, vol. 97, pp. 102957, 
+https://doi.org/10.1016/j.erss.2023.102957
+Howells, M., et al. (2021), Energy system analytics 
+and good governance -U4RIA goals of Energy 
+Modelling for Policy Support, preprint, In Review, 
+https://doi.org/10.21203/rs.3.rs-311311/v1
+IRENA (2020), Scenarios for the Energy Transition: 
+Global experience and best practices, International 
+Renewable Energy Agency, Abu Dhabi, www.
+irena.org/publications/2020/Sep/Scenarios-for-
+the-Energy-Transition-Global-experience-and-
+best-practices
+IRENA (2021), Benchmarking 
+scenario comparisons: Key indicators for the 
+clean energy transition, International Renewable 
+Energy Agency, Abu Dhabi, www.irena.org/
+publications/2021/Sep/Benchmarking-Scenario-
+Comparisons
+IRENA (2022), “Proceedings document: IEW 2022: 
+Energy scenario communication for strengthened 
+inputs and trustworthy outputs”, International 
+Renewable Energy Agency, Abu Dhabi, www.irena.
+org/-/media/Files/IRENA/Agency/Topics/Energy-
+Transition/LTES/IEW_LTES_2022_Proceedings.pdf
+IRENA (2023a), “Country Workshop on Participatory 
+Processes For Developing National Long-Term 
+Energy Scenarios”, www.irena.org/Events/2023/Jul/
+Country-Workshop-on-Participatory-Processes-For-
+Developing-National-Long-Term-Energy-Scenarios 
+(accessed 12 March 2024).
+IRENA (2023b), Long-term energy scenarios and 
+low-emission development strategies: Stocktaking 
+and alignment, International Renewable 
+Energy Agency, Abu Dhabi, www.irena.org/
+Publications/2023/Jan/LTES-and-low-emission-
+development-strategies-Stocktaking-and-
+alignment
+IRENA (2023c), Scenarios for the energy 
+transition: Experience and good practices in Africa, 
+International Renewable Energy Agency, Abu 
+Dhabi, https://mc-cd8320d4-36a1-40ac-83cc-
+3389-cdn-endpoint.azureedge.net/-/media/Files/
+IRENA/Agency/Publication/2023/Jan/IRENA_
+Scenarios_for_the_transition_Africa_2023.pd
+f?rev=9a2dd4c5317a4899b561ba1e575c6234 
+(accessed 25 March 2024).
+IRENA & IEECP (2023), “Stakeholder-driven 
+scenarios for a just transition to climate neutrality”, 
+International Renewable Energy Agency, Institute 
+for European Energy and Climate Policy, https://
+ieecp.org/2023/12/18/stakeholder-driven-
+scenarios-for-a-just-transition-to-climate-
+neutrality/ (accessed 12 March 2024).
+Ketonen-Oksi, S., and Vigren, M. (2024), “Methods 
+to imagine transformative futures. An integrative 
+literature review.”, Futures, vol. 157, pp. 103341, 
+https://doi.org/10.1016/j.futures.2024.103341
+Knudsen, J. K., et al. (2015), “Local perceptions of 
+opportunities for engagement and procedural justice 
+in electricity transmission grid projects in Norway 
+and the UK”, Land Use Policy, vol. 48, pp. 299–308, 
+https://doi.org/10.1016/j.landusepol.2015.04.031
+Kurniawan, J. H., et al. (2022), “Towards participatory 
+cross-impact balance analysis: Leveraging 
+morphological analysis for data collection in 
+energy transition scenario workshops”, Energy 
+Research & Social Science, vol. 93, pp. 102815, 
+https://‌doi.‌org/10.1016/j.erss.2022.102815
+Lonergan, K. E., Suter, N., et al. (2023a), “Energy 
+systems modelling for just transitions”, Energy 
+Policy, vol. 183, pp. 113791, https://doi.org/10.1016/j.
+enpol.2023.113791
+Lonergan, K. E., Greco, S. F., et al. (2023b), “Ensuring/
+insuring resilient energy system infrastructure”, 
+Environment Systems and Decisions, vol. 43, pp. 13.
+LTES Network (2022), “Fourth International Forum 
+on Long-term Scenarios for the Clean Energy 
+Transition”, https://www.irena.org/Events/2022/
+Dec/4th-International-Forum-on-Long-term-
+Scenarios-for-the-Clean-Energy-Transition (accessed 
+15 April 2025).
+Luscombe, H., et al. (2024), “Data-to-Deal (D2D): 
+An Emerging and Effective Approach to Financing 
+the Climate Transition”, Cambridge Open Engage, 
+https://doi.org/10.33774/coe-2024-21xv4
+McGookin, C., et al. (2024), “Advancing 
+participatory energy systems modelling”, Energy 
+Strategy Reviews, vol. 52, pp. 101319,
+
+https://doi.org/10.1016/j.esr.2024.101319
+McGookin, C., et al. (2021), “Participatory methods in 
+energy system modelling and planning – A review”, 
+Renewable and Sustainable Energy Reviews, vol. 151, 
+pp. 111504, https://doi.org/10.1016/j.rser.2021.111504
+Revez, A., et al. (2021), Deliberative Futures 
+Toolkit: toward future-orientated communities 
+and decision-making, www.marei.ie/wp-content/
+uploads/2021/03/Imagining2050Toolkit.pdf
+Ribeiro, F., et al. (2011), “Using experts interviews 
+to create electricity scenarios and to assess 
+social impacts”, Universidade do Minho, https://
+repositorium.sdum.uminho.pt/handle/1822/15570 
+(accessed 13 March 2024).
+Schmid, E., et al. (2011), "Social Acceptance 
+in Quantitiative Low Carbon Scenarios", In: 
+Civil Society for Sustainability: A Guidebook 
+Connecting Science and Society, Europaeischer 
+Hochschulverlag GmbH & Co KG, Bremen.
+Steckel, J. C., and Jakob, M. (2018), “The role of 
+financing cost and de-risking strategies for clean 
+energy investment” (Special issue on ‘Social 
+values of carbon and climate policy signals in the 
+post-COP21 context’), International Economics, 
+vol. 155, pp. 19–28, https://doi.org/10.1016/j.
+inteco.2018.02.003
+Steg, L. (2023), “Psychology of Climate Change”, 
+Annual Review of Psychology, vol. 74/1, pp. 391–
+421,
+
+https://doi.org/10.1146/annurev-
+psych-032720-042905
+Süsser, D., et al. (2022), “Why energy models 
+should integrate social and environmental factors: 
+Assessing user needs, omission impacts, and real-
+word accuracy in the European Union”, Energy 
+research & social science, vol. 92, pp. 102775., 
+Elsevier.
+Venturini, G., et al. (2019), “Linking narratives and 
+energy system modelling in transport scenarios: A 
+participatory perspective from Denmark”, Energy 
+Research & Social Science, vol. 52, pp. 204–20, 
+https://doi.org/10.1016/j.erss.2019.01.019
+Wahlund, M., and Palm, J. (2022), “The role of 
+energy democracy and energy citizenship for 
+participatory energy transitions: A comprehensive 
+review”, Energy Research & Social Science, 
+vol. 87, pp. 102482, https://doi.org/10.1016/j.
+erss.2021.102482
+Waisman, H. (2018), “The Role of Modeling 
+and Scenario Development in Long-Term 
+Strategies”, Climate Action with Tomorrow in 
+Mind: Expert Perspectives on Long-term Climate 
+and Development Strategies (pp. 95–99), World 
+Resources Institute,
+
+https://wriorg.s3.amazonaws.com/s3fs-public/
+Expert-Perspective-book.pdf
+Wüstenhagen, R., et al. (2007), “Social acceptance 
+of renewable energy innovation: An introduction 
+to the concept”, Energy Policy, vol. 35/5, pp. 2683–
+91, https://doi.org/10.1016/j.enpol.2006.12.001
+APPENDIX A 
+
+– METHODOLOGY AND 
+DATA COLLECTION
+1.	 Engagement through workshops and events:
+A blend of thematic workshops, webinars, bilateral calls and participation in relevant activities provided 
+platforms for diverse stakeholder participation. These formats facilitated the exchange of ideas and 
+experiences, crucial for understanding the dynamics of participatory processes in LTES. Dozens of 
+speakers and hundreds of participants were involved in these discussions:
+•	 2 International LTES Forum – Session 2 on stakeholder engagement in LTES development (2020)
+•	 International Energy Workshop – Side event on energy scenario communication for strengthened 
+inputs and trustworthy outputs (2022)
+•	 4 International LTES Forum – Interactive workshop on participatory processes for LTES 
+development (2022)
+•	 Country workshop on participatory processes for LTES development (2023)
+•	 Joint workshop (REN21, GGI, RGI and IRENA) on public engagement for energy and grid planning 
+(2023)
+•	 Joint workshop (IRENA and IEECP) on stakeholder-driven scenarios for a just energy transition 
+(2023)
+•	 7 International Conference on Renewable Energy Sources and Energy Efficiency, Energy Security 
+2023 Cyprus – Session on effective stakeholder engagement for energy scenario communication 
+(2023)
+•	 IRENA 14 Assembly – Participatory strategies for just and renewable-based scenarios (2024)
+•	 5 International LTES Forum – Communication strategies (2024)
+•	 Joint Workshop (IRENA, REN21 and RGI) – Stakeholder engagement in energy planning: Across all 
+voltage levels (2024)
+•	 LTES Peer-to-Peer series, Colombia – UPME (2025)
+2.	 Scientific guidance:
+The structuring and content of this report and the associated workshops were influenced by a scientific 
+advisory committee outlined in the acknowledgement section of this report.
+3.	 Data collection:
+Information was gathered through a combination of interactive sessions, literature review and expert 
+interviews with government officials responsible for energy planning and national consultation processes, 
+as well as scientists and experts from civil society. This approach ensured a comprehensive understanding 
+of good practices in participatory processes within the development of LTES in both government and 
+non-governmental settings.
+www.irena.org
+© IRENA 2025

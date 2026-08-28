@@ -73,6 +73,9 @@ for i, page in enumerate(doc):
                     lines.append("".join(spans))
         if lines:
             parts.append("\n".join(lines))
+            prose.extend(lines)
+    else:
+        prose.extend(sized_text(page).splitlines())
 
     for table in tables:
         for row in table.rows:
@@ -82,6 +85,12 @@ for i, page in enumerate(doc):
                 text = sized_text(page, clip=pymupdf.Rect(cell)).strip()
                 if text:
                     parts.append(text)
+
+# One continuous prose stream for the whole document. A sentence that runs
+# across a page break is split by the page marker in the per-page dump above,
+# so it is not contiguous there; here it is.
+parts.append("--- continuous prose ---")
+parts.append("\n".join(prose))
 
 text = "\n".join(parts)
 with open(OUT, "w", encoding="utf-8") as handle:

@@ -7,7 +7,6 @@ import {
   aboutSections,
   backgroundSections,
   futureOpportunities,
-  keyTakeaways,
 } from '../../data/toolkit-background';
 import { figures } from '../../data/figures';
 import {
@@ -103,17 +102,6 @@ export default function WhyTab() {
           columns={['Objective', 'Key benefit']}
           rows={participationObjectives.map((o) => [o.summaryObjective, o.summaryBenefit])}
         />
-      </Section>
-
-      <Section heading="Key takeaways">
-        <ol className="space-y-2">
-          {keyTakeaways.map((takeaway, i) => (
-            <li key={takeaway} className="flex gap-3 text-gray-700 leading-relaxed">
-              <span className="font-medium text-gray-400">{i + 1}.</span>
-              <span>{takeaway}</span>
-            </li>
-          ))}
-        </ol>
       </Section>
 
       <Disclosure summary="about this toolkit and how it was developed">

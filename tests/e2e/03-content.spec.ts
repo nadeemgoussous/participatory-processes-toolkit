@@ -103,23 +103,25 @@ test.describe('Guidance from chapters 1 and 6', () => {
     await page.goto('/');
 
     // Both panels are collapsed until asked for, so the checklist stays first.
-    const guide = page.getByText('Step 1: Identify Approaches That Match Your Planning Context');
+    const guide = page.getByText('Identify approaches that match your planning context');
     await expect(guide).toBeHidden();
 
     await page.getByText('how to use this toolkit').click();
     await expect(guide).toBeVisible();
-    await expect(page.getByText('Identifying Relevant Case Studies')).toBeVisible();
+    await expect(
+      page.getByText('One key use of the toolkit is identifying relevant case studies.')
+    ).toBeVisible();
 
     await page.getByText('the challenges a checklist does not solve').click();
     await expect(
-      page.getByRole('cell', { name: '"Box-ticking" exercises' })
+      page.getByText(/stakeholder engagement could be considered a "box-ticking" exercise/)
     ).toBeVisible();
     await expect(
       page.getByText('Or are novel methods and frameworks needed?')
     ).toBeVisible();
   });
 
-  test('the why page carries the background and key takeaways', async ({ page }) => {
+  test('the why page carries the chapter 1 background', async ({ page }) => {
     await page.goto('/');
     await page
       .getByRole('navigation', { name: 'Sections' })
@@ -130,7 +132,7 @@ test.describe('Guidance from chapters 1 and 6', () => {
       page.getByRole('heading', { name: 'The expanding stakeholder landscape' })
     ).toBeVisible();
     await expect(
-      page.getByText('Participatory processes are essential for a clean and just energy transition')
+      page.getByText(/The accelerated uptake of renewable energy and energy system innovation/)
     ).toBeVisible();
 
     const about = page.getByText('This toolkit has been developed on the basis of collective');
