@@ -60,10 +60,4 @@ export interface StakeholderProfile {
   challenges: Challenge[];
   goodPractices: string[];
 
-  /** Row from the Summary: Stakeholder Engagement Matrix. */
-  summary: {
-    primaryValue: string;
-    keyChallenge: string;
-    criticalGoodPractice: string;
-  };
 }

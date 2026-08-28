@@ -15,7 +15,8 @@
     "test:debug": "playwright test --debug",
     "test:report": "playwright show-report",
     "verify:quotes": "node scripts/verify-toolkit-quotes.mjs src/data/case-studies.ts src/data/checklist.ts src/data/engagement-tools.ts src/data/stakeholder-profiles.ts src/data/participation-rationale.ts src/data/resources.ts src/data/using-the-toolkit.ts src/data/toolkit-background.ts src/data/figures.ts src/types/toolkit.ts src/types/stakeholder.ts src/types/case-study.ts src/types/reference.ts",
-    "build:offline": "vite build --mode offline && node scripts/build-offline.mjs"
+    "build:offline": "vite build --mode offline && node scripts/build-offline.mjs",
+    "audit:drift": "node scripts/audit-markdown-drift.mjs src/data/case-studies.ts src/data/checklist.ts src/data/engagement-tools.ts src/data/stakeholder-profiles.ts src/data/participation-rationale.ts src/data/resources.ts src/data/using-the-toolkit.ts src/data/toolkit-background.ts src/data/figures.ts src/types/toolkit.ts"
   },
   "keywords": [
     "energy",

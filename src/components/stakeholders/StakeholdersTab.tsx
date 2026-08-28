@@ -42,36 +42,11 @@ export default function StakeholdersTab() {
                 />
               )}
               <span className="font-semibold text-gray-900">{p.name}</span>
-              <span className="mt-2 text-sm text-gray-600">{p.summary.primaryValue}</span>
+              <span className="mt-2 text-sm text-gray-500">Section {p.toolkitSection}</span>
             </button>
           </li>
         ))}
       </ul>
-
-      <Section heading="Summary: stakeholder engagement matrix">
-        <div className="overflow-x-auto rounded-lg border border-gray-200 bg-white">
-          <table className="w-full min-w-[42rem] text-left text-sm">
-            <thead className="border-b border-gray-200 bg-gray-50 text-gray-600">
-              <tr>
-                <th className="p-3 font-medium">Stakeholder group</th>
-                <th className="p-3 font-medium">Primary value</th>
-                <th className="p-3 font-medium">Key challenge</th>
-                <th className="p-3 font-medium">Critical good practice</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-100">
-              {stakeholderProfiles.map((p) => (
-                <tr key={p.id}>
-                  <td className="p-3 font-medium text-gray-900">{p.name}</td>
-                  <td className="p-3 text-gray-700">{p.summary.primaryValue}</td>
-                  <td className="p-3 text-gray-700">{p.summary.keyChallenge}</td>
-                  <td className="p-3 text-gray-700">{p.summary.criticalGoodPractice}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </Section>
 
       <SourceNote section="3" />
     </div>
