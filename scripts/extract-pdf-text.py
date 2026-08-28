@@ -24,6 +24,7 @@ if not os.path.exists(PDF):
     sys.exit(f"source PDF not found: {PDF}")
 
 doc = pymupdf.open(PDF)
+prose = []
 parts = [f"# Extracted from {os.path.basename(PDF)} by scripts/extract-pdf-text.py.",
          "# Do not edit. Regenerate when the source PDF changes.", ""]
 def sized_text(page, clip=None, min_size=8.0):
@@ -36,6 +37,10 @@ def sized_text(page, clip=None, min_size=8.0):
     blocks = page.get_text("dict", clip=clip)["blocks"] if clip else page.get_text("dict")["blocks"]
     for block in blocks:
         for line in block.get("lines", []):
+            # The chapter tabs run down the outer margin and would otherwise
+            # land between the two halves of a sentence that crosses a page.
+            if not clip and line["bbox"][0] > 520:
+                continue
             spans = [s["text"] for s in line["spans"] if s["size"] >= min_size]
             if spans:
                 lines.append("".join(spans))
@@ -52,6 +57,23 @@ for i, page in enumerate(doc):
         tables = page.find_tables().tables
     except Exception:
         tables = []
+    # Prose again, with the table regions removed. A sentence that runs past a
+    # table is interleaved with the table's cells in the linear page text, so
+    # it never appears as a contiguous run without this pass.
+    if tables:
+        rects = [pymupdf.Rect(t.bbox) for t in tables]
+        lines = []
+        for block in page.get_text("dict")["blocks"]:
+            for line in block.get("lines", []):
+                rect = pymupdf.Rect(line["bbox"])
+                if any(rect.intersects(r) for r in rects):
+                    continue
+                spans = [sp["text"] for sp in line["spans"] if sp["size"] >= 8.0]
+                if spans:
+                    lines.append("".join(spans))
+        if lines:
+            parts.append("\n".join(lines))
+
     for table in tables:
         for row in table.rows:
             for cell in row.cells:

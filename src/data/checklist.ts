@@ -61,31 +61,23 @@ const frameworkItems: ChecklistItem[] = [
   },
 ];
 
-/** Prerequisites and resource requirements, one item per bullet, per tool. */
+/**
+ * Resource requirements and prerequisites, one item per sentence, per tool.
+ * The publication runs these together in a single section of prose, so they
+ * are one group rather than two.
+ */
 const toolItems: ChecklistItem[] = engagementTools.flatMap((tool) => {
   const phases = ALL_PHASES.filter((p) => tool.stageApplications[p] !== undefined);
 
-  const prerequisites = tool.prerequisites.map((text, i) => ({
-    id: `${tool.id}-prereq-${i + 1}`,
-    group: 'tools' as const,
-    text,
-    source: `${tool.toolkitSection} Prerequisites`,
-    phases,
-    toolId: tool.id as ToolId,
-    caseStudyIds: tool.caseStudyIds,
-  }));
-
-  const requirements = tool.requirements.map((text, i) => ({
+  return tool.requirements.map((text, i): ChecklistItem => ({
     id: `${tool.id}-req-${i + 1}`,
-    group: 'resources' as const,
+    group: 'resources',
     text,
-    source: `${tool.toolkitSection} Resource Requirements`,
+    source: `${tool.toolkitSection} Resource requirements and prerequisites`,
     phases,
     toolId: tool.id as ToolId,
     caseStudyIds: tool.caseStudyIds,
   }));
-
-  return [...prerequisites, ...requirements];
 });
 
 /** Good practices from the chapter 3 stakeholder sections. */

@@ -10,7 +10,7 @@ test.describe('Plan export and import', () => {
 
     const item = page
       .locator('li')
-      .filter({ hasText: 'Ensure confidentiality when necessary' })
+      .filter({ hasText: 'Ensuring confidentiality when necessary is also vital for building trust in the process.' })
       .first();
     await item.getByRole('checkbox').check();
     await item.getByRole('textbox').fill('NDA drafted.');
@@ -32,7 +32,7 @@ test.describe('Plan export and import', () => {
       (i) => (i as { done: boolean }).done
     );
     expect(checked).toHaveLength(1);
-    expect(plan.items['workshops-prereq-3']).toMatchObject({
+    expect(plan.items['workshops-req-9']).toMatchObject({
       done: true,
       note: 'NDA drafted.',
     });
@@ -47,7 +47,7 @@ test.describe('Plan export and import', () => {
       country: 'Ghana',
       setup: { phases: [], stakeholders: [], tools: ['surveys'], objectiveId: undefined },
       items: {
-        'surveys-prereq-1': { done: true, note: 'Objectives agreed.', updatedAt: '' },
+        'surveys-req-5': { done: true, note: 'Objectives agreed.', updatedAt: '' },
       },
       createdAt: '',
       updatedAt: '',
@@ -65,7 +65,7 @@ test.describe('Plan export and import', () => {
 
     const item = page
       .locator('li')
-      .filter({ hasText: "Define the survey's main objectives" })
+      .filter({ hasText: 'The preparation phase should include defining' })
       .first();
     await expect(item.getByRole('checkbox')).toBeChecked();
     await expect(item.getByRole('textbox')).toHaveValue('Objectives agreed.');

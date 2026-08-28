@@ -41,7 +41,7 @@ test.describe('Opening the offline build from the filesystem', () => {
     await page.getByRole('button', { name: 'By category' }).click();
     await page.getByRole('button', { name: 'Workshops', exact: true }).click();
     await expect(
-      page.getByText('Map required stakeholders depending on workshop objectives')
+      page.getByText(/In all cases, it is important to map the required stakeholders/)
     ).toBeVisible();
 
     expect(errors).toEqual([]);
@@ -56,7 +56,7 @@ test.describe('Opening the offline build from the filesystem', () => {
 
     const item = page
       .locator('li')
-      .filter({ hasText: "Define the survey's main objectives" })
+      .filter({ hasText: 'The preparation phase should include defining' })
       .first();
     await item.getByRole('checkbox').check();
     await item.getByRole('textbox').fill('Agreed with the planning team.');
@@ -65,7 +65,7 @@ test.describe('Opening the offline build from the filesystem', () => {
 
     const reloaded = page
       .locator('li')
-      .filter({ hasText: "Define the survey's main objectives" })
+      .filter({ hasText: 'The preparation phase should include defining' })
       .first();
     await expect(reloaded.getByRole('checkbox')).toBeChecked();
     await expect(reloaded.getByRole('textbox')).toHaveValue('Agreed with the planning team.');

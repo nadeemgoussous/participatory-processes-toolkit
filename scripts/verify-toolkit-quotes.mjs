@@ -37,6 +37,10 @@ const ALLOWED = new Set([
   'Possible participants in a working group',
   'Types of presentations',
   'Methods for effective communication',
+  // Verbatim from 4.1.2, but split across the page break between pages 33 and
+  // 34 with the chapter tabs set between the halves, so it is not contiguous
+  // in any extraction of the source. Checked by eye against the page.
+  'Surveys may face sampling and framing biases, which could impact the representativeness of the data.',
 ]);
 
 function normalise(s) {
@@ -50,6 +54,8 @@ function normalise(s) {
     // "long-\nterm", which has to match "long-term" in the data.
     .replace(/-[ \t]*\r?\n[ \t]*/g, '-')
     .replace(/\s+/g, ' ')
+    // the layout leaves a space before punctuation in places
+    .replace(/\s+([,.;:])/g, '$1')
     .trim()
     .toLowerCase();
 }

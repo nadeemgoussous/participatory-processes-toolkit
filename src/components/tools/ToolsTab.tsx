@@ -4,7 +4,7 @@ import { getCaseStudy } from '../../data/case-studies';
 import { PHASES, TOOL_CATEGORIES } from '../../types/toolkit';
 import type { EngagementTool, Phase, ToolId } from '../../types/toolkit';
 import { figures } from '../../data/figures';
-import { Blocks, Bullets, FigureImage, Section, SourceNote } from '../common/Blocks';
+import { Bullets, FigureImage, Section, SourceNote } from '../common/Blocks';
 import { usePlan } from '../../context/PlanContext';
 
 type Route = 'objective' | 'phase' | 'category';
@@ -204,24 +204,10 @@ function ToolDetail({ tool, onBack }: { tool: EngagementTool; onBack: () => void
         </dl>
       </Section>
 
-      <Section heading="Resource requirements">
+      <Section heading="Resource requirements and prerequisites">
         <Bullets items={tool.requirements} />
       </Section>
 
-      <Section heading="Prerequisites">
-        <Bullets items={tool.prerequisites} />
-      </Section>
-
-      {tool.lists?.map((list) => (
-        <Section key={list.label} heading={list.label}>
-          {tool.id === 'committees' && (
-            <div className="pb-1">
-              <FigureImage figure={figures[5]} />
-            </div>
-          )}
-          <Bullets items={list.items} />
-        </Section>
-      ))}
 
       <Section heading="Practical considerations">
         <div className="grid gap-4 md:grid-cols-3">
@@ -231,11 +217,6 @@ function ToolDetail({ tool, onBack }: { tool: EngagementTool; onBack: () => void
         </div>
       </Section>
 
-      {tool.examples.length > 0 && (
-        <Section heading={tool.examplesLabel ?? 'Examples from case studies'}>
-          <Blocks blocks={[{ items: tool.examples }]} />
-        </Section>
-      )}
 
       {tool.evidence.length > 0 && (
         <Section heading="Implementation evidence">

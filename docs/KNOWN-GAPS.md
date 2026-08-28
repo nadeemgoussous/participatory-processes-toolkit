@@ -2,30 +2,24 @@
 
 Verified on **2026-08-27** against the `toolkit-pivot` branch, Node 22.
 
-Baseline: `npm run typecheck` clean, `npm run verify:quotes` passes 784 strings,
+Baseline: `npm run typecheck` clean, `npm run verify:quotes` passes 761 strings,
 `npm run build` produces 341 kB of JS plus 712 kB of figures, process flows and icons, `npm run build:offline` produces a single
-1.33 MB `dist-offline/index.html`, `npm run test:chromium` passes 21 tests.
+1.35 MB `dist-offline/index.html`, `npm run test:chromium` passes 21 tests.
 
 ---
 
 ## Open
 
-### 1. Chapter 3 has not been re-derived from the PDF
+### 1. Chapters 2, 6 and 7 have not been re-derived from the PDF
 
-`docs/toolkit/*.md` was transcribed by hand and both truncates and rewrites the
-publication. Chapter 5 has been rebuilt from the PDF; chapter 3 has not, and the same
-damage is present in `stakeholder-profiles.ts`. One confirmed example, from 3.1:
+`docs/toolkit/*.md` was transcribed by hand and both rewrites and truncates the publication.
+Chapters 3, 4 and 5 have been rebuilt from the PDF. `npm run audit:drift` reports what is
+left: 638 strings are in the publication, 125 exist only in the transcription. Those 125 are
+in `participation-rationale.ts` (chapter 2), `resources.ts` (chapter 7),
+`toolkit-background.ts` and `using-the-toolkit.ts` (chapters 1 and 6).
 
-- markdown: "Many policy makers who influence energy policy are not necessarily specialists
-  in energy systems"
-- publication: "Many policy makers **and sector experts** who influence energy policy are not
-  necessarily specialists in energy systems. **Bridging this gap through education - or less
-  technical communication - can help ensure more informed decision making.**"
-
-`scripts/extract-case-studies.py` is the model for the fix: read the section by font and by
-table cell rather than from the markdown. Chapters 2, 4, 6 and 7 have not been audited
-either, though they were transcribed as prose rather than as tables and may have fared
-better.
+Chapters 2 and 7 are prose and tables like chapter 4, so `scripts/extract-tools.py` is the
+model: read the page by font, split prose into sentences, read tables by cell.
 
 ### 3. Two stakeholder ids have no profile
 

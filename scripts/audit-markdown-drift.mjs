@@ -19,6 +19,8 @@ function normalise(s) {
     .replace(/[‐-―−]/g, '-')
     .replace(/-[ \t]*\r?\n[ \t]*/g, '-')
     .replace(/\s+/g, ' ')
+    // the layout leaves a space before punctuation in places
+    .replace(/\s+([,.;:])/g, '$1')
     .trim()
     .toLowerCase();
 }

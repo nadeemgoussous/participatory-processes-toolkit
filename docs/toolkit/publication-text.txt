@@ -115,14 +115,6 @@ was copy-edited by Justin French-Brooks, with design provided by Phoenix Design 
 Please send requests for further information or comments to: publications@irena.org 
 This report is available at: www.irena.org/publications
 --- page 3 ---
-1
-2
-3
-4
-5
-6
-7
-8
 CONTENTS
 ABBREVIATIONS................................................................................................................. 6
 EXECUTIVE SUMMARY........................................................................................................ 7
@@ -171,14 +163,6 @@ Publications....................................................................
 8.	 REFERENCES ............................................................................................................... 80
 APPENDIX A – METHODOLOGY AND DATA COLLECTION................................................. 82
 --- page 5 ---
-1
-2
-3
-4
-5
-6
-7
-8
 FIGURES
 Figure 1	
 Overview and objectives of the participatory energy planning process.............................11
@@ -263,14 +247,6 @@ variable renewable energy
 WEC	
 World Energy Council
 --- page 7 ---
-1
-2
-3
-4
-5
-6
-7
-8
 EXECUTIVE SUMMARY
 The global energy transition requires unprecedented co‑ordination across all sectors of society. As 
 countries accelerate their shift toward renewable energy systems, the complexity and scale of the 
@@ -331,14 +307,6 @@ accelerate the clean energy transition while ensuring no one is left behind. The
 demonstrate that meaningful stakeholder engagement is essential for planning and achieving ambitious 
 energy and climate goals. 
 --- page 9 ---
-1
-2
-3
-4
-5
-6
-7
-8
 1.	INTRODUCTION 
 Individuals or entities that both produce and consume energy, for instance through solar panels. Excess 
 energy is then potentially fed back into the grid, making them participants in the broader power system.
@@ -398,14 +366,6 @@ engaged at the different stages, providing practical recommendations for maximis
 participatory approaches.
 (Göke et al., 2023; Howells et al., 2021; IRENA, 2020b; McGookin et al., 2024; Waisman, 2018).
 --- page 11 ---
-1
-2
-3
-4
-5
-6
-7
-8
 Figure 1	
 Overview and objectives of the participatory energy planning process
 WHO PARTICIPATES
@@ -492,13 +452,6 @@ align with your planning objectives.
 	
 ; Utilise the additional resources in Chapter 7 for detailed implementation guidance.
 --- page 13 ---
-2
-3
-4
-5
-6
-7
-8
 2.	THE IMPORTANCE 
 OF PARTICIPATORY 
 PROCESSES IN NATIONAL 
@@ -558,13 +511,6 @@ teams or agencies with expertise in energy modelling and scenario-building. This
 crucial for ensuring that policy makers can effectively understand and utilise scenario insights to inform 
 policy and investment decisions.
 --- page 15 ---
-2
-3
-4
-5
-6
-7
-8
 While in-house capacity is essential, governments may also utilise external organisations in the energy 
 planning process. This outsourcing approach aims to gather diverse perspectives and expertise, ultimately 
 fostering a more comprehensive and robust planning process. Examples of these organisations include 
@@ -648,13 +594,6 @@ for creating realistic and socially resonant scenarios (IRENA, 2023a). This appr
 robustness while aligning with societal values and concerns, thereby increasing the scenarios’ legitimacy 
 (Ernst et al., 2018) and accountability to entities responsible for scenario-building.
 --- page 17 ---
-2
-3
-4
-5
-6
-7
-8
 2. Gathering diverse inputs and identifying planning blind spots
 Scenario-building requires input from a wide range of stakeholders, including sector and industry experts 
 (power, transport, heating and cooling, agriculture, and other energy and non-energy sectors), policy 
@@ -727,12 +666,6 @@ ensures a more comprehensive representation of the energy ecosystem in scenario 
 iterative communication loop, where feedback from participants informs ongoing discussions and 
 scenario refinements, is crucial for the evolution of effective energy strategies (IRENA, 2022).
 --- page 19 ---
-3
-4
-5
-6
-7
-8
 3.	STAKEHOLDERS IN THE 
 NATIONAL SCENARIO 
 DEVELOPMENT PROCESS
@@ -787,12 +720,6 @@ avoid perceived bias.
 •	 Conducting capacity-building exercises for policy makers and their staff to help guide decision 
 making.
 --- page 21 ---
-3
-4
-5
-6
-7
-8
 3.2	 GRID OPERATORS
 Who are they? Grid system operators refer to the entities responsible for operating and often developing 
 power and gas networks (both transmission and distribution).
@@ -870,12 +797,6 @@ stages.
 •	 Placing limits on lobbying influence and balancing views appropriately to avoid unbalanced power 
 dynamics.
 --- page 23 ---
-3
-4
-5
-6
-7
-8
 3.4	 GENERAL PUBLIC AND LOCAL COMMUNITIES
 Who are they? The general public, or sometimes leaders or representatives of communities based on 
 locality, identity (e.g. indigenous groups) or other means of demographic classification (e.g. age group 
@@ -942,12 +863,6 @@ engagement.
 •	 Conducting thorough stakeholder mapping to ensure affected stakeholders are engaged.
 •	 Communicating clearly how inputs will be taken or not taken in the plans.
 --- page 25 ---
-3
-4
-5
-6
-7
-8
 3.6	 SCIENTIFIC INSTITUTIONS
 Who are they? Members of the scientific community, including researchers and experts working at 
 universities and research institutions. They could include energy and power system experts, economists 
@@ -1014,11 +929,6 @@ opportunities in supporting low-carbon development.
 of energy transitions to financial entities, investors and policy makers outside the planning team 
 (see section 4.3.2).
 --- page 27 ---
-4
-5
-6
-7
-8
 4.	ENGAGEMENT 
 TOOLS AND ACTIVITIES
 This chapter outlines the different tools and activities that government planners can utilise when 
@@ -1069,11 +979,6 @@ The communication stage involves sharing the results with stakeholders.
 Under this dimension, energy planners will find guidance on how and when to use each tool during 
 the planning cycle.
 --- page 29 ---
-4
-5
-6
-7
-8
 Resource requirements
 This dimension provides insights into the resources needed to implement each tool effectively:
 •	 Human expertise.
@@ -1165,11 +1070,6 @@ Explore good practices and prerequisites identified in each tool’s subsection.
 STEP 6: Evaluate the benefits of the selection
 Develop and compare indicators to help measure the success of the choice to the planning process.
 --- page 31 ---
-4
-5
-6
-7
-8
 4.1	 KNOWLEDGE GATHERING
 4.1.1	 WORKSHOPS 
 Workshops provide structured environments for energy planners to facilitate engagement with many 
@@ -1197,6 +1097,47 @@ for reiteration
 Present results and 
 communicate policy 
 outcomes
+Resource requirements and prerequisites
+Workshops require dedicated, skilled facilitators with expertise in energy scenario development. 
+Adequate financial resources are also needed to cover logistics for stakeholder gatherings, including 
+location, technology, facilitation and possibly funding for attendance and related per diem payments. 
+Access to technology may also be necessary, depending on the format of the workshop. As demonstrated 
+in the case studies, the ideal format varies by setting. In some cases, physical meetings may be the 
+most effective way to facilitate participatory processes, fostering transparency and building trust in the 
+process, as was the case for developing the Ghanaian National Energy Plan. Other instances, like Chile’s 
+long-term energy planning , made use of a variety of online tools and platforms to engage stakeholders 
+at different stages of the energy planning process. In some instances, countries like Brazil employed a 
+hybrid approach, utilising both online and in-person workshops. 
+In all cases, it is important to map the required stakeholders depending on the workshop’s objectives, and 
+determine the format most appropriate for the stakeholders invited and the desired outcomes. Ensuring 
+confidentiality when necessary is also vital for building trust in the process. A preliminary engagement 
+phase may be useful for non-expert audiences, to build foundational knowledge and enhance participant 
+involvement through courses, tutorials, interviews or a combination of them. This also informs workshop 
+design and potential sources of tension.
+Practical considerations
+Strengths: Workshops are adaptable and flexible, allowing for diverse formats to meet specific needs. 
+Their interactive nature encourages active participation and may foster social acceptance. They engage 
+a wide range of stakeholders and promote social learning. In-person workshops can also foster informal 
+exchanges and relationships between participants, adding potential value for possible collaborations.
+4
+5
+6
+7
+8
+4.1	 KNOWLEDGE GATHERING
+4.1.1	 WORKSHOPS 
+Workshops provide structured environments for energy planners to facilitate engagement with many 
+different types of stakeholders, to share information, foster discussions and collect feedback. Workshops 
+help identify and map divergences and convergences between stakeholder groups. For example, Brazil 
+used virtual debates to identify key disagreements and develop scenarios that reflected different 
+perspectives. Finland used workshops to foster collaboration and transparency in their carbon neutrality 
+scenarios. Brazil also held workshops to present their National Energy Plan 2050, while Cyprus used 
+workshops to communicate scenario results to policy makers.
+Implementation stage
+Framing
+Development
+Validation
+Communication
 Resource requirements and prerequisites
 Workshops require dedicated, skilled facilitators with expertise in energy scenario development. 
 Adequate financial resources are also needed to cover logistics for stakeholder gatherings, including 
@@ -1287,11 +1228,6 @@ encouraging participants to
 integrate personal stories into 
 scenario planning.
 --- page 33 ---
-4
-5
-6
-7
-8
 4.1.2	 SURVEYS AND PUBLIC CONSULTATIONS
 Surveys provide a structured method for national energy planners to gather standardised information 
 and perspectives from a wide range of stakeholders. They offer a means of understanding public opinion, 
@@ -1315,6 +1251,49 @@ on results and draft
 plans
 Gathering feedback 
 on final plan
+Resource requirements and prerequisites
+To conduct surveys effectively, specialists with expertise in energy scenario development and data 
+collection are essential to define survey questions and guide the design process. Financial resources are 
+required to facilitate the surveys, particularly for in-person surveys. Online surveys may offer a lower-
+cost option, as many surveying tools are free, and can help reach a more geographically dispersed 
+set of stakeholders than who would otherwise be available to attend in-person sessions. However, 
+facilitating online surveys still requires expertise in survey design, must be mindful of data protection 
+law, and depends upon internet access. The preparation phase should include defining the survey’s main 
+objectives and identifying the target audience, whether citizens or expert stakeholders, and ensuring this 
+selection constitutes a representative sample. Thoughtful planning of the survey format (fully online, in-
+person gatherings, hybrid or by telephone) and method (group discussions or individual responses) will 
+help ensure engagement and relevance. To maximise the impact of the survey results, planners should 
+also consider how participants will be involved in subsequent stages of energy scenario development. 
+Practical considerations
+Strengths: Surveys can engage a diverse group of stakeholders, making them effective for gathering a 
+wide range of perspectives. They can be tailored to collect valuable data that inform energy scenario 
+modelling, and there are methodologies suited to various formats and contexts to ensure flexibility in 
+approach.
+Limitations: Accessibility can be an issue, especially for certain citizen groups who may lack access to the 
+necessary technology or resources to respond to these surveys. Additionally, some topics may need to be 
+simplified, which might exclude certain complexities from the energy modelling discussions.
+Challenges: Gaining meaningful inputs within a limited interaction period is a core challenge, as is defining 
+a sample that is representative of the broader population, especially if faced with limited participant 
+recruitment. Surveys may face sampling and framing biases, which could impact the representativeness 
+4
+5
+6
+7
+8
+4.1.2	 SURVEYS AND PUBLIC CONSULTATIONS
+Surveys provide a structured method for national energy planners to gather standardised information 
+and perspectives from a wide range of stakeholders. They offer a means of understanding public opinion, 
+collecting quantitative and qualitative data, and receiving feedback on energy plans and scenarios. For 
+example, Finland’s VTT employed large-scale surveys, including consumer surveys, as part of their 
+engagement activities for developing their carbon neutrality scenarios. The Chilean team also utilised 
+surveys to gather feedback on their energy planning process, aiming to incorporate diverse stakeholder 
+perspectives. The Ghanian Energy Planning Committee, similarly, leveraged surveys to inform their 
+energy transition planning, focusing on understanding stakeholder opinions and preferences.
+Implementation stage
+Framing
+Development
+Validation
+Communication
 Resource requirements and prerequisites
 To conduct surveys effectively, specialists with expertise in energy scenario development and data 
 collection are essential to define survey questions and guide the design process. Financial resources are 
@@ -1383,11 +1362,6 @@ Polls and ballots: These can be quick and convenient methods to gauge participan
 priorities, without being too time-consuming or requiring details, and can be done either virtually or in-
 person.
 --- page 35 ---
-4
-5
-6
-7
-8
 4.1.3	 INTERVIEWS
 Interviews offer energy planners a focused method to deeply explore participants’ perspectives, opinions 
 and experiences in mostly one-on-one settings. They provide a platform for gaining detailed qualitative 
@@ -1411,6 +1385,48 @@ Feedback gathering
 and refinement
 Gathering feedback 
 on final plan
+Resource requirements and prerequisites
+Conducting interviews requires expert support to design the structure and define questions that align 
+with the study’s objectives. Interviewers play a critical role in guiding dialogue, ensuring constructive 
+dialogue and keeping participants focused on the objectives of the discussion. In the preparation phase, 
+the primary goals of the interview must be clearly defined and the target groups identified – whether 
+they are citizens, stakeholders or subject matter experts. Careful planning of the interview approach, 
+including whether it will be structured, semi-structured or informal, is essential to ensure relevance and 
+engagement. Additionally, it is important to consider how participants’ input will feed into subsequent 
+stages of energy scenario development. Confidentiality measures should also be established to create a 
+safe and open environment for participants, particularly when sensitive topics are discussed.
+Practical considerations
+Strengths: Interviews allow stakeholders to express their individual views in detail, making them 
+particularly effective for gathering qualitative and descriptive data. This format fosters meaningful 
+conversations, enabling participants to articulate their motivations and identify potential divergences. 
+By offering a space for focused discussion, interviews can generate in-depth insights that are valuable 
+for understanding complex issues in energy scenario planning.
+Limitations: One major limitation of interviews is the small number of participants typically involved, 
+which can limit the diversity of perspectives captured. Interviews are also time-intensive, both in 
+conducting and analysing the discussions, which can strain resources. Additionally, interviews lack the 
+group dynamics that can reveal new information, help build consensus or evolve collective opinions, 
+potentially leaving gaps in understanding.
+Challenges: Interpreting and translating interview findings into actionable insights for quantitative energy 
+scenarios can be complex. Ensuring balance between diverse opinions within the same stakeholder group 
+is another challenge. 
+4
+5
+6
+7
+8
+4.1.3	 INTERVIEWS
+Interviews offer energy planners a focused method to deeply explore participants’ perspectives, opinions 
+and experiences in mostly one-on-one settings. They provide a platform for gaining detailed qualitative 
+insights, fostering a richer understanding of individual motivations and viewpoints, and uncovering 
+nuances that may inform energy plans and scenarios. The interview format is usually used to engage 
+industry or expert stakeholders as opposed to the general public due to being time-consuming. The 
+World Energy Council and Finnish energy planning processes both used interviews to understand 
+stakeholder preferences and to draft scenario narratives.
+Implementation stage
+Framing
+Development
+Validation
+Communication
 Resource requirements and prerequisites
 Conducting interviews requires expert support to design the structure and define questions that align 
 with the study’s objectives. Interviewers play a critical role in guiding dialogue, ensuring constructive 
@@ -1492,6 +1508,15 @@ collecting qualitative data,
 opinions and narratives at 
 the beginning of scenario 
 processes.
+Implementation evidence
+Interviews are a powerful method for collecting qualitative data and gaining in-depth insights. Several 
+countries and organisations incorporate them into participatory processes for developing scenarios. For 
+instance, the United Arab Emirates uses bilateral interviews and discussions to ensure alignment between 
+national long-term energy plans and the mid-term strategies of regional utilities. Finland’s VTT leverages 
+interviews to capture individual stakeholder perspectives, opinions and experiences. Similarly, the World 
+Energy Council employs interviews to craft narratives for their energy scenarios.
+Box 3	
+Types of interviews
 Structured interviews:
 Semi-structured interviews:
 Unstructured interviews:
@@ -1530,11 +1555,6 @@ opinions and narratives at
 the beginning of scenario 
 processes.
 --- page 37 ---
-4
-5
-6
-7
-8
 4.2	 CO-CREATION
 4.2.1	 INTER-INSTITUTIONAL STEERING COMMITTEES, TASK FORCES AND 
 WORKING GROUPS
@@ -1561,6 +1581,48 @@ Feedback gathering
 Co-created outputs 
 such as policy briefs 
 or results
+Resource requirements and prerequisites
+Effective inter-institutional planning committees and working groups require dedicated institutional 
+resources to ensure sustained engagement for operational activities and other extraordinary needs. To 
+function effectively, the planning committee requires: a well-structured core team with clear leadership; 
+secure participation of key ministries, such as energy or environment; and strategic engagement with 
+external technical expertise. Formalising the committee along with the associated roles, responsibilities, 
+objectives, resources and constraints is crucial to achieving legitimacy and longevity. Participants should 
+commit to the process for its duration.
+Practical considerations
+Strengths: Committees bring together diverse expertise (Figure 5), making them well-suited to 
+addressing complex issues critical to the energy transition. Committees’ collaborative nature enables 
+the integration of multiple perspectives, which can foster stronger consensus-building and more 
+comprehensive solutions. They also have a clear mandate, enhancing communication, reduce the risk of 
+conflicting policies and build a strong case for implementation and funding allocation.
+Challenges: Committees may have slow decision-making processes with limited flexibility, and can be 
+resource intensive. The efficiency and effectiveness of committees may suffer due to internal power 
+dynamics or a lack of mutual understanding among members, which can hinder collaboration. Sustaining 
+enthusiasm and commitment over a prolonged period is another common challenge. Additionally, the 
+prioritisation of certain disciplines, sectors or policies over others can reflect self-interest, potentially 
+skewing the outcomes.
+4
+5
+6
+7
+8
+4.2	 CO-CREATION
+4.2.1	 INTER-INSTITUTIONAL STEERING COMMITTEES, TASK FORCES AND 
+WORKING GROUPS
+Several countries co‑ordinate their energy planning through inter-institutional committees (including 
+public and non-public organisations) to bring their unique expertise, data and viewpoints to the table. 
+Working together helps create a more comprehensive, aligned and interconnected understanding of 
+the long-term energy scenarios, which supports the quantification of socio-political insights and their 
+inclusion in energy scenarios and planning. Many of these examples are outlined in previous reports (on 
+Africa, Latin America and Asia), as well as in the case studies in this toolkit. Also, the PAC consortium 
+established an advisory committee consisting of sector experts, which accompanied the project and 
+scenario development and provided commentary, challenged the results and enriched the work with 
+further insights.
+Implementation stage
+Framing
+Development
+Validation
+Communication
 Resource requirements and prerequisites
 Effective inter-institutional planning committees and working groups require dedicated institutional 
 resources to ensure sustained engagement for operational activities and other extraordinary needs. To 
@@ -1611,11 +1673,6 @@ Possible participants in a working group or steering committee
 Notes:	
 LT-LEDS = Long-Term Low Emission Development Strategies; NDC = Nationally Determined Contribution.
 --- page 39 ---
-4
-5
-6
-7
-8
 4.2.2	 NETWORK/HUBS
 Establishing a network or hub involves the creation of a temporary or permanent structure to co‑ordinate 
 activities, share knowledge and build a modelling ecosystem. Canada leverages its Energy Modelling Hub 
@@ -1649,6 +1706,46 @@ and modellers
 Modellers scrutinise 
 policies and 
 scenarios (bilateral)
+Resource requirements and prerequisites
+Establishing and maintaining collaborative networks requires sustained funding to support both 
+permanent and temporary staff, as well as activities such as workshops and meetings. Adequate 
+technology infrastructure, including software for online engagement and shared databases, tools or 
+models, is essential for effective co‑ordination and collaboration. A strong governance structure with 
+expertise in relevant topics is necessary to steer activities and provide vision, while open communication 
+channels enable co‑ordination and networking among participants. Political will at various levels is 
+critical to foster connections and ensure alignment with broader goals. Additionally, recognising and 
+accommodating resource disparities among network members helps maintain inclusivity and balance. 
+A robust monitoring and evaluation mechanism is also required to assess progress and ensure network/
+hub objectives are met.
+Practical considerations
+Strengths: Collaborative networks provide a platform for regular interaction among technical civil 
+servants, policy makers and academics, fostering alignment and avoiding duplication of efforts. These 
+networks leverage the diverse capacities, strengths and scrutiny of participating institutions, enabling 
+more relevant and impactful contributions to energy planning.
+Challenges: Sustained funding requirements can be substantial, posing a barrier to long-term operation. 
+Differing institutional priorities may complicate co‑ordination and alignment of objectives. Political will 
+is a crucial factor in ensuring the network’s outputs contribute effectively to governmental goals and 
+visions.
+Limitations: These networks are best suited for ongoing collaboration rather than singular projects. The 
+success of formalised networks and hubs relies heavily on the sustained commitment of a broad and 
+diverse group of members, making continuity a potential vulnerability.
+4
+5
+6
+7
+8
+4.2.2	 NETWORK/HUBS
+Establishing a network or hub involves the creation of a temporary or permanent structure to co‑ordinate 
+activities, share knowledge and build a modelling ecosystem. Canada leverages its Energy Modelling Hub 
+(EMH), a university-based structure, to connect modelling experts with clean energy policy makers. This 
+hub fosters dialogue among energy modellers, policy makers and other stakeholders through various 
+engagement activities, including an annual forum, regional and modelling workshops, and thematic 
+committees.
+Implementation stage 
+Framing
+Development
+Validation
+Communication
 Resource requirements and prerequisites
 Establishing and maintaining collaborative networks requires sustained funding to support both 
 permanent and temporary staff, as well as activities such as workshops and meetings. Adequate 
@@ -1725,11 +1822,6 @@ energy modelling
 Thematic workshops 
 and forums
 --- page 41 ---
-4
-5
-6
-7
-8
 4.3	 DISSEMINATION
 4.3.1	 PUBLIC PRESENTATIONS AND REPORTS
 Scenario practitioners use public presentations as a strategic tool throughout the energy scenario 
@@ -1754,6 +1846,44 @@ Present draft results
 Present scenarios 
 to all types of 
 stakeholders
+Resource requirements and prerequisites
+Conducting presentations requires planning teams to deliver clear and engaging content, and calls 
+for skilled communication, possibly through dedicated communication and external relations teams. 
+Technological support may also be necessary to enhance presentations, especially for online formats. 
+Specific objectives should be outlined in advance, including introducing the participatory process for 
+energy scenario development, presenting progress, gathering feedback on preliminary results and 
+communicating final outcomes. Additionally, a well-defined methodology for collecting and incorporating 
+audience feedback is essential to improve the energy scenarios being developed.
+Practical considerations
+Strengths: Presentations provide an opportunity to educate non-expert groups about energy scenario 
+development, fostering greater understanding and engagement. They also serve as a platform to gather 
+feedback from a broad audience, including stakeholders who might otherwise not participate. Online 
+presentations, in particular, offer a highly efficient way to reach even larger and more diverse audiences.
+Challenges: Crafting an appropriate narrative is key to effectively describing the energy scenario 
+modelling process and its outcomes, especially for non-expert audiences. Presenters must employ non-
+technical language and ensure clarity to communicate complex ideas in an accessible manner.
+Limitations: Due to the nature of public presentations and the diverse audience, it may be necessary to 
+limit the depth and complexity of the content. Additionally, the time available for presenting extensive 
+results or content or answering questions can be constrained, potentially limiting the scope of the 
+discussion.
+4
+5
+6
+7
+8
+4.3	 DISSEMINATION
+4.3.1	 PUBLIC PRESENTATIONS AND REPORTS
+Scenario practitioners use public presentations as a strategic tool throughout the energy scenario 
+development process to inform, engage and, in many cases, gather feedback from stakeholders. These 
+presentations, public hearings and reports typically include introductory sessions to outline the process, 
+updates during intermediate stages to share progress and solicit input, and discussions of partial or final 
+outcomes to present findings and encourage dialogue. Public presentations are essential for effectively 
+communicating with non-expert audiences and fostering broader stakeholder buy-in.
+Implementation stage
+Framing
+Development
+Validation
+Communication
 Resource requirements and prerequisites
 Conducting presentations requires planning teams to deliver clear and engaging content, and calls 
 for skilled communication, possibly through dedicated communication and external relations teams. 
@@ -1815,11 +1945,6 @@ the assumptions and data, and visualisations showcasing different scenarios and
 results. Such reports can be highly useful for stakeholders with the required technical 
 knowledge, and can provide a clear reference for building on this work if needed.
 --- page 43 ---
-4
-5
-6
-7
-8
 4.3.2	 VISUALISATION TOOLS, GAMES AND SIMULATIONS
 Detailed energy system plans can be data-heavy and difficult to interpret for non-experts due to the 
 highly technical nature of energy system planning. Countries have highlighted that visualising data, 
@@ -1842,6 +1967,44 @@ Present draft results
 Set up dashboards 
 and interactive tools 
 to increase outreach 
+Resource requirements and prerequisites
+Developing and utilising interactive visualisations requires access to appropriate technology, including 
+necessary licences and subscriptions, as well as sufficient knowledge and capacity to create and interpret 
+the tools. To ensure successful engagement, clear instructions should be provided to the audience on 
+how to interpret and interact with the tools. It is also essential to define key concepts related to energy 
+scenarios and to highlight the information most relevant to different stakeholder groups. For example, 
+stakeholders interested in affordability may benefit from having scenario results presented in terms of 
+energy prices and how different scenario developments would affect the average household cost of 
+energy in the short, medium and long term.
+Practical considerations
+Strengths: Interactive visualisations complement and enhance storytelling, capturing the audience’s 
+interest through engaging and dynamic presentations. They provide an effective way to reach a 
+broader audience, particularly non-expert groups, by making complex information more accessible and 
+interactive.
+Challenges: Creating effective visualisations requires dedicated training and expertise, which may not 
+always be available within the planning team. Alternatively, outsourcing the task to specialised contractors 
+incurs additional financial cost. Ensuring high-quality visualisation while balancing these personnel and 
+financial constraints can be challenging.
+Limitations: Interactive visualisations depend on reliable internet access and may require accompanying 
+educational resources, as seen in the Belgian case for the “My2050” app. Furthermore, as a one-way 
+communication tool, they may not fully address audience questions or provide opportunities for dialogue, 
+limiting their explanatory potential.
+4
+5
+6
+7
+8
+4.3.2	 VISUALISATION TOOLS, GAMES AND SIMULATIONS
+Detailed energy system plans can be data-heavy and difficult to interpret for non-experts due to the 
+highly technical nature of energy system planning. Countries have highlighted that visualising data, 
+pathways and results can be vital to communicating complex ideas, policy-making implications and 
+investment needs. This can be achieved through a variety of methods, including public-oriented charts 
+and graphs, interactive dashboards, and simulations and games.
+Implementation stage
+Framing
+Development
+Validation
+Communication
 Resource requirements and prerequisites
 Developing and utilising interactive visualisations requires access to appropriate technology, including 
 necessary licences and subscriptions, as well as sufficient knowledge and capacity to create and interpret 
@@ -1917,10 +2080,6 @@ and games can be developed for digital deployment to reach a broad audience and
 benefit from continuous updating, or can be developed for analogue play to build a 
 general understanding about the trade-offs facing energy system planners.
 --- page 45 ---
-5
-6
-7
-8
 5. CASE STUDIES
 This chapter presents case studies of participatory processes conducted by government and non-
 government institutions, as shared during exchanges within the LTES Network and beyond. This chapter 
@@ -2168,6 +2327,17 @@ integration
 of social and 
 environmental 
 aspects
+3.	The second page of each case study visualises the participatory process in the example. The first 
+column (in blue) indicates inputs into the process, the second column (in green) indicates the 
+process itself and its related activities, and the third column (in orange) indicates the outcomes of 
+the activities and the complete process. Arrows are used to indicate the stages of these processes 
+and any iterative or bilateral interaction between different elements.
+4.	At the bottom of the second page, highlights and lessons learnt from these procedures are outlined 
+as presented by the organising institutions.
+Table 1 acts as a “cheat sheet” to allow the user to navigate to the case study most relevant to their own 
+context.
+Table 1	
+Summary of case studies
 Country/
 
 institution
@@ -2372,10 +2542,6 @@ of social and
 environmental 
 aspects
 --- page 47 ---
-5
-6
-7
-8
 Country/
 
 institution
@@ -2660,6 +2826,10 @@ Socio-political
 framework; 
 simulation tools 
 methodology
+5
+6
+7
+8
 Country/
 
 institution
@@ -2987,6 +3157,24 @@ Overview of tool’s history: www.imperial.ac.uk/2050-calculator/history/.
  
  
  
+5.1	
+BELGIUM
+Scenarios as a communication tool: how Belgium utilises an interactive participatory process to 
+communicate climate and energy transition topics to the country’s youth
+Youth constitute a vital driver for the energy transition. The Climate Change Department of the Federal 
+Public Service Health, Food Chain Safety and Environment aimed to develop a strategy to engage citizens, 
+especially youth, as a way to increase awareness and education through its energy and climate scenario 
+work. Under the “Low Carbon Belgium by 2050” initiative, the Belgian government has developed their 
+version of My2050, a “calculator” tool enabling citizens and students to envision their own transition 
+scenarios towards a sustainable future. In 2023, the My2050 tool was updated to allow students to 
+explore net-zero scenarios for Belgium by 2050.
+Overview of tool’s history: www.imperial.ac.uk/2050-calculator/history/. 
+ 
+ 
+ 
+ 
+ 
+ 
 Governance
 Spearheaded by the Climate Change Department of the Federal Public Service Health.
 Scope
@@ -3018,10 +3206,6 @@ promoting the initiative within the educational sector, and ensuring the nationw
 allocation and effective execution of sessions. Additionally, these coaches receive their 
 training at the start of the year from the aforementioned Climate Change Department.
 --- page 49 ---
-5
-6
-7
-8
 Process
 • Scenarios for a low 
 carbon Belgium by 
@@ -3098,6 +3282,21 @@ and EPE.
  
  
  
+5.2	 BRAZIL
+Partnerships for stakeholder-led net-zero scenarios: how Brazil leveraged a diverse partnership 
+between government, financial institutions and the scientific community to develop a consensus-
+based energy roadmap
+The first phase of the Energy Transition Programme (PTE), run jointly by the Inter-American Development 
+Bank (IDB), the Brazilian Centre for International Relations (CEBRI) and the Energy Research Office (EPE), 
+was established to assess the constraints and the potential of Brazil’s energy transition and to offer an 
+independent and open contribution to the formulation of public policy geared towards Brazil’s energy 
+mix in 2050.
+ 
+ 
+ 
+ 
+ 
+ 
 Governance
 The programme was run jointly by EPE, IDB (multilateral financing institution) and 
 CEBRI, with the stakeholder engagement organised by CEBRI. Modelling activities 
@@ -3124,10 +3323,6 @@ Resources
 Financial: The total budget for PTE1 was USD 284 736 for IDB, CEBRI, private entities 
 and EPE.
 --- page 51 ---
-5
-6
-7
-8
 Process
 White paper 
 consolidating the insights 
@@ -3205,6 +3400,26 @@ and partners from different universities.
  
  
  
+5.3	 CANADA
+Collaboration with the scientific community: how Canada leverages its diverse energy modelling 
+capacities for co‑operative scenario development
+With the second-largest land mass in the world and a diverse range of energy resources, Canada faces 
+unique challenges in transforming its energy system. Its federal structure, which grants significant 
+political autonomy to its ten provinces, adds complexity to national energy planning and co‑ordination. 
+In response, Natural Resources Canada (NRCan) established the Energy Modelling Hub (EMH) in 2022 
+as a national forum to co‑ordinate energy modelling efforts across the country. EMH serves as a network 
+of energy and electricity modellers, policy makers and experts dedicated to guiding Canada’s transition 
+to a net-zero economy. Its mission is to bridge the gap between public policy and energy modelling 
+communities by facilitating dialogue, enhancing access to modelling expertise, and promoting the use 
+of open-source tools and data. By fostering collaboration and providing timely, evidence-based insights, 
+EMH supports informed decision making to advance a decarbonised, affordable, reliable and equitable 
+energy system for Canada.
+ 
+ 
+ 
+ 
+ 
+ 
 Governance
 EMH is a university-based structure overseen by an independent advisory board 
 comprising academia, government agencies and the private sector. The board provides 
@@ -3238,10 +3453,6 @@ Human: EMH is overseen by an executive committee and supported by a permanent
 staff of six. Its operations are further assisted by volunteers from thematic committees 
 and partners from different universities.
 --- page 53 ---
-5
-6
-7
-8
 Process
 National network of 
 energy and electricity 
@@ -3313,6 +3524,20 @@ goals.
  
  
  
+Prioritising public engagement: how Chile’s engagement strategy allows its people to actively 
+contribute to planning a just and inclusive energy system
+Chile’s Ministry of Energy aims to enhance citizen and minority involvement in shaping public policy. 
+This commitment to broadening participation was critical to the development of the Long-Term 
+Energy Plan (Planificacion Energética de Largo Plazo, PELP). It includes developing LTES, pinpointing 
+development zones for electricity generation, and forecasting energy demand and supply. This inclusive 
+approach ensures diverse perspectives are considered, making energy policies more representative and 
+comprehensive.
+ 
+ 
+ 
+ 
+ 
+ 
 5
 Governance
 Led by the Ministry of Energy, the collaborative process engages several key ministries 
@@ -3339,10 +3564,6 @@ The initiative is supported by the internal resources of the Ministry of Energy,
 dedicated team within the ministry, ensuring focused and sustained effort towards these 
 goals.
 --- page 55 ---
-5
-6
-7
-8
 Process 
 Draft Long-Term 
 Energy Plan (2021)
@@ -3412,6 +3633,20 @@ positioned in key territories.
  
  
  
+5.5	 COLOMBIA
+Shifting from national to territorial focus: how Colombia’s energy planning incorporates social 
+dialogue and intersectional approaches to drive a just energy transition
+Colombia’s energy sector is in transition, moving from a focus primarily on energy reliability and 
+maximising revenue from coal and oil, to addressing climate goals while ensuring development across 
+all regions of the country. The Unidad de Planeación Minero Energética (Mining Energy Planning Unit) 
+(UPME) leads this transformation with a participatory approach to planning that emphasises territorial 
+inclusion, particularly for previously marginalised regions and indigenous communities.
+ 
+ 
+ 
+ 
+ 
+ 
 Governance
 Planning workshops are led by UPME, with multi-sector involvement across 
 government ministries, regional authorities and communities. Framed on the territorial 
@@ -3443,10 +3678,6 @@ Resources
 UPME allocates dedicated staff for regional engagement, with focal points strategically 
 positioned in key territories.
 --- page 57 ---
-5
-6
-7
-8
 Process
 Inputs
 Process and activities
@@ -3524,6 +3755,23 @@ Example: https://repository.cyi.ac.cy/bitstream/CyI/2496/1/Zachariadis_PlanBleu_
  
  
  
+5.6	
+CYPRUS
+Reports and briefs for delivering information: how Cyprus utilises concise publications and other 
+materials to communicate scenario results to policy makers
+Policy makers and finance ministries sometimes have limited time to read and analyse energy and climate 
+plans in order to inform their decision-making. The Cyprus National Energy and Climate Plan involves a 
+comprehensive process of stakeholder engagement and information dissemination, primarily focused on 
+the intricacies of energy transition and financing.
+Example: www.cyi.ac.cy/index.php/stedi-rc/research-information/stedi-rc-scientific-publications/climate-
+policy-is-good-economic-and-social-policy. 
+Example: https://repository.cyi.ac.cy/bitstream/CyI/2496/1/Zachariadis_PlanBleu_Jan2025.pdf. 
+ 
+ 
+ 
+ 
+ 
+ 
 Governance
 The Ministries of Finance and Environment co‑ordinate the scenario development 
 process, which is conducted by The Cyprus Institute (including outreach and 
@@ -3559,10 +3807,6 @@ Teams from various technical committees across ministries and national authoriti
 co‑ordinated by the Directorate-General for Growth in the Ministry of Finance and the 
 Ministry of Environment.
 --- page 59 ---
-5
-6
-7
-8
 Process
 Visualisation tools
 Sector-speciﬁc policy briefs
@@ -3642,6 +3886,22 @@ Not available.
  
  
  
+5.7	
+FINLAND
+Research institutions as primary conveners: how Finland utilises the capacity of VTT Research Centre 
+to develop energy and climate scenarios based on extensive stakeholder engagement with different 
+sectors
+Finland has an ambitious target to reach net-zero by 2035, and such a rapid transition requires a well-
+informed and robust approach that involves all stakeholders. VTT Technical Research Centre of Finland, 
+a state-owned research company, supports the government of Finland by combining qualitative foresight 
+methods with quantitative scenario modelling in interactive processes with stakeholders and decision 
+makers to develop their strategies.
+ 
+ 
+ 
+ 
+ 
+ 
 Governance
 The National Energy and Climate Plan (NECP), LT-LEDS and LTES are led by the 
 Ministry of Economic Affairs and Employment and conducted by VTT.
@@ -3681,10 +3941,6 @@ increased transparency and acceptance of plans.
 Resources
 Not available.
 --- page 61 ---
-5
-6
-7
-8
 Process
 Inputs
 Inputs and comments
@@ -3750,6 +4006,24 @@ Not available.
  
  
  
+5.8	
+GHANA
+Consultation as a strategic approach: how Ghana leverages structured stakeholder participation in 
+energy transition planning
+Ghana has a Strategic National Energy Plan initiative, led by the country’s Ministry of Energy, which 
+demonstrates a commitment to achieving climate neutrality by 2070. The Energy Commission, 
+established under the Energy Commission Act 541 and the Ministry of Energy, provides the technical 
+support for modelling, scenario development and analysis. The whole planning process is characterised 
+by intensive stakeholder engagement, co‑ordinated by the Energy Commission. The process ensures the 
+involvement of a diverse group of stakeholders, including regulatory agencies, legislators, the judiciary, 
+utilities, policy makers, civil society organisations, the private sector and international partners, with the 
+goal of achieving a sector-wide consensus.
+ 
+ 
+ 
+ 
+ 
+ 
 Governance
 The Energy Planning Committee, formed under the Energy Commission and 
 comprising representatives from key economic sectors, guides the process to reach 
@@ -3775,10 +4049,6 @@ implementation of the strategic energy plans for 2070.
 Resources
 Not available.
 --- page 63 ---
-5
-6
-7
-8
 Process
 Final National 
 Energy Plan
@@ -3848,6 +4118,26 @@ A key component was analysing opportunities and challenges in grid modernisation
  
  
  
+5.9	
+PANAMA
+Stakeholder consultation to democratise energy planning: how Panama embraced an inclusive and 
+dynamic stakeholder outreach plan to enhance market and community acceptance
+Under the context of its National Energy Plan (PEN) and Energy Transition Agenda (ATE), Panama 
+aimed to achieve societal buy-in for grid expansion and renewable energy to address energy access and 
+energy poverty. In response, the Secretariat of Energy initiated a robust engagement process, investing 
+15 000 hours in consultations and developing a strategic plan with stakeholders for grid innovation to 
+ensure the success of the new energy plan across diverse communities.
+This figure represents the total consultation time invested by Panama’s Secretariat of Energy, conducted 
+over three years, involving workshops and evaluation sessions with diverse stakeholders including civil 
+society, academia, private sector, indigenous communities and government entities. The consultations 
+specifically focused on developing five strategies for the power sector and two for the hydrocarbon sector. 
+A key component was analysing opportunities and challenges in grid modernisation and energy access. 
+ 
+ 
+ 
+ 
+ 
+ 
 Governance
 The process was led by Panama’s Secretariat of Energy.
 Scope
@@ -3873,10 +4163,6 @@ in concrete policy outcomes, including regulatory adjustments affecting 30% of t
 Resources
 Not available.
 --- page 65 ---
-5
-6
-7
-8
 Process
 Update to the National 
 Energy Plan (2015-2025)
@@ -3939,6 +4225,19 @@ Not available.
  
  
  
+Leveraging a bottom-up and top-down stakeholder engagement strategy: the United Arab Emirates’ 
+innovative approach to integrating utilities into its energy vision
+For its UAE Energy Strategy 2050, the United Arab Emirates needed to include existing grid expansion 
+plans and limitations within their long-term energy scenarios to develop more realistic pathways. The 
+Ministry of Energy and Infrastructure implemented a sophisticated stakeholder engagement process, 
+utilising a bottom-up approach for achieving short- to medium-term goals and a top-down approach for 
+long-term objectives. 
+ 
+ 
+ 
+ 
+ 
+ 
 5
 Governance
 The Ministry of Energy and Infrastructure led the formation of task forces and working 
@@ -3971,10 +4270,6 @@ local authorities, utilities and key stakeholders.
 Resources
 Not available.
 --- page 67 ---
-5
-6
-7
-8
 Process
 Development of 
 scenarios and 
@@ -4047,6 +4342,25 @@ Not available
   
   
   
+5.11	KCERT 2050 (KENYA 
+CARBON EMISSION 
+REDUCTION TOOL)
+Scientific expertise in scenario communication: how the KCERT 2050 project leverages academic 
+experts to enhance their scenario communication for energy policy making and understanding
+The collaboration between academia and government in Kenya showcases innovative approaches to 
+support the country’s energy transition. Such initiatives highlight the role of academic research and tools 
+in informing national policy and finance strategies.
+The KCERT 2050 project represents the first interactive energy model of its kind in East Africa, designed 
+to help identify energy-secure pathways between 2015 and 2050. This collaborative effort demonstrates 
+how engaging research institutions can bridge data gaps and foster integrated policy development 
+environments, while creating user-friendly visualisation tools that enhance scenario communication for 
+diverse stakeholder groups.
+  
+  
+  
+  
+  
+  
 Governance
 Joint efforts between academia and government departments, led by the Ministry of 
 Energy, to integrate these communication methods into national energy planning.
@@ -4079,10 +4393,6 @@ collaboration and data sharing.
 Resources
 Not available
 --- page 69 ---
-5
-6
-7
-8
 Process
 Launch of KCERT 2050
 Inputs
@@ -4159,6 +4469,23 @@ At the time of writing this report.
   
   
   
+5.12	PARIS AGREEMENT 
+COMPATIBLE (PAC) 
+SCENARIO CONSORTIUM
+Leveraging civil society participation for ambitious scenarios: how the PAC Scenario and PAC 
+approach contributed to the European grid planning process through deep engagement of CSOs 
+A coalition of NGOs, supported by TSOs and technical and research institutions, aimed to enhance 
+European decarbonisation ambitions in relation to infrastructure planning by developing a scenario 
+that would be in line with the Paris Agreement goals. The PAC Scenario process leveraged thorough 
+engagement with a diverse set of organisations across the continent to present an alternative and 
+ambitious pathway for meeting climate neutrality in Europe by 2040.
+At the time of writing this report.
+  
+  
+  
+  
+  
+  
 Governance
 The PAC Consortium includes Climate Action Network Europe with over 200 NGO 
 members, European Environmental Bureau with over 170 members, Renewables Grid 
@@ -4198,10 +4525,6 @@ Financial: Financed by the German Federal Ministry for Economic Affairs and Clim
 Action.
 Human: Team of around ten people representing all organisations from the consortium.
 --- page 71 ---
-5
-6
-7
-8
 Process
 PAC Scenario 2019-2021
 PAC 2.0 Scenario 2022-2024
@@ -4272,6 +4595,27 @@ as the secretariat.
   
   
   
+5.13	WORLD ENERGY COUNCIL
+Global engagement to define regional 
+priorities: how the World Energy Council 
+(WEC) uses socio-political frameworks 
+and simulations to derive insights to 
+shape its global scenarios
+The WEC conducts a rigorous stakeholder 
+engagement process leading up to its 
+World Energy Scenarios publication. 
+The process involves hundreds of 
+stakeholders, including academia, 
+government, industry and start-ups, 
+through regional deep dives and other 
+activities, which aim to identify regional 
+priorities and challenges.
+  
+  
+  
+  
+  
+  
 Governance
 The WEC secretariat manages this process, and organises regional activities through 
 its national member committees.
@@ -4296,10 +4640,6 @@ Resources
 Human and financial resources from regional and country member committees, as well 
 as the secretariat.
 --- page 73 ---
-5
-6
-7
-8
 Process
 Regional deep dives
 Publication of World 
@@ -4361,9 +4701,6 @@ Challenges also remain in translating some innovative methodologies of public pa
 comprehensive national-level planning process, where constraints such as resources and/or political will 
 may exist, limiting the potential of stakeholder engagement in national scenarios. Others highlighted 
 --- page 75 ---
-6
-7
-8
 the challenge of evaluating the participatory process outcomes, measuring key performance indicators 
 (KPIs), and evaluating the benefits of implementing a participatory process versus not conducting one.
 New opportunities and challenges may also arise, including the use of artificial intelligence (AI), machine 
@@ -4412,8 +4749,6 @@ participation. It is designed to enhance the effectiveness of community-based en
 deployment.
 www.nrel.gov/docs/fy22osti/82937.pdf
 --- page 77 ---
-7
-8
 PARTICIPATORY METHODS IN ENERGY SYSTEM MODELLING AND PLANNING – 
 A REVIEW
 
@@ -4501,8 +4836,6 @@ data, mathematical modelling and structured dialogue among stakeholders – incl
 makers, experts and citizens – to build shared understanding and explore possible futures.
 https://dt.asu.edu/publications
 --- page 79 ---
-7
-8
 SURVEY PLATFORMS
 Online surveys: To conduct surveys that might need time to complete.
 Microsoft Forms, Google Forms, SurveyMonkey, Qualtrics
@@ -4616,7 +4949,6 @@ to imagine transformative futures. An integrative
 literature review.”, Futures, vol. 157, pp. 103341, 
 https://doi.org/10.1016/j.futures.2024.103341
 --- page 81 ---
-8
 Knudsen, J. K., et al. (2015), “Local perceptions of 
 opportunities for engagement and procedural justice 
 in electricity transmission grid projects in Norway 

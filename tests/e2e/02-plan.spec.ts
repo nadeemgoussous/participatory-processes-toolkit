@@ -9,9 +9,9 @@ test.describe('Participation plan', () => {
 
     await page.getByRole('button', { name: 'Workshops', exact: true }).click();
 
-    // Workshops contribute four prerequisites and three resource requirements,
-    // on top of the six decision framework items.
-    await expect(page.getByText('Map required stakeholders depending on workshop objectives')).toBeVisible();
+    // Workshops contribute eleven requirement sentences, on top of the six
+    // decision framework items.
+    await expect(page.getByText(/In all cases, it is important to map the required stakeholders/)).toBeVisible();
     await expect(page.getByText('items checked')).toBeVisible();
   });
 
@@ -21,7 +21,7 @@ test.describe('Participation plan', () => {
 
     const item = page
       .locator('li')
-      .filter({ hasText: 'Ensure confidentiality when necessary' })
+      .filter({ hasText: 'Ensuring confidentiality when necessary is also vital for building trust in the process.' })
       .first();
 
     await item.getByRole('checkbox').check();
@@ -31,7 +31,7 @@ test.describe('Participation plan', () => {
 
     const reloaded = page
       .locator('li')
-      .filter({ hasText: 'Ensure confidentiality when necessary' })
+      .filter({ hasText: 'Ensuring confidentiality when necessary is also vital for building trust in the process.' })
       .first();
 
     await expect(reloaded.getByRole('checkbox')).toBeChecked();
@@ -45,9 +45,9 @@ test.describe('Participation plan', () => {
     await page.getByRole('button', { name: 'Build consensus on policy priorities' }).click();
 
     // Step 4 maps this objective to workshops and steering committees.
-    await expect(page.getByText('Map required stakeholders depending on workshop objectives')).toBeVisible();
+    await expect(page.getByText(/In all cases, it is important to map the required stakeholders/)).toBeVisible();
     await expect(
-      page.getByText('Participants should commit to the process for its duration')
+      page.getByText('Participants should commit to the process for its duration.')
     ).toBeVisible();
   });
 });

@@ -104,16 +104,11 @@ export type ToolId =
   | 'presentations-reports'
   | 'visualisation-games';
 
-/** A named sub-list under a tool, reproduced as the publication presents it. */
-export interface ToolList {
-  label: string;
-  items: string[];
-}
-
 /** A row from one of the chapter 4 boxes. */
 export interface ToolVariant {
   name: string;
-  description: string;
+  /** Box 4 lists activities without describing them. */
+  description?: string;
   /** Present only where the box has a "Best For" column (Box 3). */
   bestFor?: string;
 }
@@ -130,30 +125,26 @@ export interface EngagementTool {
   category: ToolCategory;
   toolkitSection: string;
 
-  /** Opening paragraphs of the section. */
+  /** Opening prose of the section, by sentence. */
   summary: string[];
 
   /** Application per stage, from the Implementation Stage table. */
   stageApplications: Partial<Record<Phase, string>>;
 
+  /**
+   * Resource requirements and prerequisites. The publication runs these
+   * together in one section of prose, so they are one list.
+   */
   requirements: string[];
-  prerequisites: string[];
 
   strengths: string[];
   challenges: string[];
   limitations: string[];
 
-  /** Examples from Case Studies. */
-  examples: string[];
-  /** Heading for the examples block, where the section uses one. */
-  examplesLabel?: string;
-  /** Implementation Evidence. */
+  /** Implementation evidence. */
   evidence: string[];
   /** Ids of case studies in chapter 5 named in the two sections above. */
   caseStudyIds: string[];
-
-  /** Additional named lists in the section, such as Format Considerations. */
-  lists?: ToolList[];
 
   /** Box content, where the section has one. */
   boxLabel?: string;
