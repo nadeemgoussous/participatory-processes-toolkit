@@ -136,7 +136,7 @@ export default function PlanTab() {
           <div className="mt-5 space-y-5 border-t border-gray-200 pt-5">
             <Chooser
               legend="Which phases does this plan cover?"
-              options={PHASES.map((p) => ({ id: p.id, label: p.label, hint: p.description }))}
+              options={PHASES.map((p) => ({ id: p.id, label: p.label, hint: p.detail }))}
               selected={plan.setup.phases}
               onToggle={(id) =>
                 setSetup({

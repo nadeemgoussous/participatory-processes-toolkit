@@ -10,11 +10,13 @@ export type Phase = 'framing' | 'development' | 'validation' | 'communication';
 
 export interface PhaseInfo {
   id: Phase;
-  /** Heading used in the Tool Description Dimensions section. */
+  /**
+   * Label as printed. Step 1 of the decision framework lists the four phases
+   * by name only, so there is no short description field: the publication does
+   * not provide one.
+   */
   label: string;
-  /** Description from the Step 1 table. */
-  description: string;
-  /** Definition from the Implementation Stage section. */
+  /** Definition from the Implementation stage dimension. */
   detail: string;
 }
 
@@ -22,28 +24,26 @@ export const PHASES: PhaseInfo[] = [
   {
     id: 'framing',
     label: 'Policy framing',
-    description: 'Co-define policy questions and targets',
     detail:
-      'Defining policy questions and clear objectives, outlining methodologies, assembling initial data',
+      'This stage initiates the process by defining policy questions and clear objectives, outlining methodologies, and assembling initial data as critical inputs to scenario design.',
   },
   {
     id: 'development',
     label: 'Scenario development',
-    description: 'Create narratives, gather data, develop scenarios',
     detail:
-      'Putting methodologies into action, collecting information including assumptions and input data, creating narratives and scenarios',
+      'Methodologies are put into action, essential information is defined and collected, including assumptions and input data, and narratives and scenarios are created (sometimes through the use of modelling tools).',
   },
   {
     id: 'validation',
     label: 'Validation',
-    description: 'Present results and gather feedback for iteration',
-    detail: 'After scenario formulation, stakeholder inputs for feedback',
+    detail:
+      'After the formulation of energy scenarios and potential policies, the validation stage follows. This might be before publication or at the point of a draft publication. Stakeholder inputs are valuable for feedback at this stage.',
   },
   {
     id: 'communication',
     label: 'Communication',
-    description: 'Share final results with stakeholders',
-    detail: 'Sharing the results with stakeholders',
+    detail:
+      'Outcomes derived from the scenario-building require effective communication. The communication stage involves sharing the results with stakeholders.',
   },
 ];
 
@@ -65,8 +65,11 @@ export type ToolCategory = 'knowledge-gathering' | 'co-creation' | 'disseminatio
 
 export interface ToolCategoryInfo {
   id: ToolCategory;
+  /**
+   * The publication names the three categories in Figure 4 and does not
+   * describe them, so there is no description field.
+   */
   label: string;
-  description: string;
   toolkitSection: string;
 }
 
@@ -74,22 +77,16 @@ export const TOOL_CATEGORIES: ToolCategoryInfo[] = [
   {
     id: 'knowledge-gathering',
     label: 'Knowledge gathering',
-    description:
-      'Tools and activities primarily designed to collect insights, perspectives and information from stakeholders. These approaches enable planners to access diverse knowledge and viewpoints that enhance the quality and relevance of energy scenarios.',
     toolkitSection: '4.1',
   },
   {
     id: 'co-creation',
     label: 'Co-creation',
-    description:
-      'Tools and activities that enable stakeholders to actively participate in shaping the planning process and its outcomes. These approaches establish collaborative environments where stakeholders work alongside planners to develop scenarios, explore trade-offs and build consensus.',
     toolkitSection: '4.2',
   },
   {
     id: 'dissemination',
     label: 'Knowledge dissemination',
-    description:
-      'Tools and activities that focus on communicating energy planning concepts, scenarios and implications to various audiences. These approaches transform complex technical information into accessible formats tailored to different stakeholder needs.',
     toolkitSection: '4.3',
   },
 ];

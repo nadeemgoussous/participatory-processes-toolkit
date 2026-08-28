@@ -14,21 +14,15 @@ export interface RationaleSection {
   /** Section number, for example "2.1". */
   toolkitSection: string;
   blocks: ContentBlock[];
-  /** A table the section presents, where it has one. */
-  table?: ReferenceTable;
 }
 
 /** One of the four objectives in section 2.4. */
 export interface ParticipationObjective {
   id: string;
-  /** Heading, for example "Objective 1: Building Consensus, Trust and Stakeholder Ownership". */
+  /** The number the publication gives it in 2.4. */
+  number: number;
   heading: string;
   blocks: ContentBlock[];
-  table?: ReferenceTable;
-  /** The Objective column of the Summary: Benefits of Participatory Processes table. */
-  summaryObjective: string;
-  /** The Key Benefit column of that table. */
-  summaryBenefit: string;
 }
 
 export interface ReferenceTable {
@@ -46,9 +40,7 @@ export interface Publication {
   /** The Author or Authors line. */
   author: string;
   description: string;
-  /** A numbered list the entry presents, where it has one. */
-  points?: string[];
-  links: { label?: string; url: string }[];
+  links: { url: string }[];
 }
 
 /** A named tool or platform in 7.2. */
@@ -62,13 +54,6 @@ export interface ResourceEntry {
 export interface ResourceGroup {
   id: string;
   label: string;
-  /**
-   * The 7.2 heading this group sits under, where it has one: Survey Platforms,
-   * Co-Creation Platforms or Data Visualisation.
-   */
-  parent?: string;
-  /** The line introducing the group, where it has one. */
-  intro?: string;
   /** Set when the group is presented as a table with descriptions and links. */
   detailed?: boolean;
   entries: ResourceEntry[];
@@ -78,11 +63,6 @@ export interface ResourceGroup {
 export interface Framework {
   id: string;
   name: string;
-  source: string;
   description: string;
-  /** The numbered dimensions the framework assesses. */
-  dimensions: string[];
-  /** The closing note on how the framework is used. */
-  note: string;
-  url: string;
+  url?: string;
 }

@@ -45,6 +45,13 @@ const ALLOWED = new Set([
 
 function normalise(s) {
   return s
+    // The layout uses typographic ligatures, which are single characters:
+    // "brieﬁngs" is not "briefings" without this.
+    .replace(/ﬀ/g, 'ff')
+    .replace(/ﬁ/g, 'fi')
+    .replace(/ﬂ/g, 'fl')
+    .replace(/ﬃ/g, 'ffi')
+    .replace(/ﬄ/g, 'ffl')
     .replace(/[‘’]/g, "'")
     .replace(/[“”]/g, '"')
     // The layout uses non-breaking and figure hyphens inside words

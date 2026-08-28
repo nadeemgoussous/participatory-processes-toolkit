@@ -15,7 +15,6 @@ import {
   FigureImage,
   Section,
   SourceNote,
-  Table,
 } from '../common/Blocks';
 
 /** Figures the publication prints inside these sections. */
@@ -57,15 +56,6 @@ export default function WhyTab() {
               <FigureImage figure={figureFor(section.id)!} />
             </div>
           )}
-          {section.table && (
-            <div className="pt-2">
-              <Table
-                caption={section.table.caption}
-                columns={section.table.columns}
-                rows={section.table.rows}
-              />
-            </div>
-          )}
         </Section>
       ))}
 
@@ -84,25 +74,14 @@ export default function WhyTab() {
             key={objective.id}
             className="space-y-3 rounded-lg border border-gray-200 bg-white p-5"
           >
-            <h3 className="font-semibold text-gray-900">{objective.heading}</h3>
+            <h3 className="font-semibold text-gray-900">
+              {objective.number}. {objective.heading}
+            </h3>
             <Blocks blocks={objective.blocks} />
-            {objective.table && (
-              <Table
-                caption={objective.table.caption}
-                columns={objective.table.columns}
-                rows={objective.table.rows}
-              />
-            )}
           </article>
         ))}
       </div>
 
-      <Section heading="Summary: benefits of participatory processes">
-        <Table
-          columns={['Objective', 'Key benefit']}
-          rows={participationObjectives.map((o) => [o.summaryObjective, o.summaryBenefit])}
-        />
-      </Section>
 
       <Disclosure summary="about this toolkit and how it was developed">
         {aboutSections.map((section) => (

@@ -1,15 +1,8 @@
-import {
-  frameworks,
-  publications,
-  quickReference,
-  resourceGroups,
-} from '../../data/resources';
-import { Bullets, ExternalLink, Section, SourceNote, Table } from '../common/Blocks';
+import { frameworks, publications, resourceGroups } from '../../data/resources';
+import { ExternalLink, Section, SourceNote } from '../common/Blocks';
 
 export default function ResourcesTab() {
-  const detailed = resourceGroups.filter((g) => g.detailed);
-  const simple = resourceGroups.filter((g) => !g.detailed);
-  const parents = [...new Set(simple.map((g) => g.parent).filter((p): p is string => !!p))];
+  const detailed = resourceGroups;
 
   return (
     <div className="mx-auto max-w-4xl space-y-10">
@@ -34,19 +27,9 @@ export default function ResourcesTab() {
               <h3 className="font-semibold text-gray-900">{publication.title}</h3>
               <p className="text-sm text-gray-500">{publication.author}</p>
               <p className="text-gray-700 leading-relaxed">{publication.description}</p>
-              {publication.points && (
-                <ol className="space-y-1.5 pt-1">
-                  {publication.points.map((point, i) => (
-                    <li key={point} className="flex gap-3 text-gray-700">
-                      <span className="font-medium text-gray-400">{i + 1}.</span>
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ol>
-              )}
               <div className="flex flex-col gap-1 pt-1">
                 {publication.links.map((link) => (
-                  <ExternalLink key={link.url} url={link.url} label={link.label} />
+                  <ExternalLink key={link.url} url={link.url} />
                 ))}
               </div>
             </article>
@@ -68,23 +51,6 @@ export default function ResourcesTab() {
         </Section>
       ))}
 
-      {parents.map((parent) => (
-        <Section key={parent} heading={`7.2 ${parent}`}>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {simple
-              .filter((group) => group.parent === parent)
-              .map((group) => (
-                <div key={group.id} className="rounded-lg border border-gray-200 bg-white p-5">
-                  <h3 className="font-medium text-gray-900">{group.label}</h3>
-                  {group.intro && <p className="mt-1 text-sm text-gray-600">{group.intro}</p>}
-                  <div className="mt-3">
-                    <Bullets items={group.entries.map((e) => e.name)} />
-                  </div>
-                </div>
-              ))}
-          </div>
-        </Section>
-      ))}
 
       <Section heading="7.2 Frameworks">
         <div className="space-y-4">
@@ -94,29 +60,13 @@ export default function ResourcesTab() {
               className="space-y-2 rounded-lg border border-gray-200 bg-white p-5"
             >
               <h3 className="font-semibold text-gray-900">{framework.name}</h3>
-              <p className="text-sm text-gray-500">{framework.source}</p>
               <p className="text-gray-700 leading-relaxed">{framework.description}</p>
-              <ol className="space-y-1.5">
-                {framework.dimensions.map((dimension, i) => (
-                  <li key={dimension} className="flex gap-3 text-gray-700">
-                    <span className="font-medium text-gray-400">{i + 1}.</span>
-                    <span>{dimension}</span>
-                  </li>
-                ))}
-              </ol>
-              <p className="text-gray-700 leading-relaxed">{framework.note}</p>
-              <ExternalLink url={framework.url} />
+              {framework.url && <ExternalLink url={framework.url} />}
             </article>
           ))}
         </div>
       </Section>
 
-      <Section heading="Quick reference: tool categories">
-        <Table
-          columns={['Need', 'Recommended tools']}
-          rows={quickReference.map((row) => [row.need, row.tools])}
-        />
-      </Section>
 
       <SourceNote section="7" />
     </div>

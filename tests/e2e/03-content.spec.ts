@@ -61,17 +61,19 @@ test.describe('Reference chapters', () => {
       .click();
 
     for (const heading of [
-      'Objective 1: Building Consensus, Trust and Stakeholder Ownership',
-      'Objective 2: Gathering Diverse Inputs and Identifying Planning Blind Spots',
-      'Objective 3: Developing More Implementable and Context-Appropriate Scenarios',
-      'Objective 4: Enhancing Energy Literacy and System Understanding',
+      '1. Building consensus, trust and stakeholder ownership',
+      '2. Gathering diverse inputs and identifying planning blind spots',
+      '3. Developing more implementable and context-appropriate scenarios',
+      '4. Enhancing energy literacy and system understanding across stakeholders',
     ]) {
       await expect(page.getByRole('heading', { name: heading })).toBeVisible();
     }
 
-    // The three models table from 2.2.
-    await expect(page.getByText('50/50 (Hybrid)')).toBeVisible();
-    await expect(page.getByText('Legitimacy, trust and stakeholder buy-in')).toBeVisible();
+    // The capacity models are Figure 3, not a table, and there is no benefits
+    // summary table in the publication.
+    await expect(
+      page.getByText(/A third model also exists, which is a combination of the two/)
+    ).toBeVisible();
   });
 
   test('chapter 7 lists the publications, platforms and frameworks', async ({ page }) => {
@@ -82,19 +84,17 @@ test.describe('Reference chapters', () => {
       .click();
 
     await expect(
-      page.getByRole('heading', { name: "Participatory Methods Toolkit: A Practitioner's Manual" })
+      page.getByRole('heading', { name: /PARTICIPATORY METHODS TOOLKIT/ })
     ).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'World Energy Trilemma Index' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /World Energy Trilemma Index/ })).toBeVisible();
 
     // Links are present and point outward, but nothing is fetched by the page.
     const link = page.getByRole('link', { name: /facilitator\.school/ });
     await expect(link).toHaveAttribute('target', '_blank');
     await expect(link).toHaveAttribute('rel', /noopener/);
 
-    // Mentimeter appears in the polling list and again in the quick reference
-    // table, as it does in the publication.
-    await expect(page.getByText('Mentimeter', { exact: true })).toBeVisible();
-    await expect(page.getByRole('cell', { name: 'Mentimeter, Slido, Kahoot' })).toBeVisible();
+    // The polling entry lists the platforms in its description.
+    await expect(page.getByText(/Mentimeter/)).toBeVisible();
   });
 });
 

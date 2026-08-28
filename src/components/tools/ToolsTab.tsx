@@ -124,7 +124,6 @@ function ByCategory({ onSelect }: { onSelect: (id: ToolId) => void }) {
       {TOOL_CATEGORIES.map((category) => (
         <div key={category.id} className="rounded-lg border border-gray-200 bg-white p-5">
           <h2 className="text-lg font-semibold text-gray-900">{category.label}</h2>
-          <p className="mt-2 text-gray-700">{category.description}</p>
           <div className="mt-4 flex flex-wrap gap-2">
             {engagementTools
               .filter((t) => t.category === category.id)

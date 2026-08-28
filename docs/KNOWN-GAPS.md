@@ -2,7 +2,7 @@
 
 Verified on **2026-08-27** against the `toolkit-pivot` branch, Node 22.
 
-Baseline: `npm run typecheck` clean, `npm run verify:quotes` passes 747 strings,
+Baseline: `npm run typecheck` clean, `npm run verify:quotes` passes 756 strings,
 `npm run build` produces 341 kB of JS plus 712 kB of figures, process flows and icons, `npm run build:offline` produces a single
 1.35 MB `dist-offline/index.html`, `npm run test:chromium` passes 21 tests.
 
@@ -10,18 +10,26 @@ Baseline: `npm run typecheck` clean, `npm run verify:quotes` passes 747 strings,
 
 ## Open
 
-### 1. Chapters 2 and 7 have not been re-derived from the PDF
+### 1. The markdown transcription is no longer used as a source
 
 `docs/toolkit/*.md` was transcribed by hand and both rewrites and truncates the publication.
-Chapters 1, 3, 4, 5 and 6 have been rebuilt from the PDF. `npm run audit:drift` reports what
-is left: 668 strings are in the publication, 82 exist only in the transcription, in
-`participation-rationale.ts` (chapter 2) and `resources.ts` (chapter 7).
+Every chapter has now been re-derived from the PDF, and `npm run audit:drift` reports 759
+strings in the publication and none that exist only in the transcription.
 
-Both are prose and tables like chapter 4, so `scripts/extract-tools.py` is the model: read
-the page by font, split prose into sentences, read tables by cell. The substance in both is
-expected to be sound - the audit of chapter 4 found that every derived item corresponded to
-a real statement, and only the wording had drifted - but that has not been checked for these
-two.
+Six structures the transcription had invented were removed along the way, all of which the
+app had been displaying as IRENA's:
+
+- the "Summary: Stakeholder Engagement Matrix" (a table plus every stakeholder card subtitle)
+- chapter 6's six "Key takeaways"
+- chapter 6's "Current challenges" table and its five sub-headings
+- chapter 2's "Three models for energy planning capacity" and "Types of inputs" tables, and
+  its "Summary: Benefits of Participatory Processes" table
+- chapter 7's "Quick Reference: Tool Categories" table
+- descriptions for the three tool categories, which the publication names in Figure 4 and
+  does not describe
+
+Keep `audit:drift` green. `verify:quotes` accepts either source and so cannot see this class
+of problem on its own.
 
 ### 3. Two stakeholder ids have no profile
 
