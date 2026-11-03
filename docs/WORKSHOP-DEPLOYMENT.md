@@ -9,24 +9,12 @@ How to get the tool in front of participants, in order of how much can go wrong.
 
 ## The one thing to know first
 
-The build is configured with `base: '/stakeholder-dialogue/'` (for GitHub Pages), so
-**every asset in `dist/` is referenced from an absolute `/stakeholder-dialogue/...` URL.**
+The build uses a relative base (`base: './'`), so `dist/` works from any directory of any
+static server, including a GitHub Pages project site. It does **not** work opened straight
+from disk (`file://`): the page's origin is `null` and the browser blocks its module script.
 
-That has two consequences:
-
-- Opening `dist/index.html` directly from disk (`file://`) **does not work**.
-- Serving `dist/` at the root of a web server **does not work** either — assets 404.
-
-You must either serve `dist/` so that it answers under the `/stakeholder-dialogue/` path
-(see USB below), or build a copy with a relative base:
-
-```bash
-npx vite build --base=./          # self-contained copy, opens from any subfolder
-```
-
-A relative-base build is the friendliest option for USB distribution. Test it with
-`npm run preview` before the workshop; the service worker and manifest paths change with the
-base, so do not assume it works because the Pages build works.
+For a copy that opens from a USB drive with no server, use `npm run build:offline`, which
+writes a single self-contained `dist-offline/index.html`.
 
 ---
 
@@ -84,8 +72,8 @@ workshop day. This is the deployment mode with the most failure points.
 ## Option 4 — Hosted (GitHub Pages)
 
 `.github/workflows/deploy.yml` typechecks, builds and publishes `dist/` on every push to
-`master`. The `base` path already matches a Pages project site at
-`https://<org>.github.io/stakeholder-dialogue/`. Fine for remote participants, useless in a
+`main`. The site is at `https://nadeemgoussous.github.io/participatory-processes-toolkit/`
+(repo `nadeemgoussous/participatory-processes-toolkit`). Fine for remote participants, useless in a
 venue with bad connectivity — always have Option 1 or 3 as a backup.
 
 ---
