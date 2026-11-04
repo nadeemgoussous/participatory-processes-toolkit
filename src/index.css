@@ -214,6 +214,11 @@ input[type="range"].slider-thumb-irena::-moz-range-thumb:hover {
     resize: none;
   }
 
+  /* An empty note should print as space to write in, not as the prompt text. */
+  textarea::placeholder {
+    color: transparent;
+  }
+
   section,
   li {
     break-inside: avoid;

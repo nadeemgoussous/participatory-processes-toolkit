@@ -8,11 +8,14 @@ export function Chooser({
   options,
   selected,
   onToggle,
+  extra,
 }: {
   legend: string;
   options: { id: string; label: string; hint?: string }[];
   selected: string[];
   onToggle: (id: string) => void;
+  /** Shown after the options, for example the planner's own additions. */
+  extra?: React.ReactNode;
 }) {
   return (
     <fieldset>
@@ -37,6 +40,7 @@ export function Chooser({
           );
         })}
       </div>
+      {extra}
     </fieldset>
   );
 }

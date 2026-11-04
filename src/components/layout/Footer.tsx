@@ -1,3 +1,8 @@
+// The hosted site carries a copy of the offline build (see scripts/copy-offline.mjs).
+// The offline build itself has no such file beside it, so it hides the link.
+const OFFLINE_FILE = 'participatory-processes-toolkit-offline.html'
+const showDownload = import.meta.env.MODE !== 'offline' && import.meta.env.PROD
+
 export default function Footer() {
   return (
     <footer className="border-t border-gray-200 bg-white print:hidden">
@@ -10,6 +15,19 @@ export default function Footer() {
         <p className="mt-2">
           Your plan is stored in this browser only. Use Export to keep a copy or share it.
         </p>
+        {showDownload && (
+          <p className="mt-2">
+            <a
+              href={`./${OFFLINE_FILE}`}
+              download={OFFLINE_FILE}
+              className="font-medium text-[var(--color-irena-blue)] hover:underline"
+            >
+              Download the offline version
+            </a>{' '}
+            — a single file that opens in a browser with no internet connection, for use at
+            workshops or from a USB drive. Plans are exported and imported in the same way.
+          </p>
+        )}
       </div>
     </footer>
   )

@@ -186,3 +186,21 @@ export function phaseLabels(phases: Phase[]): string {
     .map((p) => p.label)
     .join(', ');
 }
+
+/** Read-only chips naming additions, for places that list publication options. */
+export function AdditionChips({ labels }: { labels: string[] }) {
+  if (labels.length === 0) return null;
+  return (
+    <div className="mt-2 flex flex-wrap items-center gap-2">
+      <AdditionMarker />
+      {labels.map((label, i) => (
+        <span
+          key={i}
+          className="rounded-md border border-dashed border-amber-400 bg-amber-50 px-3 py-1.5 text-sm text-amber-900"
+        >
+          {label}
+        </span>
+      ))}
+    </div>
+  );
+}

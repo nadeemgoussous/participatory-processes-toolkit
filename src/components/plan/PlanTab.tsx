@@ -8,7 +8,7 @@ import { PHASES } from '../../types/toolkit';
 import type { Phase, ToolId } from '../../types/toolkit';
 import type { StakeholderId } from '../../types/stakeholder';
 import { usePlan } from '../../context/PlanContext';
-import { exportPlan, importPlan } from '../../utils/plan-storage';
+import { exportPlan, importPlan, mergePlans } from '../../utils/plan-storage';
 import {
   challengesIntro,
   currentChallenges,
@@ -18,7 +18,15 @@ import {
   usingTheToolkit,
 } from '../../data/using-the-toolkit';
 import { Blocks, Disclosure } from '../common/Blocks';
-import { AdditionForm, AdditionMarker, AdditionSection, additionBox, phaseLabels } from '../common/Additions';
+import {
+  AdditionCard,
+  AdditionChips,
+  AdditionForm,
+  AdditionMarker,
+  AdditionSection,
+  additionBox,
+  phaseLabels,
+} from '../common/Additions';
 import { Chooser, toggle } from '../common/Chooser';
 
 export default function PlanTab() {
@@ -26,6 +34,7 @@ export default function PlanTab() {
   const [showSetup, setShowSetup] = useState(true);
   const [importError, setImportError] = useState<string | null>(null);
   const fileInput = useRef<HTMLInputElement>(null);
+  const importMode = useRef<'replace' | 'merge'>('replace');
 
   const items = useMemo(() => selectItems(plan.setup), [plan.setup]);
 
@@ -42,7 +51,8 @@ export default function PlanTab() {
 
   const handleImport = async (file: File) => {
     try {
-      replacePlan(await importPlan(file));
+      const incoming = await importPlan(file);
+      replacePlan(importMode.current === 'merge' ? mergePlans(plan, incoming) : incoming);
       setImportError(null);
     } catch {
       setImportError('That file could not be read as a participation plan.');
@@ -116,10 +126,24 @@ export default function PlanTab() {
               Export
             </button>
             <button
-              onClick={() => fileInput.current?.click()}
+              onClick={() => {
+                importMode.current = 'replace';
+                fileInput.current?.click();
+              }}
+              title="Open an exported plan in place of this one"
               className="rounded-md border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 hover:border-gray-400"
             >
               Import
+            </button>
+            <button
+              onClick={() => {
+                importMode.current = 'merge';
+                fileInput.current?.click();
+              }}
+              title="Combine an exported plan with this one, keeping both sets of ticks, notes and additions"
+              className="rounded-md border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 hover:border-gray-400"
+            >
+              Merge
             </button>
             <button
               onClick={() => window.print()}
@@ -163,6 +187,7 @@ export default function PlanTab() {
                   stakeholders: toggle(plan.setup.stakeholders, id as StakeholderId),
                 })
               }
+              extra={<AdditionChips labels={plan.additions.stakeholders.map((g) => g.name)} />}
             />
             <ObjectivePicker />
             <Chooser
@@ -170,10 +195,13 @@ export default function PlanTab() {
               options={engagementTools.map((t) => ({ id: t.id, label: t.name }))}
               selected={plan.setup.tools}
               onToggle={(id) => setSetup({ tools: toggle(plan.setup.tools, id as ToolId) })}
+              extra={<AdditionChips labels={plan.additions.tools.map((t) => t.name)} />}
             />
           </div>
         )}
       </section>
+
+      <PrintedSelection />
 
       <div className="rounded-lg border border-gray-200 bg-white p-5">
         <p className="text-gray-700">
@@ -244,6 +272,8 @@ export default function PlanTab() {
       })}
 
       <OwnItems visible={ownItems} />
+
+      <PrintedAdditions />
     </div>
   );
 
@@ -471,5 +501,109 @@ function LinkSelect({
         ))}
       </select>
     </label>
+  );
+}
+
+/**
+ * The selection panel is interactive and hidden in print, so the printed plan
+ * restates the choices it was built from, under the same questions.
+ */
+function PrintedSelection() {
+  const { plan } = usePlan();
+  const { setup, additions } = plan;
+  const objective = objectives.find((o) => o.id === setup.objectiveId);
+
+  const rows: { question: string; answer: string; own?: string[] }[] = [
+    { question: 'Which phases does this plan cover?', answer: phaseLabels(setup.phases) },
+    {
+      question: 'Which stakeholder groups are most critical?',
+      answer: setup.stakeholders.map((id) => getProfile(id)?.name ?? '').filter(Boolean).join('; '),
+      own: additions.stakeholders.map((g) => g.name),
+    },
+    { question: 'What is your objective?', answer: objective?.label ?? '' },
+    {
+      question: 'Which tools will you use?',
+      answer: setup.tools.map((id) => getTool(id)?.name ?? '').filter(Boolean).join('; '),
+      own: additions.tools.map((t) => t.name),
+    },
+  ];
+
+  return (
+    <section className="hidden space-y-3 print:block" aria-hidden="true">
+      {(plan.name || plan.country) && (
+        <p className="text-lg font-semibold text-gray-900">
+          {[plan.name, plan.country].filter(Boolean).join(' · ')}
+        </p>
+      )}
+      <dl className="space-y-2">
+        {rows
+          .filter((r) => r.answer || r.own?.length)
+          .map((r) => (
+            <div key={r.question}>
+              <dt className="text-sm font-medium text-gray-500">{r.question}</dt>
+              <dd className="text-gray-800">{r.answer}</dd>
+              {r.own && <AdditionChips labels={r.own} />}
+            </div>
+          ))}
+      </dl>
+    </section>
+  );
+}
+
+/**
+ * Additions entered on the other pages, so a printed plan is the whole plan.
+ * Uses the same sections and markers as those pages.
+ */
+function PrintedAdditions() {
+  const { plan } = usePlan();
+  const { stakeholders, tools, caseStudies } = plan.additions;
+  const none = () => undefined;
+
+  return (
+    <div className="hidden space-y-8 print:block">
+      {stakeholders.length > 0 && (
+        <AdditionSection id="print-groups" heading="Your own stakeholder groups">
+          <ul className="space-y-3">
+            {stakeholders.map((g) => (
+              <AdditionCard key={g.id} title={g.name} rows={[{ text: g.description }]} onRemove={none} />
+            ))}
+          </ul>
+        </AdditionSection>
+      )}
+      {tools.length > 0 && (
+        <AdditionSection id="print-tools" heading="Your own engagement tools and activities">
+          <ul className="space-y-3">
+            {tools.map((t) => (
+              <AdditionCard
+                key={t.id}
+                title={t.name}
+                rows={[{ text: t.description }, { label: 'Phases', text: phaseLabels(t.phases) }]}
+                onRemove={none}
+              />
+            ))}
+          </ul>
+        </AdditionSection>
+      )}
+      {caseStudies.length > 0 && (
+        <AdditionSection id="print-cases" heading="Your own case studies">
+          <ul className="space-y-3">
+            {caseStudies.map((c) => (
+              <AdditionCard
+                key={c.id}
+                title={c.name}
+                rows={[
+                  { label: 'Planning context', text: c.planningContext },
+                  { label: 'Primary objectives', text: c.primaryObjectives },
+                  { label: 'Methods used', text: c.methodsUsed },
+                  { label: 'Resource requirements', text: c.resourceRequirements },
+                  { label: 'Transferable elements', text: c.transferableElements },
+                ]}
+                onRemove={none}
+              />
+            ))}
+          </ul>
+        </AdditionSection>
+      )}
+    </div>
   );
 }

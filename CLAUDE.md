@@ -68,9 +68,10 @@ npm run typecheck           # tsc --noEmit — run before every commit
 npm run verify:quotes       # checks all data text against docs/toolkit/ — seconds
 npm run build               # tsc && vite build -> dist/  (~15 s)
 npm run build:offline       # -> dist-offline/index.html, one self-contained file
+npm run build:pages         # both, plus the offline file copied into dist/ (what CI deploys)
 npm run preview             # serve dist/
 
-npm run test:chromium       # 25 Playwright tests — needs both builds present
+npm run test:chromium       # 28 Playwright tests — needs both builds present
 npm test                    # all browser projects
 ```
 
@@ -136,7 +137,7 @@ The publication supports three ways in, and the app offers all three:
 ## 4. Conventions
 
 - **TypeScript strict**, `noUnusedLocals` / `noUnusedParameters` on.
-- **No new runtime dependencies.** The JS bundle is 400 kB and should stay in that range.
+- **No new runtime dependencies.** The JS bundle is 406 kB and should stay in that range.
   Figures are separate files in the hosted build and inlined in the offline one.
 - **Tailwind v4**: tokens live in `@theme` in `src/index.css`. No `tailwind.config.js`.
 - **No webfonts.** A CDN import breaks invariant 2. If Inter is wanted, self-host it.

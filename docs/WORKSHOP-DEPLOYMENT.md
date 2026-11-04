@@ -72,7 +72,9 @@ workshop day. This is the deployment mode with the most failure points.
 ## Option 4 — Hosted (GitHub Pages)
 
 `.github/workflows/deploy.yml` typechecks, builds and publishes `dist/` on every push to
-`main`. The site is at `https://nadeemgoussous.github.io/participatory-processes-toolkit/`
+`main`, using `npm run build:pages`, which also puts the single-file offline build in the
+site as `participatory-processes-toolkit-offline.html`. The footer links to it, so
+facilitators can download the USB copy from the site itself. The site is at `https://nadeemgoussous.github.io/participatory-processes-toolkit/`
 (repo `nadeemgoussous/participatory-processes-toolkit`). Fine for remote participants, useless in a
 venue with bad connectivity — always have Option 1 or 3 as a backup.
 

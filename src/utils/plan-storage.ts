@@ -131,3 +131,56 @@ export async function importPlan(file: File): Promise<PlanState> {
   }
   return withDefaults(parsed);
 }
+
+/**
+ * Combines an imported plan into the current one, for a facilitator gathering
+ * plans from several tables. Nothing already on screen is lost: selections are
+ * unioned, a tick from either side stands, differing notes are both kept, and
+ * additions are combined (the same id means the same addition, exported twice).
+ */
+export function mergePlans(current: PlanState, incoming: PlanState): PlanState {
+  const union = <T,>(a: T[], b: T[]) => Array.from(new Set([...a, ...b]));
+  const byId = <T extends { id: string }>(a: T[], b: T[]) => [
+    ...a,
+    ...b.filter((x) => !a.some((y) => y.id === x.id)),
+  ];
+  const noteOf = (x: { note?: unknown } | undefined) =>
+    typeof x?.note === 'string' ? x.note.trim() : '';
+
+  const items = { ...current.items };
+  for (const [id, theirs] of Object.entries(incoming.items)) {
+    const ours = items[id];
+    if (!ours) {
+      items[id] = { done: !!theirs?.done, note: noteOf(theirs), updatedAt: String(theirs?.updatedAt ?? '') };
+      continue;
+    }
+    const notes = Array.from(new Set([noteOf(ours), noteOf(theirs)].filter(Boolean)));
+    const theirTime = String(theirs?.updatedAt ?? '');
+    items[id] = {
+      done: ours.done || !!theirs?.done,
+      note: notes.join('\n\n'),
+      updatedAt: ours.updatedAt > theirTime ? ours.updatedAt : theirTime,
+    };
+  }
+
+  const a = current.additions;
+  const b = incoming.additions;
+  return {
+    ...current,
+    name: current.name || incoming.name,
+    country: current.country || incoming.country,
+    setup: {
+      phases: union(current.setup.phases, incoming.setup.phases ?? []),
+      stakeholders: union(current.setup.stakeholders, incoming.setup.stakeholders ?? []),
+      tools: union(current.setup.tools, incoming.setup.tools ?? []),
+      objectiveId: current.setup.objectiveId ?? incoming.setup.objectiveId,
+    },
+    items,
+    additions: {
+      stakeholders: byId(a.stakeholders, b.stakeholders),
+      items: byId(a.items, b.items),
+      tools: byId(a.tools, b.tools),
+      caseStudies: byId(a.caseStudies, b.caseStudies),
+    },
+  };
+}

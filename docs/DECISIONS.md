@@ -173,3 +173,21 @@ content the app presents as the publication's. To keep invariant 1 meaningful:
 - Custom tools have no detail page and do not appear in the by-objective, by-phase or
   by-category routes, which are the publication's own mappings. Removing a group or tool
   unlinks the items that referred to it rather than deleting them.
+
+---
+
+## 2026-11-04 — The hosted site serves the offline build as a download
+
+**Status:** accepted
+
+**Context:** The single-file offline build is what a workshop needs, but getting it meant
+cloning the repo and running a build.
+
+**Decision:** CI runs `npm run build:pages`: the hosted build, the offline build, and a copy
+of `dist-offline/index.html` into `dist/` as `participatory-processes-toolkit-offline.html`,
+linked from the footer. The copy is made after the service worker is generated, so it is
+not precached. The offline build hides the link, since no such file sits beside it.
+
+**Consequences:** Deploys take the time of two builds. The hosted site carries a 1.4 MB file
+that is only fetched on click.
+

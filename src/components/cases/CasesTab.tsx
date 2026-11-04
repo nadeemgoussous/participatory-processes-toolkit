@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { caseStudies, getCaseStudy } from '../../data/case-studies';
-import { getTool } from '../../data/engagement-tools';
-import { getProfile } from '../../data/stakeholder-profiles';
+import { engagementTools, getTool } from '../../data/engagement-tools';
+import { getProfile, stakeholderProfiles } from '../../data/stakeholder-profiles';
 import type { CaseStudy, Region } from '../../types/case-study';
 import { processFlows } from '../../data/figures';
 import { Blocks, Section, SourceNote } from '../common/Blocks';
@@ -13,12 +13,21 @@ const REGIONS: (Region | 'All')[] = ['All', 'Africa', 'Americas', 'Asia', 'Europ
 export default function CasesTab() {
   const [region, setRegion] = useState<Region | 'All'>('All');
   const [selected, setSelected] = useState<string | null>(null);
+  const [toolId, setToolId] = useState('');
+  const [stakeholderId, setStakeholderId] = useState('');
 
   const study = selected ? getCaseStudy(selected) : null;
 
+  // Filters use the classification fields on each case study, not its text.
   const visible = useMemo(
-    () => (region === 'All' ? caseStudies : caseStudies.filter((c) => c.region === region)),
-    [region]
+    () =>
+      caseStudies.filter(
+        (c) =>
+          (region === 'All' || c.region === region) &&
+          (!toolId || (c.toolIds as string[]).includes(toolId)) &&
+          (!stakeholderId || (c.stakeholderIds as string[]).includes(stakeholderId))
+      ),
+    [region, toolId, stakeholderId]
   );
 
   if (study) {
@@ -51,6 +60,25 @@ export default function CasesTab() {
           </button>
         ))}
       </div>
+
+      <div className="grid gap-4 sm:grid-cols-2">
+        <FilterSelect
+          label="Engagement tool"
+          value={toolId}
+          onChange={setToolId}
+          options={engagementTools.map((t) => ({ id: t.id, name: t.name }))}
+        />
+        <FilterSelect
+          label="Stakeholder group"
+          value={stakeholderId}
+          onChange={setStakeholderId}
+          options={stakeholderProfiles.map((p) => ({ id: p.id, name: p.name }))}
+        />
+      </div>
+
+      {visible.length === 0 && (
+        <p className="text-sm text-gray-600">No case study matches all of these filters.</p>
+      )}
 
       <div className="overflow-x-auto rounded-lg border border-gray-200 bg-white">
         <table className="w-full min-w-[68rem] text-left text-sm">
@@ -271,5 +299,35 @@ function CaseDetail({ study, onBack }: { study: CaseStudy; onBack: () => void })
 
       <SourceNote section={study.toolkitSection} />
     </div>
+  );
+}
+
+function FilterSelect({
+  label,
+  value,
+  onChange,
+  options,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  options: { id: string; name: string }[];
+}) {
+  return (
+    <label className="block">
+      <span className="mb-1 block text-sm font-medium text-gray-700">{label}</span>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-[var(--color-irena-blue)] focus:outline-none"
+      >
+        <option value="">All</option>
+        {options.map((o) => (
+          <option key={o.id} value={o.id}>
+            {o.name}
+          </option>
+        ))}
+      </select>
+    </label>
   );
 }

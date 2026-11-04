@@ -105,3 +105,7 @@ Decide whether regional-bodies and development-partners stay (KNOWN-GAPS 2).
     (stakeholders), checklist items (plan), tools (tools) and case studies (cases), always
     marked "not part of the IRENA toolkit". Decision in docs/DECISIONS.md. Merged to main.
     25 Chromium tests pass.
+  - Workshop features: printed plan includes the selection and all additions; Merge
+    (import that combines plans); additions shown in the plan's choosers; case study filters
+    by tool and stakeholder group; offline file downloadable from the site footer
+    (build:pages). 28 Chromium tests pass.
