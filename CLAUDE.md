@@ -30,6 +30,13 @@ Strings that are structural rather than quoted — section headings rendered in 
 — are listed explicitly in `ALLOWED` in `scripts/verify-toolkit-quotes.mjs`, each one
 individually justified. Adding to that list is a decision, not a formality.
 
+**Planner additions are the one exception, and they are the planner's text, not the app's.**
+A planner can add their own stakeholder groups and checklist items. They live only in
+`PlanState.additions` (never in `src/data/`, never seeded), every one is rendered with
+`<AdditionMarker />`, every section of them opens with `<AdditionsNotice />`, and they are
+never interleaved with publication lists. Keep all four properties if you touch them; see
+`docs/DECISIONS.md` 2026-11-04.
+
 Values that are *classification* rather than *text* are allowed and marked as such in the
 types: `region`, `stakeholderIds`, `toolIds`, `caseStudyIds`, colours and icon paths. They
 support filtering and cross-linking, and are never displayed as publication prose.
@@ -63,7 +70,7 @@ npm run build               # tsc && vite build -> dist/  (~15 s)
 npm run build:offline       # -> dist-offline/index.html, one self-contained file
 npm run preview             # serve dist/
 
-npm run test:chromium       # 21 Playwright tests — needs both builds present
+npm run test:chromium       # 23 Playwright tests — needs both builds present
 npm test                    # all browser projects
 ```
 
@@ -81,7 +88,7 @@ Keep it that way.
 ```
 src/
 ├─ App.tsx                     plan | why | stakeholders | tools | cases | resources
-├─ context/PlanContext.tsx     the plan; persists to localStorage on change
+├─ context/PlanContext.tsx     the plan, incl. planner additions; persists to localStorage
 ├─ types/                      <- SOURCE OF TRUTH for data shapes
 │   ├─ toolkit.ts              Phase, ToolCategory, EngagementTool, Objective, ContentBlock
 │   ├─ stakeholder.ts          StakeholderProfile (chapter 3 section shape)
@@ -129,7 +136,7 @@ The publication supports three ways in, and the app offers all three:
 ## 4. Conventions
 
 - **TypeScript strict**, `noUnusedLocals` / `noUnusedParameters` on.
-- **No new runtime dependencies.** The JS bundle is 341 kB and should stay in that range.
+- **No new runtime dependencies.** The JS bundle is 398 kB and should stay in that range.
   Figures are separate files in the hosted build and inlined in the offline one.
 - **Tailwind v4**: tokens live in `@theme` in `src/index.css`. No `tailwind.config.js`.
 - **No webfonts.** A CDN import breaks invariant 2. If Inter is wanted, self-host it.

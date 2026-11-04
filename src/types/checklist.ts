@@ -57,12 +57,39 @@ export interface PlanSetup {
   tools: ToolId[];
 }
 
+/**
+ * A stakeholder group entered by the planner. Not publication content: always
+ * rendered with the additions marker, never mixed into chapter 3 lists.
+ */
+export interface CustomStakeholder {
+  id: string;
+  name: string;
+  description: string;
+}
+
+/** A checklist item entered by the planner. Rendered like CustomStakeholder. */
+export interface CustomItem {
+  id: string;
+  text: string;
+  /** Empty means all phases. */
+  phases: Phase[];
+  /** A chapter 3 group or a CustomStakeholder id. */
+  stakeholderId?: string;
+}
+
+export interface PlanAdditions {
+  stakeholders: CustomStakeholder[];
+  items: CustomItem[];
+}
+
 export interface PlanState {
   version: 1;
   name: string;
   country: string;
   setup: PlanSetup;
+  /** Ticks and notes, for publication items and custom items alike. */
   items: Record<string, ItemState>;
+  additions: PlanAdditions;
   createdAt: string;
   updatedAt: string;
 }
@@ -75,6 +102,7 @@ export function emptyPlan(): PlanState {
     country: '',
     setup: { phases: [], stakeholders: [], tools: [] },
     items: {},
+    additions: { stakeholders: [], items: [] },
     createdAt: now,
     updatedAt: now,
   };

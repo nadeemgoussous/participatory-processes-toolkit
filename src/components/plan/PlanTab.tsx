@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState } from 'react';
 import { selectItems } from '../../data/checklist';
 import { CHECKLIST_GROUPS } from '../../types/checklist';
-import type { ChecklistItem } from '../../types/checklist';
+import type { CustomItem } from '../../types/checklist';
 import { engagementTools, objectives, getTool } from '../../data/engagement-tools';
 import { stakeholderProfiles, getProfile } from '../../data/stakeholder-profiles';
 import { PHASES } from '../../types/toolkit';
@@ -18,6 +18,7 @@ import {
   usingTheToolkit,
 } from '../../data/using-the-toolkit';
 import { Blocks, Disclosure } from '../common/Blocks';
+import { AdditionMarker, AdditionsNotice, additionBox } from '../common/Additions';
 
 export default function PlanTab() {
   const { plan, setMeta, setSetup, setItem, replacePlan } = usePlan();
@@ -29,6 +30,14 @@ export default function PlanTab() {
 
   const done = items.filter((i) => plan.items[i.id]?.done).length;
   const noted = items.filter((i) => plan.items[i.id]?.note.trim()).length;
+
+  const ownItems = plan.additions.items.filter(
+    (i) =>
+      i.phases.length === 0 ||
+      plan.setup.phases.length === 0 ||
+      i.phases.some((p) => plan.setup.phases.includes(p))
+  );
+  const ownDone = ownItems.filter((i) => plan.items[i.id]?.done).length;
 
   const handleImport = async (file: File) => {
     try {
@@ -169,6 +178,13 @@ export default function PlanTab() {
         <p className="text-gray-700">
           <span className="font-semibold text-gray-900">{done}</span> of {items.length} items
           checked, <span className="font-semibold text-gray-900">{noted}</span> with notes.
+          {ownItems.length > 0 && (
+            <>
+              {' '}
+              Of your own items, <span className="font-semibold text-gray-900">{ownDone}</span>{' '}
+              of {ownItems.length} checked.
+            </>
+          )}
         </p>
         <p className="mt-1 text-sm text-gray-600">
           The toolkit identifies engagement treated as a &quot;box-ticking&quot; exercise as a
@@ -208,7 +224,15 @@ export default function PlanTab() {
               {groupItems.map((item) => (
                 <Item
                   key={item.id}
-                  item={item}
+                  id={item.id}
+                  text={item.text}
+                  meta={
+                    <span>
+                      {itemOrigin(item)}
+                      {itemOrigin(item) && ' · '}
+                      {item.source}
+                    </span>
+                  }
                   state={plan.items[item.id]}
                   onChange={(patch) => setItem(item.id, patch)}
                 />
@@ -217,6 +241,8 @@ export default function PlanTab() {
           </section>
         );
       })}
+
+      <OwnItems visible={ownItems} />
     </div>
   );
 
@@ -282,6 +308,7 @@ function Chooser({
           return (
             <button
               key={o.id}
+              type="button"
               onClick={() => onToggle(o.id)}
               title={o.hint}
               className={`rounded-md border px-3 py-1.5 text-sm transition-colors ${
@@ -303,20 +330,26 @@ function Chooser({
  * Which tool or stakeholder section an item came from. A group mixes items from
  * several tools, and a section number alone does not say which is which.
  */
-function itemOrigin(item: ChecklistItem): string {
+function itemOrigin(item: { toolId?: ToolId; stakeholderId?: StakeholderId }): string {
   if (item.toolId) return getTool(item.toolId)?.name ?? '';
   if (item.stakeholderId) return getProfile(item.stakeholderId)?.name ?? '';
   return '';
 }
 
 function Item({
-  item,
+  id,
+  text,
+  meta,
   state,
   onChange,
+  onRemove,
 }: {
-  item: ChecklistItem;
+  id: string;
+  text: string;
+  meta: React.ReactNode;
   state?: { done: boolean; note: string };
   onChange: (patch: { done?: boolean; note?: string }) => void;
+  onRemove?: () => void;
 }) {
   const done = state?.done ?? false;
   const note = state?.note ?? '';
@@ -328,18 +361,24 @@ function Item({
           type="checkbox"
           checked={done}
           onChange={(e) => onChange({ done: e.target.checked })}
-          id={item.id}
+          id={id}
           className="mt-1 h-4 w-4 shrink-0 accent-[var(--color-irena-blue)]"
         />
         <div className="min-w-0 flex-1">
-          <label htmlFor={item.id} className="block text-gray-800">
-            {item.text}
+          <label htmlFor={id} className="block whitespace-pre-line text-gray-800">
+            {text}
           </label>
-          <p className="mt-1 text-xs text-gray-500">
-            {itemOrigin(item)}
-            {itemOrigin(item) && ' · '}
-            {item.source}
-          </p>
+          <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-gray-500">
+            {meta}
+            {onRemove && (
+              <button
+                onClick={onRemove}
+                className="text-gray-500 hover:text-red-700 hover:underline print:hidden"
+              >
+                Remove
+              </button>
+            )}
+          </div>
           <textarea
             value={note}
             onChange={(e) => onChange({ note: e.target.value })}
@@ -350,5 +389,118 @@ function Item({
         </div>
       </div>
     </li>
+  );
+}
+
+/**
+ * Checklist items the planner adds. They follow the publication's groups rather
+ * than joining them, so no addition ever sits inside a list of quoted text.
+ */
+function OwnItems({ visible }: { visible: CustomItem[] }) {
+  const { plan, setItem, addItem, removeItem } = usePlan();
+  const [text, setText] = useState('');
+  const [phases, setPhases] = useState<Phase[]>([]);
+  const [stakeholderId, setStakeholderId] = useState('');
+
+  const groups = [
+    ...plan.additions.stakeholders.map((g) => ({ id: g.id, name: `${g.name} (your group)` })),
+    ...stakeholderProfiles.map((p) => ({ id: p.id, name: p.name })),
+  ];
+  const groupName = (id?: string) =>
+    plan.additions.stakeholders.find((g) => g.id === id)?.name ??
+    (id ? getProfile(id as StakeholderId)?.name : undefined);
+
+  const hidden = plan.additions.items.length - visible.length;
+
+  const submit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!text.trim()) return;
+    addItem({ text: text.trim(), phases, ...(stakeholderId ? { stakeholderId } : {}) });
+    setText('');
+    setPhases([]);
+    setStakeholderId('');
+  };
+
+  return (
+    <section aria-labelledby="own-items" className="space-y-3 border-t border-gray-200 pt-8">
+      <h2 id="own-items" className="text-lg font-semibold text-gray-900">
+        Your own checklist items
+      </h2>
+      <AdditionsNotice />
+
+      {visible.length > 0 && (
+        <ul className={`${additionBox} divide-y divide-amber-100`}>
+          {visible.map((item) => {
+            const group = groupName(item.stakeholderId);
+            const phaseLabels = PHASES.filter((p) => item.phases.includes(p.id)).map((p) => p.label);
+            return (
+              <Item
+                key={item.id}
+                id={item.id}
+                text={item.text}
+                meta={
+                  <>
+                    <AdditionMarker />
+                    {group && <span>{group}</span>}
+                    {phaseLabels.length > 0 && <span>{phaseLabels.join(', ')}</span>}
+                  </>
+                }
+                state={plan.items[item.id]}
+                onChange={(patch) => setItem(item.id, patch)}
+                onRemove={() => removeItem(item.id)}
+              />
+            );
+          })}
+        </ul>
+      )}
+      {hidden > 0 && (
+        <p className="text-sm text-gray-500">
+          {hidden} of your items {hidden === 1 ? 'is' : 'are'} hidden by the phases selected
+          above.
+        </p>
+      )}
+
+      <form onSubmit={submit} className={`${additionBox} space-y-4 p-5 print:hidden`}>
+        <label className="block">
+          <span className="mb-1 block text-sm font-medium text-gray-700">Item</span>
+          <textarea
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            rows={2}
+            className="w-full resize-y rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-[var(--color-irena-blue)] focus:outline-none"
+          />
+        </label>
+        <Chooser
+          legend="Phases (optional; none means all)"
+          options={PHASES.map((p) => ({ id: p.id, label: p.label, hint: p.detail }))}
+          selected={phases}
+          onToggle={(id) => setPhases(toggle(phases, id as Phase))}
+        />
+        <label className="block">
+          <span className="mb-1 block text-sm font-medium text-gray-700">
+            Stakeholder group (optional)
+          </span>
+          <select
+            value={stakeholderId}
+            onChange={(e) => setStakeholderId(e.target.value)}
+            className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-[var(--color-irena-blue)] focus:outline-none"
+          >
+            <option value="">None</option>
+            {groups.map((g) => (
+              <option key={g.id} value={g.id}>
+                {g.name}
+              </option>
+            ))}
+          </select>
+        </label>
+        <button
+          type="submit"
+          disabled={!text.trim()}
+          className="rounded-md bg-[var(--color-irena-blue)] px-4 py-2 text-sm font-medium text-white hover:bg-[var(--color-irena-blue-dark)] disabled:opacity-50"
+        >
+          Add item
+        </button>
+      </form>
+    </section>
   );
 }

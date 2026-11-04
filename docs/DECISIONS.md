@@ -136,3 +136,35 @@ checklist), by objective (ch 4 Step 4's objective → tool mapping), and by stak
   complete on ticks alone.
 - Superseded: the 2025-12 AI-enhancement and SmolLM2 decisions, and the 2026-02 response
   library decision.
+
+---
+
+## 2026-11-04 — Planner additions: own stakeholder groups and checklist items
+
+**Status:** accepted
+
+**Context:** Planners work with groups the publication does not profile (a national
+utility regulator, a specific indigenous council, the development partners already named in
+the case study data) and with activities particular to their process. The app could not
+record any of it, so that work happened outside the plan.
+
+**Decision:** The plan can hold planner additions — stakeholder groups (a name and an
+optional description) and checklist items (text, optional phases, optional link to a
+stakeholder group). They are the planner's data, like the notes beside each item, not
+content the app presents as the publication's. To keep invariant 1 meaningful:
+
+- Additions live in `PlanState.additions`, never in `src/data/`. Nothing in the app ships
+  with additions; there is no seed or example text.
+- Every addition is rendered with an explicit marker that it is not part of the IRENA
+  toolkit, and in a visually distinct style (dashed amber border). Each place they appear
+  opens with a notice saying so. The marker is also printed.
+- Additions are never interleaved with publication lists. They sit in their own section on
+  the plan and stakeholders pages, after the publication's content and its `SourceNote`.
+- Additions do not link into publication content: a custom group has no good practices,
+  and selecting one adds no publication items.
+
+**Consequences:**
+- The plan JSON gains an `additions` field. Older plans and exports load with it empty;
+  imported additions are reshaped defensively, since the file is user-supplied.
+- Custom engagement tools and case studies are not supported. They are a larger surface
+  (the tools page is organised by the chapter 4 dimensions) and nobody has asked for them.

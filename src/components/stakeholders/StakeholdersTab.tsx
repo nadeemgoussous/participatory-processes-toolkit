@@ -5,6 +5,7 @@ import { stakeholderIcons } from '../../data/figures';
 import type { StakeholderProfile, StakeholderId } from '../../types/stakeholder';
 import { Blocks, Bullets, Section, SourceNote } from '../common/Blocks';
 import { usePlan } from '../../context/PlanContext';
+import { AdditionMarker, AdditionsNotice, additionBox } from '../common/Additions';
 
 export default function StakeholdersTab() {
   const [selected, setSelected] = useState<StakeholderId | null>(null);
@@ -49,7 +50,87 @@ export default function StakeholdersTab() {
       </ul>
 
       <SourceNote section="3" />
+
+      <CustomGroups />
     </div>
+  );
+}
+
+/** Groups the planner adds. Kept after the chapter 3 groups and their source note. */
+function CustomGroups() {
+  const { plan, addStakeholder, removeStakeholder } = usePlan();
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const groups = plan.additions.stakeholders;
+
+  const submit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name.trim()) return;
+    addStakeholder({ name: name.trim(), description: description.trim() });
+    setName('');
+    setDescription('');
+  };
+
+  return (
+    <section aria-labelledby="custom-groups" className="space-y-4 border-t border-gray-200 pt-8">
+      <h2 id="custom-groups" className="text-xl font-semibold text-gray-900">
+        Your own stakeholder groups
+      </h2>
+      <AdditionsNotice />
+
+      {groups.length > 0 && (
+        <ul className="grid gap-4 sm:grid-cols-2">
+          {groups.map((g) => (
+            <li key={g.id} className={`${additionBox} flex flex-col gap-2 p-5`}>
+              <span className="font-semibold text-gray-900">{g.name}</span>
+              {g.description && (
+                <span className="whitespace-pre-line text-sm text-gray-700">{g.description}</span>
+              )}
+              <div className="mt-auto flex items-center justify-between gap-2 pt-2">
+                <AdditionMarker />
+                <button
+                  onClick={() => removeStakeholder(g.id)}
+                  aria-label={`Remove ${g.name}`}
+                  className="text-sm text-gray-500 hover:text-red-700 hover:underline print:hidden"
+                >
+                  Remove
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <form onSubmit={submit} className={`${additionBox} space-y-3 p-5 print:hidden`}>
+        <label className="block">
+          <span className="mb-1 block text-sm font-medium text-gray-700">Group name</span>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full rounded-md border border-gray-300 px-3 py-2 focus:border-[var(--color-irena-blue)] focus:outline-none"
+          />
+        </label>
+        <label className="block">
+          <span className="mb-1 block text-sm font-medium text-gray-700">
+            Who they are and why they matter to this plan (optional)
+          </span>
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            rows={2}
+            className="w-full resize-y rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-[var(--color-irena-blue)] focus:outline-none"
+          />
+        </label>
+        <button
+          type="submit"
+          disabled={!name.trim()}
+          className="rounded-md bg-[var(--color-irena-blue)] px-4 py-2 text-sm font-medium text-white hover:bg-[var(--color-irena-blue-dark)] disabled:opacity-50"
+        >
+          Add group
+        </button>
+      </form>
+    </section>
   );
 }
 

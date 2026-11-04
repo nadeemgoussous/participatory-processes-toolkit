@@ -95,3 +95,12 @@ process, with a participation checklist as the primary surface.
 
 Next: chapters 7 and 2 are the cheapest remaining content wins (docs/KNOWN-GAPS.md 1).
 Decide whether regional-bodies and development-partners stay (KNOWN-GAPS 2).
+
+### 2026-11-04 — GitHub repo, Pages, planner additions
+
+  - Published to github.com/nadeemgoussous/participatory-processes-toolkit (public);
+    toolkit-pivot pushed as main, Pages deploys from main. Live at
+    nadeemgoussous.github.io/participatory-processes-toolkit/.
+  - Branch feature/planner-additions: planners can add their own stakeholder groups
+    (stakeholders page) and checklist items (plan page), always marked "not part of the
+    IRENA toolkit". Decision in docs/DECISIONS.md. 23 Chromium tests pass.
