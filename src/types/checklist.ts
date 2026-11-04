@@ -75,11 +75,42 @@ export interface CustomItem {
   phases: Phase[];
   /** A chapter 3 group or a CustomStakeholder id. */
   stakeholderId?: string;
+  /** A chapter 4 tool or a CustomTool id. */
+  toolId?: string;
+}
+
+/** An engagement tool or activity entered by the planner. */
+export interface CustomTool {
+  id: string;
+  name: string;
+  description: string;
+  /** Empty means all phases. */
+  phases: Phase[];
+}
+
+/**
+ * A case study entered by the planner, against the columns of the chapter 5
+ * summary table so it can be read alongside the publication's thirteen.
+ */
+export interface CustomCaseStudy {
+  id: string;
+  name: string;
+  planningContext: string;
+  primaryObjectives: string;
+  methodsUsed: string;
+  resourceRequirements: string;
+  transferableElements: string;
 }
 
 export interface PlanAdditions {
   stakeholders: CustomStakeholder[];
   items: CustomItem[];
+  tools: CustomTool[];
+  caseStudies: CustomCaseStudy[];
+}
+
+export function emptyAdditions(): PlanAdditions {
+  return { stakeholders: [], items: [], tools: [], caseStudies: [] };
 }
 
 export interface PlanState {
@@ -102,7 +133,7 @@ export function emptyPlan(): PlanState {
     country: '',
     setup: { phases: [], stakeholders: [], tools: [] },
     items: {},
-    additions: { stakeholders: [], items: [] },
+    additions: emptyAdditions(),
     createdAt: now,
     updatedAt: now,
   };

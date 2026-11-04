@@ -3,7 +3,7 @@
 // The plan lives in localStorage. Reads and writes are wrapped because storage
 // throws in private windows and when site data is blocked.
 
-import type { CustomItem, CustomStakeholder, PlanAdditions, PlanState } from '../types/checklist';
+import type { CustomItem, PlanAdditions, PlanState } from '../types/checklist';
 import { emptyPlan } from '../types/checklist';
 import { PHASES } from '../types/toolkit';
 import type { Phase } from '../types/toolkit';
@@ -38,22 +38,47 @@ function normaliseAdditions(raw: unknown): PlanAdditions {
   const str = (v: unknown) => (typeof v === 'string' ? v : '');
   const phaseIds = PHASES.map((p) => p.id);
 
-  const stakeholders: CustomStakeholder[] = list(obj.stakeholders)
-    .filter((s) => str(s.id) && str(s.name).trim())
-    .map((s) => ({ id: str(s.id), name: str(s.name), description: str(s.description) }));
+  const phasesOf = (v: unknown): Phase[] =>
+    Array.isArray(v) ? (v.filter((p) => phaseIds.includes(p as Phase)) as Phase[]) : [];
+
+  // Records keyed by a required `name`, with the listed string fields.
+  const named = <K extends string>(v: unknown, keys: K[]) =>
+    list(v)
+      .filter((r) => str(r.id) && str(r.name).trim())
+      .map((r) => ({
+        id: str(r.id),
+        name: str(r.name),
+        ...(Object.fromEntries(keys.map((k) => [k, str(r[k])])) as Record<K, string>),
+      }));
+
+  const stakeholders = named(obj.stakeholders, ['description']);
+  const tools = list(obj.tools)
+    .filter((r) => str(r.id) && str(r.name).trim())
+    .map((r) => ({
+      id: str(r.id),
+      name: str(r.name),
+      description: str(r.description),
+      phases: phasesOf(r.phases),
+    }));
+  const caseStudies = named(obj.caseStudies, [
+    'planningContext',
+    'primaryObjectives',
+    'methodsUsed',
+    'resourceRequirements',
+    'transferableElements',
+  ]);
 
   const items: CustomItem[] = list(obj.items)
     .filter((i) => str(i.id) && str(i.text).trim())
     .map((i) => ({
       id: str(i.id),
       text: str(i.text),
-      phases: Array.isArray(i.phases)
-        ? (i.phases.filter((p) => phaseIds.includes(p as Phase)) as Phase[])
-        : [],
+      phases: phasesOf(i.phases),
       ...(str(i.stakeholderId) ? { stakeholderId: str(i.stakeholderId) } : {}),
+      ...(str(i.toolId) ? { toolId: str(i.toolId) } : {}),
     }));
 
-  return { stakeholders, items };
+  return { stakeholders, items, tools, caseStudies };
 }
 
 export function savePlan(plan: PlanState): void {

@@ -50,4 +50,55 @@ test.describe('Planner additions', () => {
     await reloaded.getByRole('button', { name: 'Remove' }).click();
     await expect(page.getByText('Book the venue for the validation workshop')).toHaveCount(0);
   });
+
+  test('a custom tool is marked, linkable from an item, and its removal keeps the item', async ({ page }) => {
+    await page.goto('/');
+    await page.getByRole('button', { name: 'Engagement tools', exact: true }).click();
+
+    const tools = page.locator('section', { has: page.locator('#custom-tools') });
+    await expect(tools.getByRole('note')).toContainText('Not part of the IRENA toolkit.');
+    await tools.getByLabel('Tool or activity').fill('Community radio phone-in');
+    await tools.getByRole('button', { name: 'Communication' }).click();
+    await tools.getByRole('button', { name: 'Add tool' }).click();
+
+    const card = tools.locator('li', { hasText: 'Community radio phone-in' });
+    await expect(card).toContainText(MARKER);
+    await expect(card).toContainText('Communication');
+
+    await page.getByRole('button', { name: 'Plan', exact: true }).click();
+    const items = page.locator('section', { has: page.locator('#own-items') });
+    await items.getByLabel('Item').fill('Agree the call-in schedule with the station');
+    await items
+      .getByLabel('Engagement tool (optional)')
+      .selectOption({ label: 'Community radio phone-in (your tool)' });
+    await items.getByRole('button', { name: 'Add item' }).click();
+    const item = items.locator('li', { hasText: 'Agree the call-in schedule' });
+    await expect(item).toContainText('Community radio phone-in');
+
+    await page.getByRole('button', { name: 'Engagement tools', exact: true }).click();
+    await page.getByRole('button', { name: 'Remove Community radio phone-in' }).click();
+
+    await page.getByRole('button', { name: 'Plan', exact: true }).click();
+    const orphan = page
+      .locator('section', { has: page.locator('#own-items') })
+      .locator('li', { hasText: 'Agree the call-in schedule' });
+    await expect(orphan).toBeVisible();
+    await expect(orphan).not.toContainText('Community radio phone-in');
+  });
+
+  test('a custom case study is marked and kept out of the chapter 5 table', async ({ page }) => {
+    await page.goto('/');
+    await page.getByRole('button', { name: 'Case studies', exact: true }).click();
+
+    const cases = page.locator('section', { has: page.locator('#custom-cases') });
+    await expect(cases.getByRole('note')).toContainText('Not part of the IRENA toolkit.');
+    await cases.getByLabel('Country or institution').fill('Ruritania 2024 NDC update');
+    await cases.getByLabel(/Methods used/).fill('Regional town halls');
+    await cases.getByRole('button', { name: 'Add case study' }).click();
+
+    const card = cases.locator('li', { hasText: 'Ruritania 2024 NDC update' });
+    await expect(card).toContainText(MARKER);
+    await expect(card).toContainText('Regional town halls');
+    await expect(page.locator('table')).not.toContainText('Ruritania');
+  });
 });

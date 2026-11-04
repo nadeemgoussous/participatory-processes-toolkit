@@ -6,6 +6,7 @@ import type { EngagementTool, Phase, ToolId } from '../../types/toolkit';
 import { figures } from '../../data/figures';
 import { Bullets, FigureImage, Section, SourceNote } from '../common/Blocks';
 import { usePlan } from '../../context/PlanContext';
+import { AdditionCard, AdditionForm, AdditionSection, phaseLabels } from '../common/Additions';
 
 type Route = 'objective' | 'phase' | 'category';
 
@@ -56,7 +57,43 @@ export default function ToolsTab() {
       {route === 'objective' && <ByObjective onSelect={setSelected} />}
       {route === 'phase' && <ByPhase onSelect={setSelected} />}
       {route === 'category' && <ByCategory onSelect={setSelected} />}
+
+      <CustomTools />
     </div>
+  );
+}
+
+/** Tools and activities the planner adds. Kept after the chapter 4 routes. */
+function CustomTools() {
+  const { plan, addAddition, removeAddition } = usePlan();
+  const tools = plan.additions.tools;
+
+  return (
+    <AdditionSection id="custom-tools" heading="Your own engagement tools and activities">
+      {tools.length > 0 && (
+        <ul className="grid gap-4 sm:grid-cols-2">
+          {tools.map((t) => (
+            <AdditionCard
+              key={t.id}
+              title={t.name}
+              rows={[{ text: t.description }, { label: 'Phases', text: phaseLabels(t.phases) }]}
+              onRemove={() => removeAddition('tools', t.id)}
+            />
+          ))}
+        </ul>
+      )}
+      <AdditionForm
+        fields={[
+          { key: 'name', label: 'Tool or activity', required: true },
+          { key: 'description', label: 'How you will use it', multiline: true },
+        ]}
+        withPhases
+        submitLabel="Add tool"
+        onSubmit={(v, phases) =>
+          addAddition('tools', { name: v.name, description: v.description, phases })
+        }
+      />
+    </AdditionSection>
   );
 }
 

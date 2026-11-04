@@ -5,6 +5,8 @@ import { getProfile } from '../../data/stakeholder-profiles';
 import type { CaseStudy, Region } from '../../types/case-study';
 import { processFlows } from '../../data/figures';
 import { Blocks, Section, SourceNote } from '../common/Blocks';
+import { usePlan } from '../../context/PlanContext';
+import { AdditionCard, AdditionForm, AdditionSection } from '../common/Additions';
 
 const REGIONS: (Region | 'All')[] = ['All', 'Africa', 'Americas', 'Asia', 'Europe', 'Global'];
 
@@ -85,7 +87,59 @@ export default function CasesTab() {
       </div>
 
       <SourceNote section="5, Summary Table of Case Studies" />
+
+      <CustomCases />
     </div>
+  );
+}
+
+// The summary table's own column headings, so a planner's case reads against
+// the same dimensions as the publication's.
+const CASE_FIELDS = [
+  { key: 'planningContext', label: 'Planning context' },
+  { key: 'primaryObjectives', label: 'Primary objectives' },
+  { key: 'methodsUsed', label: 'Methods used' },
+  { key: 'resourceRequirements', label: 'Resource requirements' },
+  { key: 'transferableElements', label: 'Transferable elements' },
+] as const;
+
+/** Case studies the planner adds. Kept apart from the chapter 5 table. */
+function CustomCases() {
+  const { plan, addAddition, removeAddition } = usePlan();
+  const cases = plan.additions.caseStudies;
+
+  return (
+    <AdditionSection id="custom-cases" heading="Your own case studies">
+      {cases.length > 0 && (
+        <ul className="grid gap-4 sm:grid-cols-2">
+          {cases.map((c) => (
+            <AdditionCard
+              key={c.id}
+              title={c.name}
+              rows={CASE_FIELDS.map((f) => ({ label: f.label, text: c[f.key] }))}
+              onRemove={() => removeAddition('caseStudies', c.id)}
+            />
+          ))}
+        </ul>
+      )}
+      <AdditionForm
+        fields={[
+          { key: 'name', label: 'Country or institution', required: true },
+          ...CASE_FIELDS.map((f) => ({ key: f.key, label: f.label, multiline: true })),
+        ]}
+        submitLabel="Add case study"
+        onSubmit={(v) =>
+          addAddition('caseStudies', {
+            name: v.name,
+            planningContext: v.planningContext,
+            primaryObjectives: v.primaryObjectives,
+            methodsUsed: v.methodsUsed,
+            resourceRequirements: v.resourceRequirements,
+            transferableElements: v.transferableElements,
+          })
+        }
+      />
+    </AdditionSection>
   );
 }
 

@@ -18,7 +18,8 @@ import {
   usingTheToolkit,
 } from '../../data/using-the-toolkit';
 import { Blocks, Disclosure } from '../common/Blocks';
-import { AdditionMarker, AdditionsNotice, additionBox } from '../common/Additions';
+import { AdditionForm, AdditionMarker, AdditionSection, additionBox, phaseLabels } from '../common/Additions';
+import { Chooser, toggle } from '../common/Chooser';
 
 export default function PlanTab() {
   const { plan, setMeta, setSetup, setItem, replacePlan } = usePlan();
@@ -284,48 +285,6 @@ export default function PlanTab() {
   }
 }
 
-function toggle<T>(list: T[], value: T): T[] {
-  return list.includes(value) ? list.filter((v) => v !== value) : [...list, value];
-}
-
-function Chooser({
-  legend,
-  options,
-  selected,
-  onToggle,
-}: {
-  legend: string;
-  options: { id: string; label: string; hint?: string }[];
-  selected: string[];
-  onToggle: (id: string) => void;
-}) {
-  return (
-    <fieldset>
-      <legend className="mb-2 text-sm font-medium text-gray-700">{legend}</legend>
-      <div className="flex flex-wrap gap-2">
-        {options.map((o) => {
-          const active = selected.includes(o.id);
-          return (
-            <button
-              key={o.id}
-              type="button"
-              onClick={() => onToggle(o.id)}
-              title={o.hint}
-              className={`rounded-md border px-3 py-1.5 text-sm transition-colors ${
-                active
-                  ? 'border-transparent bg-[var(--color-irena-blue)] text-white'
-                  : 'border-gray-300 bg-white text-gray-700 hover:border-gray-400'
-              }`}
-            >
-              {o.label}
-            </button>
-          );
-        })}
-      </div>
-    </fieldset>
-  );
-}
-
 /**
  * Which tool or stakeholder section an item came from. A group mixes items from
  * several tools, and a section number alone does not say which is which.
@@ -397,60 +356,51 @@ function Item({
  * than joining them, so no addition ever sits inside a list of quoted text.
  */
 function OwnItems({ visible }: { visible: CustomItem[] }) {
-  const { plan, setItem, addItem, removeItem } = usePlan();
-  const [text, setText] = useState('');
-  const [phases, setPhases] = useState<Phase[]>([]);
+  const { plan, setItem, addAddition, removeAddition } = usePlan();
   const [stakeholderId, setStakeholderId] = useState('');
+  const [toolId, setToolId] = useState('');
 
-  const groups = [
+  const groupOptions = [
     ...plan.additions.stakeholders.map((g) => ({ id: g.id, name: `${g.name} (your group)` })),
     ...stakeholderProfiles.map((p) => ({ id: p.id, name: p.name })),
+  ];
+  const toolOptions = [
+    ...plan.additions.tools.map((t) => ({ id: t.id, name: `${t.name} (your tool)` })),
+    ...engagementTools.map((t) => ({ id: t.id, name: t.name })),
   ];
   const groupName = (id?: string) =>
     plan.additions.stakeholders.find((g) => g.id === id)?.name ??
     (id ? getProfile(id as StakeholderId)?.name : undefined);
+  const toolName = (id?: string) =>
+    plan.additions.tools.find((t) => t.id === id)?.name ??
+    (id ? getTool(id as ToolId)?.name : undefined);
 
   const hidden = plan.additions.items.length - visible.length;
 
-  const submit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!text.trim()) return;
-    addItem({ text: text.trim(), phases, ...(stakeholderId ? { stakeholderId } : {}) });
-    setText('');
-    setPhases([]);
-    setStakeholderId('');
-  };
-
   return (
-    <section aria-labelledby="own-items" className="space-y-3 border-t border-gray-200 pt-8">
-      <h2 id="own-items" className="text-lg font-semibold text-gray-900">
-        Your own checklist items
-      </h2>
-      <AdditionsNotice />
-
+    <AdditionSection id="own-items" heading="Your own checklist items">
       {visible.length > 0 && (
         <ul className={`${additionBox} divide-y divide-amber-100`}>
-          {visible.map((item) => {
-            const group = groupName(item.stakeholderId);
-            const phaseLabels = PHASES.filter((p) => item.phases.includes(p.id)).map((p) => p.label);
-            return (
-              <Item
-                key={item.id}
-                id={item.id}
-                text={item.text}
-                meta={
-                  <>
-                    <AdditionMarker />
-                    {group && <span>{group}</span>}
-                    {phaseLabels.length > 0 && <span>{phaseLabels.join(', ')}</span>}
-                  </>
-                }
-                state={plan.items[item.id]}
-                onChange={(patch) => setItem(item.id, patch)}
-                onRemove={() => removeItem(item.id)}
-              />
-            );
-          })}
+          {visible.map((item) => (
+            <Item
+              key={item.id}
+              id={item.id}
+              text={item.text}
+              meta={
+                <>
+                  <AdditionMarker />
+                  {[groupName(item.stakeholderId), toolName(item.toolId), phaseLabels(item.phases)]
+                    .filter(Boolean)
+                    .map((label) => (
+                      <span key={label}>{label}</span>
+                    ))}
+                </>
+              }
+              state={plan.items[item.id]}
+              onChange={(patch) => setItem(item.id, patch)}
+              onRemove={() => removeAddition('items', item.id)}
+            />
+          ))}
         </ul>
       )}
       {hidden > 0 && (
@@ -460,47 +410,66 @@ function OwnItems({ visible }: { visible: CustomItem[] }) {
         </p>
       )}
 
-      <form onSubmit={submit} className={`${additionBox} space-y-4 p-5 print:hidden`}>
-        <label className="block">
-          <span className="mb-1 block text-sm font-medium text-gray-700">Item</span>
-          <textarea
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            rows={2}
-            className="w-full resize-y rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-[var(--color-irena-blue)] focus:outline-none"
-          />
-        </label>
-        <Chooser
-          legend="Phases (optional; none means all)"
-          options={PHASES.map((p) => ({ id: p.id, label: p.label, hint: p.detail }))}
-          selected={phases}
-          onToggle={(id) => setPhases(toggle(phases, id as Phase))}
-        />
-        <label className="block">
-          <span className="mb-1 block text-sm font-medium text-gray-700">
-            Stakeholder group (optional)
-          </span>
-          <select
+      <AdditionForm
+        fields={[{ key: 'text', label: 'Item', multiline: true, required: true }]}
+        withPhases
+        submitLabel="Add item"
+        onSubmit={(v, phases) => {
+          addAddition('items', {
+            text: v.text,
+            phases,
+            ...(stakeholderId ? { stakeholderId } : {}),
+            ...(toolId ? { toolId } : {}),
+          });
+          setStakeholderId('');
+          setToolId('');
+        }}
+      >
+        <div className="grid gap-4 sm:grid-cols-2">
+          <LinkSelect
+            label="Stakeholder group (optional)"
             value={stakeholderId}
-            onChange={(e) => setStakeholderId(e.target.value)}
-            className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-[var(--color-irena-blue)] focus:outline-none"
-          >
-            <option value="">None</option>
-            {groups.map((g) => (
-              <option key={g.id} value={g.id}>
-                {g.name}
-              </option>
-            ))}
-          </select>
-        </label>
-        <button
-          type="submit"
-          disabled={!text.trim()}
-          className="rounded-md bg-[var(--color-irena-blue)] px-4 py-2 text-sm font-medium text-white hover:bg-[var(--color-irena-blue-dark)] disabled:opacity-50"
-        >
-          Add item
-        </button>
-      </form>
-    </section>
+            onChange={setStakeholderId}
+            options={groupOptions}
+          />
+          <LinkSelect
+            label="Engagement tool (optional)"
+            value={toolId}
+            onChange={setToolId}
+            options={toolOptions}
+          />
+        </div>
+      </AdditionForm>
+    </AdditionSection>
+  );
+}
+
+function LinkSelect({
+  label,
+  value,
+  onChange,
+  options,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  options: { id: string; name: string }[];
+}) {
+  return (
+    <label className="block">
+      <span className="mb-1 block text-sm font-medium text-gray-700">{label}</span>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-[var(--color-irena-blue)] focus:outline-none"
+      >
+        <option value="">None</option>
+        {options.map((o) => (
+          <option key={o.id} value={o.id}>
+            {o.name}
+          </option>
+        ))}
+      </select>
+    </label>
   );
 }

@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import type { ReactNode } from 'react';
-import type { CustomItem, CustomStakeholder, ItemState, PlanSetup, PlanState } from '../types/checklist';
+import type { ItemState, PlanAdditions, PlanSetup, PlanState } from '../types/checklist';
 import { loadPlan, savePlan } from '../utils/plan-storage';
 
 interface PlanContextValue {
@@ -9,11 +9,11 @@ interface PlanContextValue {
   setSetup: (setup: Partial<PlanSetup>) => void;
   setItem: (id: string, patch: Partial<ItemState>) => void;
   replacePlan: (plan: PlanState) => void;
-  addStakeholder: (s: Omit<CustomStakeholder, 'id'>) => void;
-  removeStakeholder: (id: string) => void;
-  addItem: (i: Omit<CustomItem, 'id'>) => void;
-  removeItem: (id: string) => void;
+  addAddition: <K extends AdditionKind>(kind: K, value: Omit<PlanAdditions[K][number], 'id'>) => void;
+  removeAddition: (kind: AdditionKind, id: string) => void;
 }
+
+export type AdditionKind = keyof PlanAdditions;
 
 // crypto.randomUUID needs a secure context, which a page opened from file://
 // is not guaranteed to be; the offline build runs from there.
@@ -52,43 +52,36 @@ export function PlanProvider({ children }: { children: ReactNode }) {
 
   const replacePlan = useCallback((next: PlanState) => setPlan(next), []);
 
-  const addStakeholder = useCallback((s: Omit<CustomStakeholder, 'id'>) => {
-    setPlan((p) => ({
-      ...p,
-      additions: { ...p.additions, stakeholders: [...p.additions.stakeholders, { ...s, id: newId() }] },
-    }));
-  }, []);
-
-  // Items linked to a removed group are kept and unlinked: the planner wrote
-  // them, and losing them silently would be worse than an orphan.
-  const removeStakeholder = useCallback((id: string) => {
-    setPlan((p) => ({
-      ...p,
-      additions: {
-        stakeholders: p.additions.stakeholders.filter((s) => s.id !== id),
-        items: p.additions.items.map((i) =>
-          i.stakeholderId === id ? { id: i.id, text: i.text, phases: i.phases } : i
-        ),
-      },
-    }));
-  }, []);
-
-  const addItem = useCallback((i: Omit<CustomItem, 'id'>) => {
-    setPlan((p) => ({
-      ...p,
-      additions: { ...p.additions, items: [...p.additions.items, { ...i, id: newId() }] },
-    }));
-  }, []);
-
-  const removeItem = useCallback((id: string) => {
-    setPlan((p) => {
-      const items = { ...p.items };
-      delete items[id];
-      return {
+  const addAddition = useCallback(
+    <K extends AdditionKind>(kind: K, value: Omit<PlanAdditions[K][number], 'id'>) => {
+      setPlan((p) => ({
         ...p,
-        items,
-        additions: { ...p.additions, items: p.additions.items.filter((i) => i.id !== id) },
-      };
+        additions: { ...p.additions, [kind]: [...p.additions[kind], { ...value, id: newId() }] },
+      }));
+    },
+    []
+  );
+
+  // Items linked to a removed group or tool are kept and unlinked: the planner
+  // wrote them, and losing them silently would be worse than an orphan.
+  const removeAddition = useCallback((kind: AdditionKind, id: string) => {
+    setPlan((p) => {
+      const additions = {
+        ...p.additions,
+        [kind]: (p.additions[kind] as { id: string }[]).filter((x) => x.id !== id),
+      } as PlanAdditions;
+      if (kind === 'stakeholders' || kind === 'tools') {
+        const link = kind === 'stakeholders' ? 'stakeholderId' : 'toolId';
+        additions.items = additions.items.map((i) => {
+          if (i[link] !== id) return i;
+          const rest = { ...i };
+          delete rest[link];
+          return rest;
+        });
+      }
+      const items = { ...p.items };
+      if (kind === 'items') delete items[id];
+      return { ...p, items, additions };
     });
   }, []);
 
@@ -99,12 +92,10 @@ export function PlanProvider({ children }: { children: ReactNode }) {
       setSetup,
       setItem,
       replacePlan,
-      addStakeholder,
-      removeStakeholder,
-      addItem,
-      removeItem,
+      addAddition,
+      removeAddition,
     }),
-    [plan, setMeta, setSetup, setItem, replacePlan, addStakeholder, removeStakeholder, addItem, removeItem]
+    [plan, setMeta, setSetup, setItem, replacePlan, addAddition, removeAddition]
   );
 
   return <PlanContext.Provider value={value}>{children}</PlanContext.Provider>;
