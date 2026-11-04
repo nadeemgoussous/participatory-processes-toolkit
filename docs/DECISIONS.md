@@ -139,7 +139,7 @@ checklist), by objective (ch 4 Step 4's objective → tool mapping), and by stak
 
 ---
 
-## 2026-11-04 — Planner additions: own stakeholder groups and checklist items
+## 2026-11-04 — Planner additions: own stakeholder groups, checklist items, tools and case studies
 
 **Status:** accepted
 
@@ -149,22 +149,27 @@ the case study data) and with activities particular to their process. The app co
 record any of it, so that work happened outside the plan.
 
 **Decision:** The plan can hold planner additions — stakeholder groups (a name and an
-optional description) and checklist items (text, optional phases, optional link to a
-stakeholder group). They are the planner's data, like the notes beside each item, not
+optional description), checklist items (text, optional phases, optional link to a
+stakeholder group and to a tool), engagement tools or activities (a name, a description,
+optional phases) and case studies (against the five columns of the chapter 5 summary
+table). They are the planner's data, like the notes beside each item, not
 content the app presents as the publication's. To keep invariant 1 meaningful:
 
 - Additions live in `PlanState.additions`, never in `src/data/`. Nothing in the app ships
   with additions; there is no seed or example text.
 - Every addition is rendered with an explicit marker that it is not part of the IRENA
   toolkit, and in a visually distinct style (dashed amber border). Each place they appear
-  opens with a notice saying so. The marker is also printed.
+  opens with a notice saying so (`AdditionSection` in `src/components/common/Additions.tsx`
+  does both). The marker is also printed.
 - Additions are never interleaved with publication lists. They sit in their own section on
-  the plan and stakeholders pages, after the publication's content and its `SourceNote`.
+  each page — plan, stakeholders, tools, case studies — after the publication's content and
+  its `SourceNote`. A custom case study is a card below the summary table, not a row in it.
 - Additions do not link into publication content: a custom group has no good practices,
   and selecting one adds no publication items.
 
 **Consequences:**
 - The plan JSON gains an `additions` field. Older plans and exports load with it empty;
   imported additions are reshaped defensively, since the file is user-supplied.
-- Custom engagement tools and case studies are not supported. They are a larger surface
-  (the tools page is organised by the chapter 4 dimensions) and nobody has asked for them.
+- Custom tools have no detail page and do not appear in the by-objective, by-phase or
+  by-category routes, which are the publication's own mappings. Removing a group or tool
+  unlinks the items that referred to it rather than deleting them.

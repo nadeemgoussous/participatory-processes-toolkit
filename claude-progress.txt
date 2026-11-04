@@ -102,5 +102,6 @@ Decide whether regional-bodies and development-partners stay (KNOWN-GAPS 2).
     toolkit-pivot pushed as main, Pages deploys from main. Live at
     nadeemgoussous.github.io/participatory-processes-toolkit/.
   - Branch feature/planner-additions: planners can add their own stakeholder groups
-    (stakeholders page) and checklist items (plan page), always marked "not part of the
-    IRENA toolkit". Decision in docs/DECISIONS.md. 23 Chromium tests pass.
+    (stakeholders), checklist items (plan), tools (tools) and case studies (cases), always
+    marked "not part of the IRENA toolkit". Decision in docs/DECISIONS.md. Merged to main.
+    25 Chromium tests pass.
